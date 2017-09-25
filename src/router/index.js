@@ -1,15 +1,19 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from '@/components/Hello'
 
 Vue.use(Router)
 
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'Hello',
-      component: Hello
-    }
-  ]
+	routes: [
+	    {
+	      path: '/',
+	      name: 'Home',
+	      component: resolve => require(['@/components/Home'], resolve)
+	    },
+	    {
+	      path: '/AppDownload',
+	      name: 'AppDownload',
+	      component: resolve => require(['@/components/AppDownload'], resolve)
+	    },
+  	]
 })
