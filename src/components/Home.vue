@@ -1,15 +1,36 @@
 <template>
 	<div>
-		<ul>
-			<router-link tag="li" :to="{name: 'AppDownload'}">App下载</router-link>
-			<router-link tag="li" to="">货主下载</router-link>
-			<router-link tag="li" to="">司机下载</router-link>
-		</ul>
+		<div class="grids">
+			<router-link tag="div" class="grid" :to="{name: 'AppDownload'}">
+				<div class="grid_icon"><img src="../assets/img/download.svg"></div>
+				<div class="grid_label">App下载</div>
+			</router-link>
+			<router-link tag="div" class="grid" :to="{name: 'App1Download'}">
+				<div class="grid_icon"><img src="../assets/img/download.svg"></div>
+				<div class="grid_label">货主下载</div>
+			</router-link>
+			<router-link tag="div" class="grid" :to="{name: 'App2Download'}">
+				<div class="grid_icon"><img src="../assets/img/download.svg"></div>
+				<div class="grid_label">司机下载</div>
+			</router-link>
+			<router-link tag="div" class="grid" :to="{name: 'goodsDetail'}">
+				<div class="grid_icon"><img src="../assets/img/detail.svg"></div>
+				<div class="grid_label">货源详情</div>
+			</router-link>
+			<router-link tag="div" class="grid" :to="{name: 'truckDetail'}">
+				<div class="grid_icon"><img src="../assets/img/detail.svg"></div>
+				<div class="grid_label">车源详情</div>
+			</router-link>
+			<router-link tag="div" class="grid" to="">
+				<div class="grid_icon"><img src="../assets/img/more.svg"></div>
+				<div class="grid_label c9">敬请期待</div>
+			</router-link>
+		</div>
 	</div>
 </template>
 <script type="text/javascript">
 	
 </script>
 <style lang="stylus" scoped>
-	
+
 </style>
