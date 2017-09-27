@@ -168,7 +168,5 @@
 		img
 			height 20px
 			vertical-align middle
-			margin -2px 5px 0 0
-			
-				
+			margin -2px 5px 0 0					
 </style>
