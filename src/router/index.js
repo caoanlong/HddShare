@@ -35,5 +35,10 @@ export default new Router({
 	      name: 'truckDetail',
 	      component: resolve => require(['@/components/truckDetail'], resolve)
 	    },
+	    {
+	      path: '/agreement',
+	      name: 'agreement',
+	      component: resolve => require(['@/components/agreement'], resolve)
+	    },
   	]
 })

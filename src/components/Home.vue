@@ -21,9 +21,9 @@
 				<div class="grid_icon"><img src="../assets/img/detail.svg"></div>
 				<div class="grid_label">车源详情</div>
 			</router-link>
-			<router-link tag="div" class="grid" to="">
-				<div class="grid_icon"><img src="../assets/img/more.svg"></div>
-				<div class="grid_label c9">敬请期待</div>
+			<router-link tag="div" class="grid" :to="{name: 'agreement'}">
+				<div class="grid_icon"><img src="../assets/img/agreement.svg"></div>
+				<div class="grid_label">注册协议</div>
 			</router-link>
 		</div>
 	</div>
