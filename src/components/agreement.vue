@@ -27,20 +27,33 @@
 				<p>9、除非有法律规定或司法裁定，货多多会员帐号和密码不得以任何方式转让、赠与或继承（与账户相关的财产权益除外）。</p>
 				<p>10、在安装“货多多”软件时，系统将获取您所在的位置信息。货多多所提供的定位功能，是采用运营商的基站位置信息、GPS定位，由于通信信号等多种因素，货多多不保证您在使用过程中的连贯性以及位置精准性。</p>
 				<p>11、您同意遵守货多多方服务规则中的各项约定。</p>
+				
 			</div>
 		</div>
 	</div>
 </template>
 <script type="text/javascript">
-	
+	export default {
+		data() {
+			return {
+				
+			}
+		}
+	}
 </script>
 <style lang="stylus" scoped>
+	.container
+		padding-top 44px
 	.titleBar
 		background #6cc
 		height 44px
 		line-height 44px
 		text-align center
 		color #fff
+		position fixed
+		top 0
+		left 0
+		right 0
 	.agreenment_con
 		padding 15px
 		img
