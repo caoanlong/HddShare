@@ -1,49 +1,47 @@
 <template>
-	<div>
-		<div class="container">
-			<div class="titleBar">车源详情</div>
-			<div class="baseInfo bdb">
-				<img  src='../assets/img/defaultImg.svg' class="pic" />
-			    <p>
-			    	<b class="name">罗凯</b>
-			    	<span class="attention"><img src="../assets/img/attention.svg" />已认证</span>
-			    </p>
-			    <p>驾龄：7年</p>
-			    <p class="history">平台承运<span class="c1">998</span>笔 / 好评率<span class="c2">99.5%</span></p>
-			    <div class="tel"><img src="../assets/img/ic_call_phone_image.png" /></div>
-			</div>
-			<div class="truckInfo bdtb">
-				<img  src='../assets/img/defaultImg.svg' class="pic" />
-				<p><b class="truckNum">云A·12345</b></p>
-			    	<p>9.6米/集装箱车/车龄3年</p>
-			    	<p>刚刚定位 昆明 离我56Km</p>
-			    	<div class="viewMap"><img src="../../static/img/viewMap.png" /></div>
-			</div>
+	<div class="container">
+		<div class="titleBar">车源详情</div>
+		<div class="baseInfo bdb">
+			<img  src='../assets/img/defaultImg.svg' class="pic" />
+		    <p>
+		    	<b class="name">罗凯</b>
+		    	<span class="attention"><img src="../assets/img/attention.svg" />已认证</span>
+		    </p>
+		    <p>驾龄：7年</p>
+		    <p class="history">平台承运<span class="c1">998</span>笔 / 好评率<span class="c2">99.5%</span></p>
+		    <div class="tel"><img src="../assets/img/ic_call_phone_image.png" /></div>
+		</div>
+		<div class="truckInfo bdtb">
+			<img  src='../assets/img/defaultImg.svg' class="pic" />
+			<p><b class="truckNum">云A·12345</b></p>
+		    	<p>9.6米/集装箱车/车龄3年</p>
+		    	<p>刚刚定位 昆明 离我56Km</p>
+		    	<div class="viewMap"><img src="../../static/img/viewMap.png" /></div>
+		</div>
 
-			<div class="cells bdtb">
-				<div class="cell">
-					<div class="cell__hd"><img class="icon" src="../assets/img/position_icon.svg"></div>
-					<div class="cell__bd"><label class="labels">求货流向</label><span class="fr f12 c9">5分钟前发布 2017-06-15 可装货</span></div>
-				</div>
-				<div class="cell bdt">
-					<div class="cell__hd"><img class="icon" src="../assets/img/start_icon.svg" width="22"></div>
-					<div class="cell__bd">云南 昆明</div>
-				</div>
-				<div class="cell bdt">
-					<div class="cell__hd"><img class="icon" src="../assets/img/end_icon.svg" width="22"></div>
-					<div class="cell__bd">云南 保山、深圳 南山区、广东 深圳市、北京 北京市、上海 上海市</div>
-				</div>
-				<div class="cell bdt">
-					<div class="cell__hd"><img class="icon" src="../assets/img/detail_icon5.svg"></div>
-					<div class="cell__bd"><label class="labels">车主留言</label></div>
-				</div>
-				<div class="cell bdt">
-					<div class="cell__bd">经常跑云南到广东,可以装蔬菜,水果等农产品</div>
-				</div>
+		<div class="cells bdtb">
+			<div class="cell">
+				<div class="cell__hd"><img class="icon" src="../assets/img/position_icon.svg"></div>
+				<div class="cell__bd"><label class="labels">求货流向</label><span class="fr f12 c9">5分钟前发布 2017-06-15 可装货</span></div>
 			</div>
-			<div class="padd">
-				<router-link tag="div" to="" class="btn"><img src="../assets/img/push.svg" />推送货源</router-link>
+			<div class="cell bdt">
+				<div class="cell__hd"><img class="icon" src="../assets/img/start_icon.svg" width="22"></div>
+				<div class="cell__bd">云南 昆明</div>
 			</div>
+			<div class="cell bdt">
+				<div class="cell__hd"><img class="icon" src="../assets/img/end_icon.svg" width="22"></div>
+				<div class="cell__bd">云南 保山、深圳 南山区、广东 深圳市、北京 北京市、上海 上海市</div>
+			</div>
+			<div class="cell bdt">
+				<div class="cell__hd"><img class="icon" src="../assets/img/detail_icon5.svg"></div>
+				<div class="cell__bd"><label class="labels">车主留言</label></div>
+			</div>
+			<div class="cell bdt">
+				<div class="cell__bd">经常跑云南到广东,可以装蔬菜,水果等农产品</div>
+			</div>
+		</div>
+		<div class="padd">
+			<router-link tag="div" to="" class="btn"><img src="../assets/img/push.svg" />推送货源</router-link>
 		</div>
 	</div>
 </template>
@@ -150,7 +148,7 @@
 				color #f60
 				padding 0 5px
 			&.arrow
-				background url('../assets/img/flow arrow_order det.svg') no-repeat center
+				background url('../assets/img/arrow.svg') no-repeat center
 				width 30px
 				height 24px
 				background-size cover
