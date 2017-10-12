@@ -20,8 +20,14 @@
 			</div>
 			<div class="cells bdtb">
 				<div class="cell">
-					<div class="cell__hd"><img class="icon" src="../assets/img/position_icon.svg"></div>
-					<div class="cell__bd lineInfo"><span class="start">昆明呈贡</span><span class="arrow"></span><span class="end">云南保山</span></div>
+					<div class="cell__hd">
+						<img class="icon" src="../assets/img/position_icon.svg">
+					</div>
+					<div class="cell__bd lineInfo">
+						<span class="start">昆明呈贡</span>
+						<span class="arrow"></span>
+						<span class="end">云南保山</span>
+					</div>
 				</div>
 			</div>
 			<div class="viewMap bdb">最短里程<b>1388公里</b>
@@ -53,7 +59,16 @@
 	</div>
 </template>
 <script type="text/javascript">
-
+	export default {
+		methods: {
+			getGoodsDetail() {
+				let URL = '';
+				this.$http.get(URL,(res) => {
+					console.log(res)
+				})
+			}
+		}
+	}
 </script>
 <style lang="stylus" scoped>
 	
