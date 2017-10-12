@@ -107,7 +107,9 @@
 			</div>
 			<div class="section section3"></div>
 		</div>
-
+		<div class="pannel bdtb">
+			<div class="pannel_title text-center">货多多信息费服务协议<img class="" src="../assets/img/arrow_down.svg"></div>
+		</div>
 	</div>
 </template>
 <script type="text/javascript">
@@ -178,7 +180,12 @@
 					position absolute
 					left 0
 					text-align left
-
+		.text-center
+			text-align center
+			img
+				display inline-block
+				vertical-align middle
+				margin-left 5px
 		.section
 			width 5px
 			height 100%
