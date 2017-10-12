@@ -1,54 +1,51 @@
 <template>
-	<div>
-		<div class="container">
-			<div class="titleBar">货源详情</div>
-			<div class="baseInfo bdb">
-				<img  src='../assets/img/defaultImg.svg' class="pic" />
-			    <p>
-			    	<b class="name">罗凯</b>
-			    	<span class="user_sort user_sort1">物流公司</span>
-			   	<!-- <span class="user_sort user_sort1" v-if="data.memberType=='3PL'">物流公司</span>
-				<span class="user_sort user_sort2" v-else-if="data.memberType=='InfoDept'">物流信息部</span>
-				<span class="user_sort user_sort3" v-else-if="data.memberType=='IndShipper'">个人</span>
-				<span class="user_sort user_sort4" v-else-if="data.memberType=='NoTruck'">无车承运人</span> -->
-			    	<span class="attention"><img src="../assets/img/attention.svg" /></span>
-			    </p>
-			    <p class="company">云南微服物流</p>
-			    <p class="history">历史发货<span class="c1">995</span>条</p>
-			    <div class="tel"><img src="../assets/img/ic_call_phone_image.png" /></div>
+	<div class="container">
+		<div class="titleBar">货源详情</div>
+		<div class="baseInfo bdb">
+			<img  src='../assets/img/defaultImg.svg' class="pic" />
+		    <p>
+		    	<b class="name">罗凯</b>
+		    	<span class="user_sort user_sort1">物流公司</span>
+		   	<!-- <span class="user_sort user_sort1" v-if="data.memberType=='3PL'">物流公司</span>
+			<span class="user_sort user_sort2" v-else-if="data.memberType=='InfoDept'">物流信息部</span>
+			<span class="user_sort user_sort3" v-else-if="data.memberType=='IndShipper'">个人</span>
+			<span class="user_sort user_sort4" v-else-if="data.memberType=='NoTruck'">无车承运人</span> -->
+		    	<span class="attention"><img src="../assets/img/attention.svg" /></span>
+		    </p>
+		    <p class="company">云南微服物流</p>
+		    <p class="history">历史发货<span class="c1">995</span>条</p>
+		    <div class="tel"><img src="../assets/img/ic_call_phone_image.png" /></div>
+		</div>
+		<div class="cells bdtb">
+			<div class="cell">
+				<div class="cell__hd"><img class="icon" src="../assets/img/position_icon.svg"></div>
+				<div class="cell__bd lineInfo"><span class="start">昆明呈贡</span><span class="arrow"></span><span class="end">云南保山</span></div>
 			</div>
+		</div>
+		<div class="viewMap bdb">最短里程<b>1388公里</b>
+			<router-link tag="div" to="" class="viewBtn"><img src="../../static/img/viewBtn.png" /></router-link>
+		</div>
+		<div class="cells bdtb">
+			<div class="cell">
+				<div class="cell__hd"><img class="icon" src="../assets/img/detail_icon1.svg"></div>
+				<div class="cell__bd"><label class="labels">装车时间</label><span>2017-07-11</span></div>
 			</div>
-			<div class="cells bdtb">
-				<div class="cell">
-					<div class="cell__hd"><img class="icon" src="../assets/img/position_icon.svg"></div>
-					<div class="cell__bd lineInfo"><span class="start">昆明呈贡</span><span class="arrow"></span><span class="end">云南保山</span></div>
-				</div>
+			<div class="cell bdt">
+				<div class="cell__hd"><img class="icon" src="../assets/img/detail_icon2.svg"></div>
+				<div class="cell__bd"><label class="labels">货物信息</label><span class="c1">食品/30吨/45方/裸装</span></div>
 			</div>
-			<div class="viewMap bdb">最短里程<b>1388公里</b>
-				<router-link tag="div" to="" class="viewBtn"><img src="../../static/img/viewBtn.png" /></router-link>
+			<div class="cell bdt">
+				<div class="cell__hd"><img class="icon" src="../assets/img/detail_icon3.svg"></div>
+				<div class="cell__bd"><label class="labels">需求车辆</label><span class="c1">9米/集装箱车/需4车/剩<b>2</b>车</span></div>
 			</div>
-			<div class="cells bdtb">
-				<div class="cell">
-					<div class="cell__hd"><img class="icon" src="../assets/img/detail_icon1.svg"></div>
-					<div class="cell__bd"><label class="labels">装车时间</label><span>2017-07-11</span></div>
-				</div>
-				<div class="cell bdt">
-					<div class="cell__hd"><img class="icon" src="../assets/img/detail_icon2.svg"></div>
-					<div class="cell__bd"><label class="labels">货物信息</label><span class="c1">食品/30吨/45方/裸装</span></div>
-				</div>
-				<div class="cell bdt">
-					<div class="cell__hd"><img class="icon" src="../assets/img/detail_icon3.svg"></div>
-					<div class="cell__bd"><label class="labels">需求车辆</label><span class="c1">9米/集装箱车/需4车/剩<b>2</b>车</span></div>
-				</div>
-				<div class="cell bdt">
-					<div class="cell__hd"><img class="icon" src="../assets/img/detail_icon5.svg"></div>
-					<div class="cell__bd"><label class="labels">货主留言</label><span>非诚勿扰，真心求车，长期有货</span></div>
-				</div>
-				
+			<div class="cell bdt">
+				<div class="cell__hd"><img class="icon" src="../assets/img/detail_icon5.svg"></div>
+				<div class="cell__bd"><label class="labels">货主留言</label><span>非诚勿扰，真心求车，长期有货</span></div>
 			</div>
-			<div class="padd">
-				<router-link tag="div" to="" class="btn"><img src="../assets/img/rmb.svg" />支付信息费</router-link>
-			</div>
+			
+		</div>
+		<div class="padd">
+			<router-link tag="div" to="" class="btn"><img src="../assets/img/rmb.svg" />支付信息费</router-link>
 		</div>
 	</div>
 </template>
@@ -149,7 +146,7 @@
 				color #f60
 				padding 0 5px
 			&.arrow
-				background url('../assets/img/flow arrow_order det.svg') no-repeat center
+				background url('../assets/img/arrow.svg') no-repeat center
 				width 30px
 				height 24px
 				background-size cover

@@ -1,16 +1,16 @@
 <template>
-	<div>
+	<div class="container">
 		<div class="titleBar">单页</div>
 		<div class="grids">
 			<router-link tag="div" class="grid" :to="{name: 'AppDownload'}">
 				<div class="grid_icon"><img src="../assets/img/download.svg"></div>
 				<div class="grid_label">App下载</div>
 			</router-link>
-			<router-link tag="div" class="grid" :to="{name: 'App1Download'}">
+			<router-link tag="div" class="grid" :to="{name: 'ConsignorDownload'}">
 				<div class="grid_icon"><img src="../assets/img/download.svg"></div>
 				<div class="grid_label">货主下载</div>
 			</router-link>
-			<router-link tag="div" class="grid" :to="{name: 'App2Download'}">
+			<router-link tag="div" class="grid" :to="{name: 'DriverDownload'}">
 				<div class="grid_icon"><img src="../assets/img/download.svg"></div>
 				<div class="grid_label">司机下载</div>
 			</router-link>
@@ -26,9 +26,9 @@
 				<div class="grid_icon"><img src="../assets/img/agreement.svg"></div>
 				<div class="grid_label">注册协议</div>
 			</router-link>
-			<router-link tag="div" class="grid" to="">
-				<div class="grid_icon"><img src="../assets/img/more.svg"></div>
-				<div class="grid_label">敬请期待</div>
+			<router-link tag="div" class="grid" :to="{name: 'infoFee'}">
+				<div class="grid_icon"><img src="../assets/img/agreement.svg"></div>
+				<div class="grid_label">信息费协议</div>
 			</router-link>
 			<router-link tag="div" class="grid" to="">
 				<div class="grid_icon"><img src="../assets/img/more.svg"></div>

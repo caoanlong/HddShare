@@ -16,14 +16,14 @@ export default new Router({
 	      component: resolve => require(['@/components/AppDownload'], resolve)
 	    },
 	    {
-	      path: '/App1Download',
-	      name: 'App1Download',
-	      component: resolve => require(['@/components/App1Download'], resolve)
+	      path: '/ConsignorDownload',
+	      name: 'ConsignorDownload',
+	      component: resolve => require(['@/components/ConsignorDownload'], resolve)
 	    },
 	    {
-	      path: '/App2Download',
-	      name: 'App2Download',
-	      component: resolve => require(['@/components/App2Download'], resolve)
+	      path: '/DriverDownload',
+	      name: 'DriverDownload',
+	      component: resolve => require(['@/components/DriverDownload'], resolve)
 	    },
 	    {
 	      path: '/goodsDetail',
@@ -39,6 +39,11 @@ export default new Router({
 	      path: '/agreement',
 	      name: 'agreement',
 	      component: resolve => require(['@/components/agreement'], resolve)
+	    },
+	    {
+	      path: '/infoFee',
+	      name: 'infoFee',
+	      component: resolve => require(['@/components/infoFee'], resolve)
 	    },
   	]
 })

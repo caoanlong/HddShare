@@ -1,22 +1,20 @@
 <template>
-	<div>
-		<div class="container">
-			<router-link tag="div" to="" class="logo"><img src="../../static/img/hdd_logo.png"/></router-link>
-			<div class="publish"><img src="../../static/img/publish.png"/></div>
-			<div class="specialty"><img src="../../static/img/specialty.png"/></div>
-			<div class="downSection">
-			<div class="downItem">
-				<img class="qrcode" src="../../static/img/qrcode1.png" />
-				<div class="downLoadBtn"><img src="../../static/img/downLoad_btn1.png" /></div>
-			</div>
-			<div class="downItem">
-				<img class="qrcode" src="../../static/img/qrcode2.png" />
-				<div class="downLoadBtn"><img src="../../static/img/downLoad_btn2.png" /></div>
-			</div>
-			</div>
-			<div class="footer">
-				深圳市前海微服大数据科技有限公司
-			</div>
+	<div class="container">
+		<router-link tag="div" to="" class="logo"><img src="../../static/img/hdd_logo.png"/></router-link>
+		<div class="publish"><img src="../../static/img/publish.png"/></div>
+		<div class="specialty"><img src="../../static/img/specialty.png"/></div>
+		<div class="downSection">
+		<div class="downItem">
+			<img class="qrcode" src="../../static/img/qrcode1.png" />
+			<div class="downLoadBtn"><img src="../../static/img/downLoad_btn1.png" /></div>
+		</div>
+		<div class="downItem">
+			<img class="qrcode" src="../../static/img/qrcode2.png" />
+			<div class="downLoadBtn"><img src="../../static/img/downLoad_btn2.png" /></div>
+		</div>
+		</div>
+		<div class="footer">
+			深圳市前海微服大数据科技有限公司
 		</div>
 	</div>
 </template>
