@@ -45,5 +45,10 @@ export default new Router({
 	      name: 'infoFee',
 	      component: resolve => require(['@/components/infoFee'], resolve)
 	    },
+	    {
+	      path: '/error',
+	      name: 'error',
+	      component: resolve => require(['@/components/error'], resolve)
+	    },
   	]
 })
