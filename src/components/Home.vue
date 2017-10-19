@@ -30,9 +30,9 @@
 				<div class="grid_icon"><img src="../assets/img/agreement.svg"></div>
 				<div class="grid_label">信息费协议</div>
 			</router-link>
-			<router-link tag="div" class="grid" to="">
-				<div class="grid_icon"><img src="../assets/img/more.svg"></div>
-				<div class="grid_label">敬请期待</div>
+			<router-link tag="div" class="grid" :to="{name: 'error'}">
+				<div class="grid_icon"><img src="../assets/img/404.svg"></div>
+				<div class="grid_label">404</div>
 			</router-link>
 			<router-link tag="div" class="grid" to="">
 				<div class="grid_icon"><img src="../assets/img/more.svg"></div>
