@@ -1,14 +1,18 @@
 <template>
 	<div class="container">
-		<div class="titleBar">信息费服务协议</div>
+		<!-- <div class="titleBar">信息费服务协议</div> -->
 		<div class="padd">
 			<div class="item">
 				<img class="icon" src="../assets/img/position_icon.svg">
-				<div class="lineInfo"><span class="start">昆明呈贡</span><span class="arrow"></span><span class="end">云南保山</span></div>
+				<div class="lineInfo">
+					<span class="start">{{infoData.AreaFromName}}</span>
+					<span class="arrow"></span>
+					<span class="end">{{infoData.AreaToName}}</span>
+				</div>
 			</div>
 			<div class="item">
 				<img class="icon" src="../assets/img/detail_icon2.svg">
-				<div class="goodInfo">食品/30吨/45方/裸装</div>
+				<div class="goodInfo">{{infoData.cargoName}}/{{infoData.cargoWeight}}吨/{{infoData.cargoVolume}}方/{{infoData.cargoPackageName}}</div>
 			</div>
 			<img class="success_icon" src="../assets/img/success_icon.png">
 		</div>
@@ -16,17 +20,17 @@
 
 			<div class="pannel_item">
 				<div class="panel_box">
-					<label>装车时间</label>562017091954878
+					<label>装车时间</label>{{infoData.orderTime||'无'}}
 				</div>
 			</div>
 			<div class="pannel_item bdt">
 				<div class="panel_box">
-					<label>付款时间</label>2017-09-19  22:12:33
+					<label>付款时间</label>{{infoData.paymentTime}}
 				</div>
 			</div>
 			<div class="pannel_item bdt">
 				<div class="panel_box">
-					<label>协商信息费</label><b class="c2">500.00元</b>
+					<label>协商信息费</label><b class="c2">xxx500.00元</b>
 				</div>
 			</div>
 		</div>
@@ -34,27 +38,27 @@
 			<div class="pannel_title c2">托运方</div>
 			<div class="pannel_item">
 				<div class="panel_box">
-					<label>托运单位</label>云南巨峰物流
+					<label>托运单位</label>{{infoData.companyName}}
 				</div>
 			</div>
 			<div class="pannel_item bdt">
 				<div class="panel_box">
-					<label>单位地址</label>昆明官渡区彩云北路浩宏物流园204
+					<label>单位地址</label>{{infoData.companyAddress}}
 				</div>
 			</div>
 			<div class="pannel_item bdt">
 				<div class="panel_box">
-					<label>托运人</label>罗凯
+					<label>托运人</label>{{infoData.shipperRealName}}
 				</div>
 			</div>
 			<div class="pannel_item bdt">
 				<div class="panel_box">
-					<label>身份证号码</label>440************452
+					<label>身份证号码</label>{{infoData.shipperIDCardNum}}
 				</div>
 			</div>
 			<div class="pannel_item bdt">
 				<div class="panel_box">
-					<label>电话号码</label>13424389894
+					<label>电话号码</label>{{infoData.shipperMobile}}
 				</div>
 			</div>
 			<div class="section section1"></div>
@@ -63,22 +67,22 @@
 			<div class="pannel_title c1">承运方</div>
 			<div class="pannel_item">
 				<div class="panel_box">
-					<label>车牌号码</label>云A·2349D
+					<label>车牌号码</label>{{infoData.plateNo}}
 				</div>
 			</div>
 			<div class="pannel_item bdt">
 				<div class="panel_box">
-					<label>承运人</label>贾坤
+					<label>承运人</label>{{infoData.driverRealName}}
 				</div>
 			</div>
 			<div class="pannel_item bdt">
 				<div class="panel_box">
-					<label>身份证号码</label>440************874
+					<label>身份证号码</label>{{infoData.driverIDCardNum}}
 				</div>
 			</div>
 			<div class="pannel_item bdt">
 				<div class="panel_box">
-					<label>电话号码</label>13421645315
+					<label>电话号码</label>{{infoData.driverMobile}}
 				</div>
 			</div>
 			<div class="section section2"></div>
@@ -87,33 +91,60 @@
 			<div class="pannel_title c3">装车信息</div>
 			<div class="pannel_item">
 				<div class="panel_box">
-					<label>车牌号码</label>云A·2349D
+					<label>车牌号码</label>{{infoData.plateNo}}
 				</div>
 			</div>
 			<div class="pannel_item bdt">
 				<div class="panel_box">
-					<label>装车地址</label>昆明五华区五华农贸市场B区4950昆明五华区五华农贸市场B区4950
+					<label>装车地址</label>{{infoData.LoadingAddress}}
 				</div>
 			</div>
 			<div class="pannel_item bdt">
 				<div class="panel_box">
-					<label>联系人</label>刘柱
+					<label>联系人</label>{{infoData.LoadingMan}}
 				</div>
 			</div>
 			<div class="pannel_item bdt">
 				<div class="panel_box">
-					<label>电话号码</label>13590178478
+					<label>电话号码</label>{{infoData.LoadingMobile}}
 				</div>
 			</div>
 			<div class="section section3"></div>
 		</div>
 		<div class="pannel bdtb">
-			<div class="pannel_title text-center">货多多信息费服务协议<img class="" src="../assets/img/arrow_down.svg"></div>
+			<div class="pannel_title text-center" @click="isContent=!isContent">货多多信息费服务协议<img class="" src="../assets/img/arrow_down.svg"></div>
+			<div class="agreement" v-show="isContent" v-html="content"></div>
 		</div>
 	</div>
 </template>
 <script type="text/javascript">
-
+	export default {
+		data() {
+			return {
+				infoData: {},
+				content: '',
+				isContent: false
+			}
+		},
+		created() {
+			this.getInfoFee();
+			this.getAgreement();
+		},
+		methods: {
+			getInfoFee() {
+				let URL = this.__WEBSERVER__ + 'agentOrder/agreement/detail?agentAgreementID=16546465421';
+				this.$http.get(URL).then((res) => {
+					this.infoData = res.body.data;
+				})
+			},
+			getAgreement() {
+				let URL = this.__WEBSERVER__ + 'content/findContentListByTopicCode?code=InformationFees';
+				this.$http.get(URL).then((res) => {
+					this.content = res.body.data[0].content;
+				})
+			}
+		}
+	}
 </script>
 <style lang="stylus" scoped>
 	
@@ -163,6 +194,9 @@
 		margin-top: 10px;
 		background: #fff;
 		color #666
+		.agreement
+			padding 10px 15px
+			background-color #fff
 		.pannel_title
 			padding 10px 15px
 			font-size 16px
@@ -175,6 +209,7 @@
 				text-align right
 				position relative
 				line-height 24px
+				min-height 24px
 				label
 					width 90px
 					position absolute

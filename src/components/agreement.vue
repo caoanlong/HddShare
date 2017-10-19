@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="container">
-			<div class="titleBar">用户协议</div>
+			<!-- <div class="titleBar">用户协议</div> -->
 			<div class="agreenment_con" v-html="content" ref="content" id="content">
 			</div>
 		</div>
@@ -17,10 +17,6 @@
 		created() {
 			this.getAgreement();
 		},
-		mounted() {
-			
-			// this.$refs.content.children[0].style.lineHeight = 1.5
-		},
 		methods: {
 			getAgreement() {
 				let URL = this.__WEBSERVER__ + 'content/findContentListByTopicCode';
@@ -33,6 +29,8 @@
 	}
 </script>
 <style lang="stylus" scoped>
+.container
+	width 100%
 	.titleBar
 		background #6cc
 		height 44px

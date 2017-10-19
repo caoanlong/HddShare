@@ -164,7 +164,7 @@
 				color #f60
 				padding 0 5px
 			&.arrow
-				background url('../assets/img/flow arrow_order det.svg') no-repeat center
+				background url('../assets/img/arrow.svg') no-repeat center
 				width 30px
 				height 24px
 				background-size cover
