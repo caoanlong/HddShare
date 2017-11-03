@@ -41,10 +41,15 @@ export default new Router({
 	      component: resolve => require(['@/components/agreement'], resolve)
 	    },
 	    {
-	      path: '/infoFee',
-	      name: 'infoFee',
-	      component: resolve => require(['@/components/infoFee'], resolve)
-	    },
+          path: '/infoFee',
+          name: 'infoFee',
+          component: resolve => require(['@/components/infoFee'], resolve)
+        },
+        {
+          path: '/transFee',
+          name: 'transFee',
+          component: resolve => require(['@/components/transFee'], resolve)
+        },
 	    {
 	      path: '/error',
 	      name: 'error',
