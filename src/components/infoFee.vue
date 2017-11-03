@@ -14,13 +14,12 @@
 				<img class="icon" src="../assets/img/detail_icon2.svg">
 				<div class="goodInfo">{{infoData.cargoName}}/{{infoData.cargoWeight}}吨/{{infoData.cargoVolume}}方/{{infoData.cargoPackageName}}</div>
 			</div>
-			<img class="success_icon" src="../assets/img/success_icon.png">
+			<img class="success_icon" src="../assets/img/success_icon.png" v-if="infoData.AreaFromName">
 		</div>
 		<div class="pannel bdtb">
-
 			<div class="pannel_item">
 				<div class="panel_box">
-					<label>装车时间</label>{{infoData.orderTime||'无'}}
+					<label>装车时间</label>{{infoData.orderTime}}
 				</div>
 			</div>
 			<div class="pannel_item bdt">
@@ -30,7 +29,7 @@
 			</div>
 			<div class="pannel_item bdt">
 				<div class="panel_box">
-					<label>协商信息费</label><b class="c2">xxx500.00元</b>
+					<label>协商信息费</label><b class="c2">{{infoData.infoFee}}元</b>
 				</div>
 			</div>
 		</div>
@@ -132,7 +131,7 @@
 		},
 		methods: {
 			getInfoFee() {
-				let URL = this.__WEBSERVER__ + 'agentOrder/agreement/detail?agentAgreementID=16546465421';
+				let URL = this.__WEBSERVER__ + 'agentOrder/agreement/detail?agentAgreementID='+ this.$route.query.agentAgreementID;
 				this.$http.get(URL).then((res) => {
 					this.infoData = res.body.data;
 				})
@@ -147,7 +146,6 @@
 	}
 </script>
 <style lang="stylus" scoped>
-	
 	.titleBar
 		background #6cc
 		height 44px
