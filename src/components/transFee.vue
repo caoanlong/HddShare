@@ -1,18 +1,18 @@
 <template>
 	<div class="container">
-		<!-- <div class="titleBar">信息费服务协议</div> -->
+		<div class="titleBar">运输协议</div>
 		<div class="padd">
 			<div class="item">
 				<img class="icon" src="../assets/img/position_icon.svg">
 				<div class="lineInfo">
-					<span class="start">{{infoData.AreaFromName}}</span>
+					<span class="start">{{infoData.areaFromName}}</span>
 					<span class="arrow"></span>
-					<span class="end">{{infoData.AreaToName}}</span>
+					<span class="end">{{infoData.areaToName}}</span>
 				</div>
 			</div>
 			<div class="item">
 				<img class="icon" src="../assets/img/detail_icon2.svg">
-				<div class="goodInfo">{{infoData.cargoName}}/{{infoData.cargoWeight}}吨/{{infoData.cargoVolume}}方/{{infoData.cargoPackageName}}</div>
+				<div class="goodInfo">{{infoData.cargoName}}/{{infoData.cargoWeight}}吨/{{infoData.cargoVolume}}方/{{infoData.truckType}}</div>
 			</div>
 			<img class="success_icon" src="../assets/img/success_icon.png">
 		</div>
@@ -20,35 +20,40 @@
 
 			<div class="pannel_item">
 				<div class="panel_box">
-					<label>装车时间</label>{{infoData.orderTime||'无'}}
+					<label>协议单号</label>{{infoData.transWaybillID}}
 				</div>
 			</div>
 			<div class="pannel_item bdt">
 				<div class="panel_box">
-					<label>付款时间</label>{{infoData.paymentTime}}
+					<label>运输单号</label>{{infoData.transWaybillID}}
 				</div>
 			</div>
 			<div class="pannel_item bdt">
 				<div class="panel_box">
-					<label>协商信息费</label><b class="c2">xxx500.00元</b>
+					<label>达成合作时间</label>{{infoData.createTime}}
+				</div>
+			</div>
+			<div class="pannel_item bdt">
+				<div class="panel_box">
+					<label>协议运费</label><b class="c2">{{infoData.feeSum}}</b>
 				</div>
 			</div>
 		</div>
 		<div class="pannel bdtb">
-			<div class="pannel_title c2">托运方</div>
+			<div class="pannel_title c2">发货方</div>
 			<div class="pannel_item">
 				<div class="panel_box">
-					<label>托运单位</label>{{infoData.companyName}}
+					<label>发货单位</label>{{infoData.companyName}}
 				</div>
 			</div>
 			<div class="pannel_item bdt">
 				<div class="panel_box">
-					<label>单位地址</label>{{infoData.companyAddress}}
+					<label>单位地址</label>{{infoData.shipperAddress}}
 				</div>
 			</div>
 			<div class="pannel_item bdt">
 				<div class="panel_box">
-					<label>托运人</label>{{infoData.shipperRealName}}
+					<label>发货人</label>{{infoData.shipper}}
 				</div>
 			</div>
 			<div class="pannel_item bdt">
@@ -127,13 +132,22 @@
 			}
 		},
 		created() {
-			this.getInfoFee();
+			this.getTransFee();
 			this.getAgreement();
 		},
+		http: {
+	        root: '/',
+	        headers: {
+	            'HDD_API_CURRENT_USER': this.$route.query.HDD_API_CURRENT_USER
+	        }
+	    },
 		methods: {
-			getInfoFee() {
-				let URL = this.__WEBSERVER__ + 'agentOrder/agreement/detail?agentAgreementID=16546465421';
-				this.$http.get(URL).then((res) => {
+			getTransFee() {
+				let URL = this.__WEBSERVER__ + 'transOrder/agreement/detail';
+				var params = {
+					'transWaybillID': this.$route.query.transWaybillID
+				}
+				this.$http.post(URL, params).then((res) => {
 					this.infoData = res.body.data;
 				})
 			},
