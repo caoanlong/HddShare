@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<div class="titleBar">运输协议</div>
+		<!-- <div class="titleBar">运输协议</div> -->
 		<div class="padd">
 			<div class="item">
 				<img class="icon" src="../assets/img/position_icon.svg">
