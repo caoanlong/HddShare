@@ -126,20 +126,27 @@
 			}
 		},
 		created() {
-			this.getInfoFee();
-			this.getAgreement();
+			this.getInfoFee()
+			this.getAgreement()
 		},
 		methods: {
 			getInfoFee() {
-				let URL = this.__WEBSERVER__ + 'agentOrder/agreement/detail?agentAgreementID='+ this.$route.query.agentAgreementID;
-				this.$http.get(URL).then((res) => {
-					this.infoData = res.body.data;
-				})
+				let URL = this.__WEBSERVER__ + 'agentOrder/agreement/detail?agentAgreementID='+ this.$route.query.agentAgreementID
+				this.$http.get(URL).then(
+					(res) => {
+						this.infoData = res.body.data
+					},
+					(res) => {
+						// this.$router.push({name: 'error'})
+					}
+				)
 			},
 			getAgreement() {
 				let URL = this.__WEBSERVER__ + 'content/findContentListByTopicCode?code=InformationFees';
 				this.$http.get(URL).then((res) => {
-					this.content = res.body.data[0].content;
+					if (res.body.code == 200) {
+						this.content = res.body.data[0].content
+					}
 				})
 			}
 		}

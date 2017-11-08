@@ -19,27 +19,29 @@
 		},
 		methods: {
 			getAgreement() {
-				let URL = this.__WEBSERVER__ + 'content/findContentListByTopicCode';
-				let params = {code: 'Agreement'};
+				let URL = this.__WEBSERVER__ + 'content/findContentListByTopicCode'
+				let params = {
+					code: this.$route.query.code || 'Agreement'
+				};
 				this.$http.get(URL,{params:params}).then((res) => {
-					this.content = res.body.data[0].content;
+					this.content = res.body.data[0].content
 				})
 			}
 		}
 	}
 </script>
 <style lang="stylus" scoped>
-.container
-	width 100%
-	.titleBar
-		background #6cc
-		height 44px
-		line-height 44px
-		text-align center
-		color #fff
-	.agreenment_con
-		padding 15px
-		img
-			padding 15px 0
-			width 100%
+	.container
+		width 100%
+		.titleBar
+			background #6cc
+			height 44px
+			line-height 44px
+			text-align center
+			color #fff
+		.agreenment_con
+			padding 15px
+			img
+				padding 15px 0
+				width 100%
 </style>
