@@ -38,9 +38,9 @@
 				<div class="grid_icon"><img src="../assets/img/404.svg"></div>
 				<div class="grid_label">404页面</div>
 			</router-link>
-			<router-link tag="div" class="grid" to="">
-				<div class="grid_icon"><img src="../assets/img/more.svg"></div>
-				<div class="grid_label">敬请期待</div>
+			<router-link tag="div" class="grid" :to="{name: 'updata'}">
+				<div class="grid_icon"><img src="../assets/img/updata_icon.svg" class="rotate"></div>
+				<div class="grid_label">版本更新</div>
 			</router-link>
 			<router-link tag="div" class="grid" to="">
 				<div class="grid_icon"><img src="../assets/img/more.svg"></div>

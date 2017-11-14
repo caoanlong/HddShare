@@ -54,6 +54,11 @@ export default new Router({
 	      	path: '/error',
 	      	name: 'error',
 	      	component: resolve => require(['@/components/error'], resolve)
+	    },
+	    {
+	      	path: '/updata',
+	      	name: 'updata',
+	      	component: resolve => require(['@/components/updata'], resolve)
 	    }
   	]
 })
