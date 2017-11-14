@@ -26,7 +26,7 @@
 				<div class="grid_icon"><img src="../assets/img/agreement.svg"></div>
 				<div class="grid_label">注册协议</div>
 			</router-link>
-			<router-link tag="div" class="grid" :to="{name: 'infoFee',query: {agentAgreementID: '16546465421'}}">
+			<router-link tag="div" class="grid" :to="{name: 'infoFee'}">
 				<div class="grid_icon"><img src="../assets/img/agreement.svg"></div>
 				<div class="grid_label">信息费协议</div>
 			</router-link>

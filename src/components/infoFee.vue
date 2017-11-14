@@ -19,7 +19,7 @@
 		<div class="pannel bdtb">
 			<div class="pannel_item">
 				<div class="panel_box">
-					<label>装车时间</label>{{infoData.orderTime}}
+					<label>流水单号</label>{{infoData.orderTime}}
 				</div>
 			</div>
 			<div class="pannel_item bdt">
@@ -52,7 +52,7 @@
 			</div>
 			<div class="pannel_item bdt">
 				<div class="panel_box">
-					<label>身份证号码</label>{{infoData.shipperIDCardNum}}
+					<label>身份证号码</label>{{infoData.shipperIDCardNum?(infoData.shipperIDCardNum.substring(0,5)+'********'+infoData.shipperIDCardNum.substr(14)):''}}
 				</div>
 			</div>
 			<div class="pannel_item bdt">
@@ -76,7 +76,7 @@
 			</div>
 			<div class="pannel_item bdt">
 				<div class="panel_box">
-					<label>身份证号码</label>{{infoData.driverIDCardNum}}
+					<label>身份证号码</label>{{infoData.driverIDCardNum?(infoData.driverIDCardNum.substring(0,5)+'********'+infoData.driverIDCardNum.substr(14)):''}}
 				</div>
 			</div>
 			<div class="pannel_item bdt">
@@ -131,19 +131,25 @@
 		},
 		methods: {
 			getInfoFee() {
-				let URL = this.__WEBSERVER__ + 'agentOrder/agreement/detail?agentAgreementID='+ this.$route.query.agentAgreementID
-				this.$http.get(URL).then(
-					(res) => {
-						this.infoData = res.body.data
-					},
-					(res) => {
-						// this.$router.push({name: 'error'})
+				let URL = this.__WEBSERVER__ + 'agentOrder/agreement/detail'
+				let params = {
+					agentAgreementID: this.$route.query.agentAgreementID,
+					Authorization: this.$route.query.Authorization
+				}
+				this.$http.get(URL).then((res) => {
+						if (res.body.code == 200) {
+							this.infoData = res.body.data
+						}
 					}
 				)
 			},
 			getAgreement() {
-				let URL = this.__WEBSERVER__ + 'content/findContentListByTopicCode?code=InformationFees';
-				this.$http.get(URL).then((res) => {
+				let URL = this.__WEBSERVER__ + 'content/findContentListByTopicCode'
+				let params = {
+					code: 'InformationFees',
+					Authorization: this.$route.query.Authorization
+				}
+				this.$http.get(URL,{params: params}).then((res) => {
 					if (res.body.code == 200) {
 						this.content = res.body.data[0].content
 					}

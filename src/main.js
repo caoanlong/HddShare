@@ -9,7 +9,7 @@ import _global from './common/global.js'
 Vue.use(vueResource)
 Vue.use(_global)
 
-Vue.http.interceptors.push((request, next) => {
+// Vue.http.interceptors.push((request, next) => {
     //请求发送前的处理逻辑
     // request.headers['JSESSIONID'] = '216d2847-b77e-4436-b7dd-6f79d837816c'
     // request.headers.set('HDD-Client-Tag', '216d2847-b77e-4436-b7dd-6f79d837816c')
@@ -19,7 +19,7 @@ Vue.http.interceptors.push((request, next) => {
    //    	request.headers.set('Authorization', authorization);
    //  }
   	// next();
-});
+// });
 
 Vue.config.productionTip = false
 

@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<div class="titleBar">运输协议</div>
+		<!-- <div class="titleBar">运输协议</div> -->
 		<div class="padd">
 			<div class="item">
 				<img class="icon" src="../assets/img/position_icon.svg">
@@ -58,7 +58,7 @@
 			</div>
 			<div class="pannel_item bdt">
 				<div class="panel_box">
-					<label>身份证号码</label>{{infoData.shipperIDCardNum}}
+					<label>身份证号码</label>{{infoData.shipperIDCardNum?(infoData.shipperIDCardNum.substring(0,5)+'********'+infoData.shipperIDCardNum.substr(14)):''}}
 				</div>
 			</div>
 			<div class="pannel_item bdt">
@@ -82,7 +82,7 @@
 			</div>
 			<div class="pannel_item bdt">
 				<div class="panel_box">
-					<label>身份证号码</label>{{infoData.driverIDCardNum}}
+					<label>身份证号码</label>{{infoData.driverIDCardNum?(infoData.driverIDCardNum.substring(0,5)+'********'+infoData.driverIDCardNum.substr(14)):''}}
 				</div>
 			</div>
 			<div class="pannel_item bdt">
@@ -132,29 +132,38 @@
 			}
 		},
 		created() {
-			this.getTransFee();
-			this.getAgreement();
+			this.getTransFee()
+			this.getAgreement()
 		},
-		http: {
-	        root: '/',
-	        headers: {
-	            'HDD_API_CURRENT_USER': this.$route.query.HDD_API_CURRENT_USER
-	        }
-	    },
+		// http: {
+	    //     root: '/',
+	    //     headers: {
+	    //         'JSESSIONID': this.JSESSIONID
+	    //     }
+	    // },
 		methods: {
 			getTransFee() {
 				let URL = this.__WEBSERVER__ + 'transOrder/agreement/detail';
 				var params = {
-					'transWaybillID': this.$route.query.transWaybillID
+					transWaybillID: this.$route.query.transWaybillID,
+					Authorization: this.$route.query.Authorization
 				}
-				this.$http.post(URL, params).then((res) => {
-					this.infoData = res.body.data;
+				this.$http.get(URL, {params: params}).then((res) => {
+					if (res.body.code == 200) {
+						this.infoData = res.body.data
+					}
 				})
 			},
 			getAgreement() {
-				let URL = this.__WEBSERVER__ + 'content/findContentListByTopicCode?code=InformationFees';
-				this.$http.get(URL).then((res) => {
-					this.content = res.body.data[0].content;
+				let URL = this.__WEBSERVER__ + 'content/findContentListByTopicCode';
+				var params = {
+					code: 'InformationFees',
+					Authorization: this.$route.query.Authorization
+				}
+				this.$http.get(URL, {params: params}).then((res) => {
+					if (res.body.code == 200) {
+						this.content = res.body.data[0].content
+					}
 				})
 			}
 		}
