@@ -14,18 +14,13 @@
 				<img class="icon" src="../assets/img/detail_icon2.svg">
 				<div class="goodInfo">{{infoData.cargoName}}/{{infoData.cargoWeight}}吨/{{infoData.cargoVolume}}方/{{infoData.truckType}}</div>
 			</div>
-			<img class="success_icon" src="../assets/img/success_icon.png">
+			<img class="success_icon" src="../assets/img/success_icon.png" v-show="infoData.statusAll==1">
+			<img class="success_icon" src="../assets/img/success_icon.png" v-show="infoData.statusAll==2">
 		</div>
 		<div class="pannel bdtb">
-
-			<div class="pannel_item">
-				<div class="panel_box">
-					<label>协议单号</label>{{infoData.transWaybillID}}
-				</div>
-			</div>
 			<div class="pannel_item bdt">
 				<div class="panel_box">
-					<label>运输单号</label>{{infoData.transWaybillID}}
+					<label>运输单号</label>{{infoData.waybillCode}}
 				</div>
 			</div>
 			<div class="pannel_item bdt">
@@ -35,7 +30,7 @@
 			</div>
 			<div class="pannel_item bdt">
 				<div class="panel_box">
-					<label>协议运费</label><b class="c2">{{infoData.feeSum}}</b>
+					<label>协议运费</label><b class="c2">{{infoData.feeSum}}元</b>
 				</div>
 			</div>
 		</div>
@@ -58,7 +53,7 @@
 			</div>
 			<div class="pannel_item bdt">
 				<div class="panel_box">
-					<label>身份证号码</label>{{infoData.shipperIDCardNum?(infoData.shipperIDCardNum.substring(0,5)+'********'+infoData.shipperIDCardNum.substr(14)):''}}
+					<label>身份证号码</label>{{infoData.companyIDCardNum}}
 				</div>
 			</div>
 			<div class="pannel_item bdt">
@@ -77,41 +72,108 @@
 			</div>
 			<div class="pannel_item bdt">
 				<div class="panel_box">
-					<label>承运人</label>{{infoData.driverRealName}}
+					<label>承运人</label>{{infoData.carrierRealName}}
 				</div>
 			</div>
 			<div class="pannel_item bdt">
 				<div class="panel_box">
-					<label>身份证号码</label>{{infoData.driverIDCardNum?(infoData.driverIDCardNum.substring(0,5)+'********'+infoData.driverIDCardNum.substr(14)):''}}
+					<label>身份证号码</label>{{infoData.carrierIDCardNum}}
 				</div>
 			</div>
 			<div class="pannel_item bdt">
 				<div class="panel_box">
-					<label>电话号码</label>{{infoData.driverMobile}}
+					<label>电话号码</label>{{infoData.carrierMobile}}
 				</div>
 			</div>
 			<div class="section section2"></div>
 		</div>
 		<div class="pannel bdtb">
-			<div class="pannel_title c3">装车信息</div>
+			<div class="pannel_title c3">装车条款</div>
 			<div class="pannel_item">
 				<div class="panel_box">
-					<label>车牌号码</label>{{infoData.plateNo}}
+					<label>装车地址</label>{{infoData.shipperAddress}}
 				</div>
 			</div>
 			<div class="pannel_item bdt">
 				<div class="panel_box">
-					<label>装车地址</label>{{infoData.LoadingAddress}}
+					<label>联系人</label>{{infoData.shipper}}
 				</div>
 			</div>
 			<div class="pannel_item bdt">
 				<div class="panel_box">
-					<label>联系人</label>{{infoData.LoadingMan}}
+					<label>联系电话</label>{{infoData.shipperMobile}}
 				</div>
 			</div>
 			<div class="pannel_item bdt">
 				<div class="panel_box">
-					<label>电话号码</label>{{infoData.LoadingMobile}}
+					<label>最晚装车时间</label>{{infoData.shipperDate}}
+				</div>
+			</div>
+			<div class="section section3"></div>
+		</div>
+		<div class="pannel bdtb">
+			<div class="pannel_title c2">送达条款</div>
+			<div class="pannel_item">
+				<div class="panel_box">
+					<label>送达地址</label>{{infoData.consigneeAddress}}
+				</div>
+			</div>
+			<div class="pannel_item bdt">
+				<div class="panel_box">
+					<label>联系人</label>{{infoData.consignee}}
+				</div>
+			</div>
+			<div class="pannel_item bdt">
+				<div class="panel_box">
+					<label>联系电话</label>{{infoData.consigneeMobile}}
+				</div>
+			</div>
+			<div class="pannel_item bdt">
+				<div class="panel_box">
+					<label>最晚到达时间</label>{{infoData.consigneeDate}}
+				</div>
+			</div>
+			<div class="section section1"></div>
+		</div>
+		<div class="pannel bdtb">
+			<div class="pannel_title c1">运费条款</div>
+			<div class="pannel_item">
+				<div class="panel_box">
+					<label>现付油卡</label>{{infoData.prepayOilCardFee}}
+				</div>
+			</div>
+			<div class="pannel_item bdt">
+				<div class="panel_box">
+					<label>预付金额</label>{{infoData.prepayFee}}元
+				</div>
+			</div>
+			<div class="pannel_item bdt">
+				<div class="panel_box">
+					<label>预付方式</label>{{infoData.prepayOnlineFlag}}
+				</div>
+			</div>
+			<div class="pannel_item bdt">
+				<div class="panel_box">
+					<label>到付金额</label>{{infoData.codFee}}
+				</div>
+			</div>
+			<div class="pannel_item bdt">
+				<div class="panel_box">
+					<label>到付方式</label>{{infoData.codOnlineFlag}}
+				</div>
+			</div>
+			<div class="section section2"></div>
+		</div>
+		<div class="pannel bdtb">
+			<div class="pannel_title c3">回单条款</div>
+			<div class="pannel_item">
+				<div class="panel_box">
+					<label>回单要求</label>{{infoData.returnWaybillFlag}}
+				</div>
+			</div>
+			<div class="pannel_item bdt">
+				<div class="panel_box">
+					<label>回单金额</label>{{infoData.porFee}}元
 				</div>
 			</div>
 			<div class="section section3"></div>
@@ -135,12 +197,6 @@
 			this.getTransFee()
 			this.getAgreement()
 		},
-		// http: {
-	    //     root: '/',
-	    //     headers: {
-	    //         'JSESSIONID': this.JSESSIONID
-	    //     }
-	    // },
 		methods: {
 			getTransFee() {
 				let URL = this.__WEBSERVER__ + 'transOrder/agreement/detail';
@@ -150,8 +206,9 @@
 				}
 				this.$http.get(URL, {params: params}).then((res) => {
 					if (res.body.code == 200) {
+						console.log(res.body.data)
 						this.infoData = res.body.data
-					}
+					} 
 				})
 			},
 			getAgreement() {
@@ -170,7 +227,6 @@
 	}
 </script>
 <style lang="stylus" scoped>
-	
 	.titleBar
 		background #6cc
 		height 44px

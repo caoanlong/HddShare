@@ -1,6 +1,6 @@
 <template>
     <div class="updata">
-        <div class="titleBar">版本更新</div>
+        <!-- <div class="titleBar">版本更新</div> -->
         <div class="newVersion clearfix">
             <div class="version_box">
                 <img src="../../static/img/newVer_bg.png"  alt=""/>
@@ -39,7 +39,28 @@
     </div>
 </template>
 <script type="text/javascript">
-    
+    export default {
+        data() {
+            return {
+
+            }
+        },
+        created() {
+            this.getVersionDetail()
+        },
+        methods: {
+            getVersionDetail() {
+                let URL = this.__WEBSERVER__ + 'system/version/detail';
+                let params = {
+                    appVersionID: this.$route.query.appVersionID,
+                    Authorization: this.$route.query.Authorization
+                }
+                this.$http.get(URL,{params: params}).then((res) => {
+                    console.log(res)
+                })
+            }
+        }
+    }
 </script>
 <style lang="stylus" scoped>
 .titleBar

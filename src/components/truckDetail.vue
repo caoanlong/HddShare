@@ -51,7 +51,6 @@
 	}
 </script>
 <style lang="stylus" scoped>
-	
 	.titleBar
 		background #6cc
 		height 44px
