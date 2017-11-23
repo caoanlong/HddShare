@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<div class="titleBar">单页</div>
+		<div class="titleBar" v-show="!isWx">单页</div>
 		<div class="grids">
 			<router-link tag="div" class="grid" :to="{name: 'AppDownload'}">
 				<div class="grid_icon"><img src="../assets/img/download.svg"></div>
@@ -66,7 +66,16 @@
 	</div>
 </template>
 <script type="text/javascript">
-	
+	export default {
+		data () {
+			return {
+				isWx: false
+			}
+		},
+		created () {
+			this.isWx = window.wx ? true : false
+		}
+	}
 </script>
 <style lang="stylus" scoped>
 	.titleBar

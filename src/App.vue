@@ -12,6 +12,7 @@ export default {
 		}
 	},
 	created () {
+		this.$router.push({name: document.body.getAttribute('wx-router')})
 		this.wx(location.href.split('#')[0], [
 			'onMenuShareTimeline',
 			'onMenuShareAppMessage'
