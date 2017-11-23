@@ -42,17 +42,17 @@
 				<div class="grid_icon"><img src="../assets/img/updata_icon.svg" class="rotate"></div>
 				<div class="grid_label">版本更新</div>
 			</router-link>
-			<router-link tag="div" class="grid" to="">
-				<div class="grid_icon"><img src="../assets/img/more.svg"></div>
-				<div class="grid_label">敬请期待</div>
+			<router-link tag="div" class="grid" :to="{name: 'findGoods'}">
+				<div class="grid_icon"><img src="../assets/img/goods_icon.svg"></div>
+				<div class="grid_label">寻找货源</div>
 			</router-link>
-			<router-link tag="div" class="grid" to="">
-				<div class="grid_icon"><img src="../assets/img/more.svg"></div>
-				<div class="grid_label">敬请期待</div>
+			<router-link tag="div" class="grid" :to="{name: 'findTruck'}">
+				<div class="grid_icon"><img src="../assets/img/truck_icon.svg"></div>
+				<div class="grid_label">寻找车源</div>
 			</router-link>
-			<router-link tag="div" class="grid" to="">
-				<div class="grid_icon"><img src="../assets/img/more.svg"></div>
-				<div class="grid_label">敬请期待</div>
+			<router-link tag="div" class="grid" :to="{name: 'aboutHdd'}">
+				<div class="grid_icon"><img src="../assets/img/about.svg"></div>
+				<div class="grid_label">关于货多多</div>
 			</router-link>
 			<router-link tag="div" class="grid" to="">
 				<div class="grid_icon"><img src="../assets/img/more.svg"></div>
