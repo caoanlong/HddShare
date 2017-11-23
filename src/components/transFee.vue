@@ -14,7 +14,7 @@
 				<img class="icon" src="../assets/img/detail_icon2.svg">
 				<div class="goodInfo">{{infoData.cargoName}}/{{infoData.cargoWeight}}吨/{{infoData.cargoVolume}}方/{{infoData.truckType}}</div>
 			</div>
-			<img class="success_icon" src="../assets/img/success_icon.png" v-show="infoData.statusAll==1">
+			<img class="success_icon" src="../assets/img/cancel_icon.png" v-show="infoData.statusAll==1">
 			<img class="success_icon" src="../assets/img/success_icon.png" v-show="infoData.statusAll==2">
 		</div>
 		<div class="pannel bdtb">

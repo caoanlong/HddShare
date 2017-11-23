@@ -60,6 +60,21 @@ export default new Router({
 	      	path: '/updata',
 	      	name: 'updata',
 	      	component: resolve => require(['@/components/updata'], resolve)
+	    },
+	    {
+	      	path: '/findGoods',
+	      	name: 'findGoods',
+	      	component: resolve => require(['@/components/findGoods'], resolve)
+	    },
+	    {
+	      	path: '/findTruck',
+	      	name: 'findTruck',
+	      	component: resolve => require(['@/components/findTruck'], resolve)
+	    },
+	    {
+	      	path: '/aboutHdd',
+	      	name: 'aboutHdd',
+	      	component: resolve => require(['@/components/aboutHdd'], resolve)
 	    }
   	]
 })

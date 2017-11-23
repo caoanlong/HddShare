@@ -1,8 +1,16 @@
 export default function install (Vue, options) {
 	// 开发服务器
+<<<<<<< .mine
 	// Vue.prototype.__WEBSERVER__ = 'http://test.hdd.we-service.cn:8888/'
+=======
+	Vue.prototype.__WEBSERVER__ = 'http://test.hdd.we-service.cn:8888/';
+>>>>>>> .theirs
 	// 测试服务器
+<<<<<<< .mine
 	Vue.prototype.__WEBSERVER__ = 'http://develop.we-service.cn/test-hdd/v2/'
+=======
+	// Vue.prototype.__WEBSERVER__ = 'http://develop.we-service.cn/test-hdd/v2/';
+>>>>>>> .theirs
 	// 正式服务器
 	// Vue.prototype.__WEBSERVER__ = 'http://192.168.1.48:8888/'
 	// 邹文臣电脑
