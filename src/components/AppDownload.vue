@@ -19,7 +19,11 @@
 	</div>
 </template>
 <script type="text/javascript">
-	
+	export default {
+		created () {
+			document.title = 'App下载'
+		}
+	}
 </script>
 <style lang="stylus" scoped>
 
