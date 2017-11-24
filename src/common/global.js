@@ -12,7 +12,6 @@ export default function install (Vue, options) {
 	// 农信靠电脑
 	// Vue.prototype.__WEBSERVER__ = 'http://192.168.1.49:4441/'
 
-	let domain_static_url = "http://dev.tunnel.qydev.com/wx/"
 	/* 每页条数 */
 	// Vue.prototype.PAGESIZE = 10
 
