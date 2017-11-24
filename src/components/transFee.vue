@@ -20,6 +20,11 @@
 		<div class="pannel bdtb">
 			<div class="pannel_item bdt">
 				<div class="panel_box">
+					<label>协议编号</label>{{infoData.waybillCode}}
+				</div>
+			</div>
+			<div class="pannel_item bdt">
+				<div class="panel_box">
 					<label>运输单号</label>{{infoData.waybillCode}}
 				</div>
 			</div>
@@ -200,7 +205,7 @@
 		methods: {
 			getTransFee() {
 				let URL = this.__WEBSERVER__ + 'transOrder/agreement/detail';
-				var params = {
+				let params = {
 					transWaybillID: this.$route.query.transWaybillID,
 					Authorization: this.$route.query.Authorization
 				}
@@ -213,7 +218,7 @@
 			},
 			getAgreement() {
 				let URL = this.__WEBSERVER__ + 'content/findContentListByTopicCode';
-				var params = {
+				let params = {
 					code: 'InformationFees',
 					Authorization: this.$route.query.Authorization
 				}

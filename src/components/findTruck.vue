@@ -5,7 +5,7 @@
 			<div class="truckLength">车长</div>
 			<div class="map"><i></i>地图找车</div>
 		</div>
-		<Truck v-for="i in 10" key="i"></Truck>
+		<Truck v-for="i in 10" :key="i"></Truck>
 		<div class="filter-pop" :class="{'show':popShow}"></div>
 	</div>
 </template>
@@ -16,6 +16,9 @@
 			return {
 				popShow: false
 			}
+		},
+		created () {
+			document.title = '寻找车源'
 		},
 		components: {
 			Truck,

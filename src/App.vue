@@ -1,12 +1,26 @@
 <template>
-  <div id="app">
-    <router-view></router-view>
-  </div>
+	<div id="app">
+		<router-view></router-view>
+	</div>
 </template>
-
 <script>
 export default {
-  name: 'app'
+	name: 'app',
+	data () {
+		return {
+			config: {}
+		}
+	},
+	created () {
+		this.$router.push({name: document.body.getAttribute('wx-router')})
+		this.wx(location.href.split('#')[0], [
+			'onMenuShareTimeline',
+			'onMenuShareAppMessage'
+		])
+	},
+	methods: {
+		
+	}
 }
 </script>
 

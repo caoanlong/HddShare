@@ -5,16 +5,16 @@
 			<div class="item">
 				<img class="icon" src="../assets/img/position_icon.svg">
 				<div class="lineInfo">
-					<span class="start">{{infoData.AreaFromName}}</span>
+					<span class="start">{{infoData.areaFromName}}</span>
 					<span class="arrow"></span>
-					<span class="end">{{infoData.AreaToName}}</span>
+					<span class="end">{{infoData.areaToName}}</span>
 				</div>
 			</div>
 			<div class="item">
 				<img class="icon" src="../assets/img/detail_icon2.svg">
 				<div class="goodInfo">{{infoData.cargoName}}/{{infoData.cargoWeight}}吨/{{infoData.cargoVolume}}方/{{infoData.cargoPackageName}}</div>
 			</div>
-			<img class="success_icon" src="../assets/img/success_icon.png" v-if="infoData.AreaFromName">
+			<img class="success_icon" src="../assets/img/success_icon.png"/>
 		</div>
 		<div class="pannel bdtb">
 			<div class="pannel_item">
@@ -137,11 +137,10 @@
 					Authorization: this.$route.query.Authorization
 				}
 				this.$http.get(URL).then((res) => {
-						if (res.body.code == 200) {
-							this.infoData = res.body.data
-						}
+					if (res.body.code == 200) {
+						this.infoData = res.body.data
 					}
-				)
+				})
 			},
 			getAgreement() {
 				let URL = this.__WEBSERVER__ + 'content/findContentListByTopicCode'
