@@ -73,7 +73,7 @@
 			}
 		},
 		created () {
-			this.isWx = window.wx ? true : false
+			this.isWx = (window.navigator.userAgent.indexOf('MicroMessenger') > -1) ? true : false
 		}
 	}
 </script>
