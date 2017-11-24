@@ -99,7 +99,7 @@
 					margin-top 6px
 					.quote_sort
 						border 1px solid #6cc
-						padding 2px 5px
+						padding 1px 5px
 						border-radius 8px
 						margin-right 5px
 						color #6cc
