@@ -1,10 +1,10 @@
 <template>
 	<div class="findGoods">
 		<div class="filter-box">
-			<div class="from" @click="filterPop(0)">起始地</div>
+			<div class="from" @click="filterPop(0)">全国</div>
 			<!-- <div class="from" @click="filterPop(0)">{{scrollTop}}</div> -->
 			<span class="arrow"></span>
-			<div class="destination"  @click="filterPop(1)">目的地</div>
+			<div class="destination"  @click="filterPop(1)">全国</div>
 			<!-- <div class="destination"  @click="filterPop(1)">{{disY}}</div> -->
 			<div class="more"  @click="filterPop(2)">更多</div>
 		</div>
@@ -14,8 +14,15 @@
 			<pullUpLoad :loadStatus="loadStatus"></pullUpLoad>
 		</div>
 		<div class="filter-pop" :class="{'show':popShow}" v-if="filterList == 0">
-			<div class="filter-header bdb">
-  				当前地区：全部<span class="backBtn fr"><i></i>返回上一级</span>
+			<div class="areaSelect">
+				<div class="from">起始地</div>
+				<!-- <div class="from" @click="filterPop(0)">{{scrollTop}}</div> -->
+				<span class="arrow"></span>
+				<div class="destination">目的地</div>
+				<!-- <div class="destination"  @click="filterPop(1)">{{disY}}</div> -->
+			</div>
+			<div class="filter-header bdtb">
+  				当前地区：全部<div class="fr"><span class="location">深圳市</span><span class="backBtn"><i></i>返回上一级</span></div>
   			</div>
       		<div class="filter-body">
   				<ul class="clearfix">
@@ -60,8 +67,15 @@
 			</div>
       	</div>
       	<div class="filter-pop" :class="{'show':popShow}" v-if="filterList ==1">
-      		<div class="filter-header bdb">
-  				当前地区：全部<span class="backBtn fr"><i></i>返回上一级</span>
+      		<div class="areaSelect">
+				<div class="from">起始地</div>
+				<!-- <div class="from" @click="filterPop(0)">{{scrollTop}}</div> -->
+				<span class="arrow"></span>
+				<div class="destination">目的地</div>
+				<!-- <div class="destination"  @click="filterPop(1)">{{disY}}</div> -->
+			</div>
+			<div class="filter-header bdtb">
+  				当前地区：全部<div class="fr"><span class="location">深圳市</span><span class="backBtn"><i></i>返回上一级</span></div>
   			</div>
       		<div class="filter-body">
       			<ul class="clearfix">
@@ -294,16 +308,49 @@
 			-webkit-transition top .2s
 			-o-transition top .2s
 			&.show
-				top 40px
+				top 0
 				bottom 64px
+				z-index 20
 				.filter-footer
 					display flex
+			.areaSelect
+				background #fff
+				height 40px
+				padding 5px
+				display flex
+				font-size 12px
+				.from
+				.destination
+					flex 1
+					border 1px solid #ddd
+					padding 0 30px 0 5px
+					line-height 28px
+					border-radius 4px
+					background url('../assets/img/arrow-b.png') no-repeat right center
+				.arrow
+					flex 0 40px
+					background url('../assets/img/arrow.svg') no-repeat center
+					display inline-block
+					background-size contain
+					width 40px
+					height 30px
+					vertical-align top
+				.more
+					flex 0 50px
+					text-align center
+					line-height 30px
 			.filter-header
 				height 40px
 				line-height 30px
 				padding 5px
 				font-size 14px
 				color #666
+				.location
+					color #6cc
+					border 1px solid #6cc
+					border-radius 4px
+					margin-right 5px
+					padding 5px
 				.backBtn
 					color #6cc
 					background none
@@ -324,10 +371,11 @@
 					font-size 14px
 				ul
 					margin-bottom 10px
+					padding 0 5px
 					li
 						float left
 						width 25%
-						padding 10px 10px 0
+						padding 10px 5px 0
 						text-align center
 						&.selected
 							span
@@ -338,7 +386,7 @@
 							border 1px solid #ddd
 							display block
 							font-size 14px
-							padding 2px 0
+							padding 5px 0
 							border-radius 4px
 							color #666
 							white-space nowrap
@@ -362,12 +410,13 @@
 					flex 1
 					outline none
 					border none
-					
+					font-size 16px
 					i
-						width 14px
-						height 14px
+						width 16px
+						height 16px
 						display inline-block
 						vertical-align text-top
+						margin-top 2px
 						margin-right 5px
 				.cancelBtn
 					color #666
