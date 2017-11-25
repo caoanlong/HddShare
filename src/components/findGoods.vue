@@ -2,20 +2,17 @@
 	<div class="findGoods">
 		<div class="filter-box">
 			<div class="from" @click="filterPop(0)">起始地</div>
+			<!-- <div class="from" @click="filterPop(0)">{{scrollTop}}</div> -->
 			<span class="arrow"></span>
 			<div class="destination"  @click="filterPop(1)">目的地</div>
+			<!-- <div class="destination"  @click="filterPop(1)">{{disY}}</div> -->
 			<div class="more"  @click="filterPop(2)">更多</div>
 		</div>
-		<Scroll ref="scroll"
-              :data="goodsList"
-              :scrollbar="true"
-              :pullDownRefresh="pullDownRefreshObj"
-              :pullUpLoad="pullUpLoadObj"
-              :startY="0"
-              @pullingDown="onPullingDown"
-              @pullingUp="onPullingUp">
-          	<Goods v-for="goods in goodsList" :goods="goods" :key="goods.cargoSourceID"></Goods>
-      	</Scroll>
+		<div class="block"></div>
+		<div class="wrapper" ref="goodsWrapper">
+			<Goods v-for="goods in goodsList" :goods="goods" :key="goods.cargoSourceID"></Goods>
+			<pullUpLoad :loadStatus="loadStatus"></pullUpLoad>
+		</div>
 		<div class="filter-pop" :class="{'show':popShow}" v-if="filterList == 0">
 			<div class="filter-header bdb">
   				当前地区：全部<span class="backBtn fr"><i></i>返回上一级</span>
@@ -167,49 +164,42 @@
 	</div>
 </template>
 <script type="text/javascript">
-	import Scroll from './common/Scroll'
 	import Goods from './FindGoods/Goods'
+	import pullUpLoad from './common/pullUpLoad'
+	import goodsList from '../assets/data/goodsList'
 	export default {
 		data () {
 			return {
 				popShow: false,
 				filterList: '',
-				goodsList: [{"areaFrom":"","areaFromBaseArea":null,"areaTo":"","areaToBaseArea":null,"arrivalsNum":0,"browseNum":33,"cargoDesc":"913 快速消费品 1000吨 77元 定价 铁箱 ","cargoFreightPrice":0,"cargoFreightTotalPrice":0,"cargoFreightType":"Fix","cargoFreightUnit":"","cargoFreightUnitConstant":null,"cargoName":"","cargoNum":"","cargoPackage":"","cargoPackageConstant":null,"cargoSourceID":"356826344610742272","cargoSourceNum":10,"cargoSourcePublishToList":[],"cargoTypeConstant":null,"cargoTypeID":"","cargoVolume":"","cargoWeight":"","certifyStatus":"","code":"","createTime":"2017-09-11 15:40:30","entFlag":"","estimateMileage":0,"focusmemId":"","fromAreaName":"云南,昆明,五华,","headPicture":"","invisibleCity":"","invisibleCityDesc":"","invisibleCityList":[],"loadedNum":0,"loadingDate":"2017-09-28","loadingTime":"19:40","loadingTimeSlot":"Limit","memID":"351746646088237056","memberType":"NoTruck","mobile":"13714261162","nickName":"","offerNum":0,"publishToDesc":"","publishToFleetFlag":"","publishToFocusEnterpriseFlag":"","publishToFreightYardFlag":"","publishToID":"","publishToParkFlag":"","publishType":"","realName":"无车承运62","remark":"","remarkList":[],"sentAgreementNum":0,"status":"Pub","toAreaName":"广东,深圳,","truckDesc":"平板货车 22米/18米 1车","truckLength":"","truckLengthList":[],"truckNum":0,"truckType":"","truckTypeConstant":null,"updateTime":null,"vesselNum":0},{"areaFrom":"","areaFromBaseArea":null,"areaTo":"","areaToBaseArea":null,"arrivalsNum":0,"browseNum":47,"cargoDesc":"912 农产品 10吨  议价 大件设备 ","cargoFreightPrice":0,"cargoFreightTotalPrice":0,"cargoFreightType":"Talk","cargoFreightUnit":"","cargoFreightUnitConstant":null,"cargoName":"","cargoNum":"","cargoPackage":"","cargoPackageConstant":null,"cargoSourceID":"356825571562766336","cargoSourceNum":10,"cargoSourcePublishToList":[],"cargoTypeConstant":null,"cargoTypeID":"","cargoVolume":"","cargoWeight":"","certifyStatus":"","code":"","createTime":"2017-09-11 15:37:25","entFlag":"","estimateMileage":0,"focusmemId":"","fromAreaName":"云南,昆明,盘龙,","headPicture":"","invisibleCity":"","invisibleCityDesc":"","invisibleCityList":[],"loadedNum":0,"loadingDate":"2017-09-28","loadingTime":null,"loadingTimeSlot":"AM","memID":"351746646088237056","memberType":"NoTruck","mobile":"13714261162","nickName":"","offerNum":0,"publishToDesc":"","publishToFleetFlag":"","publishToFocusEnterpriseFlag":"","publishToFreightYardFlag":"","publishToID":"","publishToParkFlag":"","publishType":"","realName":"无车承运62","remark":"","remarkList":[],"sentAgreementNum":0,"status":"Pub","toAreaName":"广东,深圳,宝安,","truckDesc":"厢式货车 13米/15米 2车","truckLength":"","truckLengthList":[],"truckNum":0,"truckType":"","truckTypeConstant":null,"updateTime":null,"vesselNum":0},{"areaFrom":"","areaFromBaseArea":null,"areaTo":"","areaToBaseArea":null,"arrivalsNum":0,"browseNum":15,"cargoDesc":"911 冷藏货物 333吨 67元 定价 托盘 ","cargoFreightPrice":0,"cargoFreightTotalPrice":0,"cargoFreightType":"Fix","cargoFreightUnit":"","cargoFreightUnitConstant":null,"cargoName":"","cargoNum":"","cargoPackage":"","cargoPackageConstant":null,"cargoSourceID":"356824810531471360","cargoSourceNum":10,"cargoSourcePublishToList":[],"cargoTypeConstant":null,"cargoTypeID":"","cargoVolume":"","cargoWeight":"","certifyStatus":"","code":"","createTime":"2017-09-11 15:34:24","entFlag":"","estimateMileage":0,"focusmemId":"","fromAreaName":"云南,昆明,官渡,","headPicture":"","invisibleCity":"","invisibleCityDesc":"","invisibleCityList":[],"loadedNum":0,"loadingDate":"2017-09-27","loadingTime":null,"loadingTimeSlot":"NoLimit","memID":"351746646088237056","memberType":"NoTruck","mobile":"13714261162","nickName":"","offerNum":0,"publishToDesc":"","publishToFleetFlag":"","publishToFocusEnterpriseFlag":"","publishToFreightYardFlag":"","publishToID":"","publishToParkFlag":"","publishType":"","realName":"无车承运62","remark":"","remarkList":[],"sentAgreementNum":0,"status":"Pub","toAreaName":"广东,深圳,南山,","truckDesc":"牵引车 33.3米/12.3米/6.6米 3车","truckLength":"","truckLengthList":[],"truckNum":0,"truckType":"","truckTypeConstant":null,"updateTime":null,"vesselNum":0},{"areaFrom":"","areaFromBaseArea":null,"areaTo":"","areaToBaseArea":null,"arrivalsNum":0,"browseNum":26,"cargoDesc":"大米 农产品 1吨 10000元 定价 大件设备 ","cargoFreightPrice":0,"cargoFreightTotalPrice":0,"cargoFreightType":"Fix","cargoFreightUnit":"","cargoFreightUnitConstant":null,"cargoName":"","cargoNum":"","cargoPackage":"","cargoPackageConstant":null,"cargoSourceID":"356786267075526656","cargoSourceNum":5,"cargoSourcePublishToList":[],"cargoTypeConstant":null,"cargoTypeID":"","cargoVolume":"","cargoWeight":"","certifyStatus":"","code":"","createTime":"2017-09-11 13:01:14","entFlag":"","estimateMileage":0,"focusmemId":"","fromAreaName":"天津,","headPicture":"","invisibleCity":"","invisibleCityDesc":"","invisibleCityList":[],"loadedNum":0,"loadingDate":"2017-08-24","loadingTime":null,"loadingTimeSlot":"","memID":"344579245516783616","memberType":"IndShipper","mobile":"15084798888","nickName":"","offerNum":0,"publishToDesc":"","publishToFleetFlag":"","publishToFocusEnterpriseFlag":"","publishToFreightYardFlag":"","publishToID":"","publishToParkFlag":"","publishType":"","realName":"泪无痕","remark":"","remarkList":[],"sentAgreementNum":0,"status":"Pub","toAreaName":"湖南,长沙,","truckDesc":"平板挂车 11.7米 1车","truckLength":"","truckLengthList":[],"truckNum":0,"truckType":"","truckTypeConstant":null,"updateTime":null,"vesselNum":0},{"areaFrom":"","areaFromBaseArea":null,"areaTo":"","areaToBaseArea":null,"arrivalsNum":0,"browseNum":6,"cargoDesc":"","cargoFreightPrice":0,"cargoFreightTotalPrice":0,"cargoFreightType":"议价","cargoFreightUnit":"","cargoFreightUnitConstant":null,"cargoName":"","cargoNum":"","cargoPackage":"","cargoPackageConstant":null,"cargoSourceID":"356114761525903360","cargoSourceNum":5,"cargoSourcePublishToList":[],"cargoTypeConstant":null,"cargoTypeID":"","cargoVolume":"","cargoWeight":"","certifyStatus":"","code":"","createTime":"2017-09-09 16:32:55","entFlag":"","estimateMileage":0,"focusmemId":"","fromAreaName":"广东,广州,荔湾,","headPicture":"","invisibleCity":"","invisibleCityDesc":"","invisibleCityList":[],"loadedNum":0,"loadingDate":"2017-09-11","loadingTime":null,"loadingTimeSlot":"","memID":"344579245516783616","memberType":"IndShipper","mobile":"15084798888","nickName":"","offerNum":0,"publishToDesc":"","publishToFleetFlag":"","publishToFocusEnterpriseFlag":"","publishToFreightYardFlag":"","publishToID":"","publishToParkFlag":"","publishType":"","realName":"泪无痕","remark":"","remarkList":[],"sentAgreementNum":0,"status":"Pub","toAreaName":"湖北,武汉,江岸,","truckDesc":"","truckLength":"","truckLengthList":[],"truckNum":0,"truckType":"","truckTypeConstant":null,"updateTime":null,"vesselNum":0},{"areaFrom":"","areaFromBaseArea":null,"areaTo":"","areaToBaseArea":null,"arrivalsNum":0,"browseNum":5,"cargoDesc":"","cargoFreightPrice":0,"cargoFreightTotalPrice":0,"cargoFreightType":"定价","cargoFreightUnit":"","cargoFreightUnitConstant":null,"cargoName":"","cargoNum":"","cargoPackage":"","cargoPackageConstant":null,"cargoSourceID":"356108204973113344","cargoSourceNum":5,"cargoSourcePublishToList":[],"cargoTypeConstant":null,"cargoTypeID":"","cargoVolume":"","cargoWeight":"","certifyStatus":"","code":"","createTime":"2017-09-09 16:06:52","entFlag":"","estimateMileage":0,"focusmemId":"","fromAreaName":"广东,江门,新会,","headPicture":"","invisibleCity":"","invisibleCityDesc":"","invisibleCityList":[],"loadedNum":0,"loadingDate":"2017-09-14","loadingTime":null,"loadingTimeSlot":"","memID":"344579245516783616","memberType":"IndShipper","mobile":"15084798888","nickName":"","offerNum":0,"publishToDesc":"","publishToFleetFlag":"","publishToFocusEnterpriseFlag":"","publishToFreightYardFlag":"","publishToID":"","publishToParkFlag":"","publishType":"","realName":"泪无痕","remark":"","remarkList":[],"sentAgreementNum":0,"status":"Pub","toAreaName":"山东,潍坊,坊子,","truckDesc":"","truckLength":"","truckLengthList":[],"truckNum":0,"truckType":"","truckTypeConstant":null,"updateTime":null,"vesselNum":0},{"areaFrom":"","areaFromBaseArea":null,"areaTo":"","areaToBaseArea":null,"arrivalsNum":0,"browseNum":22,"cargoDesc":"大米 农产品 1吨 10000元 定价 大件设备 ","cargoFreightPrice":0,"cargoFreightTotalPrice":0,"cargoFreightType":"Fix","cargoFreightUnit":"","cargoFreightUnitConstant":null,"cargoName":"","cargoNum":"","cargoPackage":"","cargoPackageConstant":null,"cargoSourceID":"355239956392067072","cargoSourceNum":5,"cargoSourcePublishToList":[],"cargoTypeConstant":null,"cargoTypeID":"","cargoVolume":"","cargoWeight":"","certifyStatus":"","code":"","createTime":"2017-09-07 06:36:45","entFlag":"","estimateMileage":0,"focusmemId":"","fromAreaName":"天津,","headPicture":"","invisibleCity":"","invisibleCityDesc":"","invisibleCityList":[],"loadedNum":0,"loadingDate":"2017-08-24","loadingTime":null,"loadingTimeSlot":"","memID":"344579245516783616","memberType":"IndShipper","mobile":"15084798888","nickName":"","offerNum":0,"publishToDesc":"","publishToFleetFlag":"","publishToFocusEnterpriseFlag":"","publishToFreightYardFlag":"","publishToID":"","publishToParkFlag":"","publishType":"","realName":"泪无痕","remark":"","remarkList":[],"sentAgreementNum":0,"status":"Pub","toAreaName":"湖南,长沙,","truckDesc":"平板挂车 11.7米 1车","truckLength":"","truckLengthList":[],"truckNum":0,"truckType":"","truckTypeConstant":null,"updateTime":null,"vesselNum":0},{"areaFrom":"","areaFromBaseArea":null,"areaTo":"","areaToBaseArea":null,"arrivalsNum":0,"browseNum":80,"cargoDesc":"电脑/电子产品/200/200/50/木箱","cargoFreightPrice":0,"cargoFreightTotalPrice":0,"cargoFreightType":"Fix","cargoFreightUnit":"","cargoFreightUnitConstant":null,"cargoName":"","cargoNum":"","cargoPackage":"","cargoPackageConstant":null,"cargoSourceID":"354941173078835200","cargoSourceNum":2,"cargoSourcePublishToList":[],"cargoTypeConstant":null,"cargoTypeID":"","cargoVolume":"","cargoWeight":"","certifyStatus":"","code":"","createTime":"2017-09-06 10:49:30","entFlag":"","estimateMileage":0,"focusmemId":"","fromAreaName":"广东,深圳,南山,","headPicture":"group1/M00/00/0B/CgoEG1muYlaAdntOAAF-WbvflTk6.image","invisibleCity":"","invisibleCityDesc":"","invisibleCityList":[],"loadedNum":0,"loadingDate":null,"loadingTime":null,"loadingTimeSlot":"","memID":"354665674008051712","memberType":"3PL","mobile":"18026357231","nickName":"","offerNum":0,"publishToDesc":"","publishToFleetFlag":"","publishToFocusEnterpriseFlag":"","publishToFreightYardFlag":"","publishToID":"","publishToParkFlag":"","publishType":"","realName":"朱静静","remark":"","remarkList":[],"sentAgreementNum":0,"status":"Pub","toAreaName":"湖北,武汉,江汉,","truckDesc":"仓栅式挂车/1","truckLength":"","truckLengthList":[],"truckNum":0,"truckType":"","truckTypeConstant":null,"updateTime":null,"vesselNum":0},{"areaFrom":"","areaFromBaseArea":null,"areaTo":"","areaToBaseArea":null,"arrivalsNum":0,"browseNum":5,"cargoDesc":"噼噼啪啪 你还没 2.5吨 6元 定价  ","cargoFreightPrice":0,"cargoFreightTotalPrice":0,"cargoFreightType":"Fix","cargoFreightUnit":"","cargoFreightUnitConstant":null,"cargoName":"","cargoNum":"","cargoPackage":"","cargoPackageConstant":null,"cargoSourceID":"354935977498001408","cargoSourceNum":10,"cargoSourcePublishToList":[],"cargoTypeConstant":null,"cargoTypeID":"","cargoVolume":"","cargoWeight":"","certifyStatus":"","code":"","createTime":"2017-09-06 10:28:51","entFlag":"","estimateMileage":0,"focusmemId":"","fromAreaName":"广东,深圳,","headPicture":"","invisibleCity":"","invisibleCityDesc":"","invisibleCityList":[],"loadedNum":0,"loadingDate":null,"loadingTime":null,"loadingTimeSlot":"","memID":"351746646088237056","memberType":"NoTruck","mobile":"13714261162","nickName":"","offerNum":0,"publishToDesc":"","publishToFleetFlag":"","publishToFocusEnterpriseFlag":"","publishToFreightYardFlag":"","publishToID":"","publishToParkFlag":"","publishType":"","realName":"无车承运62","remark":"","remarkList":[],"sentAgreementNum":0,"status":"Pub","toAreaName":"江西,吉安,永新,","truckDesc":"平板货车 18米/17米 3车","truckLength":"","truckLengthList":[],"truckNum":0,"truckType":"","truckTypeConstant":null,"updateTime":null,"vesselNum":0},{"areaFrom":"","areaFromBaseArea":null,"areaTo":"","areaToBaseArea":null,"arrivalsNum":0,"browseNum":36,"cargoDesc":"货物1 农产品 1.5吨  议价 木箱 ","cargoFreightPrice":0,"cargoFreightTotalPrice":0,"cargoFreightType":"Talk","cargoFreightUnit":"","cargoFreightUnitConstant":null,"cargoName":"","cargoNum":"","cargoPackage":"","cargoPackageConstant":null,"cargoSourceID":"354590096743612416","cargoSourceNum":10,"cargoSourcePublishToList":[],"cargoTypeConstant":null,"cargoTypeID":"","cargoVolume":"","cargoWeight":"","certifyStatus":"","code":"","createTime":"2017-09-05 11:34:27","entFlag":"","estimateMileage":0,"focusmemId":"","fromAreaName":"云南,昆明,五华,","headPicture":"","invisibleCity":"","invisibleCityDesc":"","invisibleCityList":[],"loadedNum":0,"loadingDate":"2017-09-20","loadingTime":null,"loadingTimeSlot":"Night","memID":"351746646088237056","memberType":"NoTruck","mobile":"13714261162","nickName":"","offerNum":0,"publishToDesc":"","publishToFleetFlag":"","publishToFocusEnterpriseFlag":"","publishToFreightYardFlag":"","publishToID":"","publishToParkFlag":"","publishType":"","realName":"无车承运62","remark":"","remarkList":[],"sentAgreementNum":0,"status":"Pub","toAreaName":"江西,吉安,井冈山,","truckDesc":"车辆运输车(单排) 18米 2车","truckLength":"","truckLengthList":[],"truckNum":0,"truckType":"","truckTypeConstant":null,"updateTime":null,"vesselNum":0}],
-				pullDownRefresh: true,
-		        pullDownRefreshThreshold: 90,
-		        pullDownRefreshStop: 72,
-		        pullUpLoad: true,
-		        pullUpLoadThreshold: 0,
-		        pullUpLoadMoreTxt: '',
-		        pullUpLoadNoMoreTxt: '没有更多数据了',
-		        scrollToX: 0,
-		        scrollToY: -200,
-		        scrollToTime: 700,
-		        scrollToEasing: 'bounce',
-		        scrollToEasingOptions: ['bounce', 'swipe', 'swipeBounce']
+				goodsList: [],
+				loadStatus: '正在加载...',
+				filterList: '',
+				scrollTop: 0,
+				clientHeight: 0,
+				pageHeight: 0,
+				disY: 0,
+				count: 0
 			}
 		},
-		computed: {
-	      	pullDownRefreshObj() {
-	        	return this.pullDownRefresh ? {
-	          		threshold: parseInt(this.pullDownRefreshThreshold),
-	          		stop: parseInt(this.pullDownRefreshStop)
-	        	} : false
-	      	},
-	      	pullUpLoadObj() {
-	        	return this.pullUpLoad ? {threshold: parseInt(this.pullUpLoadThreshold), txt: {more: this.pullUpLoadMoreTxt, noMore: this.pullUpLoadNoMoreTxt}} : false
-	      	}
-	    },
-	    watch: {
-	      	pullDownRefreshObj() {
-	        	this.rebuildScroll()
-	      	},
-	      	pullUpLoadObj() {
-	        	this.rebuildScroll()
-	      	}
-	    },
 		created () {
 			document.title = '寻找货源'
+			this.goodsList = goodsList
+			window.addEventListener('scroll', (e) => {
+				this.scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+				this.clientHeight = document.documentElement.clientHeight || document.body.clientHeight
+				this.pageHeight = this.$refs.goodsWrapper.offsetHeight
+				this.disY = this.pageHeight - this.clientHeight + 40
+				// console.log(this.scrollTop, e)
+				if (this.scrollTop >= this.disY) {
+					if (this.count < 2) {
+						this.goodsList = this.goodsList.concat(goodsList)
+						this.count++
+					} else {
+						this.loadStatus = '~已经到底了~'
+					}
+				}
+			})
 		},
 		methods: {
 			getGoodsList(endIndex) {
@@ -231,28 +221,6 @@
 					}
 				)
 			},
-			onPullingDown() {
-		        setTimeout(() => {
-		          	this.getGoodsList()
-		        }, 1000)
-	      	},
-	      	onPullingUp() {
-		        setTimeout(() => {
-		          	if (Math.random() > 0.5) {
-		            	// 如果有新数据
-		            	this.goodsList = this.goodsList.concat(this.goodsList)
-		          	} else {
-		            	// 如果没有新数据
-		            	this.$refs.scroll.forceUpdate()
-		          	}
-		        }, 1000)
-	      	},
-			rebuildScroll() {
-		        this.$nextTick(() => {
-		          this.$refs.scroll.destroy()
-		          this.$refs.scroll.initScroll()
-		        })
-	      	},
 			filterPop(i) {
 				this.popShow = !this.popShow
 				this.filterList = i
@@ -260,14 +228,28 @@
 			}
 		},
 		components: {
-			Scroll,
-			Goods
+			Goods,
+			pullUpLoad
 		}
 	}
 </script>
 <style lang="stylus" scoped>
 	.findGoods
 		padding-top 40px
+		overflow hidden
+		.block
+			position fixed
+			top 0
+			left 0
+			right 0
+			bottom 0
+			background-color #f8f8f8
+		.wrapper
+			width 100%
+			position absolute
+			left 0
+			top 40px
+			right 0
 		.filter-box
 			background #fff
 			box-shadow 0 0 5px rgba(0,0,0,.5)

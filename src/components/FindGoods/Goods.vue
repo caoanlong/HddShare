@@ -2,7 +2,8 @@
 	<div class="listItem bdtb">
 		<router-link tag="div" class="baseInfo" to="">
 			<div class="ls">
-				<img width="70" src='../../assets/img/defaultImg.svg' alt="" />
+				<img width="70" :src='__WEBSERVER__ + goods.headPicture' alt="" v-if="goods.headPicture"/>
+				<img width="70" src='../../assets/img/defaultImg.svg' alt="" v-else/>
 				<p class="text-center name" v-text="goods.realName"></p>
         	</div>
         	<div class="text">
@@ -12,8 +13,8 @@
 					<span>{{goods.toAreaName}}</span>
 				</p>
 	           	<p class="quote">
-	           		<span class="quote_sort" v-show="quote_sort=0">按吨报价</span>
-					<span class="quote_sort quote_sort1" v-show="quote_sort=1">收信息费</span>
+	           		<span class="quote_sort" v-show="quote_sort == 0">按吨报价</span>
+					<span class="quote_sort quote_sort1" v-show="quote_sort == 1">收信息费</span>
 	           		<span class="quote_status">已报价450元/吨</span>
 	           	</p>
 	           	<p v-text="goods.cargoDesc" class="cargoDesc"></p>
@@ -36,13 +37,13 @@
 				quote_sort: 1
 			}
 		},
-		watch: {
-			goods(newVal) {
-				if (newVal.headPicture) {
-					this.headPicture = this.__WEBSERVER__ + newVal.headPicture;
-				};
-			}
-		}
+		// watch: {
+		// 	goods(newVal) {
+		// 		if (newVal.headPicture) {
+		// 			this.headPicture = this.__WEBSERVER__ + newVal.headPicture;
+		// 		};
+		// 	}
+		// }
 	}
 </script>
 <style lang="stylus" scoped>

@@ -2,19 +2,25 @@
 	<div class="listItem bdtb">
 		<router-link tag="div" class="baseInfo" to="">
 			<div class="ls">
-				<img width="70" src='../../assets/img/defaultImg.svg' alt="" />
+				<img width="70" :src='__WEBSERVER__ + truck.headPicture' alt="" v-if="truck.headPicture"/>
+				<img width="70" src='../../assets/img/defaultImg.svg' alt="" v-else/>
         	</div>
         	<div class="text">
-        		<p class="driver">贾坤 云A•E***F</p>
-        		<p class="truckInfo">9.6米/集装箱车</p>
-				<p class="local">刚刚定位 昆明 离我56KM</p>
+        		<p class="driver">{{truck.realName}} {{truck.plateNo}}</p>
+        		<p class="truckInfo">{{truck.truckLengthName}}/{{truck.truckTypeName}}</p>
+				<p class="local">{{truck.posUpdateTime}} {{truck.posAreaName}} 离我{{truck.distance}}</p>
             </div>
 		</router-link>
-	    <a class=" icon-phone" :href="'tel:'+1000"></a>
+	    <a class=" icon-phone" :href="'tel:'+10086"></a>
     </div>
 </template>
 <script>
 	export default {
+		props: {
+			truck: {
+				type: Object
+			}
+		},
 		data() {
 			return {
 			}

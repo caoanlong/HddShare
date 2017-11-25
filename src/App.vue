@@ -6,11 +6,6 @@
 <script>
 export default {
 	name: 'app',
-	data () {
-		return {
-			config: {}
-		}
-	},
 	created () {
 		if ((window.navigator.userAgent.indexOf('MicroMessenger') > -1) && document.body.getAttribute('wx-router')) {
 			this.$router.push({name: document.body.getAttribute('wx-router')})
