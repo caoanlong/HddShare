@@ -2,8 +2,6 @@
 	<div class="findTruck">
 		<div class="filter-box">
 			<div class="truckSort"  @click="filterPop(0)">车长</div>
-			<!-- <div class="truckSort"  @click="filterPop(0)">{{scrollTop}}</div> -->
-			<!-- <div class="truckLength" @click="filterPop(1)">{{disY}}</div> -->
 			<div class="truckLength" @click="filterPop(1)">车型</div>
 			<div class="map"><i></i>地图找车</div>
 		</div>
@@ -13,6 +11,10 @@
 			<pullUpLoad :loadStatus="loadStatus"></pullUpLoad>
 		</div>
 		<div class="filter-pop" :class="{'show':popShow}">
+			<div class="truckFilter">
+				<div class="truckSort" v-if="filterList == 0">车长</div>
+				<div class="truckSort" v-if="filterList == 1">车型</div>
+			</div>
 			<div class="filter-body"  v-if="filterList == 0">
 				<div class="tit bdtb">车长</div>
 				<ul class="clearfix">
@@ -212,16 +214,32 @@
 			left 0
 			right 0
 			bottom 0
+			z-index 20
 			background #fff
 			transition top .2s
 			-moz-transition top .2s
 			-webkit-transition top .2s
 			-o-transition top .2s
 			&.show
-				top 40px
+				top 0
 				bottom 64px
 				.filter-footer
 					display flex
+			.truckFilter
+				background #fff
+				height 40px
+				padding 5px
+				display flex
+				font-size 14px
+				.truckSort
+				.truckLength
+					flex 1
+					border 1px solid #ddd
+					padding 0 30px 0 5px
+					line-height 28px
+					border-radius 4px
+					margin-right 10px
+					background url('../assets/img/arrow-b.png') no-repeat right center
 			.filter-header
 				height 40px
 				line-height 30px
@@ -248,10 +266,11 @@
 					font-size 14px
 				ul
 					margin-bottom 10px
+					padding 0 5px
 					li
 						float left
 						width 25%
-						padding 10px 10px 0
+						padding 10px 5px 0
 						text-align center
 						&.selected
 							span
@@ -262,7 +281,7 @@
 							border 1px solid #ddd
 							display block
 							font-size 14px
-							padding 2px 0
+							padding 5px 0
 							border-radius 4px
 							color #666
 							white-space nowrap
@@ -286,13 +305,13 @@
 					flex 1
 					outline none
 					border none
-					
+					font-size 16px
 					i
-						width 14px
-						height 14px
+						width 16px
+						height 16px
 						display inline-block
 						vertical-align text-top
-						margin-right 5px
+						margin 2px 5px 0 0
 				.cancelBtn
 					color #666
 					background #ccc
