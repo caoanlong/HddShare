@@ -2,7 +2,7 @@
 	<div class="listItem bdtb">
 		<router-link tag="div" class="baseInfo" to="">
 			<div class="ls">
-				<img width="70" :src='__WEBSERVER__ + truck.headPicture' alt="" v-if="truck.headPicture"/>
+				<img width="70" :src='__IMGWEBSERVER__ + truck.headPicture' alt="" v-if="truck.headPicture"/>
 				<img width="70" src='../../assets/img/defaultImg.svg' alt="" v-else/>
         	</div>
         	<div class="text">

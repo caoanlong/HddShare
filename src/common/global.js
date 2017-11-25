@@ -5,6 +5,7 @@ export default function install (Vue, options) {
 	Vue.prototype.__WEBSERVER__ = 'http://develop.we-service.cn/test-hdd/v2/'
 	// 正式服务器
 	// Vue.prototype.__WEBSERVER__ = 'http://192.168.1.48:8888/'
+	Vue.prototype.__IMGWEBSERVER__ = 'http://192.168.1.48/hdd/image/'
 	// 邹文臣电脑
 	// Vue.prototype.__WEBSERVER__ = 'http://192.168.1.60:4441/'
 	// 张颜电脑
