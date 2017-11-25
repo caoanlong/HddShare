@@ -318,7 +318,7 @@
 				height 40px
 				padding 5px
 				display flex
-				font-size 12px
+				font-size 14px
 				.from
 				.destination
 					flex 1
@@ -335,10 +335,6 @@
 					width 40px
 					height 30px
 					vertical-align top
-				.more
-					flex 0 50px
-					text-align center
-					line-height 30px
 			.filter-header
 				height 40px
 				line-height 30px
@@ -416,8 +412,7 @@
 						height 16px
 						display inline-block
 						vertical-align text-top
-						margin-top 2px
-						margin-right 5px
+						margin 2px 5px 0 0
 				.cancelBtn
 					color #666
 					background #ccc
