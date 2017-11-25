@@ -1,19 +1,22 @@
 <template>
 	<div class="filter-pop" v-if="showSelector">
 		<div class="areaSelect">
-			<div class="from" :class="{'active': selectType == 'simple'}" @click="changeSelectType('simple')">{{startArea}}</div>
+			<div class="from" :class="{'active': selectType == 'simple'}" @click="changeSelectType('simple')">{{startArea.value}}</div>
 			<span class="arrow"></span>
 			<div class="destination" :class="{'active': selectType == 'mutiple'}" @click="changeSelectType('mutiple')">{{endArea}}</div>
 		</div>
-		<div class="areaSelected bdt">
+		<div class="areaSelected bdt" v-show="selectType == 'mutiple'">
 			<p class="tit">已选择地区</p>
-			<p class="selectedTags"><span>福田区<i></i></span><span>福田区<i></i></span><span>福田区<i></i></span><span>福田区<i></i></span><span>福田区<i></i></span><span>福田区<i></i></span><span>福田区<i></i></span></p>
+			<p class="selectedTags">
+				<span v-for="item in selectedAreaList" :key="item.key" @click="deleteAreaList(item.key)">{{item.value}}<i></i></span>
+			</p>
 		</div>
 		<div class="filter-header bdtb">
 			当前地区：全部<div class="fr"><span class="location">深圳市</span><span class="backBtn"><i></i>返回上一级</span></div>
 		</div>
 		<div class="filter-body">
 			<ul class="clearfix">
+				<li v-show="firstArea && selectType == 'simple'" :class="{'selected': selectedDist == firstArea?firstArea.key:''}" @click="selectFirstArea(firstArea?firstArea.key:'', firstArea?firstArea.value:'')"><span>{{firstArea?firstArea.value:''}}</span></li>
 				<li v-show="firstArea && selectType == 'mutiple'" :class="{'selected': selectedDistList.includes(firstArea?firstArea.key:'')}" @click="selectFirstArea(firstArea?firstArea.key:'', firstArea?firstArea.value:'')"><span>{{firstArea?firstArea.value:''}}</span></li>
 				<li v-show="selectType == 'simple'" :class="{'selected': selectedDist == key}" v-for="(value, key) in areaList" :key="key" @click="selectArea(key, value)"><span>{{value}}</span></li>
 				<li v-show="selectType == 'mutiple'" :class="{'selected': selectedDistList.includes(key)}" v-for="(value, key) in areaList" :key="key" @click="selectArea(key, value)"><span>{{value}}</span></li>
@@ -30,7 +33,7 @@ export default {
 	props: {
 		showSelector: {
 			type: Boolean,
-			default: true
+			default: false
 		},
 		type: String
 	},
@@ -39,7 +42,10 @@ export default {
 			selectType: 'simple',
 			firstArea: null,  // 列表最前面的一个地区
 			areaList: null,
-			startArea: '起始地',
+			startArea: {
+				key: '1',
+				value: '起始地'
+			},
 			endArea: '目的地',
 			selected: '', // 当前点击选择的key
 			selectedProvince: '', // 当前点击选择省的key
@@ -48,11 +54,12 @@ export default {
 			selectedProvinceList: [], // 已选择选择省的key列表
 			selectedCityList: [], // 已选择选择市的key列表
 			selectedDistList: [], // 已选择选择区县的key列表
+			selectedAreaList: [] // 已选择选择的地区列表
 		}
 	},
-	computed: {
-		districts () {
-			return ChineseDistricts
+	watch: {
+		type (newVal) {
+			this.selectType = newVal
 		}
 	},
 	created () {
@@ -67,12 +74,7 @@ export default {
 			this.selected = key
 			// 判断当前选择的县市是否已选择
 			if (this.selectedDistList.includes(key)) {
-				for (let i = 0; i < this.selectedDistList.length; i++) {
-					if (this.selectedDistList[i] == key) {
-						this.selectedDistList.splice(i, 1)
-						break
-					}
-				}
+				this.deleteAreaList(key)
 				return
 			}
 			// 如果选择的是省
@@ -107,22 +109,54 @@ export default {
 				this.selectedDist = key
 				if (this.selectType == 'mutiple') {
 					this.selectedDistList.push(key)
+					this.selectedAreaList.push({
+						key: key,
+						value: value
+					})
 				} else if (this.selectType == 'simple') {
 					this.selectType = 'mutiple'
-					this.startArea = value
+					this.startArea = {
+						key: key,
+						value: value
+					}
 					this.areaList = ChineseDistricts[0]
 				}
 			}
 		},
 		selectFirstArea (key, value) {
+			// 判断当前选择的是否已选择
+			if (this.selectedDistList.includes(key)) {
+				this.deleteAreaList(key)
+				return
+			}
 			this.selected = key
 			this.selectedDist = key
 			if (this.selectType == 'mutiple') {
 				this.selectedDistList.push(key)
+				this.selectedAreaList.push({
+					key: key,
+					value: value
+				})
 			} else if (this.selectType == 'simple') {
 				this.selectType = 'mutiple'
-				this.startArea = value
+				this.startArea = {
+					key: key,
+					value: value
+				}
+				this.firstArea = null
 				this.areaList = ChineseDistricts[0]
+			}
+		},
+		deleteAreaList (key) {
+			for (let i = 0; i < this.selectedDistList.length; i++) {
+				if (this.selectedDistList[i] == key) {
+					this.selectedDistList.splice(i, 1)
+				}
+			}
+			for (let i = 0; i < this.selectedAreaList.length; i++) {
+				if (this.selectedAreaList[i].key == key) {
+					this.selectedAreaList.splice(i, 1)
+				}
 			}
 		}
 	}

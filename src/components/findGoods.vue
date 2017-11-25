@@ -1,10 +1,10 @@
 <template>
 	<div class="findGoods">
 		<div class="filter-box">
-			<div class="from" @click="selectArea(0)">全国</div>
+			<div class="from" @click="selectArea('simple')">全国</div>
 			<!-- <div class="from" @click="filterPop(0)">{{scrollTop}}</div> -->
 			<span class="arrow"></span>
-			<div class="destination"  @click="selectArea(1)">全国</div>
+			<div class="destination"  @click="selectArea('mutiple')">全国</div>
 			<!-- <div class="destination"  @click="filterPop(1)">{{disY}}</div> -->
 			<div class="more"  @click="selectMore(2)">更多</div>
 		</div>
@@ -13,7 +13,7 @@
 			<Goods v-for="goods in goodsList" :goods="goods" :key="goods.cargoSourceID"></Goods>
 			<pullUpLoad :loadStatus="loadStatus"></pullUpLoad>
 		</div>
-		<areaSelector></areaSelector>
+		<areaSelector :showSelector="showSelector" :type="selectType"></areaSelector>
       	<!-- <div class="filter-pop" :class="{'show':popShow}" v-if="filterList ==1">
       		<div class="areaSelect">
 				<div class="from">起始地</div>
@@ -137,7 +137,9 @@
 				clientHeight: 0,
 				pageHeight: 0,
 				disY: 0,
-				count: 0
+				count: 0,
+				showSelector: false,
+				selectType: 'simple'
 			}
 		},
 		created () {
@@ -178,7 +180,9 @@
 					}
 				)
 			},
-			selectArea(i) {
+			selectArea(type) {
+				this.showSelector = true
+				this.selectType = type
 			}
 		},
 		components: {
