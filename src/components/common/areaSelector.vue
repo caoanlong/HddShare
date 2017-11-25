@@ -5,8 +5,9 @@
 			<span class="arrow"></span>
 			<div class="destination" :class="{'active': selectType == 'mutiple'}" @click="changeSelectType('mutiple')">{{endArea}}</div>
 		</div>
-		<div class="areaSelected">
-			<p>已选择地区</p>
+		<div class="areaSelected bdt">
+			<p class="tit">已选择地区</p>
+			<p class="selectedTags"><span>福田区<i></i></span><span>福田区<i></i></span><span>福田区<i></i></span><span>福田区<i></i></span><span>福田区<i></i></span><span>福田区<i></i></span><span>福田区<i></i></span></p>
 		</div>
 		<div class="filter-header bdtb">
 			当前地区：全部<div class="fr"><span class="location">深圳市</span><span class="backBtn"><i></i>返回上一级</span></div>
@@ -143,6 +144,34 @@ export default {
 				flex 0 50px
 				text-align center
 				line-height 30px
+		.areaSelected
+			padding 5px
+			.tit
+				padding 5px
+				font-size 14px
+			.selectedTags
+				padding 0 5px 5px
+				span
+					background #ffc526
+					color #fff
+					display inline-block
+					font-size 14px
+					margin  5px 5px 0 0
+					padding 5px 25px 5px 5px
+					height 30px
+					line-height 20px
+					border-radius 4px
+					position relative
+					&:after
+						content ''
+						position absolute
+						width 18px
+						height 18px
+						background url('../../assets/img/remove.svg') no-repeat
+						background-size cover
+						display block
+						right 5px
+						top 6px
 		.filter-header
 			height 40px
 			line-height 30px
