@@ -13,6 +13,7 @@
 		</div>
 		<div class="filter-body">
 			<ul class="clearfix">
+				<li v-show="firstArea && selectType == 'mutiple'" :class="{'selected': selectedDistList.includes(firstArea?firstArea.key:'')}" @click="selectFirstArea(firstArea?firstArea.key:'', firstArea?firstArea.value:'')"><span>{{firstArea?firstArea.value:''}}</span></li>
 				<li v-show="selectType == 'simple'" :class="{'selected': selectedDist == key}" v-for="(value, key) in areaList" :key="key" @click="selectArea(key, value)"><span>{{value}}</span></li>
 				<li v-show="selectType == 'mutiple'" :class="{'selected': selectedDistList.includes(key)}" v-for="(value, key) in areaList" :key="key" @click="selectArea(key, value)"><span>{{value}}</span></li>
 			</ul>
@@ -35,6 +36,7 @@ export default {
 	data () {
 		return {
 			selectType: 'simple',
+			firstArea: null,  // 列表最前面的一个地区
 			areaList: null,
 			startArea: '起始地',
 			endArea: '目的地',
@@ -47,14 +49,16 @@ export default {
 			selectedDistList: [], // 已选择选择区县的key列表
 		}
 	},
+	computed: {
+		districts () {
+			return ChineseDistricts
+		}
+	},
 	created () {
 		this.areaList = ChineseDistricts[0]
 	},
 	methods: {
 		changeSelectType (type) {
-			if (type == this.selectType) {
-				return
-			}
 			this.selectType = type
 			this.areaList = ChineseDistricts[0]
 		},
@@ -70,22 +74,33 @@ export default {
 				}
 				return
 			}
+			// 如果选择的是省
 			if (key.substr(2) == '0000') {
 				console.log('已选择省:' + value)
 				// 进入到城市选择层
+				this.firstArea = {
+					key: key,
+					value: value,
+				}
 				this.areaList = ChineseDistricts[key]
 				this.selectedProvince = key
 				if (this.selectType == 'mutiple') {
 					this.selectedProvinceList.push(key)
 				}
+			// 如果选择的是市
 			} else if (key.substr(4) == '00') {
 				console.log('已选择市:' + value)
 				// 进入到区县选择层
+				this.firstArea = {
+					key: key,
+					value: value,
+				}
 				this.areaList = ChineseDistricts[key]
 				this.selectedCity = key
 				if (this.selectType == 'mutiple') {
 					this.selectedCityList.push(key)
 				}
+			// 如果选择的是区县
 			} else {
 				console.log('已选择区县:' + value)
 				this.selectedDist = key
@@ -96,6 +111,17 @@ export default {
 					this.startArea = value
 					this.areaList = ChineseDistricts[0]
 				}
+			}
+		},
+		selectFirstArea (key, value) {
+			this.selected = key
+			this.selectedDist = key
+			if (this.selectType == 'mutiple') {
+				this.selectedDistList.push(key)
+			} else if (this.selectType == 'simple') {
+				this.selectType = 'mutiple'
+				this.startArea = value
+				this.areaList = ChineseDistricts[0]
 			}
 		}
 	}
