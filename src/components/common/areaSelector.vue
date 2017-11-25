@@ -63,9 +63,6 @@ export default {
 	watch: {
 		type (newVal) {
 			this.selectType = newVal
-		},
-		showSelector (newVal) {
-			this.isShow = newVal
 		}
 	},
 	created () {

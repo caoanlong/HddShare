@@ -6,125 +6,20 @@
 			<span class="arrow"></span>
 			<div class="destination"  @click="selectArea('mutiple')">全国</div>
 			<!-- <div class="destination"  @click="filterPop(1)">{{disY}}</div> -->
-			<div class="more"  @click="selectMore(2)">更多</div>
+			<div class="more"  @click="selectMore">更多</div>
 		</div>
 		<div class="block"></div>
 		<div class="wrapper" ref="goodsWrapper">
 			<Goods v-for="goods in goodsList" :goods="goods" :key="goods.cargoSourceID"></Goods>
 			<pullUpLoad :loadStatus="loadStatus"></pullUpLoad>
 		</div>
-		<areaSelector :showSelector="showSelector" :type="selectType" @close="closeAreaSelector"></areaSelector>
-      	<!-- <div class="filter-pop" :class="{'show':popShow}" v-if="filterList ==1">
-      		<div class="areaSelect">
-				<div class="from">起始地</div>
-				<span class="arrow"></span>
-				<div class="destination">目的地</div>
-			</div>
-			<div class="filter-header bdtb">
-  				当前地区：全部<div class="fr"><span class="location">深圳市</span><span class="backBtn"><i></i>返回上一级</span></div>
-  			</div>
-      		<div class="filter-body">
-      			<ul class="clearfix">
-				    <li><span>北京</span></li>
-				    <li><span>天津</span></li>
-				    <li><span>河北省</span></li>
-				    <li><span>山西省</span></li>
-				    <li><span>内蒙古自治区</span></li>
-				    <li><span>辽宁省</span></li>
-				    <li><span>吉林省</span></li>
-				    <li><span>黑龙江省</span></li>
-				    <li><span>上海</span></li>
-				    <li><span>江苏省</span></li>
-				    <li><span>浙江省</span></li>
-				    <li><span>安徽省</span></li>
-				    <li><span>福建省</span></li>
-				    <li><span>江西省</span></li>
-				    <li><span>山东省</span></li>
-				    <li><span>河南省</span></li>
-				    <li><span>湖北省</span></li>
-				    <li><span>湖南省</span></li>
-				    <li><span>广东省</span></li>
-				    <li><span>广西壮族自治区</span></li>
-				    <li><span>海南省</span></li>
-				    <li><span>重庆</span></li>
-				    <li><span>四川省</span></li>
-				    <li><span>贵州省</span></li>
-				    <li><span>云南省</span></li>
-				    <li><span>西藏自治区</span></li>
-				    <li><span>陕西省</span></li>
-				    <li><span>甘肃省</span></li>
-				    <li><span>青海省</span></li>
-				    <li><span>宁夏回族自治区</span></li>
-				    <li><span>新疆维吾尔自治区</span></li>
-				    <li><span>台湾省</span></li>
-				    <li><span>香港特别行政区</span></li>
-				    <li><span>澳门特别行政区</span></li>
-				</ul>
-      		</div>
-      		<div class="filter-footer bdt">
-				<button class="cancelBtn"><i></i>取消</button><button class="confirmBtn"><i></i>确定</button>
-			</div>
-      	</div>
-      	<div class="filter-pop" :class="{'show':popShow}" v-if="filterList ==2">
-			<div class="filter-body">
-				<div class="tit bdtb">车长</div>
-				<ul class="clearfix">
-					<li class="selected"><span>不限</span></li>
-				    <li><span>7.6米</span></li>
-				    <li><span>11.7米</span></li>
-				    <li><span>9.6米</span></li>
-				    <li><span>7.2米</span></li>
-				    <li><span>12.5米</span></li>
-				    <li><span>17.5米</span></li>
-				    <li><span>5米</span></li>
-				    <li><span>6.8米</span></li>
-				    <li><span>14米</span></li>
-				    <li><span>4.2米</span></li>
-				    <li><span>6.2米</span></li>
-				    <li><span>18米</span></li>
-				    <li><span>5.2米</span></li>
-				    <li><span>4.5米</span></li>
-				    <li><span>8.2米</span></li>
-				    <li><span>16米</span></li>
-				    <li><span>17米</span></li>
-				    <li><span>8.6米</span></li>
-				    <li><span>13.5米</span></li>
-				    <li><span>15米</span></li>
-				    <li><span>13米</span></li>
-				</ul>
-				<div class="tit bdtb">车型</div>
-				<ul class="clearfix">
-				    <li class="selected"><span>仓栅式挂车</span></li>
-				    <li><span>平板挂车</span></li>
-				    <li><span>集装箱车</span></li>
-				    <li><span>专项作业车</span></li>
-				    <li><span>普通挂车</span></li>
-				    <li><span>专项作业挂车</span></li>
-				    <li><span>自卸货车</span></li>
-				    <li><span>罐式货车</span></li>
-				    <li><span>仓栅式货车</span></li>
-				    <li><span>厢式货车</span></li>
-				    <li><span>普通货车</span></li>
-				    <li><span>车辆运输车</span></li>
-				    <li><span>厢式挂车</span></li>
-				    <li><span>车辆运输车(单排)</span></li>
-				    <li><span>自卸挂车</span></li>
-				    <li><span>特殊结构货车</span></li>
-				    <li><span>平板货车</span></li>
-				    <li><span>牵引车</span></li>
-				    <li><span>罐式挂车</span></li>
-				    <li><span>集装箱挂车</span></li>
-				    <li><span>封闭货车</span></li>
-				</ul>
-			</div>
-			<div class="filter-footer bdt">
-				<button class="cancelBtn"><i></i>取消</button><button class="confirmBtn"><i></i>确定</button>
-			</div>
-		</div> -->
+		<areaSelector :showSelector="showAreaSelector" :type="selectType" @close="closeAreaSelector"></areaSelector>
+		<moreSelector :showSelector="showMoreSelector" @close="closeMoreSelector"></moreSelector>
 	</div>
 </template>
 <script type="text/javascript">
 	import areaSelector from './common/areaSelector'
+	import moreSelector from './common/moreSelector'
 	import Goods from './FindGoods/Goods'
 	import pullUpLoad from './common/pullUpLoad'
 	import goodsList from '../assets/data/goodsList'
@@ -138,7 +33,8 @@
 				pageHeight: 0,
 				disY: 0,
 				count: 0,
-				showSelector: false,
+				showAreaSelector: false,
+				showMoreSelector: false,
 				selectType: 'simple'
 			}
 		},
@@ -181,15 +77,22 @@
 				)
 			},
 			selectArea (type) {
-				this.showSelector = true
+				this.showAreaSelector = true
 				this.selectType = type
 			},
+			selectMore () {
+				this.showMoreSelector = true
+			},
 			closeAreaSelector (m) {
-				this.showSelector = false
+				this.showAreaSelector = false
+			},
+			closeMoreSelector (m) {
+				this.showMoreSelector = false
 			}
 		},
 		components: {
 			areaSelector,
+			moreSelector,
 			Goods,
 			pullUpLoad
 		}
