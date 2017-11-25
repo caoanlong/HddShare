@@ -12,7 +12,8 @@
 			</p>
 		</div>
 		<div class="filter-header bdtb">
-			当前地区：全部<div class="fr"><span class="location">深圳市</span><span class="backBtn"><i></i>返回上一级</span></div>
+			当前地区：全部<div class="fr"><span class="location">深圳市</span>
+			<span class="backBtn" v-show="isShowReturn" @click="returnBack"><i></i>返回上一级</span></div>
 		</div>
 		<div class="filter-body">
 			<ul class="clearfix">
@@ -48,6 +49,7 @@ export default {
 				value: '起始地'
 			},
 			endArea: '目的地',
+			isShowReturn: false,
 			selected: '', // 当前点击选择的key
 			selectedProvince: '', // 当前点击选择省的key
 			selectedCity: '', // 当前点击选择市的key
@@ -75,6 +77,7 @@ export default {
 			this.areaList = ChineseDistricts[0]
 		},
 		selectArea (key, value) {
+			this.isShowReturn = true
 			this.selected = key
 			// 判断当前选择的县市是否已选择
 			if (this.selectedDistList.includes(key)) {
@@ -123,6 +126,7 @@ export default {
 						key: key,
 						value: value
 					}
+					this.isShowReturn = false
 					this.areaList = ChineseDistricts[0]
 				}
 			}
@@ -148,6 +152,7 @@ export default {
 					value: value
 				}
 				this.firstArea = null
+				this.isShowReturn = false
 				this.areaList = ChineseDistricts[0]
 			}
 		},
@@ -161,6 +166,24 @@ export default {
 				if (this.selectedAreaList[i].key == key) {
 					this.selectedAreaList.splice(i, 1)
 				}
+			}
+		},
+		returnBack () {
+			console.log(this.selected)
+			// 如果选择的是省
+			if (this.firstArea.key.substr(2) == '0000') {
+				this.isShowReturn = false
+				this.areaList = ChineseDistricts[0]
+				this.firstArea = null
+			// 如果选择的是市
+			} else if (this.firstArea.key.substr(4) == '00') {
+				console.log(this.firstArea.key.substring(0,2)+'0000')
+				this.areaList = ChineseDistricts[this.firstArea.key.substring(0,2)+'0000']
+				this.firstArea = {
+					key: this.firstArea.key.substring(0,2)+'0000',
+					value: ChineseDistricts[0][this.firstArea.key.substring(0,2)+'0000'],
+				} 
+			// 如果选择的是区县
 			}
 		},
 		close (type) {
