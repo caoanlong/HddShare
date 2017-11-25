@@ -23,7 +23,8 @@
 			</ul>
 		</div>
 		<div class="filter-footer bdt">
-			<button class="cancelBtn"><i></i>取消</button><button class="confirmBtn"><i></i>确定</button>
+			<button class="cancelBtn" @click="close('n')"><i></i>取消</button>
+			<button class="confirmBtn" @click="close('y')"><i></i>确定</button>
 		</div>
 	</div>
 </template>
@@ -60,6 +61,9 @@ export default {
 	watch: {
 		type (newVal) {
 			this.selectType = newVal
+		},
+		showSelector (newVal) {
+			this.isShow = newVal
 		}
 	},
 	created () {
@@ -157,6 +161,13 @@ export default {
 				if (this.selectedAreaList[i].key == key) {
 					this.selectedAreaList.splice(i, 1)
 				}
+			}
+		},
+		close (type) {
+			if (type == 'y') {
+				this.$emit('close')
+			} else {
+				this.$emit('close')
 			}
 		}
 	}

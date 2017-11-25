@@ -13,7 +13,7 @@
 			<Goods v-for="goods in goodsList" :goods="goods" :key="goods.cargoSourceID"></Goods>
 			<pullUpLoad :loadStatus="loadStatus"></pullUpLoad>
 		</div>
-		<areaSelector :showSelector="showSelector" :type="selectType"></areaSelector>
+		<areaSelector :showSelector="showSelector" :type="selectType" @close="closeAreaSelector"></areaSelector>
       	<!-- <div class="filter-pop" :class="{'show':popShow}" v-if="filterList ==1">
       		<div class="areaSelect">
 				<div class="from">起始地</div>
@@ -180,9 +180,12 @@
 					}
 				)
 			},
-			selectArea(type) {
+			selectArea (type) {
 				this.showSelector = true
 				this.selectType = type
+			},
+			closeAreaSelector (m) {
+				this.showSelector = false
 			}
 		},
 		components: {
