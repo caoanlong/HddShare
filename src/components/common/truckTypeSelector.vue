@@ -1,31 +1,6 @@
 <template>
     <div class="filter-pop" v-if="showSelector">
         <div class="filter-body">
-            <div class="tit bdtb">车长</div>
-            <ul class="clearfix">
-                <li class="selected"><span>不限</span></li>
-                <li><span>7.6米</span></li>
-                <li><span>11.7米</span></li>
-                <li><span>9.6米</span></li>
-                <li><span>7.2米</span></li>
-                <li><span>12.5米</span></li>
-                <li><span>17.5米</span></li>
-                <li><span>5米</span></li>
-                <li><span>6.8米</span></li>
-                <li><span>14米</span></li>
-                <li><span>4.2米</span></li>
-                <li><span>6.2米</span></li>
-                <li><span>18米</span></li>
-                <li><span>5.2米</span></li>
-                <li><span>4.5米</span></li>
-                <li><span>8.2米</span></li>
-                <li><span>16米</span></li>
-                <li><span>17米</span></li>
-                <li><span>8.6米</span></li>
-                <li><span>13.5米</span></li>
-                <li><span>15米</span></li>
-                <li><span>13米</span></li>
-            </ul>
             <div class="tit bdtb">车型</div>
             <ul class="clearfix">
                 <li class="selected"><span>仓栅式挂车</span></li>

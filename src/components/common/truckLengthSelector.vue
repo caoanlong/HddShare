@@ -26,30 +26,6 @@
                 <li><span>15米</span></li>
                 <li><span>13米</span></li>
             </ul>
-            <div class="tit bdtb">车型</div>
-            <ul class="clearfix">
-                <li class="selected"><span>仓栅式挂车</span></li>
-                <li><span>平板挂车</span></li>
-                <li><span>集装箱车</span></li>
-                <li><span>专项作业车</span></li>
-                <li><span>普通挂车</span></li>
-                <li><span>专项作业挂车</span></li>
-                <li><span>自卸货车</span></li>
-                <li><span>罐式货车</span></li>
-                <li><span>仓栅式货车</span></li>
-                <li><span>厢式货车</span></li>
-                <li><span>普通货车</span></li>
-                <li><span>车辆运输车</span></li>
-                <li><span>厢式挂车</span></li>
-                <li><span>车辆运输车(单排)</span></li>
-                <li><span>自卸挂车</span></li>
-                <li><span>特殊结构货车</span></li>
-                <li><span>平板货车</span></li>
-                <li><span>牵引车</span></li>
-                <li><span>罐式挂车</span></li>
-                <li><span>集装箱挂车</span></li>
-                <li><span>封闭货车</span></li>
-            </ul>
         </div>
         <div class="filter-footer bdt">
             <button class="cancelBtn" @click="close('n')"><i></i>取消</button>

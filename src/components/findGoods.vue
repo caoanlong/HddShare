@@ -1,10 +1,10 @@
 <template>
 	<div class="findGoods">
 		<div class="filter-box">
-			<div class="from" @click="selectArea('simple')">全国</div>
+			<div class="from" @click="selectArea('simple')">{{startArea.value}}</div>
 			<!-- <div class="from" @click="filterPop(0)">{{scrollTop}}</div> -->
 			<span class="arrow"></span>
-			<div class="destination"  @click="selectArea('mutiple')">全国</div>
+			<div class="destination"  @click="selectArea('mutiple')">{{endArea.map(item => item.value).join(',')}}</div>
 			<!-- <div class="destination"  @click="filterPop(1)">{{disY}}</div> -->
 			<div class="more"  @click="selectMore">更多</div>
 		</div>
@@ -20,7 +20,7 @@
 <script type="text/javascript">
 	import areaSelector from './common/areaSelector'
 	import moreSelector from './common/moreSelector'
-	import Goods from './FindGoods/Goods'
+	import Goods from './common/Goods'
 	import pullUpLoad from './common/pullUpLoad'
 	import goodsList from '../assets/data/goodsList'
 	export default {
@@ -35,7 +35,15 @@
 				count: 0,
 				showAreaSelector: false,
 				showMoreSelector: false,
-				selectType: 'simple'
+				selectType: 'simple',
+				startArea: {
+					key: '1',
+					value: '全国'
+				},
+				endArea: [{
+					key: '2',
+					value: '全国'
+				}],
 			}
 		},
 		created () {
@@ -87,9 +95,11 @@
 				this.showAreaSelector = false
 				if (start) {
 					console.log(JSON.stringify(start))
+					this.startArea = start
 				}
 				if (end) {
 					console.log(JSON.stringify(end))
+					this.endArea = end
 				}
 			},
 			closeMoreSelector (m) {
