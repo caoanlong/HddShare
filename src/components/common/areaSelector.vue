@@ -125,6 +125,7 @@ export default {
 						key: key,
 						value: value
 					}
+					this.firstArea = null
 					this.isShowReturn = false
 					this.areaList = ChineseDistricts[0]
 				}
