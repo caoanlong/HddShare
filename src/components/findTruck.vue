@@ -1,8 +1,8 @@
 <template>
 	<div class="findTruck">
 		<div class="filter-box">
-			<div class="truckSort"  @click="selectTruckLength">车长</div>
-			<div class="truckLength" @click="selectTruckType">车型</div>
+			<div class="truckSort"  @click="selectTruckLength">{{selectedTruckLengthList.map(item => item.name).join(',')}}</div>
+			<div class="truckLength" @click="selectTruckType">{{selectedTruckTypeList.map(item => item.name).join(',')}}</div>
 			<div class="map"><i></i>地图找车</div>
 		</div>
 		<div class="block"></div>
@@ -31,7 +31,15 @@
 				truckList: [],
 				count: 0,
 				showTruckLengthSelector: false,
-				showTruckTypeSelector: false
+				showTruckTypeSelector: false,
+				selectedTruckLengthList: [{
+					"code": "0",
+					"name": "车长"
+				}],
+				selectedTruckTypeList: [{
+					"code": "0",
+					"name": "车型"
+				}]
 			}
 		},
 		created () {
@@ -70,11 +78,19 @@
 			selectTruckType () {
 				this.showTruckTypeSelector = true
 			},
-			closeTruckLengthSelector (m) {
+			closeTruckLengthSelector (selected) {
 				this.showTruckLengthSelector = false
+				if (selected) {
+					console.log(JSON.stringify(selected))
+					this.selectedTruckLengthList = selected
+				}
 			},
-			closeTruckTypeSelector (m) {
+			closeTruckTypeSelector (selected) {
 				this.showTruckTypeSelector = false
+				if (selected) {
+					console.log(JSON.stringify(selected))
+					this.selectedTruckTypeList = selected
+				}
 			},
 		},
 		components: {

@@ -3,7 +3,7 @@
         <div class="filter-body">
             <div class="tit bdtb">车型</div>
             <ul class="clearfix">
-                <li :class="{'selected': selected.includes(truckType.code)}" v-for="truckType in truckTypeList" :key="truckType.code" @click="selectOption(truckType.code)"><span>{{truckType.name}}</span></li>
+                <li :class="{'selected': selected.map(item => item.code).includes(truckType.code)}" v-for="truckType in truckTypeList" :key="truckType.code" @click="selectOption(truckType)"><span>{{truckType.name}}</span></li>
             </ul>
         </div>
         <div class="filter-footer bdt">
@@ -58,24 +58,25 @@ export default {
 					"name": "普通货车"
 				}
 			],
-			selected: ["01"]
+			selected: [{
+				"code": "01",
+				"name": "仓栅式挂车"
+			}]
 		}
 	},
 	methods: {
-		selectOption (code) {
-			if (this.selected.includes(code)) {
-				for (let i = 0; i < this.selected.length; i++) {
-					if (this.selected[i] == code) {
-						this.selected.splice(i, 1)
-					}
+		selectOption (obj) {
+			for (let i = 0; i < this.selected.length; i++) {
+				if (this.selected[i].code == obj.code) {
+					this.selected.splice(i, 1)
+					return
 				}
-			} else {
-				this.selected.push(code)
 			}
+			this.selected.push(obj)
 		},
 		close (type) {
 			if (type == 'y') {
-				this.$emit('close')
+				this.$emit('close', this.selected)
 			} else {
 				this.$emit('close')
 			}
