@@ -150,6 +150,9 @@
 				padding 0 30px 0 5px
 				line-height 28px
 				border-radius 4px
+				overflow hidden
+				white-space nowrap
+				text-overflow ellipsis
 				background url('../assets/img/arrow-b.png') no-repeat right center
 			.arrow
 				flex 0 40px
