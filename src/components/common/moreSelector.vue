@@ -52,7 +52,8 @@
             </ul>
         </div>
         <div class="filter-footer bdt">
-            <button class="cancelBtn"><i></i>取消</button><button class="confirmBtn"><i></i>确定</button>
+            <button class="cancelBtn" @click="close('n')"><i></i>取消</button>
+			<button class="confirmBtn" @click="close('y')"><i></i>确定</button>
         </div>
     </div>
 </template>
@@ -62,6 +63,15 @@ export default {
 		showSelector: {
 			type: Boolean,
 			default: false
+		}
+	},
+	methods: {
+		close (type) {
+			if (type == 'y') {
+				this.$emit('close')
+			} else {
+				this.$emit('close')
+			}
 		}
 	}
 }
