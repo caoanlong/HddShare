@@ -110,7 +110,9 @@ export default {
 		right 0
 		bottom 0
 		z-index 99
+		padding-bottom 74px
 		background #fff
+		overflow auto
 		transition top .2s
 		-moz-transition top .2s
 		-webkit-transition top .2s
