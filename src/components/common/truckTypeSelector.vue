@@ -3,27 +3,7 @@
         <div class="filter-body">
             <div class="tit bdtb">车型</div>
             <ul class="clearfix">
-                <li class="selected"><span>仓栅式挂车</span></li>
-                <li><span>平板挂车</span></li>
-                <li><span>集装箱车</span></li>
-                <li><span>专项作业车</span></li>
-                <li><span>普通挂车</span></li>
-                <li><span>专项作业挂车</span></li>
-                <li><span>自卸货车</span></li>
-                <li><span>罐式货车</span></li>
-                <li><span>仓栅式货车</span></li>
-                <li><span>厢式货车</span></li>
-                <li><span>普通货车</span></li>
-                <li><span>车辆运输车</span></li>
-                <li><span>厢式挂车</span></li>
-                <li><span>车辆运输车(单排)</span></li>
-                <li><span>自卸挂车</span></li>
-                <li><span>特殊结构货车</span></li>
-                <li><span>平板货车</span></li>
-                <li><span>牵引车</span></li>
-                <li><span>罐式挂车</span></li>
-                <li><span>集装箱挂车</span></li>
-                <li><span>封闭货车</span></li>
+                <li :class="{'selected': selected.includes(truckType.code)}" v-for="truckType in truckTypeList" :key="truckType.code" @click="selectOption(truckType.code)"><span>{{truckType.name}}</span></li>
             </ul>
         </div>
         <div class="filter-footer bdt">
@@ -40,7 +20,59 @@ export default {
 			default: false
 		}
 	},
+	data () {
+		return {
+			truckTypeList: [
+				{
+					"code": "01",
+					"name": "仓栅式挂车"
+				},{
+					"code": "02",
+					"name": "平板挂车"
+				},{
+					"code": "03",
+					"name": "集装箱车"
+				},{
+					"code": "04",
+					"name": "专项作业车"
+				},{
+					"code": "05",
+					"name": "普通挂车"
+				},{
+					"code": "06",
+					"name": "专项作业挂车"
+				},{
+					"code": "07",
+					"name": "自卸货车"
+				},{
+					"code": "08",
+					"name": "罐式货车"
+				},{
+					"code": "09",
+					"name": "仓栅式货车"
+				},{
+					"code": "10",
+					"name": "厢式货车"
+				},{
+					"code": "11",
+					"name": "普通货车"
+				}
+			],
+			selected: ["01"]
+		}
+	},
 	methods: {
+		selectOption (code) {
+			if (this.selected.includes(code)) {
+				for (let i = 0; i < this.selected.length; i++) {
+					if (this.selected[i] == code) {
+						this.selected.splice(i, 1)
+					}
+				}
+			} else {
+				this.selected.push(code)
+			}
+		},
 		close (type) {
 			if (type == 'y') {
 				this.$emit('close')
