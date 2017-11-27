@@ -138,6 +138,9 @@
 				line-height 28px
 				border-radius 4px
 				margin-right 10px
+				overflow hidden
+				white-space nowrap
+				text-overflow ellipsis
 				background url('../assets/img/arrow-b.png') no-repeat right center
 			.truckLength
 				margin-right 20px
