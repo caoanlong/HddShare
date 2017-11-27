@@ -1,33 +1,35 @@
 <template>
-	<div class="filter-pop" v-if="showSelector">
-		<div class="areaSelect">
-			<div class="from" :class="{'active': selectType == 'simple'}" @click="changeSelectType('simple')">{{startArea.value}}</div>
-			<span class="arrow"></span>
-			<div class="destination" :class="{'active': selectType == 'mutiple'}" @click="changeSelectType('mutiple')">{{endArea}}</div>
+	<transition name="fade">
+		<div class="filter-pop" v-if="showSelector">
+			<div class="areaSelect">
+				<div class="from" :class="{'active': selectType == 'simple'}" @click="changeSelectType('simple')">{{startArea.value}}</div>
+				<span class="arrow"></span>
+				<div class="destination" :class="{'active': selectType == 'mutiple'}" @click="changeSelectType('mutiple')">{{endArea}}</div>
+			</div>
+			<div class="areaSelected bdt" v-show="selectType == 'mutiple'">
+				<p class="tit">已选择地区</p>
+				<p class="selectedTags">
+					<span v-for="item in selectedAreaList" :key="item.key" @click="deleteAreaList(item.key)">{{item.value}}<i></i></span>
+				</p>
+			</div>
+			<div class="filter-header bdtb">
+				当前地区：全部<div class="fr"><span class="location">深圳市</span>
+				<span class="backBtn" v-show="isShowReturn" @click="returnBack"><i></i>返回上一级</span></div>
+			</div>
+			<div class="filter-body">
+				<ul class="clearfix">
+					<li v-show="firstArea && selectType == 'simple'" :class="{'selected': selectedDist == firstArea?firstArea.key:''}" @click="selectFirstArea(firstArea?firstArea.key:'', firstArea?firstArea.value:'')"><span>{{firstArea?firstArea.value:''}}</span></li>
+					<li v-show="firstArea && selectType == 'mutiple'" :class="{'selected': selectedDistList.includes(firstArea?firstArea.key:'')}" @click="selectFirstArea(firstArea?firstArea.key:'', firstArea?firstArea.value:'')"><span>{{firstArea?firstArea.value:''}}</span></li>
+					<li v-show="selectType == 'simple'" :class="{'selected': selectedDist == key}" v-for="(value, key) in areaList" :key="key" @click="selectArea(key, value)"><span>{{value}}</span></li>
+					<li v-show="selectType == 'mutiple'" :class="{'selected': selectedDistList.includes(key)}" v-for="(value, key) in areaList" :key="key" @click="selectArea(key, value)"><span>{{value}}</span></li>
+				</ul>
+			</div>
+			<div class="filter-footer bdt">
+				<button class="cancelBtn" @click="close('n')"><i></i>取消</button>
+				<button class="confirmBtn" @click="close('y')"><i></i>确定</button>
+			</div>
 		</div>
-		<div class="areaSelected bdt" v-show="selectType == 'mutiple'">
-			<p class="tit">已选择地区</p>
-			<p class="selectedTags">
-				<span v-for="item in selectedAreaList" :key="item.key" @click="deleteAreaList(item.key)">{{item.value}}<i></i></span>
-			</p>
-		</div>
-		<div class="filter-header bdtb">
-			当前地区：全部<div class="fr"><span class="location">深圳市</span>
-			<span class="backBtn" v-show="isShowReturn" @click="returnBack"><i></i>返回上一级</span></div>
-		</div>
-		<div class="filter-body">
-			<ul class="clearfix">
-				<li v-show="firstArea && selectType == 'simple'" :class="{'selected': selectedDist == firstArea?firstArea.key:''}" @click="selectFirstArea(firstArea?firstArea.key:'', firstArea?firstArea.value:'')"><span>{{firstArea?firstArea.value:''}}</span></li>
-				<li v-show="firstArea && selectType == 'mutiple'" :class="{'selected': selectedDistList.includes(firstArea?firstArea.key:'')}" @click="selectFirstArea(firstArea?firstArea.key:'', firstArea?firstArea.value:'')"><span>{{firstArea?firstArea.value:''}}</span></li>
-				<li v-show="selectType == 'simple'" :class="{'selected': selectedDist == key}" v-for="(value, key) in areaList" :key="key" @click="selectArea(key, value)"><span>{{value}}</span></li>
-				<li v-show="selectType == 'mutiple'" :class="{'selected': selectedDistList.includes(key)}" v-for="(value, key) in areaList" :key="key" @click="selectArea(key, value)"><span>{{value}}</span></li>
-			</ul>
-		</div>
-		<div class="filter-footer bdt">
-			<button class="cancelBtn" @click="close('n')"><i></i>取消</button>
-			<button class="confirmBtn" @click="close('y')"><i></i>确定</button>
-		</div>
-	</div>
+	</transition>
 </template>
 <script>
 import ChineseDistricts from '../../assets/data/distpicker.data'
@@ -83,7 +85,7 @@ export default {
 			}
 			// 如果选择的是省
 			if (key.substr(2) == '0000') {
-				console.log('已选择省:' + value)
+				// console.log('已选择省:' + value)
 				// 进入到城市选择层
 				this.firstArea = {
 					key: key,
@@ -96,7 +98,7 @@ export default {
 				}
 			// 如果选择的是市
 			} else if (key.substr(4) == '00') {
-				console.log('已选择市:' + value)
+				// console.log('已选择市:' + value)
 				// 进入到区县选择层
 				this.firstArea = {
 					key: key,
@@ -109,7 +111,7 @@ export default {
 				}
 			// 如果选择的是区县
 			} else {
-				console.log('已选择区县:' + value)
+				// console.log('已选择区县:' + value)
 				this.selectedDist = key
 				if (this.selectType == 'mutiple') {
 					this.selectedDistList.push(key)
@@ -166,7 +168,7 @@ export default {
 			}
 		},
 		returnBack () {
-			console.log(this.selected)
+			// console.log(this.selected)
 			// 如果选择的是省
 			if (this.firstArea.key.substr(2) == '0000') {
 				this.isShowReturn = false
@@ -174,7 +176,7 @@ export default {
 				this.firstArea = null
 			// 如果选择的是市
 			} else if (this.firstArea.key.substr(4) == '00') {
-				console.log(this.firstArea.key.substring(0,2)+'0000')
+				// console.log(this.firstArea.key.substring(0,2)+'0000')
 				this.areaList = ChineseDistricts[this.firstArea.key.substring(0,2)+'0000']
 				this.firstArea = {
 					key: this.firstArea.key.substring(0,2)+'0000',
@@ -184,8 +186,10 @@ export default {
 			}
 		},
 		close (type) {
+			// 确定
 			if (type == 'y') {
-				this.$emit('close')
+				this.$emit('close', this.startArea, this.selectedAreaList)
+			// 取消
 			} else {
 				this.$emit('close')
 			}
@@ -194,6 +198,12 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
+	.fade-enter-active
+	.fade-leave-active
+		transition opacity .5s
+	.fade-enter
+	.fade-leave-to
+		opacity 0
 	.filter-pop
 		position fixed
 		top 0

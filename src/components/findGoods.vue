@@ -83,8 +83,14 @@
 			selectMore () {
 				this.showMoreSelector = true
 			},
-			closeAreaSelector (m) {
+			closeAreaSelector (start, end) {
 				this.showAreaSelector = false
+				if (start) {
+					console.log(JSON.stringify(start))
+				}
+				if (end) {
+					console.log(JSON.stringify(end))
+				}
 			},
 			closeMoreSelector (m) {
 				this.showMoreSelector = false
