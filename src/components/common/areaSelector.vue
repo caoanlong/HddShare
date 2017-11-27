@@ -198,12 +198,6 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
-	.fade-enter-active
-	.fade-leave-active
-		transition opacity .5s
-	.fade-enter
-	.fade-leave-to
-		opacity 0
 	.filter-pop
 		position fixed
 		top 0
@@ -216,6 +210,8 @@ export default {
 		-moz-transition top .2s
 		-webkit-transition top .2s
 		-o-transition top .2s
+		overflow auto
+		padding-bottom 74px
 		.areaSelect
 			background #fff
 			height 40px
