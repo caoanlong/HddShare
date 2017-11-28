@@ -16,6 +16,8 @@ export default function install (Vue, options) {
 	/* 每页条数 */
 	// Vue.prototype.PAGESIZE = 10
 
+    Vue.prototype.html2canvas = html2canvas
+
 	/* 微信对象 */
 	Vue.prototype.wx = function (url, jsApiList) {
 		let URL = 'http://dev.tunnel.qydev.com/wx/wxJsApiSignature'
@@ -207,5 +209,17 @@ export default function install (Vue, options) {
 				}
 			}
 		},20)
-	}
+	},
+	// 将跨域图片路径生成Base64
+	Vue.prototype.getBase64 = function (img, width, height){//传入图片路径，返回base64
+		//width、height调用时传入具体像素值，控制大小 ,不传则默认图像大小
+		var canvas = document.createElement("canvas")
+		canvas.width = width || img.width
+		canvas.height = height || img.height
+
+		var ctx = canvas.getContext("2d")
+		ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+		var dataURL = canvas.toDataURL("image/png")
+		return dataURL
+    }
 }

@@ -3,52 +3,11 @@
 		<div class="filter-body">
 			<div class="tit bdtb">车长</div>
 			<ul class="clearfix">
-				<li class="selected"><span>不限</span></li>
-				<li><span>7.6米</span></li>
-				<li><span>11.7米</span></li>
-				<li><span>9.6米</span></li>
-				<li><span>7.2米</span></li>
-				<li><span>12.5米</span></li>
-				<li><span>17.5米</span></li>
-				<li><span>5米</span></li>
-				<li><span>6.8米</span></li>
-				<li><span>14米</span></li>
-				<li><span>4.2米</span></li>
-				<li><span>6.2米</span></li>
-				<li><span>18米</span></li>
-				<li><span>5.2米</span></li>
-				<li><span>4.5米</span></li>
-				<li><span>8.2米</span></li>
-				<li><span>16米</span></li>
-				<li><span>17米</span></li>
-				<li><span>8.6米</span></li>
-				<li><span>13.5米</span></li>
-				<li><span>15米</span></li>
-				<li><span>13米</span></li>
+				<li :class="{'selected': selectedTruckLength.map(item => item.code).includes(truckLength.code)}" v-for="truckLength in truckLengthList" :key="truckLength.code" @click="selectTruckLengthOption(truckLength)"><span>{{truckLength.name}}</span></li>
 			</ul>
 			<div class="tit bdtb">车型</div>
 			<ul class="clearfix">
-				<li class="selected"><span>仓栅式挂车</span></li>
-				<li><span>平板挂车</span></li>
-				<li><span>集装箱车</span></li>
-				<li><span>专项作业车</span></li>
-				<li><span>普通挂车</span></li>
-				<li><span>专项作业挂车</span></li>
-				<li><span>自卸货车</span></li>
-				<li><span>罐式货车</span></li>
-				<li><span>仓栅式货车</span></li>
-				<li><span>厢式货车</span></li>
-				<li><span>普通货车</span></li>
-				<li><span>车辆运输车</span></li>
-				<li><span>厢式挂车</span></li>
-				<li><span>车辆运输车(单排)</span></li>
-				<li><span>自卸挂车</span></li>
-				<li><span>特殊结构货车</span></li>
-				<li><span>平板货车</span></li>
-				<li><span>牵引车</span></li>
-				<li><span>罐式挂车</span></li>
-				<li><span>集装箱挂车</span></li>
-				<li><span>封闭货车</span></li>
+				<li :class="{'selected': selectedTruckType.code == truckType.code}" v-for="truckType in truckTypeList" :key="truckType.code" @click="selectTruckTypeOption(truckType)"><span>{{truckType.name}}</span></li>
 			</ul>
 		</div>
 		<div class="filter-footer bdt">
@@ -65,10 +24,129 @@ export default {
 			default: false
 		}
 	},
+	data () {
+		return {
+			truckLengthList: [
+				{
+					"code": "01",
+					"name": "不限"
+				},{
+					"code": "7.6",
+					"name": "7.6米"
+				},{
+					"code": "11.7",
+					"name": "11.7米"
+				},{
+					"code": "9.6",
+					"name": "9.6米"
+				},{
+					"code": "7.2",
+					"name": "7.2米"
+				},{
+					"code": "12.5",
+					"name": "12.5米"
+				},{
+					"code": "17.5",
+					"name": "17.5米"
+				},{
+					"code": "5",
+					"name": "5米"
+				},{
+					"code": "6.8",
+					"name": "6.8米"
+				},{
+					"code": "14",
+					"name": "14米"
+				},{
+					"code": "4.2",
+					"name": "4.2米"
+				},{
+					"code": "6.2",
+					"name": "6.2米"
+				}
+			],
+			truckTypeList: [
+				{
+					"code": "01",
+					"name": "不限"
+				},{
+					"code": "02",
+					"name": "仓栅式挂车"
+				},{
+					"code": "03",
+					"name": "平板挂车"
+				},{
+					"code": "04",
+					"name": "集装箱车"
+				},{
+					"code": "05",
+					"name": "专项作业车"
+				},{
+					"code": "06",
+					"name": "普通挂车"
+				},{
+					"code": "07",
+					"name": "专项作业挂车"
+				},{
+					"code": "08",
+					"name": "自卸货车"
+				},{
+					"code": "09",
+					"name": "罐式货车"
+				},{
+					"code": "10",
+					"name": "仓栅式货车"
+				},{
+					"code": "11",
+					"name": "厢式货车"
+				},{
+					"code": "12",
+					"name": "普通货车"
+				}
+			],
+			selectedTruckLength: [{
+				"code": "01",
+				"name": "不限"
+			}],
+			selectedTruckType: {
+				"code": "01",
+				"name": "不限"
+			}
+		}
+	},
 	methods: {
+		selectTruckLengthOption (obj) {
+			for (let i = 0; i < this.selectedTruckLength.length; i++) {
+				// 如果选择的选项已经勾选
+				if (this.selectedTruckLength[i].code == obj.code) {
+					this.selectedTruckLength.splice(i, 1)
+					return
+				// 如果选择的选项没有勾选
+				} else {
+					// 如果勾选的是“不限”
+					if (obj.code == '01') {
+						this.selectedTruckLength = []
+						this.selectedTruckLength.push(obj)
+						return
+					// 如果勾选的是“其他”
+					} else {
+						let index = this.selectedTruckLength.map(item => item.code).indexOf('01')
+						if (index > -1) {
+							this.selectedTruckLength.splice(index, 1)
+							this.selectedTruckLength.push(obj)
+							return
+						}
+					}
+				}
+			}
+			this.selectedTruckLength.push(obj)
+		},
+		selectTruckTypeOption (obj) {
+			this.selectedTruckType = obj
+		},
 		close (type) {
 			if (type == 'y') {
-				this.$emit('close')
+				this.$emit('close', this.selectedTruckLength, this.selectedTruckType)
 			} else {
 				this.$emit('close')
 			}

@@ -102,8 +102,9 @@
 					this.endArea = end
 				}
 			},
-			closeMoreSelector (m) {
+			closeMoreSelector (truckLength, truckType) {
 				this.showMoreSelector = false
+				console.log(JSON.stringify(truckLength), JSON.stringify(truckType))
 			}
 		},
 		components: {

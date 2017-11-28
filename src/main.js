@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import vueResource from 'vue-resource'
+import BaiduMap from 'vue-baidu-map'
 import _global from './common/global.js'
 
 Vue.use(vueResource)
@@ -34,6 +35,11 @@ Vue.config.productionTip = false
 //         }
 //     })
 // })
+
+Vue.use(BaiduMap, {
+  // ak 是在百度地图开发者平台申请的密钥 详见 http://lbsyun.baidu.com/apiconsole/key */
+  ak: 'AjsVKu7N9iBX2klb9ktqGfAvA5dkfRBs'
+})
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

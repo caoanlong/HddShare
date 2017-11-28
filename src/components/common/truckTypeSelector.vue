@@ -3,7 +3,7 @@
         <div class="filter-body">
             <div class="tit bdtb">车型</div>
             <ul class="clearfix">
-                <li :class="{'selected': selected.map(item => item.code).includes(truckType.code)}" v-for="truckType in truckTypeList" :key="truckType.code" @click="selectOption(truckType)"><span>{{truckType.name}}</span></li>
+                <li :class="{'selected': selected.code == truckType.code}" v-for="truckType in truckTypeList" :key="truckType.code" @click="selectOption(truckType)"><span>{{truckType.name}}</span></li>
             </ul>
         </div>
         <div class="filter-footer bdt">
@@ -25,54 +25,51 @@ export default {
 			truckTypeList: [
 				{
 					"code": "01",
-					"name": "仓栅式挂车"
+					"name": "不限"
 				},{
 					"code": "02",
-					"name": "平板挂车"
+					"name": "仓栅式挂车"
 				},{
 					"code": "03",
-					"name": "集装箱车"
+					"name": "平板挂车"
 				},{
 					"code": "04",
-					"name": "专项作业车"
+					"name": "集装箱车"
 				},{
 					"code": "05",
-					"name": "普通挂车"
+					"name": "专项作业车"
 				},{
 					"code": "06",
-					"name": "专项作业挂车"
+					"name": "普通挂车"
 				},{
 					"code": "07",
-					"name": "自卸货车"
+					"name": "专项作业挂车"
 				},{
 					"code": "08",
-					"name": "罐式货车"
+					"name": "自卸货车"
 				},{
 					"code": "09",
-					"name": "仓栅式货车"
+					"name": "罐式货车"
 				},{
 					"code": "10",
-					"name": "厢式货车"
+					"name": "仓栅式货车"
 				},{
 					"code": "11",
+					"name": "厢式货车"
+				},{
+					"code": "12",
 					"name": "普通货车"
 				}
 			],
-			selected: [{
+			selected: {
 				"code": "01",
-				"name": "仓栅式挂车"
-			}]
+				"name": "不限"
+			}
 		}
 	},
 	methods: {
 		selectOption (obj) {
-			for (let i = 0; i < this.selected.length; i++) {
-				if (this.selected[i].code == obj.code) {
-					this.selected.splice(i, 1)
-					return
-				}
-			}
-			this.selected.push(obj)
+			this.selected = obj
 		},
 		close (type) {
 			if (type == 'y') {

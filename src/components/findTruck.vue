@@ -2,16 +2,17 @@
 	<div class="findTruck">
 		<div class="filter-box">
 			<div class="truckSort"  @click="selectTruckLength">{{selectedTruckLengthList.map(item => item.name).join(',')}}</div>
-			<div class="truckLength" @click="selectTruckType">{{selectedTruckTypeList.map(item => item.name).join(',')}}</div>
-			<div class="map"><i></i>地图找车</div>
+			<div class="truckLength" @click="selectTruckType">{{selectedTruckType.name}}</div>
+			<div class="map" @click="findTruckByMap"><i></i>地图找车</div>
 		</div>
 		<div class="block"></div>
 		<div class="wrapper" ref="truckWrapper">
-			<Truck v-for="truck in truckList" :key="truck.id" :truck="truck" @click.native="alert"></Truck>
+			<Truck v-for="truck in truckList" :key="truck.truckID" :truck="truck" @click.native="alert"></Truck>
 			<pullUpLoad :loadStatus="loadStatus"></pullUpLoad>
 		</div>
 		<truckLengthSelector :showSelector="showTruckLengthSelector" @close="closeTruckLengthSelector"></truckLengthSelector>
 		<truckTypeSelector :showSelector="showTruckTypeSelector" @close="closeTruckTypeSelector"></truckTypeSelector>
+		<Location :showMap="showMap" :truckList="truckList"></Location>
 	</div>
 </template>
 <script type="text/javascript">
@@ -20,6 +21,7 @@
 	import truckList from '../assets/data/truckList'
 	import truckLengthSelector from '../components/common/truckLengthSelector'
 	import truckTypeSelector from '../components/common/truckTypeSelector'
+	import Location from '../components/common/Location'
 	export default {
 		data () {
 			return {
@@ -32,14 +34,15 @@
 				count: 0,
 				showTruckLengthSelector: false,
 				showTruckTypeSelector: false,
+				showMap: false,
 				selectedTruckLengthList: [{
 					"code": "0",
 					"name": "车长"
 				}],
-				selectedTruckTypeList: [{
+				selectedTruckType: {
 					"code": "0",
 					"name": "车型"
-				}]
+				}
 			}
 		},
 		created () {
@@ -89,15 +92,19 @@
 				this.showTruckTypeSelector = false
 				if (selected) {
 					console.log(JSON.stringify(selected))
-					this.selectedTruckTypeList = selected
+					this.selectedTruckType = selected
 				}
 			},
+			findTruckByMap () {
+				this.showMap = true
+			}
 		},
 		components: {
 			Truck,
 			pullUpLoad,
 			truckLengthSelector,
-			truckTypeSelector
+			truckTypeSelector,
+			Location
 		}
 	}
 </script>
