@@ -66,7 +66,7 @@
 					this.$nextTick(() => {
 						this.markerPos = {
 							left: (window.screen.width - this.$refs.marker.offsetWidth)/2 + 'px',
-							top: (window.screen.height - this.$refs.marker.offsetHeight)/2 + 'px'
+							top: (window.screen.height - this.$refs.marker.offsetHeight)/2-26 + 'px'
 						}
 					})
 					
@@ -76,7 +76,6 @@
 			}
 		},
 		created() {
-			
 		},
 		mounted () {
 			

@@ -1,13 +1,16 @@
 <template>
-    <bm-overlay
-        ref="customOverlay"
-        pane="labelPane"
-        class="truckIcon"
-        @draw="draw">
-        <img :src="__IMGWEBSERVER__ + truck.headPicture"/>
-    </bm-overlay>
+    <transition name="fade">
+        <bm-overlay
+            ref="customOverlay"
+            pane="labelPane"
+            class="truckIcon"
+            @draw="draw">
+            <img :src="__IMGWEBSERVER__ + truck.headPicture" @error="errorImg"/>
+        </bm-overlay>
+    </transition>
 </template>
 <script>
+    import {defaultImg} from '../../assets/data/icons'
 	export default {
 		props: {
 			truck: {
@@ -19,13 +22,12 @@
 				position: {
 					lat: 22.527858,
 					lng: 113.945806
-				},
-				radius: 500
+				}
 			}
         },
         watch: {
             truck: {
-                handler () {
+                handler (newV) {
                     this.$refs.customOverlay.reload()
                 },
                 deep: true
@@ -36,11 +38,21 @@
 				const pixel = map.pointToOverlayPixel(new BMap.Point(this.truck.lng,this.truck.lat))
 				el.style.left = pixel.x + 'px'
 				el.style.top = pixel.y + 'px'
-			}
+            },
+            errorImg (e) {
+                e.target.src = defaultImg
+                e.target.onerror = null
+            }
 		}
 	}
 </script>
 <style lang="stylus" scoped>
+    .fade-enter-active
+    .fade-leave-active
+        transition opacity .5s
+    .fade-enter
+    .fade-leave-to
+        opacity 0
     .truckIcon
         width 46px
         height 46px
