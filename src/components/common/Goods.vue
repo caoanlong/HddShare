@@ -2,8 +2,7 @@
 	<div class="listItem bdtb">
 		<router-link tag="div" class="baseInfo" to="">
 			<div class="ls">
-				<img width="70" :src='__IMGWEBSERVER__ + goods.headPicture' alt="" v-if="goods.headPicture"/>
-				<img width="70" src='../../assets/img/defaultImg.svg' alt="" v-else/>
+				<img width="70" :src='__IMGWEBSERVER__ + goods.headPicture' @error="errorImg"/>
 				<p class="text-center name" v-text="goods.realName"></p>
         	</div>
         	<div class="text">
@@ -25,6 +24,7 @@
     </div>
 </template>
 <script>
+	import {defaultImg} from '../../assets/data/icons'
 	export default {
 		props: {
 			goods: {
@@ -37,13 +37,12 @@
 				quote_sort: 1
 			}
 		},
-		// watch: {
-		// 	goods(newVal) {
-		// 		if (newVal.headPicture) {
-		// 			this.headPicture = this.__WEBSERVER__ + newVal.headPicture;
-		// 		};
-		// 	}
-		// }
+		methods: {
+			errorImg (e) {
+                e.target.src = defaultImg
+                e.target.onerror = null
+            }
+		}
 	}
 </script>
 <style lang="stylus" scoped>

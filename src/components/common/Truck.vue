@@ -2,8 +2,7 @@
 	<div class="listItem bdtb">
 		<router-link tag="div" class="baseInfo" to="">
 			<div class="ls">
-				<img width="70" :src='__IMGWEBSERVER__ + truck.headPicture' alt="" v-if="truck.headPicture"/>
-				<img width="70" src='../../assets/img/defaultImg.svg' alt="" v-else/>
+				<img width="70" :src='__IMGWEBSERVER__ + truck.headPicture' @error="errorImg"/>
         	</div>
         	<div class="text">
         		<p class="driver">{{truck.realName}} {{truck.plateNo}}</p>
@@ -15,6 +14,7 @@
     </div>
 </template>
 <script>
+	import {defaultImg} from '../../assets/data/icons'
 	export default {
 		props: {
 			truck: {
@@ -24,6 +24,12 @@
 		data() {
 			return {
 			}
+		},
+		methods: {
+			errorImg (e) {
+                e.target.src = defaultImg
+                e.target.onerror = null
+            }
 		}
 	}
 </script>
