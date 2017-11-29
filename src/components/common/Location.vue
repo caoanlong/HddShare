@@ -128,7 +128,7 @@
 		padding 7px
 		border-radius 4px
 		background rgba(0,0,0,.5)
-		position absolute
+		position fixed
 		top 10px
 		left 10px
 		z-index 100
@@ -186,9 +186,9 @@
 						height 16px
 						width 16px
 						display inline-block
-						vertical-align top
+						vertical-align middle
 						border-radius 8px
-						margin 1px 5px 0 0
+						margin -1px 5px 0 0
 				.status1
 					background #6cc
 					i
@@ -200,17 +200,16 @@
 						background url('../../assets/img/status_icon2.svg') #fff no-repeat center
 						background-size 80%
 		&.slideUp-enter-active
-			 transition all 3s ease
-			 height 50px
+			 transition all .5s ease
+			 bottom 0
 			 overflow hidden
 		&.slideUp-leave-active
-			 transition all 3s ease
-			 height 0px
+			 transition all .5s ease
+			 bottom -110px
 			 overflow hidden
 		&.slideUp-enter
 		&.slideUp-leave
-			 height 0
-			 opacity 0
+			 bottom -110px
 		.icon-phone
 			right 15px
 			width 30px
