@@ -12,7 +12,7 @@
 		</div>
 		<truckLengthSelector :showSelector="showTruckLengthSelector" @close="closeTruckLengthSelector"></truckLengthSelector>
 		<truckTypeSelector :showSelector="showTruckTypeSelector" @close="closeTruckTypeSelector"></truckTypeSelector>
-		<Location :showMap="showMap" :truckList="truckList"></Location>
+		<Location :showMap="showMap" :truckList="truckList" @closeMap="closeMap"></Location>
 	</div>
 </template>
 <script type="text/javascript">
@@ -97,6 +97,9 @@
 			},
 			findTruckByMap () {
 				this.showMap = true
+			},
+			closeMap () {
+				this.showMap = false
 			}
 		},
 		components: {

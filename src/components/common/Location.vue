@@ -1,6 +1,6 @@
 <template>
 	<div v-if="showMap" class="mapWapper">
-		<div class="backBtn"><i></i></div>
+		<div class="backBtn" @click="returnBack"><i></i></div>
 		<baidu-map class="map"
 			:center="position"
 			:zoom="22">
@@ -9,12 +9,12 @@
 					<img :src="locationIcon"/>
 				</div>
 			</bm-control>
-			<TruckIcon :truck="truck" v-for="truck in truckList" :key="truck.truckID"></TruckIcon>
+			<TruckIcon :class="{'selected': selectedTruck?(selectedTruck.truckID == truck.truckID):false}" :truck="truck" v-for="truck in truckList" :key="truck.truckID" @touchstart.native.stop="selectTruck(truck)"></TruckIcon>
 			<!-- <bm-geolocation anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :showAddressBar="true" :autoLocation="true" :locationIcon="{url: locationIcon, size: {width: 30, height: 52}, opts:{imageSize:{width: 30, height: 52}}}"></bm-geolocation> -->
 			<bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation>
 		</baidu-map>
 		<transition name="slideUp">
-			<div class="LocationDetail" v-show="true">
+			<div class="LocationDetail" v-show="selectedTruck">
 				<div class="baseInfo" to="">
 					<div class="ls">
 						<img width="70" src='../../assets/img/defaultImg.svg' alt=""/>
@@ -64,7 +64,8 @@
 				markerPos: {
 					left: 0,
 					top: 0
-				}
+				},
+				selectedTruck: null
 			}
 		},
 		computed: {
@@ -106,6 +107,12 @@
 		methods: {
 			clickHandler (e) {
 				alert(`单击点的坐标为：${e.point.lng}, ${e.point.lat}`)
+			},
+			returnBack () {
+				this.$emit('closeMap')
+			},
+			selectTruck (Obj) {
+				this.selectedTruck = Obj
 			}
 		},
 		components: {
@@ -138,6 +145,11 @@
 		bottom 0
 		right 0
 		z-index 99
+		.selected
+			border 1px solid #f60
+			padding 2px
+			box-shadow 0 0 2px #f60
+			z-index 100
 		.marker
 			width 30px
 			height 52px

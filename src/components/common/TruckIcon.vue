@@ -1,13 +1,11 @@
 <template>
-    <transition name="fade">
-        <bm-overlay
-            ref="customOverlay"
-            pane="labelPane"
-            class="truckIcon"
-            @draw="draw">
-            <img :src="__IMGWEBSERVER__ + truck.headPicture" @error="errorImg"/>
-        </bm-overlay>
-    </transition>
+    <bm-overlay
+        ref="customOverlay"
+        pane="labelPane"
+        class="truckIcon"
+        @draw="draw">
+        <img :src="__IMGWEBSERVER__ + truck.headPicture" @error="errorImg"/>
+    </bm-overlay>
 </template>
 <script>
     import {defaultImg} from '../../assets/data/icons'
@@ -22,7 +20,7 @@
 				position: {
 					lat: 22.527858,
 					lng: 113.945806
-				}
+                }
 			}
         },
         watch: {
@@ -36,8 +34,8 @@
 		methods: {
 			draw ({el, BMap, map}) {
 				const pixel = map.pointToOverlayPixel(new BMap.Point(this.truck.lng,this.truck.lat))
-				el.style.left = pixel.x + 'px'
-				el.style.top = pixel.y + 'px'
+				el.style.left = pixel.x - 23 + 'px'
+				el.style.top = pixel.y - 23 + 'px'
             },
             errorImg (e) {
                 e.target.src = defaultImg
@@ -65,11 +63,6 @@
         padding 3px
         position absolute
         z-index 10
-        &.selected
-            border 1px solid #f60
-            padding 2px
-            box-shadow 0 0 2px #f60
-            z-index 100
         img
             width 40px
             height 40px
