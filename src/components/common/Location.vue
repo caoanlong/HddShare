@@ -10,26 +10,25 @@
 				</div>
 			</bm-control>
 			<TruckIcon :class="{'selected': selectedTruck?(selectedTruck.truckID == truck.truckID):false}" :truck="truck" v-for="truck in truckList" :key="truck.truckID" @touchstart.native.stop="selectTruck(truck)"></TruckIcon>
-			<!-- <bm-geolocation anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :showAddressBar="true" :autoLocation="true" :locationIcon="{url: locationIcon, size: {width: 30, height: 52}, opts:{imageSize:{width: 30, height: 52}}}"></bm-geolocation> -->
 			<bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation>
 		</baidu-map>
 		<transition name="slideUp">
 			<div class="LocationDetail" v-show="selectedTruck">
 				<div class="baseInfo" to="">
 					<div class="ls">
-						<img width="70" src='../../assets/img/defaultImg.svg' alt=""/>
+						<img width="70" :src='__IMGWEBSERVER__ + (selectedTruck?selectedTruck.headPicture:"")' @error="errorImg"/>
 						<p class="text-center status"><span class="status1"><i></i>运输中</span></p>
 						<!-- <p class="text-center status"><span class="status2"><i></i>空车</span></p> -->
 		        	</div>
 		        	<div class="text">
 						<p class="line bold">
-							<span class="from">江西吉安</span>
+							<span class="from">{{selectedTruck?selectedTruck.areaFromName:''}}</span>
 							<span class="arrow"></span>
-							<span>深圳福田，深圳坪山</span>
+							<span>{{selectedTruck?selectedTruck.areaToName:''}}</span>
 						</p>
-			           	<p class="truckInfo">张师傅/鲁A·25437</p>
-			            <p class="truckType">12.8米/仓栅式货车/不可装车</p>
-			            <p class="Location">4天前 深圳17m</p>
+			           	<p class="truckInfo">{{selectedTruck?selectedTruck.realName:''}}/{{selectedTruck?selectedTruck.plateNo:''}}</p>
+			            <p class="truckType">{{selectedTruck?selectedTruck.truckLengthName:''}}/{{selectedTruck?selectedTruck.truckTypeName:''}}/{{selectedTruck?selectedTruck.loadingDateStr:''}}</p>
+			            <p class="Location">{{selectedTruck?selectedTruck.posUpdateTime:''}} {{selectedTruck?selectedTruck.posAreaName:''}} {{selectedTruck?selectedTruck.distance:''}}</p>
 		            </div>
 				</div>
 			    <a class=" icon-phone" href="'tel:'1000"></a>
@@ -39,7 +38,7 @@
 </template>
 <script>
 	import {BmlMarkerClusterer} from 'vue-baidu-map'
-	import {locationIcon} from '../../assets/data/icons'
+	import {locationIcon, defaultImg} from '../../assets/data/icons'
 	import TruckIcon from '../common/TruckIcon'
 	export default {
 		props: {
@@ -113,7 +112,11 @@
 			},
 			selectTruck (Obj) {
 				this.selectedTruck = Obj
-			}
+			},
+			errorImg (e) {
+                e.target.src = defaultImg
+                e.target.onerror = null
+            }
 		},
 		components: {
 			BmlMarkerClusterer,
