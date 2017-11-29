@@ -164,7 +164,8 @@
 		width 100%
 		background #fff
 		padding 10px 50px 10px 90px
-		min-height 110px
+		height 110px
+		overflow hidden
 		.ls
 			position absolute
 			left 10px
