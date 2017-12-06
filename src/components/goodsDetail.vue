@@ -1,21 +1,23 @@
 <template>
 	<div>
 		<div class="container">
-			<div class="titleBar">货源详情</div>
+			<!-- <div class="titleBar">货源详情</div> -->
 			<div class="baseInfo bdb">
-				<img  src='../assets/img/defaultImg.svg' class="pic" />
+				<img  :src='__IMGWEBSERVER__ + "/" + goodsDetail.headPicture' class="pic" @error="errorImg"/>
 			    <p>
-			    	<b class="name">罗凯</b>
+			    	<b class="name">{{goodsDetail.realName}}</b>
 			    	<span class="user_sort user_sort1">物流公司</span>
 			   	<!-- <span class="user_sort user_sort1" v-if="data.memberType=='3PL'">物流公司</span>
 				<span class="user_sort user_sort2" v-else-if="data.memberType=='InfoDept'">物流信息部</span>
 				<span class="user_sort user_sort3" v-else-if="data.memberType=='IndShipper'">个人</span>
 				<span class="user_sort user_sort4" v-else-if="data.memberType=='NoTruck'">无车承运人</span> -->
-			    	<span class="attention"><img src="../assets/img/attention.svg" /></span>
+			    	<span class="attention">
+						<img src="../assets/img/attention.svg"/>
+					</span>
 			    </p>
 			    <p class="company">云南微服物流</p>
 			    <p class="history">历史发货<span class="c1">995</span>条</p>
-			    <div class="tel"><img src="../assets/img/ic_call_phone_image.png" /></div>
+			    <router-link tag="div" :to="{name: 'AppDownload'}" class="tel"><img src="../assets/img/ic_call_phone_image.png"/></router-link>
 			</div>
 			</div>
 			<div class="cells bdtb">
@@ -24,54 +26,70 @@
 						<img class="icon" src="../assets/img/position_icon.svg">
 					</div>
 					<div class="cell__bd lineInfo">
-						<span class="start">昆明呈贡</span>
+						<span class="start">{{goodsDetail.areaFromName}}</span>
 						<span class="arrow"></span>
-						<span class="end">云南保山</span>
+						<span class="end">{{goodsDetail.areaToName}}</span>
 					</div>
 				</div>
 			</div>
-			<div class="viewMap bdb">最短里程<b>1388公里</b>
-				<router-link tag="div" to="" class="viewBtn"><img src="../../static/img/viewBtn.png" /></router-link>
+			<div class="viewMap bdb">最短里程<b>{{goodsDetail.estimateMileage}}公里</b>
+				<router-link tag="div" :to="{name: 'goodsLine', query: {areaFromLat: goodsDetail.areaFromLat, areaFromLng: goodsDetail.areaFromLng, areaToLat: goodsDetail.areaToLat, areaToLng: goodsDetail.areaToLng}}" class="viewBtn"><img src="../../static/img/viewBtn.png" /></router-link>
 			</div>
 			<div class="cells bdtb">
 				<div class="cell">
 					<div class="cell__hd"><img class="icon" src="../assets/img/detail_icon1.svg"></div>
-					<div class="cell__bd"><label class="labels">装车时间</label><span>2017-07-11</span></div>
+					<div class="cell__bd"><label class="labels">装车时间</label><span>{{goodsDetail.loadingTime}}</span></div>
 				</div>
 				<div class="cell bdt">
 					<div class="cell__hd"><img class="icon" src="../assets/img/detail_icon2.svg"></div>
-					<div class="cell__bd"><label class="labels">货物信息</label><span class="c1">食品/30吨/45方/裸装</span></div>
+					<div class="cell__bd"><label class="labels">货物信息</label><span class="c1">{{goodsDetail.cargoTypeConstant ? goodsDetail.cargoTypeConstant.name : ''}}/{{goodsDetail.cargoWeight}}吨/{{goodsDetail.cargoVolume}}方/{{goodsDetail.cargoPackageName}}</span></div>
 				</div>
 				<div class="cell bdt">
 					<div class="cell__hd"><img class="icon" src="../assets/img/detail_icon3.svg"></div>
-					<div class="cell__bd"><label class="labels">需求车辆</label><span class="c1">9米/集装箱车/需4车/剩<b>2</b>车</span></div>
+					<div class="cell__bd"><label class="labels">需求车辆</label><span class="c1">{{goodsDetail.truckLengthList ? goodsDetail.truckLengthList.map(item => item.name).join(','):''}}/{{goodsDetail.truckTypeConstant ? goodsDetail.truckTypeConstant.name : ''}}/需{{goodsDetail.truckNum}}车/剩<b>{{goodsDetail.surplusTruckNum}}</b>车</span></div>
 				</div>
 				<div class="cell bdt">
 					<div class="cell__hd"><img class="icon" src="../assets/img/detail_icon5.svg"></div>
-					<div class="cell__bd"><label class="labels">货主留言</label><span>非诚勿扰，真心求车，长期有货</span></div>
+					<div class="cell__bd"><label class="labels">货主留言</label><span>{{goodsDetail.remark}}</span></div>
 				</div>
-				
 			</div>
 			<div class="padd">
-				<router-link tag="div" to="" class="btn"><img src="../assets/img/rmb.svg" />支付信息费</router-link>
+				<router-link tag="div" :to="{name: 'AppDownload'}" class="btn"><img src="../assets/img/rmb.svg"/>支付信息费</router-link>
 			</div>
 		</div>
 	</div>
 </template>
 <script type="text/javascript">
+	import {defaultImg} from '../assets/data/icons'
 	export default {
+		data () {
+			return {
+				goodsDetail: {}
+			}
+		},
+		created () {
+			document.title = '货源详情'
+			this.getGoodsDetail()
+		},
 		methods: {
 			getGoodsDetail() {
-				let URL = '';
-				this.$http.get(URL,(res) => {
-					console.log(res)
+				let URL = this.__WEBSERVER__ + 'adv/cargoSource/detail'
+				let params = {
+					"cargoSourceID": this.$route.query.id
+				}
+				this.$http.get(URL, {params: params}).then(res => {
+					console.log(JSON.stringify(res.body.data))
+					this.goodsDetail = res.body.data
 				})
-			}
+			},
+			errorImg (e) {
+                e.target.src = defaultImg
+                e.target.onerror = null
+            }
 		}
 	}
 </script>
 <style lang="stylus" scoped>
-	
 	.titleBar
 		background #6cc
 		height 44px

@@ -1,8 +1,8 @@
 <template>
 	<div class="listItem bdtb">
-		<router-link tag="div" class="baseInfo" to="">
+		<router-link tag="div" class="baseInfo" :to="{name: 'truckDetail'}">
 			<div class="ls">
-				<img width="70" :src='__IMGWEBSERVER__ + truck.headPicture' @error="errorImg"/>
+				<img width="70" :src='__IMGWEBSERVER__ +"/"+ truck.headPicture' @error="errorImg"/>
         	</div>
         	<div class="text">
         		<p class="driver">{{truck.realName}} {{truck.plateNo}}</p>
@@ -10,7 +10,8 @@
 				<p class="local">{{truck.posUpdateTime}} {{truck.posAreaName}} 离我{{truck.distance}}</p>
             </div>
 		</router-link>
-	    <a class=" icon-phone" :href="'tel:'+10086"></a>
+	    <!-- <a class=" icon-phone" :href="'tel:'+10086"></a> -->
+	    <router-link tag="div" :to="{name: 'AppDownload'}" class="icon-phone"></router-link>
     </div>
 </template>
 <script>

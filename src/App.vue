@@ -14,6 +14,7 @@ export default {
 		// 	'onMenuShareTimeline',
 		// 	'onMenuShareAppMessage'
 		// ])
+		this.getImgUrl()
 	},
 	methods: {
 	}

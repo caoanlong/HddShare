@@ -2,10 +2,8 @@
 	<div class="findGoods">
 		<div class="filter-box">
 			<div class="from" @click="selectArea('simple')">{{startArea.value}}</div>
-			<!-- <div class="from" @click="filterPop(0)">{{scrollTop}}</div> -->
 			<span class="arrow"></span>
 			<div class="destination"  @click="selectArea('mutiple')">{{endArea.map(item => item.value).join(',')}}</div>
-			<!-- <div class="destination"  @click="filterPop(1)">{{disY}}</div> -->
 			<div class="more"  @click="selectMore">更多</div>
 		</div>
 		<div class="block"></div>
@@ -22,17 +20,21 @@
 	import moreSelector from './common/moreSelector'
 	import Goods from './common/Goods'
 	import pullUpLoad from './common/pullUpLoad'
-	import goodsList from '../assets/data/goodsList'
 	export default {
 		data () {
 			return {
 				goodsList: [],
+				pageNum: 1,
+				pages: 1,
+				areaFrom: '',
+				areaTo: '',
+				truckType: '',
+				truckLength: '',
 				loadStatus: '正在加载...',
 				scrollTop: 0,
 				clientHeight: 0,
 				pageHeight: 0,
 				disY: 0,
-				count: 0,
 				showAreaSelector: false,
 				showMoreSelector: false,
 				selectType: 'simple',
@@ -48,17 +50,18 @@
 		},
 		created () {
 			document.title = '寻找货源'
-			this.goodsList = goodsList
+			this.getGoodsList()
 			window.addEventListener('scroll', (e) => {
 				this.scrollTop = document.documentElement.scrollTop || document.body.scrollTop
 				this.clientHeight = document.documentElement.clientHeight || document.body.clientHeight
 				this.pageHeight = this.$refs.goodsWrapper.offsetHeight
 				this.disY = this.pageHeight - this.clientHeight + 40
-				// console.log(this.scrollTop, e)
-				if (this.scrollTop >= this.disY) {
-					if (this.count < 2) {
-						this.goodsList = this.goodsList.concat(goodsList)
-						this.count++
+				// console.log(this.scrollTop, this.disY)
+				if (this.scrollTop == this.disY) {
+					if (this.pageNum < this.pages) {
+						this.loadStatus = '正在加载...'
+						this.pageNum++
+						this.getGoodsList()
 					} else {
 						this.loadStatus = '~已经到底了~'
 					}
@@ -66,21 +69,32 @@
 			})
 		},
 		methods: {
-			getGoodsList(endIndex) {
-				let URL = this.__WEBSERVER__ + 'cargoSource/findByCondition';
+			getGoodsList () {
+				let URL = this.__WEBSERVER__ + 'adv/cargoSource/list'
 				let params = {
-					"endIndex": endIndex,
+					"pageNum": this.pageNum,
 					"pageSize": this.PAGESIZE,
-				};
+					"areaFrom": this.areaFrom,
+					"areaTo": this.areaTo,
+					"truckType": this.truckType,
+					"truckLength": this.truckLength
+				}
 				this.$http.get(URL,{params:params}).then(
-					(res) => {
+					res => {
 						if (res.body.code == 200) {
-							this.goodsList = res.body.data.list;
-							console.log(JSON.stringify(this.goodsList))
+							this.pages = res.body.data.pages
+							this.goodsList = this.goodsList.concat(res.body.data.list)
+							if (res.body.data.list.length < this.PAGESIZE) {
+								this.loadStatus = '~已经到底了~'
+							}
+							if (this.goodsList.length == 0) {
+								this.loadStatus = '~没有结果~'
+							}
+							console.log(JSON.stringify(res.body.data.list))
 						}
 					},
-					(res) => {
-						console.log(JSON.stringify(res));
+					res => {
+						console.log(JSON.stringify(res))
 					}
 				)
 			},
@@ -93,18 +107,33 @@
 			},
 			closeAreaSelector (start, end) {
 				this.showAreaSelector = false
+				if (!start &&  end.length == 0) {
+					return
+				}
 				if (start) {
 					console.log(JSON.stringify(start))
 					this.startArea = start
+					this.areaFrom = start.key
 				}
-				if (end) {
+				if (end.length > 0) {
 					console.log(JSON.stringify(end))
 					this.endArea = end
+					this.areaTo = end.map(item => item.key).join(',')
 				}
+				this.pageNum = 1
+				this.pages = 1
+				this.goodsList = []
+				this.getGoodsList()
 			},
 			closeMoreSelector (truckLength, truckType) {
 				this.showMoreSelector = false
-				console.log(JSON.stringify(truckLength), JSON.stringify(truckType))
+				this.truckLength = truckLength.map(item => item.constStdID).join(',')
+				this.truckType = truckType.constStdID
+				console.log(JSON.stringify(this.truckLength), JSON.stringify(this.truckType))
+				this.pageNum = 1
+				this.pages = 1
+				this.goodsList = []
+				this.getGoodsList()
 			}
 		},
 		components: {

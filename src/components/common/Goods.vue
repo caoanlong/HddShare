@@ -1,15 +1,15 @@
 <template>
 	<div class="listItem bdtb">
-		<router-link tag="div" class="baseInfo" to="">
+		<router-link tag="div" class="baseInfo" :to="{name: 'goodsDetail', query: {id: goods.cargoSourceIDStr}}">
 			<div class="ls">
-				<img width="70" :src='__IMGWEBSERVER__ + goods.headPicture' @error="errorImg"/>
+				<img width="70" :src='__IMGWEBSERVER__ + "/" + goods.headPicture' @error="errorImg"/>
 				<p class="text-center name" v-text="goods.realName"></p>
         	</div>
         	<div class="text">
 				<p class="line bold">
-					<span class="from">{{goods.fromAreaName}}</span>
+					<span class="from">{{goods.areaFromName}}</span>
 					<span class="arrow"></span>
-					<span>{{goods.toAreaName}}</span>
+					<span>{{goods.areaToName}}</span>
 				</p>
 	           	<p class="quote">
 	           		<span class="quote_sort" v-show="quote_sort == 0">按吨报价</span>
@@ -20,7 +20,8 @@
 	            <p v-text="goods.truckDesc" class="truckDesc"></p>
             </div>
 		</router-link>
-	    <a class=" icon-phone" :href="'tel:'+goods.mobile"></a>
+	    <!-- <a class=" icon-phone" :href="'tel:'+goods.mobile"></a> -->
+	    <router-link tag="div" :to="{name: 'AppDownload'}" class="icon-phone"></router-link>
     </div>
 </template>
 <script>

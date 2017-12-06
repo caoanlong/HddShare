@@ -47,7 +47,7 @@ export default {
 			firstArea: null,  // 列表最前面的一个地区
 			areaList: null,
 			startArea: {
-				key: '1',
+				key: '',
 				value: '起始地'
 			},
 			endArea: '目的地',
@@ -189,7 +189,7 @@ export default {
 		close (type) {
 			// 确定
 			if (type == 'y') {
-				this.$emit('close', this.startArea, this.selectedAreaList)
+				this.$emit('close', this.startArea.key == '' ? '' : this.startArea, this.selectedAreaList)
 			// 取消
 			} else {
 				this.$emit('close')

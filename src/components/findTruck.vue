@@ -7,7 +7,7 @@
 		</div>
 		<div class="block"></div>
 		<div class="wrapper" ref="truckWrapper">
-			<Truck v-for="truck in truckList" :key="truck.truckID" :truck="truck" @click.native="alert"></Truck>
+			<Truck v-for="truck in truckList" :key="truck.truckID" :truck="truck"></Truck>
 			<pullUpLoad :loadStatus="loadStatus"></pullUpLoad>
 		</div>
 		<truckLengthSelector :showSelector="showTruckLengthSelector" @close="closeTruckLengthSelector"></truckLengthSelector>
@@ -25,13 +25,16 @@
 	export default {
 		data () {
 			return {
+				truckList: [],
+				pageNum: 1,
+				pages: 1,
+				truckType: '',
+				truckLength: '',
 				loadStatus: '正在加载...',
 				scrollTop: 0,
 				clientHeight: 0,
 				pageHeight: 0,
 				disY: 0,
-				truckList: [],
-				count: 0,
 				showTruckLengthSelector: false,
 				showTruckTypeSelector: false,
 				showMap: false,
@@ -47,17 +50,18 @@
 		},
 		created () {
 			document.title = '寻找车源'
-			this.truckList = truckList
+			this.getTruckList()
 			window.addEventListener('scroll', (e) => {
 				this.scrollTop = document.documentElement.scrollTop || document.body.scrollTop
 				this.clientHeight = document.documentElement.clientHeight || document.body.clientHeight
 				this.pageHeight = this.$refs.truckWrapper.offsetHeight
 				this.disY = this.pageHeight - this.clientHeight + 40
-				// console.log(this.scrollTop, e)
-				if (this.scrollTop >= this.disY) {
-					if (this.count < 2) {
-						this.truckList = this.truckList.concat(truckList)
-						this.count++
+				// console.log(this.scrollTop, this.disY)
+				if (this.scrollTop == this.disY) {
+					if (this.pageNum < this.pages) {
+						this.loadStatus = '正在加载...'
+						this.pageNum++
+						this.getTruckList()
 					} else {
 						this.loadStatus = '~已经到底了~'
 					}
@@ -66,14 +70,24 @@
 		},
 		methods: {
 			getTruckList () {
-				let URL = '';
-				this.$http.get(URL,(res) => {
-					console.log(res)
-					this.truckList = res.body.data
+				let URL = this.__WEBSERVER__ + 'adv/truck/list'
+				let params = {
+					"pageNum": this.pageNum,
+					"pageSize": this.PAGESIZE,
+					"type": this.truckType,
+					"length": this.truckLength
+				}
+				this.$http.get(URL, {params: params}).then(res => {
+					// console.log(JSON.stringify(res.body.data.list))
+					this.pages = res.body.data.pages
+					this.truckList = this.truckList.concat(res.body.data.list)
+					if (res.body.data.list.length < this.PAGESIZE) {
+						this.loadStatus = '~已经到底了~'
+					}
+					if (this.truckList.length == 0) {
+						this.loadStatus = '~没有结果~'
+					}
 				})
-			},
-			alert (e) {
-				console.log(e)
 			},
 			selectTruckLength () {
 				this.showTruckLengthSelector = true
@@ -84,8 +98,13 @@
 			closeTruckLengthSelector (selected) {
 				this.showTruckLengthSelector = false
 				if (selected) {
-					console.log(JSON.stringify(selected))
 					this.selectedTruckLengthList = selected
+					this.truckLength = selected.map(item => item.constStdID).join(',')
+					console.log(JSON.stringify(this.truckLength))
+					this.pageNum = 1
+					this.pages = 1
+					this.truckList = []
+					this.getTruckList()
 				}
 			},
 			closeTruckTypeSelector (selected) {
@@ -93,6 +112,11 @@
 				if (selected) {
 					console.log(JSON.stringify(selected))
 					this.selectedTruckType = selected
+					this.truckType = selected.constStdID
+					this.pageNum = 1
+					this.pages = 1
+					this.truckList = []
+					this.getTruckList()
 				}
 			},
 			findTruckByMap () {

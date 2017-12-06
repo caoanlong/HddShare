@@ -242,7 +242,5 @@
 			&.section2 
 				background #6cc
 			&.section3 
-				background #69f
-
-						
+				background #69f					
 </style>

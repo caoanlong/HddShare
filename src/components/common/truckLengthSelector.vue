@@ -3,7 +3,7 @@
         <div class="filter-body">
             <div class="tit bdtb">车长</div>
             <ul class="clearfix">
-                <li :class="{'selected': selected.map(item => item.code).includes(truckLength.code)}" v-for="truckLength in truckLengthList" :key="truckLength.code" @click="selectOption(truckLength)"><span>{{truckLength.name}}</span></li>
+                <li :class="{'selected': selected.map(item => item.constStdID).includes(truckLength.constStdID)}" v-for="truckLength in truckLengthList" :key="truckLength.constStdID" @click="selectOption(truckLength)"><span>{{truckLength.name}}</span></li>
             </ul>
         </div>
         <div class="filter-footer bdt">
@@ -22,68 +22,50 @@ export default {
 	},
 	data () {
 		return {
-			truckLengthList: [
-				{
-					"code": "01",
-					"name": "不限"
-				},{
-					"code": "7.6",
-					"name": "7.6米"
-				},{
-					"code": "11.7",
-					"name": "11.7米"
-				},{
-					"code": "9.6",
-					"name": "9.6米"
-				},{
-					"code": "7.2",
-					"name": "7.2米"
-				},{
-					"code": "12.5",
-					"name": "12.5米"
-				},{
-					"code": "17.5",
-					"name": "17.5米"
-				},{
-					"code": "5",
-					"name": "5米"
-				},{
-					"code": "6.8",
-					"name": "6.8米"
-				},{
-					"code": "14",
-					"name": "14米"
-				},{
-					"code": "4.2",
-					"name": "4.2米"
-				},{
-					"code": "6.2",
-					"name": "6.2米"
-				}
-			],
+			truckLengthList: [{
+				"constStdID": "",
+				"name": "不限"
+			}],
 			selected: [{
-				"code": "01",
+				"constStdID": "",
 				"name": "不限"
 			}]
 		}
 	},
+	created () {
+		if (sessionStorage.getItem('TruckLength')) {
+			this.truckLengthList = this.truckLengthList.concat(JSON.parse(sessionStorage.getItem('TruckLength')))
+		} else {
+			this.getConstant('TruckLength')
+		}
+	},
 	methods: {
+		getConstant (type) {
+			let URL = this.__WEBSERVER__ + 'adv/baseConstant/findByType'
+			let params = {
+				'type': type
+			}
+			this.$http.get(URL, {params: params}).then(res => {
+				this[type.slice(0, 1).toLowerCase() + type.slice(1) +'List'] = this[type.slice(0, 1).toLowerCase() + type.slice(1) +'List'].concat(res.body.data)
+				sessionStorage.setItem(type, JSON.stringify(res.body.data))
+			})
+		},
 		selectOption (obj) {
 			for (let i = 0; i < this.selected.length; i++) {
 				// 如果选择的选项已经勾选
-				if (this.selected[i].code == obj.code) {
+				if (this.selected[i].constStdID == obj.constStdID) {
 					this.selected.splice(i, 1)
 					return
 				// 如果选择的选项没有勾选
 				} else {
 					// 如果勾选的是“不限”
-					if (obj.code == '01') {
+					if (obj.constStdID == '') {
 						this.selected = []
 						this.selected.push(obj)
 						return
 					// 如果勾选的是“其他”
 					} else {
-						let index = this.selected.map(item => item.code).indexOf('01')
+						let index = this.selected.map(item => item.constStdID).indexOf('')
 						if (index > -1) {
 							this.selected.splice(index, 1)
 							this.selected.push(obj)

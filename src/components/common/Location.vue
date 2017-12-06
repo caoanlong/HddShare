@@ -14,7 +14,7 @@
 		</baidu-map>
 		<transition name="slideUp">
 			<div class="LocationDetail" v-show="selectedTruck">
-				<div class="baseInfo" to="">
+				<router-link tag="div" class="baseInfo" :to="{name: 'truckDetail'}">
 					<div class="ls">
 						<img width="70" :src='__IMGWEBSERVER__ + (selectedTruck?selectedTruck.headPicture:"")' @error="errorImg"/>
 						<p class="text-center status"><span class="status1"><i></i>运输中</span></p>
@@ -30,8 +30,9 @@
 			            <p class="truckType">{{selectedTruck?selectedTruck.truckLengthName:''}}/{{selectedTruck?selectedTruck.truckTypeName:''}}/{{selectedTruck?selectedTruck.loadingDateStr:''}}</p>
 			            <p class="Location">{{selectedTruck?selectedTruck.posUpdateTime:''}} {{selectedTruck?selectedTruck.posAreaName:''}} {{selectedTruck?selectedTruck.distance:''}}</p>
 		            </div>
-				</div>
-			    <a class=" icon-phone" href="'tel:'1000"></a>
+				</router-link>
+			    <!-- <a class=" icon-phone" href="'tel:'1000"></a> -->
+			    <router-link tag="div" :to="{name: 'AppDownload'}" class="icon-phone"></router-link>
 			</div>
 		</transition>
 	</div>
@@ -75,8 +76,8 @@
 				let p = []
 				for (let i = 0; i < this.truckList.length; i++) {
 					p.push({
-						lat:this.truckList[i].lat,
-						lng:this.truckList[i].lng
+						lat: this.truckList[i].lat,
+						lng: this.truckList[i].lng
 					})
 				}
 				return p
@@ -92,7 +93,6 @@
 							top: (window.screen.height - this.$refs.marker.offsetHeight)/2-26 + 'px'
 						}
 					})
-					
 				} else {
 					document.title = '寻找车源'
 				}
@@ -101,17 +101,13 @@
 		created() {
 		},
 		mounted () {
-			
 		},
 		methods: {
-			clickHandler (e) {
-				alert(`单击点的坐标为：${e.point.lng}, ${e.point.lat}`)
-			},
 			returnBack () {
 				this.$emit('closeMap')
 			},
-			selectTruck (Obj) {
-				this.selectedTruck = Obj
+			selectTruck (obj) {
+				this.selectedTruck = obj
 			},
 			errorImg (e) {
                 e.target.src = defaultImg

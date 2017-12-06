@@ -65,7 +65,12 @@ export default new Router({
 	      	path: '/findGoods',
 	      	name: 'findGoods',
 	      	component: resolve => require(['@/components/findGoods'], resolve)
-	    },
+		},
+		{
+			path: '/goodsLine',
+			name: 'goodsLine',
+			component: resolve => require(['@/components/goodsLine'], resolve)
+	  	},
 	    {
 	      	path: '/findTruck',
 	      	name: 'findTruck',

@@ -3,7 +3,7 @@
         <div class="filter-body">
             <div class="tit bdtb">车型</div>
             <ul class="clearfix">
-                <li :class="{'selected': selected.code == truckType.code}" v-for="truckType in truckTypeList" :key="truckType.code" @click="selectOption(truckType)"><span>{{truckType.name}}</span></li>
+                <li :class="{'selected': selected.constStdID == truckType.constStdID}" v-for="truckType in truckTypeList" :key="truckType.constStdID" @click="selectOption(truckType)"><span>{{truckType.name}}</span></li>
             </ul>
         </div>
         <div class="filter-footer bdt">
@@ -22,52 +22,34 @@ export default {
 	},
 	data () {
 		return {
-			truckTypeList: [
-				{
-					"code": "01",
-					"name": "不限"
-				},{
-					"code": "02",
-					"name": "仓栅式挂车"
-				},{
-					"code": "03",
-					"name": "平板挂车"
-				},{
-					"code": "04",
-					"name": "集装箱车"
-				},{
-					"code": "05",
-					"name": "专项作业车"
-				},{
-					"code": "06",
-					"name": "普通挂车"
-				},{
-					"code": "07",
-					"name": "专项作业挂车"
-				},{
-					"code": "08",
-					"name": "自卸货车"
-				},{
-					"code": "09",
-					"name": "罐式货车"
-				},{
-					"code": "10",
-					"name": "仓栅式货车"
-				},{
-					"code": "11",
-					"name": "厢式货车"
-				},{
-					"code": "12",
-					"name": "普通货车"
-				}
-			],
+			truckTypeList: [{
+				"constStdID": "01",
+				"name": "不限"
+			}],
 			selected: {
-				"code": "01",
+				"constStdID": "01",
 				"name": "不限"
 			}
 		}
 	},
+	created () {
+		if (sessionStorage.getItem('TruckType')) {
+			this.truckTypeList = this.truckTypeList.concat(JSON.parse(sessionStorage.getItem('TruckType')))
+		} else {
+			this.getConstant('TruckType')
+		}
+	},
 	methods: {
+		getConstant (type) {
+			let URL = this.__WEBSERVER__ + 'adv/baseConstant/findByType'
+			let params = {
+				'type': type
+			}
+			this.$http.get(URL, {params: params}).then(res => {
+				this[type.slice(0, 1).toLowerCase() + type.slice(1) +'List'] = this[type.slice(0, 1).toLowerCase() + type.slice(1) +'List'].concat(res.body.data)
+				sessionStorage.setItem(type, JSON.stringify(res.body.data))
+			})
+		},
 		selectOption (obj) {
 			this.selected = obj
 		},

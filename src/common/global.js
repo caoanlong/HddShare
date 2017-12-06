@@ -14,9 +14,7 @@ export default function install (Vue, options) {
 	// Vue.prototype.__WEBSERVER__ = 'http://192.168.1.49:4441/'
 
 	/* 每页条数 */
-	// Vue.prototype.PAGESIZE = 10
-
-    Vue.prototype.html2canvas = html2canvas
+	Vue.prototype.PAGESIZE = 10
 
 	/* 微信对象 */
 	Vue.prototype.wx = function (url, jsApiList) {
@@ -187,7 +185,7 @@ export default function install (Vue, options) {
 		}
 	}
 	// 执行动画
-	Vue.prototype.startMove = function (init){
+	Vue.prototype.startMove = function (init) {
 		clearInterval(init.el.timer)
 		var t = 0 
 		var b = {}
@@ -209,7 +207,7 @@ export default function install (Vue, options) {
 				}
 			}
 		},20)
-	},
+	}
 	// 将跨域图片路径生成Base64
 	Vue.prototype.getBase64 = function (img, width, height){//传入图片路径，返回base64
 		//width、height调用时传入具体像素值，控制大小 ,不传则默认图像大小
@@ -221,5 +219,21 @@ export default function install (Vue, options) {
 		ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
 		var dataURL = canvas.toDataURL("image/png")
 		return dataURL
-    }
+	}
+	
+	// 获取图片服务器
+	Vue.prototype.getImgUrl = () => {
+		let URL = Vue.prototype.__WEBSERVER__ + 'adv/setting/findByCode'
+		let params = {
+			'code': 'Pic_Domain'
+		}
+		if (sessionStorage.getItem('__IMGWEBSERVER__')) {
+			Vue.prototype.__IMGWEBSERVER__ = sessionStorage.getItem('__IMGWEBSERVER__')
+		} else {
+			Vue.http.get(URL, {params: params}).then(res => {
+				Vue.prototype.__IMGWEBSERVER__ = res.body.data
+				sessionStorage.setItem('__IMGWEBSERVER__', res.body.data)
+			})
+		}
+	}
 }
