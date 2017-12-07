@@ -1,6 +1,6 @@
 <template>
 	<div class="listItem bdtb">
-		<router-link tag="div" class="baseInfo" :to="{name: 'truckDetail'}">
+		<router-link tag="div" class="baseInfo" :to="{name: 'truckDetail', query: {id: truck.memIDStr}}">
 			<div class="ls">
 				<img width="70" :src='__IMGWEBSERVER__ +"/"+ truck.headPicture' @error="errorImg"/>
         	</div>

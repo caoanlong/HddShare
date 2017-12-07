@@ -1,13 +1,12 @@
 <template>
-	<div v-if="showMap" class="mapWapper">
-		<div class="backBtn" @click="returnBack"><i></i></div>
+	<div class="mapWapper">
 		<baidu-map class="map"
+			@moveend="moveMap"
+			@zoomend="zoomMap"
 			:center="position"
-			:zoom="22">
+			:zoom="zoom">
 			<bm-control>
-				<div class="marker" ref="marker" :style="markerPos">
-					<img :src="locationIcon"/>
-				</div>
+				<div class="marker" ref="marker"><img :src="locationIcon"/></div>
 			</bm-control>
 			<TruckIcon :class="{'selected': selectedTruck?(selectedTruck.truckID == truck.truckID):false}" :truck="truck" v-for="truck in truckList" :key="truck.truckID" @touchstart.native.stop="selectTruck(truck)"></TruckIcon>
 			<bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation>
@@ -31,7 +30,6 @@
 			            <p class="Location">{{selectedTruck?selectedTruck.posUpdateTime:''}} {{selectedTruck?selectedTruck.posAreaName:''}} {{selectedTruck?selectedTruck.distance:''}}</p>
 		            </div>
 				</router-link>
-			    <!-- <a class=" icon-phone" href="'tel:'1000"></a> -->
 			    <router-link tag="div" :to="{name: 'AppDownload'}" class="icon-phone"></router-link>
 			</div>
 		</transition>
@@ -39,72 +37,50 @@
 </template>
 <script>
 	import {BmlMarkerClusterer} from 'vue-baidu-map'
-	import {locationIcon, defaultImg} from '../../assets/data/icons'
-	import TruckIcon from '../common/TruckIcon'
+	import {locationIcon, defaultImg} from '../assets/data/icons'
+	import TruckIcon from './common/TruckIcon'
 	export default {
-		props: {
-			showMap: {
-				type: Boolean,
-				default: false
-			},
-			truckList: {
-				type: Array,
-				default: function () {
-					return []
-				}
-			}
-		},
 		data () {
 			return {
 				position: {
 					lat: 22.527858,
 					lng: 113.945806
 				},
-				radius: 500,
-				markerPos: {
-					left: 0,
-					top: 0
-				},
+				zoom: 15,
+				truckList: [],
 				selectedTruck: null
 			}
 		},
 		computed: {
 			locationIcon () {
 				return locationIcon
-			},
-			points() {
-				let p = []
-				for (let i = 0; i < this.truckList.length; i++) {
-					p.push({
-						lat: this.truckList[i].lat,
-						lng: this.truckList[i].lng
-					})
-				}
-				return p
 			}
 		},
-		watch: {
-			showMap (newVal) {
-				if (newVal) {
-					document.title = '地图找车'
-					this.$nextTick(() => {
-						this.markerPos = {
-							left: (window.screen.width - this.$refs.marker.offsetWidth)/2 + 'px',
-							top: (window.screen.height - this.$refs.marker.offsetHeight)/2-26 + 'px'
-						}
-					})
-				} else {
-					document.title = '寻找车源'
-				}
-			}
-		},
-		created() {
-		},
-		mounted () {
+		created () {
+			document.title = '地图找车'
+			this.getTruckList()
 		},
 		methods: {
-			returnBack () {
-				this.$emit('closeMap')
+			getTruckList () {
+				let URL = this.__WEBSERVER__ + 'adv/truck/nearby'
+				let params = {
+					"lat": this.position.lat,
+					"lng": this.position.lng,
+					"range": 100
+				}
+				this.$http.get(URL, {params: params}).then(res => {
+					console.log(JSON.stringify(res.body.data))
+					this.truckList = res.body.data.list
+				})
+			},
+			moveMap (e) {
+				console.log(e.currentTarget)
+				this.position.lat = e.currentTarget.gf.lat
+				this.position.lng = e.currentTarget.gf.lng
+				this.getTruckList()
+			},
+			zoomMap (e) {
+				this.zoom = e.currentTarget.Oa
 			},
 			selectTruck (obj) {
 				this.selectedTruck = obj
@@ -121,22 +97,6 @@
 	}
 </script>
 <style lang="stylus" scoped>
-	.backBtn
-		width 30px
-		height 30px
-		padding 7px
-		border-radius 4px
-		background rgba(0,0,0,.5)
-		position fixed
-		top 10px
-		left 10px
-		z-index 100
-		i
-			width 16px
-			height 16px
-			background url('../../assets/img/backBtn-icon.svg') no-repeat
-			display block
-			background-size cover
 	.map
 		position fixed
 		top 0
@@ -152,7 +112,10 @@
 		.marker
 			width 30px
 			height 52px
-			position absolute
+			position fixed
+			left 50%
+			top 50%
+			transform translate(-50%, -50%)
 			img
 				width 100%
 				height 100%
@@ -192,12 +155,12 @@
 				.status1
 					background #6cc
 					i
-						background url('../../assets/img/status_icon1.svg') #fff no-repeat center
+						background url('../assets/img/status_icon1.svg') #fff no-repeat center
 						background-size 80%
 				.status2
 					background #f80
 					i
-						background url('../../assets/img/status_icon2.svg') #fff no-repeat center
+						background url('../assets/img/status_icon2.svg') #fff no-repeat center
 						background-size 80%
 		&.slideUp-enter-active
 			 transition all .5s ease
@@ -214,7 +177,7 @@
 			right 15px
 			width 30px
 			height 30px
-			background-image url('../../assets/img/ic_call_phone_image.png')
+			background-image url('../assets/img/ic_call_phone_image.png')
 			background-size cover
 			display block
 			position absolute
@@ -239,7 +202,7 @@
 					vertical-align top
 					height 16px
 				.arrow
-					background url('../../assets/img/area_arrow.png') no-repeat center
+					background url('../assets/img/area_arrow.png') no-repeat center
 					background-size contain
 					width 20px
 					vertical-align middle

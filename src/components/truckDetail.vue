@@ -2,25 +2,25 @@
 	<div class="container">
 		<!-- <div class="titleBar">车源详情</div> -->
 		<div class="baseInfo bdb">
-			<img  src='../assets/img/defaultImg.svg' class="pic"/>
+			<img  :src='__IMGWEBSERVER__ + "/" + truckDetail.headPicture' class="pic" @error="errorImg"/>
 		    <p>
-		    	<b class="name">罗凯</b>
-		    	<span class="attention"><img src="../assets/img/attention.svg"/>已认证</span>
+		    	<b class="name">{{truckDetail.realName}}</b>
+		    	<span class="attention" v-show="truckDetail.certifyStatus == 'Y'"><img src="../assets/img/attention.svg"/>已认证</span>
+		    	<span class="attention" v-show="truckDetail.certifyStatus == 'N'"><img src="../assets/img/attention.svg"/>未认证</span>
 		    </p>
-		    <p>驾龄：7年</p>
-		    <p class="history">平台承运<span class="c1">998</span>笔 / 好评率<span class="c2">99.5%</span></p>
+		    <p>驾龄：{{truckDetail.drivingExperience}}年</p>
+		    <p class="history">平台承运<span class="c1">{{truckDetail.loads}}</span>笔 / 好评率<span class="c2">{{truckDetail.feedbackRate}}%</span></p>
 			<router-link tag="div" :to="{name: 'AppDownload'}" class="tel">
 				<img src="../assets/img/ic_call_phone_image.png"/>
 			</router-link>
 		</div>
 		<div class="truckInfo bdtb">
-			<img  src='../assets/img/defaultImg.svg' class="pic"/>
-			<p><b class="truckNum">云A·12345</b></p>
-		    	<p>9.6米/集装箱车/车龄3年</p>
-		    	<p>刚刚定位 昆明 离我56Km</p>
-		    	<div class="viewMap"><img src="../../static/img/viewMap.png"/></div>
+			<img  :src='__IMGWEBSERVER__ + "/" + truckDetail.frontPic' class="pic" @error="errorImg"/>
+			<p><b class="truckNum">{{truckDetail.plateNo}}</b></p>
+		    	<p>{{truckDetail.truckLengthName}}/{{truckDetail.truckTypeName}}/车龄{{truckDetail.coty}}年</p>
+		    	<p>{{truckDetail.posAreaName}} {{truckDetail.mileage ? '离我' + truckDetail.mileage : ''}}</p>
+		    	<router-link tag="div" :to="{name: 'truckLocation', query: {lng: truckDetail.lng, lat: truckDetail.lat}}" class="viewMap"><img src="../../static/img/viewMap.png"/></router-link>
 		</div>
-
 		<div class="cells bdtb">
 			<!-- <div class="cell">
 				<div class="cell__hd"><img class="icon" src="../assets/img/position_icon.svg"></div>
@@ -43,7 +43,7 @@
 			</div> -->
 			<div class="cell">
 				<div class="cell__hd"><img class="icon" src="../assets/img/position_icon.svg"></div>
-				<div class="cell__bd"><label class="labels">常跑路线</label><span class="fr f12 c9">5分钟前发布 2017-06-15 可装货</span></div>
+				<div class="cell__bd"><label class="labels">常跑路线</label><span class="fr f12 c9">{{truckDetail.updateTime}}发布 {{truckDetail.drivingLicenseFirstTime}} 可装货</span></div>
 			</div> 
 			<div class="cell bdt">
 				<div class="cell__hd"><img class="icon" src="../assets/img/start_icon.svg" width="22"></div>
@@ -60,9 +60,32 @@
 	</div>
 </template>
 <script type="text/javascript">
+	import {defaultImg} from '../assets/data/icons'
 	export default {
+		data () {
+			return {
+				truckDetail: {}
+			}
+		},
 		created () {
 			document.title = '车源详情'
+			this.getTruckDetail()
+		},
+		methods: {
+			getTruckDetail() {
+				let URL = this.__WEBSERVER__ + 'adv/truck/detail'
+				let params = {
+					"memID": this.$route.query.id
+				}
+				this.$http.get(URL, {params: params}).then(res => {
+					console.log(JSON.stringify(res.body.data))
+					this.truckDetail = res.body.data
+				})
+			},
+			errorImg (e) {
+                e.target.src = defaultImg
+                e.target.onerror = null
+            }
 		}
 	}
 </script>

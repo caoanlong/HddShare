@@ -75,7 +75,17 @@ export default new Router({
 	      	path: '/findTruck',
 	      	name: 'findTruck',
 	      	component: resolve => require(['@/components/findTruck'], resolve)
-	    },
+		},
+		{
+			path: '/findTruckByMap',
+			name: 'findTruckByMap',
+			component: resolve => require(['@/components/findTruckByMap'], resolve)
+	  	},
+		{
+			path: '/truckLocation',
+			name: 'truckLocation',
+			component: resolve => require(['@/components/truckLocation'], resolve)
+	  	},
 	    {
 	      	path: '/aboutHdd',
 	      	name: 'aboutHdd',

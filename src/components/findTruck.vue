@@ -3,7 +3,7 @@
 		<div class="filter-box">
 			<div class="truckSort"  @click="selectTruckLength">{{selectedTruckLengthList.map(item => item.name).join(',')}}</div>
 			<div class="truckLength" @click="selectTruckType">{{selectedTruckType.name}}</div>
-			<div class="map" @click="findTruckByMap"><i></i>地图找车</div>
+			<router-link tag="div" class="map" :to="{name: 'findTruckByMap'}"><i></i>地图找车</router-link>
 		</div>
 		<div class="block"></div>
 		<div class="wrapper" ref="truckWrapper">
@@ -12,7 +12,6 @@
 		</div>
 		<truckLengthSelector :showSelector="showTruckLengthSelector" @close="closeTruckLengthSelector"></truckLengthSelector>
 		<truckTypeSelector :showSelector="showTruckTypeSelector" @close="closeTruckTypeSelector"></truckTypeSelector>
-		<Location :showMap="showMap" :truckList="truckList" @closeMap="closeMap"></Location>
 	</div>
 </template>
 <script type="text/javascript">
@@ -21,7 +20,6 @@
 	import truckList from '../assets/data/truckList'
 	import truckLengthSelector from '../components/common/truckLengthSelector'
 	import truckTypeSelector from '../components/common/truckTypeSelector'
-	import Location from '../components/common/Location'
 	export default {
 		data () {
 			return {
@@ -37,7 +35,6 @@
 				disY: 0,
 				showTruckLengthSelector: false,
 				showTruckTypeSelector: false,
-				showMap: false,
 				selectedTruckLengthList: [{
 					"code": "0",
 					"name": "车长"
@@ -78,7 +75,7 @@
 					"length": this.truckLength
 				}
 				this.$http.get(URL, {params: params}).then(res => {
-					// console.log(JSON.stringify(res.body.data.list))
+					console.log(JSON.stringify(res.body.data.list))
 					this.pages = res.body.data.pages
 					this.truckList = this.truckList.concat(res.body.data.list)
 					if (res.body.data.list.length < this.PAGESIZE) {
@@ -118,20 +115,13 @@
 					this.truckList = []
 					this.getTruckList()
 				}
-			},
-			findTruckByMap () {
-				this.showMap = true
-			},
-			closeMap () {
-				this.showMap = false
 			}
 		},
 		components: {
 			Truck,
 			pullUpLoad,
 			truckLengthSelector,
-			truckTypeSelector,
-			Location
+			truckTypeSelector
 		}
 	}
 </script>
