@@ -46,6 +46,7 @@
             }
         },
         created() {
+            document.title = '版本更新'
             this.getVersionDetail()
         },
         methods: {
@@ -55,8 +56,8 @@
                     appVersionID: this.$route.query.appVersionID,
                     Authorization: this.$route.query.Authorization
                 }
-                this.$http.get(URL,{params: params}).then((res) => {
-                    console.log(res)
+                this.$http.get(URL, {params: params}).then(res => {
+                    console.log(res.body)
                     this.content = res.body.data
                 })
             }

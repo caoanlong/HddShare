@@ -10,22 +10,23 @@
 			</bm-control>
 			<TruckIcon :class="{'selected': selectedTruck?(selectedTruck.truckID == truck.truckID):false}" :truck="truck" v-for="truck in truckList" :key="truck.truckID" @touchstart.native.stop="selectTruck(truck)"></TruckIcon>
 			<bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation>
+			<bm-scale anchor="BMAP_ANCHOR_BOTTOM_RIGHT" ref="bmScale"></bm-scale>
 		</baidu-map>
 		<transition name="slideUp">
 			<div class="LocationDetail" v-show="selectedTruck">
-				<router-link tag="div" class="baseInfo" :to="{name: 'truckDetail'}">
+				<router-link tag="div" class="baseInfo" :to="{name: 'truckDetail', query: {id: selectedTruck?selectedTruck.memIDStr:''}}">
 					<div class="ls">
-						<img width="70" :src='__IMGWEBSERVER__ + (selectedTruck?selectedTruck.headPicture:"")' @error="errorImg"/>
+						<img width="70" :src='__IMGWEBSERVER__ +"/"+ (selectedTruck?selectedTruck.headPicture:"")' @error="errorImg"/>
 						<p class="text-center status"><span class="status1"><i></i>运输中</span></p>
 						<!-- <p class="text-center status"><span class="status2"><i></i>空车</span></p> -->
 		        	</div>
 		        	<div class="text">
-						<p class="line bold">
+						<!-- <p class="line bold">
 							<span class="from">{{selectedTruck?selectedTruck.areaFromName:''}}</span>
 							<span class="arrow"></span>
 							<span>{{selectedTruck?selectedTruck.areaToName:''}}</span>
-						</p>
-			           	<p class="truckInfo">{{selectedTruck?selectedTruck.realName:''}}/{{selectedTruck?selectedTruck.plateNo:''}}</p>
+						</p> -->
+			           	<p class="truckInfo line bold">{{selectedTruck?selectedTruck.realName:''}}/{{selectedTruck?selectedTruck.plateNo:''}}</p>
 			            <p class="truckType">{{selectedTruck?selectedTruck.truckLengthName:''}}/{{selectedTruck?selectedTruck.truckTypeName:''}}/{{selectedTruck?selectedTruck.loadingDateStr:''}}</p>
 			            <p class="Location">{{selectedTruck?selectedTruck.posUpdateTime:''}} {{selectedTruck?selectedTruck.posAreaName:''}} {{selectedTruck?selectedTruck.distance:''}}</p>
 		            </div>
@@ -47,6 +48,7 @@
 					lng: 113.945806
 				},
 				zoom: 15,
+				range: 3,
 				truckList: [],
 				selectedTruck: null
 			}
@@ -66,21 +68,29 @@
 				let params = {
 					"lat": this.position.lat,
 					"lng": this.position.lng,
-					"range": 100
+					"range": this.range
 				}
 				this.$http.get(URL, {params: params}).then(res => {
-					console.log(JSON.stringify(res.body.data))
-					this.truckList = res.body.data.list
+					// console.log(JSON.stringify(res.body.data))
+					this.truckList = res.body.data
 				})
 			},
 			moveMap (e) {
-				console.log(e.currentTarget)
 				this.position.lat = e.currentTarget.gf.lat
 				this.position.lng = e.currentTarget.gf.lng
 				this.getTruckList()
 			},
 			zoomMap (e) {
+				if (this.$refs.bmScale.originInstance) {
+					let oText = this.$refs.bmScale.originInstance.SI.innerText
+					if (oText.slice(oText.length-1) == '米') {
+						this.range = Math.ceil(Number(oText.split('米')[0]) / 1000 * 2 * 5)
+					} else {
+						this.range = Number(oText.split('公里')[0]) * 2 * 5
+					}
+				}
 				this.zoom = e.currentTarget.Oa
+				this.getTruckList()
 			},
 			selectTruck (obj) {
 				this.selectedTruck = obj

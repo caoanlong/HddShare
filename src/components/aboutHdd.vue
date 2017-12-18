@@ -23,7 +23,7 @@
 			</div>
 		</div>
 		<div class="appCode">
-			<img src="../assets/img/appCode.png" alt="" />
+			<img src="../assets/img/appCode.png" alt=""/>
 			<p class="title">货多多APP</p>
 			<p>版本V2.0.3</p>
 		</div>
@@ -34,7 +34,11 @@
 	</div>
 </template>
 <script type="text/javascript">
-
+	export default {
+		created () {
+			document.title = '关于货多多'
+		}
+	}
 </script>
 <style lang="stylus" scoped>
 	.appCode

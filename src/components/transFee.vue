@@ -199,12 +199,13 @@
 			}
 		},
 		created() {
+			document.title = '运输费协议'
 			this.getTransFee()
 			this.getAgreement()
 		},
 		methods: {
 			getTransFee() {
-				let URL = this.__WEBSERVER__ + 'transOrder/agreement/detail';
+				let URL = this.__WEBSERVER__ + 'transOrder/agreement/detail'
 				let params = {
 					transWaybillID: this.$route.query.transWaybillID,
 					Authorization: this.$route.query.Authorization
@@ -217,7 +218,7 @@
 				})
 			},
 			getAgreement() {
-				let URL = this.__WEBSERVER__ + 'content/findContentListByTopicCode';
+				let URL = this.__WEBSERVER__ + 'content/findContentListByTopicCode'
 				let params = {
 					code: 'InformationFees',
 					Authorization: this.$route.query.Authorization

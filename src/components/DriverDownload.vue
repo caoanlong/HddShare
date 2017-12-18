@@ -9,10 +9,13 @@
 	</div>
 </template>
 <script type="text/javascript">
-	
+	export default {
+		created () {
+			document.title = '司机下载'
+		}
+	}
 </script>
 <style lang="stylus" scoped>
-
 	img
 		width 100%
 	*
@@ -37,6 +40,4 @@
 		.downLoadBtn
 			width 180px
 			margin 10px auto 0
-
-
 </style>

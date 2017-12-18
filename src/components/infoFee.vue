@@ -19,7 +19,7 @@
 		<div class="pannel bdtb">
 			<div class="pannel_item">
 				<div class="panel_box">
-					<label>流水单号</label>{{infoData.orderTime}}
+					<label>流水单号</label>{{infoData.agreementCode}}
 				</div>
 			</div>
 			<div class="pannel_item bdt">
@@ -88,11 +88,11 @@
 		</div>
 		<div class="pannel bdtb">
 			<div class="pannel_title c3">装车信息</div>
-			<div class="pannel_item">
+			<!-- <div class="pannel_item">
 				<div class="panel_box">
 					<label>车牌号码</label>{{infoData.plateNo}}
 				</div>
-			</div>
+			</div> -->
 			<div class="pannel_item bdt">
 				<div class="panel_box">
 					<label>装车地址</label>{{infoData.LoadingAddress}}
@@ -126,6 +126,7 @@
 			}
 		},
 		created() {
+			document.title = '信息费协议'
 			this.getInfoFee()
 			this.getAgreement()
 		},
@@ -136,8 +137,9 @@
 					agentAgreementID: this.$route.query.agentAgreementID,
 					Authorization: this.$route.query.Authorization
 				}
-				this.$http.get(URL).then((res) => {
+				this.$http.get(URL, {params: params}).then((res) => {
 					if (res.body.code == 200) {
+						console.log(JSON.stringify(res.body.data))
 						this.infoData = res.body.data
 					}
 				})
@@ -148,7 +150,7 @@
 					code: 'InformationFees',
 					Authorization: this.$route.query.Authorization
 				}
-				this.$http.get(URL,{params: params}).then((res) => {
+				this.$http.get(URL, {params: params}).then((res) => {
 					if (res.body.code == 200) {
 						this.content = res.body.data[0].content
 					}

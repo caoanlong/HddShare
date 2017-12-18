@@ -15,7 +15,8 @@
 			}
 		},
 		created() {
-			this.getAgreement();
+			document.title = '注册协议'
+			this.getAgreement()
 		},
 		methods: {
 			getAgreement() {

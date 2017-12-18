@@ -75,7 +75,7 @@
 					"length": this.truckLength
 				}
 				this.$http.get(URL, {params: params}).then(res => {
-					console.log(JSON.stringify(res.body.data.list))
+					// console.log(JSON.stringify(res.body.data.list))
 					this.pages = res.body.data.pages
 					this.truckList = this.truckList.concat(res.body.data.list)
 					if (res.body.data.list.length < this.PAGESIZE) {

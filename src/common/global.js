@@ -2,7 +2,7 @@ export default function install (Vue, options) {
 	// 开发服务器
 	// Vue.prototype.__WEBSERVER__ = 'http://test.hdd.we-service.cn:8888/'
 	// 测试服务器
-	// Vue.prototype.__WEBSERVER__ = 'http://develop.we-service.cn/test-hdd/v2/'
+	Vue.prototype.__WEBSERVER__ = 'http://develop.we-service.cn/test-hdd/v2/'
 	// 正式服务器
 	// Vue.prototype.__WEBSERVER__ = 'http://192.168.1.48:8888/'
 	Vue.prototype.__IMGWEBSERVER__ = 'http://192.168.1.48/hdd/image/'
@@ -11,14 +11,14 @@ export default function install (Vue, options) {
 	// 张颜电脑
 	// Vue.prototype.__WEBSERVER__ = 'http://192.168.1.29:4441/'
 	// 农信靠电脑
-	Vue.prototype.__WEBSERVER__ = 'http://192.168.1.49:4441/'
+	// Vue.prototype.__WEBSERVER__ = 'http://192.168.1.49:4441/'
 
 	/* 每页条数 */
 	Vue.prototype.PAGESIZE = 10
 
 	/* 微信对象 */
 	Vue.prototype.wx = function (url, jsApiList) {
-		let URL = 'http://dev.tunnel.qydev.com/wx/wxJsApiSignature'
+		let URL = 'http://wx.hdd56.com/wxJsApiSignature'
 		let params ={
 			url: url
 		}
@@ -27,7 +27,7 @@ export default function install (Vue, options) {
 			let config = res.body
 			wx.config({
 				// 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-				debug: true,
+				// debug: true,
 				// 必填，公众号的唯一标识
 				appId: config.appId,
 				// 必填，生成签名的时间戳
@@ -40,6 +40,7 @@ export default function install (Vue, options) {
 				jsApiList: jsApiList
 			})
 			wx.ready(() => {
+				// console.log('成功')
 				// config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
 				// wx.checkJsApi({
 				// 	jsApiList: ['chooseImage'], // 需要检测的JS接口列表，所有JS接口列表见附录2,
@@ -208,16 +209,17 @@ export default function install (Vue, options) {
 			}
 		},20)
 	}
-	// 将跨域图片路径生成Base64
-	Vue.prototype.getBase64 = function (img, width, height){//传入图片路径，返回base64
-		//width、height调用时传入具体像素值，控制大小 ,不传则默认图像大小
+	/* 将跨域图片路径生成Base64 */
+	// 传入图片路径，返回base64
+	Vue.prototype.getBase64 = function (img, width, height){
+		// width、height调用时传入具体像素值,控制大小,不传则默认图像大小
 		var canvas = document.createElement("canvas")
 		canvas.width = width || img.width
 		canvas.height = height || img.height
 
 		var ctx = canvas.getContext("2d")
 		ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
-		var dataURL = canvas.toDataURL("image/png")
+		var dataURL = canvas.toDataURL("image/png") 
 		return dataURL
 	}
 	

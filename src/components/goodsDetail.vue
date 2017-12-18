@@ -12,11 +12,11 @@
 				<span class="user_sort user_sort3" v-else-if="data.memberType=='IndShipper'">个人</span>
 				<span class="user_sort user_sort4" v-else-if="data.memberType=='NoTruck'">无车承运人</span> -->
 			    	<span class="attention">
-						<img src="../assets/img/attention.svg"/>
+						<img src="../assets/img/attention.svg" v-if="goodsDetail.certifyStatus == 'Success'"/>
 					</span>
 			    </p>
-			    <p class="company">云南微服物流</p>
-			    <p class="history">历史发货<span class="c1">995</span>条</p>
+			    <!-- <p class="company">云南微服物流</p> -->
+			    <p class="history">历史发货<span class="c1">{{goodsDetail.dealNum}}</span>条</p>
 			    <router-link tag="div" :to="{name: 'AppDownload'}" class="tel"><img src="../assets/img/ic_call_phone_image.png"/></router-link>
 			</div>
 			</div>
@@ -38,19 +38,25 @@
 			<div class="cells bdtb">
 				<div class="cell">
 					<div class="cell__hd"><img class="icon" src="../assets/img/detail_icon1.svg"></div>
-					<div class="cell__bd"><label class="labels">装车时间</label><span>{{goodsDetail.loadingTime}}</span></div>
+					<div class="cell__bd"><label class="labels">装车时间</label><span>{{goodsDetail.loadingTime||'无'}}</span></div>
 				</div>
 				<div class="cell bdt">
 					<div class="cell__hd"><img class="icon" src="../assets/img/detail_icon2.svg"></div>
-					<div class="cell__bd"><label class="labels">货物信息</label><span class="c1">{{goodsDetail.cargoTypeConstant ? goodsDetail.cargoTypeConstant.name : ''}}/{{goodsDetail.cargoWeight}}吨/{{goodsDetail.cargoVolume}}方/{{goodsDetail.cargoPackageName}}</span></div>
+					<div class="cell__bd">
+						<label class="labels">货物信息</label>
+						<span class="c1">{{goodsDetail.cargoTypeName}}/{{goodsDetail.cargoWeight||0}}吨/{{goodsDetail.cargoVolume||0}}方/{{goodsDetail.cargoNum||0}}件</span>
+					</div>
 				</div>
 				<div class="cell bdt">
 					<div class="cell__hd"><img class="icon" src="../assets/img/detail_icon3.svg"></div>
-					<div class="cell__bd"><label class="labels">需求车辆</label><span class="c1">{{goodsDetail.truckLengthList ? goodsDetail.truckLengthList.map(item => item.name).join(','):''}}/{{goodsDetail.truckTypeConstant ? goodsDetail.truckTypeConstant.name : ''}}/需{{goodsDetail.truckNum}}车/剩<b>{{goodsDetail.surplusTruckNum}}</b>车</span></div>
+					<div class="cell__bd">
+						<label class="labels">需求车辆</label>
+						<span class="c1">{{goodsDetail.truckLengthName||0}}/需{{goodsDetail.truckNum}}车/剩<b>{{goodsDetail.surplusTruckNum}}</b>车</span>
+					</div>
 				</div>
 				<div class="cell bdt">
 					<div class="cell__hd"><img class="icon" src="../assets/img/detail_icon5.svg"></div>
-					<div class="cell__bd"><label class="labels">货主留言</label><span>{{goodsDetail.remark}}</span></div>
+					<div class="cell__bd"><label class="labels">货主留言</label><span>{{goodsDetail.remarkName}}</span></div>
 				</div>
 			</div>
 			<div class="padd">
@@ -70,12 +76,26 @@
 		created () {
 			document.title = '货源详情'
 			this.getGoodsDetail()
+			wx.onMenuShareAppMessage({
+				title: '货源详情', // 分享标题
+				desc: '货源详情描述', // 分享描述
+				link: 'http://cdh.hdd56.com/hdd/hddWxShare/#/goodsDetail?id=' + this.$route.query.id, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+				imgUrl: "http://develop.we-service.cn/hdd/image/" + this.goodsDetail.headPicture, // 分享图标
+				type: '', // 分享类型,music、video或link，不填默认为link
+				dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+				success: function () {
+				// 用户确认分享后执行的回调函数
+				},
+				cancel: function () {
+				// 用户取消分享后执行的回调函数
+				}
+			});
 		},
 		methods: {
 			getGoodsDetail() {
 				let URL = this.__WEBSERVER__ + 'adv/cargoSource/detail'
 				let params = {
-					"cargoSourceID": this.$route.query.id
+					"id": this.$route.query.id
 				}
 				this.$http.get(URL, {params: params}).then(res => {
 					console.log(JSON.stringify(res.body.data))

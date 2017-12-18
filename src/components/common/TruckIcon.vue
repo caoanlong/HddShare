@@ -4,7 +4,7 @@
         pane="labelPane"
         class="truckIcon"
         @draw="draw">
-        <img :src="__IMGWEBSERVER__ + truck.headPicture" @error="errorImg"/>
+        <img :src="__IMGWEBSERVER__ +'/'+ truck.headPicture" @error="errorImg"/>
     </bm-overlay>
 </template>
 <script>
@@ -17,10 +17,6 @@
 		},
 		data () {
 			return {
-				position: {
-					lat: 22.527858,
-					lng: 113.945806
-                }
 			}
         },
         watch: {
@@ -33,7 +29,7 @@
         },
 		methods: {
 			draw ({el, BMap, map}) {
-				const pixel = map.pointToOverlayPixel(new BMap.Point(this.truck.lng,this.truck.lat))
+				let pixel = map.pointToOverlayPixel(new BMap.Point(this.truck.lng,this.truck.lat))
 				el.style.left = pixel.x - 23 + 'px'
 				el.style.top = pixel.y - 23 + 'px'
             },

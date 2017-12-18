@@ -90,7 +90,7 @@
 							if (this.goodsList.length == 0) {
 								this.loadStatus = '~没有结果~'
 							}
-							// console.log(JSON.stringify(res.body.data.list))
+							console.log(JSON.stringify(res.body.data.list))
 						}
 					},
 					res => {

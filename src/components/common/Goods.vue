@@ -4,25 +4,25 @@
 			<div class="ls">
 				<img width="70" :src='__IMGWEBSERVER__ + "/" + goods.headPicture' @error="errorImg"/>
 				<p class="text-center name" v-text="goods.realName"></p>
-        	</div>
-        	<div class="text">
+			</div>
+			<div class="text">
 				<p class="line bold">
 					<span class="from">{{goods.areaFromName}}</span>
 					<span class="arrow"></span>
 					<span>{{goods.areaToName}}</span>
 				</p>
-	           	<p class="quote">
-	           		<span class="quote_sort" v-show="quote_sort == 0">按吨报价</span>
-					<span class="quote_sort quote_sort1" v-show="quote_sort == 1">收信息费</span>
-	           		<span class="quote_status">已报价450元/吨</span>
-	           	</p>
-	           	<p v-text="goods.cargoDesc" class="cargoDesc"></p>
-	            <p v-text="goods.truckDesc" class="truckDesc"></p>
-            </div>
+				<p class="quote">
+					<span class="quote_sort" v-show="goods.cargoFreightType == 'Talk'">按吨报价</span>
+					<span class="quote_sort quote_sort1" v-show="goods.cargoFreightType == 'Agent'">收信息费</span>
+					<span class="quote_status" v-show="goods.cargoFreightType == 'Fix'">已报价{{goods.cargoFreightPrice||0}}{{goods.cargoFreightUnitName}}</span>
+				</p>
+				<p class="cargoDesc">{{goods.cargoTypeName||'无'}}/{{goods.cargoWeight}}吨/{{goods.cargoVolume}}方/{{goods.cargoSourceNum}}件</p>
+				<p class="truckDesc">{{goods.truckLengthName||0}}/{{goods.truckTypeName}}/需{{goods.truckNum}}车/剩{{goods.surplusTruckNum}}车</p>
+			</div>
 		</router-link>
-	    <!-- <a class=" icon-phone" :href="'tel:'+goods.mobile"></a> -->
-	    <router-link tag="div" :to="{name: 'AppDownload'}" class="icon-phone"></router-link>
-    </div>
+		<!-- <a class=" icon-phone" :href="'tel:'+goods.mobile"></a> -->
+		<router-link tag="div" :to="{name: 'AppDownload'}" class="icon-phone"></router-link>
+	</div>
 </template>
 <script>
 	import {defaultImg} from '../../assets/data/icons'
@@ -40,9 +40,9 @@
 		},
 		methods: {
 			errorImg (e) {
-                e.target.src = defaultImg
-                e.target.onerror = null
-            }
+				e.target.src = defaultImg
+				e.target.onerror = null
+			}
 		}
 	}
 </script>

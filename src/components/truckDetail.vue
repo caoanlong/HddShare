@@ -41,21 +41,23 @@
 			<div class="cell bdt">
 				<div class="cell__bd">经常跑云南到广东,可以装蔬菜,水果等农产品</div>
 			</div> -->
-			<div class="cell">
+			<div class="cell" v-if="truckDetail.recentlineList ? truckDetail.recentlineList.length : false">
 				<div class="cell__hd"><img class="icon" src="../assets/img/position_icon.svg"></div>
 				<div class="cell__bd"><label class="labels">常跑路线</label><span class="fr f12 c9">{{truckDetail.updateTime}}发布 {{truckDetail.drivingLicenseFirstTime}} 可装货</span></div>
-			</div> 
-			<div class="cell bdt">
-				<div class="cell__hd"><img class="icon" src="../assets/img/start_icon.svg" width="22"></div>
-				<div class="cell__bd">云南 昆明</div>
 			</div>
-			<div class="cell bdt">
-				<div class="cell__hd"><img class="icon" src="../assets/img/end_icon.svg" width="22"></div>
-				<div class="cell__bd">云南 保山、深圳 南山区、广东 深圳市、北京 北京市、上海 上海市</div>
+			<div v-for="truckLine in truckDetail.recentlineList" :key="truckLine.areaToName">
+				<div class="cell bdt">
+					<div class="cell__hd"><img class="icon" src="../assets/img/start_icon.svg" width="22"></div>
+					<div class="cell__bd">{{truckLine.areaFromName}}</div>
+				</div>
+				<div class="cell bdt">
+					<div class="cell__hd"><img class="icon" src="../assets/img/end_icon.svg" width="22"></div>
+					<div class="cell__bd">{{truckLine.areaToName}}</div>
+				</div>
 			</div>
 		</div>
 		<div class="padd">
-			<router-link tag="div" :to="{name: 'AppDownload'}" class="btn"><img src="../assets/img/push.svg" />推送货源</router-link>
+			<router-link tag="div" :to="{name: 'AppDownload'}" class="btn"><img src="../assets/img/push.svg"/>推送货源</router-link>
 		</div>
 	</div>
 </template>
@@ -70,9 +72,23 @@
 		created () {
 			document.title = '车源详情'
 			this.getTruckDetail()
+			wx.onMenuShareAppMessage({
+				title: '车源详情', // 分享标题
+				desc: '车源详情描述', // 分享描述
+				link: 'http://cdh.hdd56.com/hdd/hddWxShare/#/truckDetail?id=' + this.$route.query.id, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+				imgUrl: "http://develop.we-service.cn/hdd/image/" + this.truckDetail.headPicture, // 分享图标
+				type: '', // 分享类型,music、video或link，不填默认为link
+				dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+				success: function () {
+				// 用户确认分享后执行的回调函数
+				},
+				cancel: function () {
+				// 用户取消分享后执行的回调函数
+				}
+			});
 		},
 		methods: {
-			getTruckDetail() {
+			getTruckDetail () {
 				let URL = this.__WEBSERVER__ + 'adv/truck/detail'
 				let params = {
 					"memID": this.$route.query.id

@@ -20,7 +20,7 @@
 			</router-link>
 			<router-link tag="div" class="grid" :to="{name: 'truckDetail'}">
 				<div class="grid_icon"><img src="../assets/img/detail.svg"></div>
-				<div class="grid_label">车源详情</div>
+				<div class="grid_label">车辆详情</div>
 			</router-link>
 			<router-link tag="div" class="grid" :to="{name: 'agreement'}">
 				<div class="grid_icon"><img src="../assets/img/agreement.svg"></div>
