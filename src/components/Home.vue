@@ -38,6 +38,10 @@
 				<div class="grid_icon"><img src="../assets/img/404.svg"></div>
 				<div class="grid_label">404页面</div>
 			</router-link>
+			<router-link tag="div" class="grid" :to="{name: 'statement'}">
+				<div class="grid_icon"><img src="../assets/img/statement.svg"></div>
+				<div class="grid_label">交易申明</div>
+			</router-link>
 			<router-link tag="div" class="grid" :to="{name: 'updata'}">
 				<div class="grid_icon"><img src="../assets/img/updata_icon.svg" class="rotate"></div>
 				<div class="grid_label">版本更新</div>

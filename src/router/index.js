@@ -51,6 +51,11 @@ export default new Router({
           	name: 'transFee',
           	component: resolve => require(['@/components/transFee'], resolve)
         },
+        {
+          	path: '/statement',
+          	name: 'statement',
+          	component: resolve => require(['@/components/statement'], resolve)
+        },
 	    {
 	      	path: '/error',
 	      	name: 'error',
