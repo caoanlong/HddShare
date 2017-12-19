@@ -28,7 +28,7 @@
 		</div>
 		</div>
 		<div class="footer">
-			深圳市前海微服大数据科技有限公司
+			深圳前海微服大数据科技有限公司
 		</div>
 	</div>
 </template>

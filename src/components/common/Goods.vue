@@ -84,13 +84,9 @@
 				.cargoDesc
 				.truckDesc
 					position relative
-					height 20px
 					line-height 20px
-					overflow hidden
 					padding-left 25px
 					margin-top 3px
-					text-overflow ellipsis
-					white-space nowrap
 					&:before
 						position absolute
 						left 0

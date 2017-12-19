@@ -8,7 +8,7 @@
 		<div class="block"></div>
 		<div class="wrapper" ref="truckWrapper">
 			<Truck v-for="truck in truckList" :key="truck.truckID" :truck="truck"></Truck>
-			<pullUpLoad :loadStatus="loadStatus"></pullUpLoad>
+			<pullUpLoad :loadStatus="loadStatus" :sortType="sortType"></pullUpLoad>
 		</div>
 		<truckLengthSelector :showSelector="showTruckLengthSelector" @close="closeTruckLengthSelector"></truckLengthSelector>
 		<truckTypeSelector :showSelector="showTruckTypeSelector" @close="closeTruckTypeSelector"></truckTypeSelector>
@@ -29,6 +29,7 @@
 				truckType: '',
 				truckLength: '',
 				loadStatus: '正在加载...',
+				sortType: 'Ftruck',
 				scrollTop: 0,
 				clientHeight: 0,
 				pageHeight: 0,
@@ -82,7 +83,7 @@
 						this.loadStatus = '~已经到底了~'
 					}
 					if (this.truckList.length == 0) {
-						this.loadStatus = '~没有结果~'
+						this.loadStatus = '没有结果'
 					}
 				})
 			},

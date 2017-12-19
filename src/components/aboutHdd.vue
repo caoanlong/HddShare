@@ -15,11 +15,11 @@
 			</div>
 			<div class="cell bdt">
 				<div class="cell__bd">客服电话</div>
-				<div class="cell__ft">400-666-5566</div>
+				<div class="cell__ft">0755-26607376</div>
 			</div>
 			<div class="cell bdt">
 				<div class="cell__bd">公司邮箱</div>
-				<div class="cell__ft">zhujj@vfu56.com</div>
+				<div class="cell__ft">zjj@vfu56.com</div>
 			</div>
 		</div>
 		<div class="appCode">

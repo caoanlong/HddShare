@@ -55,7 +55,11 @@
 				</div>
 			</div>
 			<div class="padd">
-				<router-link tag="div" :to="{name: 'AppDownload'}" class="btn"><img src="../assets/img/rmb.svg"/>支付信息费</router-link>
+				<router-link tag="div" :to="{name: 'AppDownload'}" class="btn">
+					<span v-if="goodsDetail.cargoFreightType == 'Agent'"><img src="../assets/img/rmb.svg"/>支付信息费</span>
+					<span v-if="goodsDetail.cargoFreightType == 'Fix'"><img src="../assets/img/truck.svg"/>我要承运</span>
+					<span v-if="goodsDetail.cargoFreightType == 'Talk'"><img src="../assets/img/rmb.svg"/>我要报价</span>
+				</router-link>
 			</div>
 		</div>
 	</div>

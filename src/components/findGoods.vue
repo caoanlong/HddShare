@@ -9,7 +9,7 @@
 		<div class="block"></div>
 		<div class="wrapper" ref="goodsWrapper">
 			<Goods v-for="goods in goodsList" :goods="goods" :key="goods.cargoSourceID"></Goods>
-			<pullUpLoad :loadStatus="loadStatus"></pullUpLoad>
+			<pullUpLoad :loadStatus="loadStatus" :sortType="sortType"></pullUpLoad>
 		</div>
 		<areaSelector :showSelector="showAreaSelector" :type="selectType" @close="closeAreaSelector"></areaSelector>
 		<moreSelector :showSelector="showMoreSelector" @close="closeMoreSelector"></moreSelector>
@@ -31,6 +31,7 @@
 				truckType: '',
 				truckLength: '',
 				loadStatus: '正在加载...',
+				sortType:'Fgoods',
 				scrollTop: 0,
 				clientHeight: 0,
 				pageHeight: 0,
@@ -88,7 +89,7 @@
 								this.loadStatus = '~已经到底了~'
 							}
 							if (this.goodsList.length == 0) {
-								this.loadStatus = '~没有结果~'
+								this.loadStatus = '没有结果'
 							}
 							console.log(JSON.stringify(res.body.data.list))
 						}
