@@ -4,13 +4,27 @@
 		<div class="publish"><img src="../../static/img/publish.png"/></div>
 		<div class="specialty"><img src="../../static/img/specialty.png"/></div>
 		<div class="downSection">
-		<div class="downItem">
+		<!-- ios -->
+		<div class="downItem" v-show="isiOS">
+			<!-- 货主 -->
 			<img class="qrcode" src="../../static/img/qrcode1.png" />
-			<div class="downLoadBtn"><img src="../../static/img/downLoad_btn1.png" /></div>
+			<a class="downLoadBtn" href="http://www.pgyer.com/Frt7"><img src="../../static/img/downLoad_btn1.png" /></a>
 		</div>
-		<div class="downItem">
+		<div class="downItem" v-show="isiOS">
+			<!-- 司机 -->
 			<img class="qrcode" src="../../static/img/qrcode2.png" />
-			<div class="downLoadBtn"><img src="../../static/img/downLoad_btn2.png" /></div>
+			<a class="downLoadBtn" href="http://www.pgyer.com/5MrZ"><img src="../../static/img/downLoad_btn2.png" /></a>
+		</div>
+		<!-- android -->
+		<div class="downItem" v-show="isAndroid">
+			<!-- 货主 -->
+			<img class="qrcode" src="../../static/img/qrcode1.png" />
+			<a class="downLoadBtn" href="https://www.pgyer.com/m0iP"><img src="../../static/img/downLoad_btn1.png" /></a>
+		</div>
+		<div class="downItem" v-show="isAndroid">
+			<!-- 司机 -->
+			<img class="qrcode" src="../../static/img/qrcode2.png" />
+			<a class="downLoadBtn" href="https://www.pgyer.com/t5RV"><img src="../../static/img/downLoad_btn2.png" /></a>
 		</div>
 		</div>
 		<div class="footer">
@@ -19,7 +33,14 @@
 	</div>
 </template>
 <script type="text/javascript">
+	const u = navigator.userAgent
 	export default {
+		data () {
+			return {
+				isAndroid:  u.indexOf('Android') > -1 || u.indexOf('Adr') > -1, //android终端
+				isiOS: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/) //ios终端
+			}
+		},
 		created () {
 			document.title = 'App下载'
 		}
@@ -65,6 +86,7 @@
 				width 100px
 				height 100px
 			.downLoadBtn
+				display block
 				width 140px
 				margin 10px auto 0
 		.footer
