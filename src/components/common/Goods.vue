@@ -2,22 +2,22 @@
 	<div class="listItem bdtb">
 		<router-link tag="div" class="baseInfo" :to="{name: 'goodsDetail', query: {id: goods.cargoSourceIDStr}}">
 			<div class="ls">
-				<img width="70" :src='__IMGWEBSERVER__ + "/" + goods.headPicture' @error="errorImg"/>
+				<img width="70" height="70" :src='__IMGWEBSERVER__ + "/" + goods.headPicture' @error="errorImg"/>
 				<p class="text-center name" v-text="goods.realName"></p>
 			</div>
 			<div class="text">
 				<p class="line bold">
-					<span class="from">{{goods.areaFromName}}</span>
+					<span class="from" ref="autoW1">{{goods.areaFromName}}</span>
 					<span class="arrow"></span>
-					<span>{{goods.areaToName}}</span>
+					<span class="to" ref="autoW2">{{goods.areaToName}}</span>
 				</p>
 				<p class="quote">
 					<span class="quote_sort" v-show="goods.cargoFreightType == 'Talk'">按吨报价</span>
 					<span class="quote_sort quote_sort1" v-show="goods.cargoFreightType == 'Agent'">收信息费</span>
 					<span class="quote_status" v-show="goods.cargoFreightType == 'Fix'">已报价{{goods.cargoFreightPrice||0}}{{goods.cargoFreightUnitName}}</span>
 				</p>
-				<p class="cargoDesc">{{goods.cargoTypeName||'无'}}/{{goods.cargoWeight}}吨/{{goods.cargoVolume}}方/{{goods.cargoSourceNum}}件</p>
-				<p class="truckDesc">{{goods.truckLengthName||0}}/{{goods.truckTypeName}}/需{{goods.truckNum}}车/剩{{goods.surplusTruckNum}}车</p>
+				<p class="cargoDesc">{{goods.cargoName||'无'}}/{{goods.cargoWeight}}吨/{{goods.cargoVolume}}方/{{goods.cargoNum}}件</p>
+				<p class="truckDesc">{{goods.truckLengthName}}/{{goods.truckTypeName}}/需{{goods.truckNum}}车/<span class="c3">剩{{goods.surplusTruckNum}}车</span>/{{goods.loadingDate}}装车</p>
 			</div>
 		</router-link>
 		<!-- <a class=" icon-phone" :href="'tel:'+goods.mobile"></a> -->
@@ -38,6 +38,11 @@
 				quote_sort: 1
 			}
 		},
+		mounted() {
+			var w = (document.body.clientWidth - 185)/2
+			this.$refs.autoW1.style.width = w +'px'
+			this.$refs.autoW2.style.width = w +'px'
+		},
 		methods: {
 			errorImg (e) {
 				e.target.src = defaultImg
@@ -49,6 +54,8 @@
 <style lang="stylus" scoped>
 	.c1
 		color #6cc
+	.c3
+		color #f60
 	.bold
 		font-weight bold
 	.listItem
@@ -124,22 +131,26 @@
 					@extend .bold
 					font-size 16px
 					color #666
-					ext-overflow ellipsis
-					white-space nowrap
 					overflow hidden
 					height 20px
 					margin-top 0
 					span
-						display inline-block
+						display block
 						vertical-align top
-						height 16px
+						float left
+						height 20px
+						&.from
+						&.to
+							overflow hidden
+							text-overflow ellipsis
+							white-space nowrap
 					.arrow
 						background url('../../assets/img/area_arrow.png') no-repeat center
 						background-size contain
 						width 20px
-						vertical-align middle	
+						vertical-align middle
 		.icon-phone
-			right 15px
+			right 10px
 			width 30px
 			height 30px
 			background-image url('../../assets/img/ic_call_phone_image.png')

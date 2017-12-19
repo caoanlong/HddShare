@@ -6,17 +6,12 @@
 				<img  :src='__IMGWEBSERVER__ + "/" + goodsDetail.headPicture' class="pic" @error="errorImg"/>
 			    <p>
 			    	<b class="name">{{goodsDetail.realName}}</b>
-			    	<span class="user_sort user_sort1">物流公司</span>
-			   	<!-- <span class="user_sort user_sort1" v-if="data.memberType=='3PL'">物流公司</span>
-				<span class="user_sort user_sort2" v-else-if="data.memberType=='InfoDept'">物流信息部</span>
-				<span class="user_sort user_sort3" v-else-if="data.memberType=='IndShipper'">个人</span>
-				<span class="user_sort user_sort4" v-else-if="data.memberType=='NoTruck'">无车承运人</span> -->
 			    	<span class="attention">
 						<img src="../assets/img/attention.svg" v-if="goodsDetail.certifyStatus == 'Success'"/>
 					</span>
 			    </p>
 			    <!-- <p class="company">云南微服物流</p> -->
-			    <p class="history">历史发货<span class="c1">{{goodsDetail.dealNum}}</span>条</p>
+			    <p class="history">历史发货<span class="c1">{{goodsDetail.cargoSourceNum}}</span>条</p>
 			    <router-link tag="div" :to="{name: 'AppDownload'}" class="tel"><img src="../assets/img/ic_call_phone_image.png"/></router-link>
 			</div>
 			</div>
@@ -26,9 +21,9 @@
 						<img class="icon" src="../assets/img/position_icon.svg">
 					</div>
 					<div class="cell__bd lineInfo">
-						<span class="start">{{goodsDetail.areaFromName}}</span>
+						<span class="start" ref="autoW1">{{goodsDetail.areaFromName}}</span>
 						<span class="arrow"></span>
-						<span class="end">{{goodsDetail.areaToName}}</span>
+						<span class="end" ref="autoW2">{{goodsDetail.areaToName}}</span>
 					</div>
 				</div>
 			</div>
@@ -38,20 +33,20 @@
 			<div class="cells bdtb">
 				<div class="cell">
 					<div class="cell__hd"><img class="icon" src="../assets/img/detail_icon1.svg"></div>
-					<div class="cell__bd"><label class="labels">装车时间</label><span>{{goodsDetail.loadingTime||'无'}}</span></div>
+					<div class="cell__bd"><label class="labels">装车时间</label><span>{{goodsDetail.loadingDate||'无'}}</span></div>
 				</div>
 				<div class="cell bdt">
 					<div class="cell__hd"><img class="icon" src="../assets/img/detail_icon2.svg"></div>
 					<div class="cell__bd">
 						<label class="labels">货物信息</label>
-						<span class="c1">{{goodsDetail.cargoTypeName}}/{{goodsDetail.cargoWeight||0}}吨/{{goodsDetail.cargoVolume||0}}方/{{goodsDetail.cargoNum||0}}件</span>
+						<span class="c1">{{goodsDetail.cargoName}}/{{goodsDetail.cargoWeight||0}}吨/{{goodsDetail.cargoVolume||0}}方/{{goodsDetail.cargoNum||0}}件</span>
 					</div>
 				</div>
 				<div class="cell bdt">
 					<div class="cell__hd"><img class="icon" src="../assets/img/detail_icon3.svg"></div>
 					<div class="cell__bd">
 						<label class="labels">需求车辆</label>
-						<span class="c1">{{goodsDetail.truckLengthName||0}}/需{{goodsDetail.truckNum}}车/剩<b>{{goodsDetail.surplusTruckNum}}</b>车</span>
+						<span class="c1">{{goodsDetail.truckLengthName||0}}/{{goodsDetail.truckTypeName}}/需{{goodsDetail.truckNum}}车/剩<b>{{goodsDetail.surplusTruckNum}}</b>车</span>
 					</div>
 				</div>
 				<div class="cell bdt">
@@ -72,6 +67,11 @@
 			return {
 				goodsDetail: {}
 			}
+		},
+		mounted() {
+			var w = (document.body.clientWidth - 83)/2
+			this.$refs.autoW1.style.width = w +'px'
+			this.$refs.autoW2.style.width = w +'px'
 		},
 		created () {
 			document.title = '货源详情'
@@ -135,6 +135,7 @@
 			color #666
 			font-weight bold
 		.history
+			margin-top 15px
 			span
 				padding 0 5px
 		.attention
@@ -190,13 +191,22 @@
 			vertical-align middle
 	.cell__bd
 		color #666
+		position relative
+		padding-left 80px
 		&.lineInfo
 			font-weight bold
 			color #666
+			position relative
+			padding-left 0
+			span
+				text-overflow ellipsis
+				overflow hidden
+				white-space nowrap
+				display block
+				float left
 		span
 			display inline-block
 			vertical-align middle
-			height 24px
 			line-height 24px
 			b
 				color #f60
@@ -209,6 +219,9 @@
 		.labels
 			width 80px
 			color #999
+			position absolute
+			left 0
+			top 0
 			display inline-block
 			vertical-align middle
 	.btn
