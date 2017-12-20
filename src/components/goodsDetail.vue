@@ -18,7 +18,7 @@
 			<div class="cells bdtb">
 				<div class="cell">
 					<div class="cell__hd">
-						<img class="icon" src="../assets/img/position_icon.svg">
+						<img class="icon" src="../assets/img/local_icon.svg">
 					</div>
 					<div class="cell__bd lineInfo">
 						<span class="start">{{goodsDetail.areaFromName?(goodsDetail.areaFromName.split(',').length == 4 ? goodsDetail.areaFromName.split(',')[1] + goodsDetail.areaFromName.split(',')[2] : goodsDetail.areaFromName.split(',')[0] + goodsDetail.areaFromName.split(',')[1]):''}}</span>
@@ -36,14 +36,14 @@
 					<div class="cell__bd"><label class="labels">装车时间</label><span>{{goodsDetail.loadingDate||'随时装车'}}</span></div>
 				</div>
 				<div class="cell bdt">
-					<div class="cell__hd"><img class="icon" src="../assets/img/detail_icon2.svg"></div>
+					<div class="cell__hd"><img class="icon" src="../assets/img/package.svg"></div>
 					<div class="cell__bd">
 						<label class="labels">货物信息</label>
 						<span class="c1">{{goodsDetail.cargoName}}/{{goodsDetail.cargoWeight||0}}吨/{{goodsDetail.cargoVolume||0}}方/{{goodsDetail.cargoNum||0}}件</span>
 					</div>
 				</div>
 				<div class="cell bdt">
-					<div class="cell__hd"><img class="icon" src="../assets/img/detail_icon3.svg"></div>
+					<div class="cell__hd"><img class="icon" src="../assets/img/truckDesc_icon.svg"></div>
 					<div class="cell__bd">
 						<label class="labels">需求车辆</label>
 						<span class="c1">{{goodsDetail.truckLengthName||0}}/{{goodsDetail.truckTypeName}}/剩<b>{{goodsDetail.surplusTruckNum}}</b>车</span>
@@ -187,7 +187,10 @@
 				height 30px
 	.cell__hd
 		.icon
-			vertical-align middle
+			vertical-align top
+			width 14px
+			height 14px
+			margin-top 5px
 	.cell__bd
 		color #666
 		position relative
@@ -206,7 +209,7 @@
 				font-size 14px
 		span
 			display inline-block
-			vertical-align middle
+			vertical-align top
 			line-height 24px
 			b
 				color #f60
