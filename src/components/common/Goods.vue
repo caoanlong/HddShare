@@ -17,7 +17,7 @@
 					<span class="quote_status" v-show="goods.cargoFreightType == 'Fix'">{{goods.cargoFreightPrice||'--'}}{{goods.cargoFreightUnitName}}</span>
 				</p>
 				<p class="cargoDesc">{{goods.cargoName||'无'}}/{{goods.cargoWeight}}吨/{{goods.cargoVolume}}方/{{goods.cargoNum}}件</p>
-				<p class="truckDesc">{{goods.truckLengthName}}/{{goods.truckTypeName}}/<span class="c3">剩{{goods.surplusTruckNum}}车</span>/{{goods.loadingDate || '随时'}}装车</p>
+				<p class="truckDesc">{{goods.truckLengthName}}/{{goods.truckTypeName}}/<span class="c3">剩{{goods.surplusTruckNum}}车</span>/{{goods.loadingDateStr}}装车</p>
 			</div>
 		</router-link>
 		<!-- <a class=" icon-phone" :href="'tel:'+goods.mobile"></a> -->

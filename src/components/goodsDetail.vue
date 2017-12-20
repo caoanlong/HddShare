@@ -21,9 +21,9 @@
 						<img class="icon" src="../assets/img/position_icon.svg">
 					</div>
 					<div class="cell__bd lineInfo">
-						<span class="start" ref="autoW1">{{goodsDetail.areaFromName}}</span>
+						<span class="start">{{goodsDetail.areaFromName?(goodsDetail.areaFromName.split(',').length == 4 ? goodsDetail.areaFromName.split(',')[1] + goodsDetail.areaFromName.split(',')[2] : goodsDetail.areaFromName.split(',')[0] + goodsDetail.areaFromName.split(',')[1]):''}}</span>
 						<span class="arrow"></span>
-						<span class="end" ref="autoW2">{{goodsDetail.areaToName}}</span>
+						<span class="end">{{goodsDetail.areaToName?(goodsDetail.areaToName.split(',').length == 4 ? goodsDetail.areaToName.split(',')[1]+goodsDetail.areaToName.split(',')[2] :goodsDetail.areaToName.split(',')[0] + goodsDetail.areaToName.split(',')[1]):''}}</span>
 					</div>
 				</div>
 			</div>
@@ -71,11 +71,6 @@
 			return {
 				goodsDetail: {}
 			}
-		},
-		mounted() {
-			var w = (document.body.clientWidth - 83)/2
-			this.$refs.autoW1.style.width = w +'px'
-			this.$refs.autoW2.style.width = w +'px'
 		},
 		created () {
 			document.title = '货源详情'
@@ -208,6 +203,7 @@
 				white-space nowrap
 				display block
 				float left
+				font-size 14px
 		span
 			display inline-block
 			vertical-align middle
