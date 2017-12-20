@@ -80,24 +80,19 @@
 					"truckType": this.truckType,
 					"truckLength": this.truckLength
 				}
-				this.$http.get(URL,{params:params}).then(
-					res => {
-						if (res.body.code == 200) {
-							this.pages = res.body.data.pages
-							this.goodsList = this.goodsList.concat(res.body.data.list)
-							if (res.body.data.list.length < this.PAGESIZE) {
-								this.loadStatus = '~已经到底了~'
-							}
-							if (this.goodsList.length == 0) {
-								this.loadStatus = '没有结果'
-							}
-							console.log(JSON.stringify(res.body.data.list))
+				this.$http.get(URL,{params:params}).then(res => {
+					if (res.body.code == 200) {
+						this.pages = res.body.data.pages
+						this.goodsList = this.goodsList.concat(res.body.data.list)
+						if (res.body.data.list.length < this.PAGESIZE) {
+							this.loadStatus = '~已经到底了~'
 						}
-					},
-					res => {
-						// console.log(JSON.stringify(res))
+						if (this.goodsList.length == 0) {
+							this.loadStatus = '没有结果'
+						}
+						// console.log(JSON.stringify(res.body.data.list))
 					}
-				)
+				})
 			},
 			selectArea (type) {
 				this.showAreaSelector = true

@@ -47,7 +47,7 @@ export default {
 			this.$http.get(URL, {params: params}).then(res => {
 				this.truckLengthList = this.truckLengthList.concat(res.body.data)
 				sessionStorage.setItem(type, JSON.stringify(res.body.data))
-				console.log(JSON.stringify(res.body.data))
+				// console.log(JSON.stringify(res.body.data))
 			})
 		},
 		selectOption (obj) {
