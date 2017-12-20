@@ -7,17 +7,17 @@
 			</div>
 			<div class="text">
 				<p class="line bold">
-					<span class="from" ref="autoW1">{{goods.areaFromName}}</span>
+					<span class="from">{{goods.areaFromName}}</span>
 					<span class="arrow"></span>
-					<span class="to" ref="autoW2">{{goods.areaToName}}</span>
+					<span class="to">{{goods.areaToName}}</span>
 				</p>
 				<p class="quote">
-					<span class="quote_sort" v-show="goods.cargoFreightType == 'Talk'">按吨报价</span>
+					<span class="quote_sort" v-show="goods.cargoFreightType == 'Talk'">按{{goods.cargoFreightUnitName.split('/')[1]}}报价</span>
 					<span class="quote_sort quote_sort1" v-show="goods.cargoFreightType == 'Agent'">收信息费</span>
 					<span class="quote_status" v-show="goods.cargoFreightType == 'Fix'">已报价{{goods.cargoFreightPrice||0}}{{goods.cargoFreightUnitName}}</span>
 				</p>
 				<p class="cargoDesc">{{goods.cargoName||'无'}}/{{goods.cargoWeight}}吨/{{goods.cargoVolume}}方/{{goods.cargoNum}}件</p>
-				<p class="truckDesc">{{goods.truckLengthName}}/{{goods.truckTypeName}}/需{{goods.truckNum}}车/<span class="c3">剩{{goods.surplusTruckNum}}车</span>/{{goods.loadingDate}}装车</p>
+				<p class="truckDesc">{{goods.truckLengthName}}/{{goods.truckTypeName}}/<span class="c3">剩{{goods.surplusTruckNum}}车</span>/{{goods.loadingDate || '随时'}}装车</p>
 			</div>
 		</router-link>
 		<!-- <a class=" icon-phone" :href="'tel:'+goods.mobile"></a> -->
@@ -37,11 +37,6 @@
 				headPicture: '',
 				quote_sort: 1
 			}
-		},
-		mounted() {
-			var w = (document.body.clientWidth - 185)/2
-			this.$refs.autoW1.style.width = w +'px'
-			this.$refs.autoW2.style.width = w +'px'
 		},
 		methods: {
 			errorImg (e) {
@@ -63,7 +58,7 @@
 		margin-bottom 10px
 		font-size 12px
 		.baseInfo
-			padding 10px 50px 10px 90px
+			padding 10px 10px 10px 85px
 			position relative
 			min-height 110px
 			.ls
@@ -85,22 +80,24 @@
 				.truckDesc
 					position relative
 					line-height 20px
-					padding-left 25px
+					padding-left 18px
 					margin-top 3px
 					&:before
 						position absolute
 						left 0
-						top 0
+						top 3px
 						content ''
 						display block
-						width 20px
-						height 20px
+						width 14px
+						height 14px
 				.line
+					padding-right 20px
 					&:before
 						background url('../../assets/img/local_icon.svg') no-repeat center
 						background-size contain
 				.quote
 					margin-top 6px
+					padding-right 40px
 					.quote_sort
 						border 1px solid #6cc
 						padding 1px 5px
@@ -112,28 +109,33 @@
 							color #1a8df8
 					.quote_status
 						color #f60
+						border 1px solid #f60
+						padding 1px 5px
+						border-radius 8px
 					&:before
 						background url('../../assets/img/quote_icon.svg') no-repeat center
 						background-size 80% 80%
 				.cargoDesc
+					padding-right 40px
 					&:before
 						background url('../../assets/img/package.svg') no-repeat center
 						background-size 80% 80%
 				.truckDesc
+					padding-right 40px
 					&:before
 						background url('../../assets/img/truckDesc_icon.svg') no-repeat center
 						background-size contain
 				.line
 					@extend .bold
-					font-size 16px
+					font-size 14px
 					color #666
 					overflow hidden
 					height 20px
 					margin-top 0
+					display flex
 					span
 						display block
-						vertical-align top
-						float left
+						flex 1
 						height 20px
 						&.from
 						&.to
@@ -141,6 +143,7 @@
 							text-overflow ellipsis
 							white-space nowrap
 					.arrow
+						flex 0 0 20px
 						background url('../../assets/img/area_arrow.png') no-repeat center
 						background-size contain
 						width 20px
@@ -154,5 +157,5 @@
 			display block
 			position absolute
 			top 50%
-			margin-top -15px
+			transform translateY(-50%)
 </style>
