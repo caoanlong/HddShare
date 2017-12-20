@@ -97,7 +97,7 @@
 					"id": this.$route.query.id
 				}
 				this.$http.get(URL, {params: params}).then(res => {
-					console.log(JSON.stringify(res.body.data))
+					// console.log(JSON.stringify(res.body.data))
 					this.goodsDetail = res.body.data
 				})
 			},
