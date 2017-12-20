@@ -26,20 +26,19 @@ export default {
 	},
 	data () {
 		return {
-			truckLengthList: [{
-				"constStdID": "",
-				"name": "不限"
-			}],
+			truckLengthList: [],
 			truckTypeList: [{
-				"constStdID": "",
+				"constStdID": 100000044,
 				"name": "不限"
 			}],
 			selectedTruckLength: [{
-				"constStdID": "",
-				"name": "不限"
+				"code": "51",
+				"constStdID": 100000044,
+				"name": "不限",
+				"value": "51"
 			}],
 			selectedTruckType: {
-				"constStdID": "",
+				"constStdID": 100000044,
 				"name": "不限"
 			}
 		}
@@ -65,30 +64,32 @@ export default {
 			})
 		},
 		selectTruckLengthOption (obj) {
-			for (let i = 0; i < this.selectedTruckLength.length; i++) {
-				// 如果选择的选项已经勾选
-				if (this.selectedTruckLength[i].constStdID == obj.constStdID) {
-					this.selectedTruckLength.splice(i, 1)
-					return
-				// 如果选择的选项没有勾选
+			let constStdIDs = this.selectedTruckLength.map(item => item.constStdID)
+			// 如果选择的选项已经勾选
+			if (constStdIDs.includes(obj.constStdID)) {
+				this.selectedTruckLength.splice(constStdIDs.indexOf(obj.constStdID), 1)
+				return
+			// 如果选择的选项没有勾选
+			} else {
+				// 如果勾选的是“不限”
+				if (obj.constStdID == 100000044) {
+					this.selectedTruckLength = []
+					this.selectedTruckLength.push(obj)
+				// 如果勾选的是“其他”
 				} else {
-					// 如果勾选的是“不限”
-					if (obj.constStdID == '') {
+					// 如果包含不限
+					if (constStdIDs.includes(100000044)) {
 						this.selectedTruckLength = []
 						this.selectedTruckLength.push(obj)
-						return
-					// 如果勾选的是“其他”
 					} else {
-						let index = this.selectedTruckLength.map(item => item.constStdID).indexOf('')
-						if (index > -1) {
-							this.selectedTruckLength.splice(index, 1)
-							this.selectedTruckLength.push(obj)
+						if (this.selectedTruckLength.length == 3) {
+							this.msg('最多选择3个车长！')
 							return
 						}
+						this.selectedTruckLength.push(obj)
 					}
 				}
 			}
-			this.selectedTruckLength.push(obj)
 		},
 		selectTruckTypeOption (obj) {
 			this.selectedTruckType = obj

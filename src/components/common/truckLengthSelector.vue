@@ -22,22 +22,21 @@ export default {
 	},
 	data () {
 		return {
-			truckLengthList: [{
-				"constStdID": "",
-				"name": "不限"
-			}],
+			truckLengthList: [],
 			selected: [{
-				"constStdID": "",
-				"name": "不限"
+				"code": "51",
+				"constStdID": 100000044,
+				"name": "不限",
+				"value": "51"
 			}]
 		}
 	},
 	created () {
-		if (sessionStorage.getItem('TruckLength')) {
-			this.truckLengthList = this.truckLengthList.concat(JSON.parse(sessionStorage.getItem('TruckLength')))
-		} else {
+		// if (sessionStorage.getItem('TruckLength')) {
+		// 	this.truckLengthList = this.truckLengthList.concat(JSON.parse(sessionStorage.getItem('TruckLength')))
+		// } else {
 			this.getConstant('TruckLength')
-		}
+		// }
 	},
 	methods: {
 		getConstant (type) {
@@ -46,35 +45,38 @@ export default {
 				'type': type
 			}
 			this.$http.get(URL, {params: params}).then(res => {
-				this[type.slice(0, 1).toLowerCase() + type.slice(1) +'List'] = this[type.slice(0, 1).toLowerCase() + type.slice(1) +'List'].concat(res.body.data)
+				this.truckLengthList = this.truckLengthList.concat(res.body.data)
 				sessionStorage.setItem(type, JSON.stringify(res.body.data))
+				console.log(JSON.stringify(res.body.data))
 			})
 		},
 		selectOption (obj) {
-			for (let i = 0; i < this.selected.length; i++) {
-				// 如果选择的选项已经勾选
-				if (this.selected[i].constStdID == obj.constStdID) {
-					this.selected.splice(i, 1)
-					return
-				// 如果选择的选项没有勾选
+			let constStdIDs = this.selected.map(item => item.constStdID)
+			// 如果选择的选项已经勾选
+			if (constStdIDs.includes(obj.constStdID)) {
+				this.selected.splice(constStdIDs.indexOf(obj.constStdID), 1)
+				return
+			// 如果选择的选项没有勾选
+			} else {
+				// 如果勾选的是“不限”
+				if (obj.constStdID == 100000044) {
+					this.selected = []
+					this.selected.push(obj)
+				// 如果勾选的是“其他”
 				} else {
-					// 如果勾选的是“不限”
-					if (obj.constStdID == '') {
+					// 如果包含不限
+					if (constStdIDs.includes(100000044)) {
 						this.selected = []
 						this.selected.push(obj)
-						return
-					// 如果勾选的是“其他”
 					} else {
-						let index = this.selected.map(item => item.constStdID).indexOf('')
-						if (index > -1) {
-							this.selected.splice(index, 1)
-							this.selected.push(obj)
+						if (this.selected.length == 3) {
+							this.msg('最多选择3个车长！')
 							return
 						}
+						this.selected.push(obj)
 					}
 				}
 			}
-			this.selected.push(obj)
 		},
 		close (type) {
 			if (type == 'y') {

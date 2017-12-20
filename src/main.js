@@ -6,9 +6,11 @@ import router from './router'
 import vueResource from 'vue-resource'
 import BaiduMap from 'vue-baidu-map'
 import _global from './common/global.js'
+import msg from '../src/components/common/msg'
 
 Vue.use(vueResource)
 Vue.use(_global)
+Vue.use(msg)
 
 // Vue.http.interceptors.push((request, next) => {
     //请求发送前的处理逻辑

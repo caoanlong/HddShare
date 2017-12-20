@@ -23,11 +23,11 @@ export default {
 	data () {
 		return {
 			truckTypeList: [{
-				"constStdID": "01",
+				"constStdID": 100000044,
 				"name": "不限"
 			}],
 			selected: {
-				"constStdID": "01",
+				"constStdID": 100000044,
 				"name": "不限"
 			}
 		}

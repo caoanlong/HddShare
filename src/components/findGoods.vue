@@ -129,7 +129,10 @@
 			closeMoreSelector (truckLength, truckType) {
 				this.showMoreSelector = false
 				this.truckLength = truckLength.map(item => item.constStdID).join(',')
-				this.truckType = truckType.constStdID
+				if (this.truckLength == 100000044) {
+					this.truckLength = ''
+				}
+				this.truckType = truckType.constStdID == 100000044 ? '' : truckType.constStdID
 				console.log(JSON.stringify(this.truckLength), JSON.stringify(this.truckType))
 				this.pageNum = 1
 				this.pages = 1
