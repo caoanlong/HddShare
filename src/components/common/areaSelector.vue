@@ -62,12 +62,18 @@ export default {
 			selectedAreaList: [] // 已选择选择的地区列表
 		}
 	},
+	// watch: {
+	// 	type (newVal) {
+	// 		this.selectType = newVal
+	// 	}
+	// },
 	watch: {
-		type (newVal) {
-			this.selectType = newVal
+		showSelector (newVal) {
+			this.selectType = this.type
 		}
 	},
 	created () {
+		// this.selectType = type
 		this.areaList = ChineseDistricts[0]
 	},
 	methods: {

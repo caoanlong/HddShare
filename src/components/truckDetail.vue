@@ -16,9 +16,9 @@
 		</div>
 		<div class="truckInfo bdtb">
 			<p><b class="truckNum">{{truckDetail.plateNo}}</b></p>
-		    	<p>{{truckDetail.truckLengthName}}/{{truckDetail.truckTypeName}}</p>
-		    	<p>{{truckDetail.posAreaName}}</p>
-		    	<router-link tag="div" :to="{name: 'truckLocation', query: {lng: truckDetail.lng, lat: truckDetail.lat}}" class="viewMap"><img src="../../static/img/viewMap.png"/></router-link>
+			<p>{{truckDetail.truckLengthName}}/{{truckDetail.truckTypeName}}</p>
+			<p>{{truckDetail.posAreaName ? truckDetail.posAreaName.split(',').join('') : ''}}</p>
+			<router-link tag="div" :to="{name: 'truckLocation', query: {lng: truckDetail.lng, lat: truckDetail.lat}}" class="viewMap"><img src="../../static/img/viewMap.png"/></router-link>
 		</div>
 		<div class="cells bdtb">
 			<div class="cell" v-if="truckDetail.recentlineList ? truckDetail.recentlineList.length : false">
