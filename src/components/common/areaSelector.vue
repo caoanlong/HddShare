@@ -13,13 +13,18 @@
 				</p>
 			</div>
 			<div class="filter-header bdtb">
-				当前地区：全部<div class="fr"><span class="location">深圳市</span>
-				<span class="backBtn" v-show="isShowReturn" @click="returnBack"><i></i>返回上一级</span></div>
+				当前地区：全部
+				<div class="fr">
+					<!-- <span class="location">深圳市</span> -->
+					<span class="backBtn" v-show="isShowReturn" @click="returnBack"><i></i>返回上一级</span>
+				</div>
 			</div>
 			<div class="filter-body">
 				<ul class="clearfix">
+					<!-- 当前市全部 -->
 					<li v-show="firstArea && selectType == 'simple'" :class="{'selected': selectedDist == firstArea?firstArea.key:''}" @click="selectFirstArea(firstArea?firstArea.key:'', firstArea?firstArea.value:'')"><span>{{firstArea?firstArea.value:''}}</span></li>
 					<li v-show="firstArea && selectType == 'mutiple'" :class="{'selected': selectedDistList.includes(firstArea?firstArea.key:'')}" @click="selectFirstArea(firstArea?firstArea.key:'', firstArea?firstArea.value:'')"><span>{{firstArea?firstArea.value:''}}</span></li>
+					<!-- 当前市的县级市 -->
 					<li v-show="selectType == 'simple'" :class="{'selected': selectedDist == key}" v-for="(value, key) in areaList" :key="key" @click="selectArea(key, value)"><span>{{value}}</span></li>
 					<li v-show="selectType == 'mutiple'" :class="{'selected': selectedDistList.includes(key)}" v-for="(value, key) in areaList" :key="key" @click="selectArea(key, value)"><span>{{value}}</span></li>
 				</ul>
@@ -120,6 +125,15 @@ export default {
 				// console.log('已选择区县:' + value)
 				this.selectedDist = key
 				if (this.selectType == 'mutiple') {
+					// 判断是否包含全部
+					if (this.selectedDistList.find(item => item.substr(4) == '00') != undefined) {
+						this.deleteAreaList(this.selectedDistList.find(item => item.substr(4) == '00'))
+					}
+					// 判断是否超过5个
+					if (this.selectedDistList.length == 5) {
+						this.msg('最多选5个目的地！')
+						return
+					}
 					this.selectedDistList.push(key)
 					this.selectedAreaList.push({
 						key: key,
@@ -146,6 +160,8 @@ export default {
 			this.selected = key
 			this.selectedDist = key
 			if (this.selectType == 'mutiple') {
+				this.selectedDistList = []
+				this.selectedAreaList = []
 				this.selectedDistList.push(key)
 				this.selectedAreaList.push({
 					key: key,
@@ -163,16 +179,8 @@ export default {
 			}
 		},
 		deleteAreaList (key) {
-			for (let i = 0; i < this.selectedDistList.length; i++) {
-				if (this.selectedDistList[i] == key) {
-					this.selectedDistList.splice(i, 1)
-				}
-			}
-			for (let i = 0; i < this.selectedAreaList.length; i++) {
-				if (this.selectedAreaList[i].key == key) {
-					this.selectedAreaList.splice(i, 1)
-				}
-			}
+			this.selectedDistList.splice(this.selectedDistList.indexOf(key), 1)
+			this.selectedAreaList.splice(this.selectedAreaList.indexOf(key), 1)
 		},
 		returnBack () {
 			// console.log(this.selected)
