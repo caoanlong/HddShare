@@ -7,14 +7,14 @@
 			</div>
 			<div class="text">
 				<p class="line bold">
-					<span class="from">{{goods.areaFromName}}</span>
+					<span class="from">{{goods.areaFromName.split(',').length == 4 ? goods.areaFromName.split(',')[1] + goods.areaFromName.split(',')[2] : goods.areaFromName.split(',')[0] + goods.areaFromName.split(',')[1]}}</span>
 					<span class="arrow"></span>
-					<span class="to">{{goods.areaToName}}</span>
+					<span class="to">{{goods.areaToName.split(',').length == 4 ? goods.areaToName.split(',')[1]+goods.areaToName.split(',')[2] :goods.areaToName.split(',')[0] + goods.areaToName.split(',')[1]}}</span>
 				</p>
 				<p class="quote">
 					<span class="quote_sort" v-show="goods.cargoFreightType == 'Talk'">按{{goods.cargoFreightUnitName.split('/')[1]}}报价</span>
 					<span class="quote_sort quote_sort1" v-show="goods.cargoFreightType == 'Agent'">收信息费</span>
-					<span class="quote_status" v-show="goods.cargoFreightType == 'Fix'">已报价{{goods.cargoFreightPrice||0}}{{goods.cargoFreightUnitName}}</span>
+					<span class="quote_status" v-show="goods.cargoFreightType == 'Fix'">{{goods.cargoFreightPrice||'--'}}{{goods.cargoFreightUnitName}}</span>
 				</p>
 				<p class="cargoDesc">{{goods.cargoName||'无'}}/{{goods.cargoWeight}}吨/{{goods.cargoVolume}}方/{{goods.cargoNum}}件</p>
 				<p class="truckDesc">{{goods.truckLengthName}}/{{goods.truckTypeName}}/<span class="c3">剩{{goods.surplusTruckNum}}车</span>/{{goods.loadingDate || '随时'}}装车</p>
@@ -132,10 +132,9 @@
 					overflow hidden
 					height 20px
 					margin-top 0
-					display flex
 					span
 						display block
-						flex 1
+						float left
 						height 20px
 						&.from
 						&.to

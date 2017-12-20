@@ -42,7 +42,7 @@
 		margin-bottom 10px
 		font-size 12px
 		.baseInfo
-			padding 10px 50px 10px 90px
+			padding 10px 50px 10px 85px
 			position relative
 			min-height 90px
 			.ls
@@ -59,15 +59,15 @@
 				.local
 					height 24px
 					line-height 24px
-					padding-left 24px
+					padding-left 18px
 					position relative
 					&:before
 						content ''
 						position absolute
 						left 0
-						top 0
-						width 20px
-						height 20px
+						top 3px
+						width 14px
+						height 14px
 				.driver
 					font-size 14px
 					font-weight bold
