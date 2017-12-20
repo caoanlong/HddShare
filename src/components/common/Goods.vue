@@ -93,7 +93,7 @@
 				.line
 					padding-right 20px
 					&:before
-						background url('../../assets/img/local_icon2.svg') no-repeat center
+						background url('../../assets/img/local_icon.svg') no-repeat center
 						background-size contain
 				.quote
 					margin-top 6px
