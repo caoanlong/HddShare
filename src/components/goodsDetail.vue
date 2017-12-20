@@ -33,7 +33,7 @@
 			<div class="cells bdtb">
 				<div class="cell">
 					<div class="cell__hd"><img class="icon" src="../assets/img/detail_icon1.svg"></div>
-					<div class="cell__bd"><label class="labels">装车时间</label><span>{{goodsDetail.loadingDate||'无'}}</span></div>
+					<div class="cell__bd"><label class="labels">装车时间</label><span>{{goodsDetail.loadingDate||'随时装车'}}</span></div>
 				</div>
 				<div class="cell bdt">
 					<div class="cell__hd"><img class="icon" src="../assets/img/detail_icon2.svg"></div>
@@ -46,7 +46,7 @@
 					<div class="cell__hd"><img class="icon" src="../assets/img/detail_icon3.svg"></div>
 					<div class="cell__bd">
 						<label class="labels">需求车辆</label>
-						<span class="c1">{{goodsDetail.truckLengthName||0}}/{{goodsDetail.truckTypeName}}/需{{goodsDetail.truckNum}}车/剩<b>{{goodsDetail.surplusTruckNum}}</b>车</span>
+						<span class="c1">{{goodsDetail.truckLengthName||0}}/{{goodsDetail.truckTypeName}}/剩<b>{{goodsDetail.surplusTruckNum}}</b>车</span>
 					</div>
 				</div>
 				<div class="cell bdt">
