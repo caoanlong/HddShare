@@ -3,41 +3,76 @@
 		<!-- <div class="titleBar">车源详情</div> -->
 		<div class="baseInfo bdb">
 			<img  :src='__IMGWEBSERVER__ + "/" + truckDetail.headPicture' class="pic" @error="errorImg"/>
-		    <p>
-		    	<b class="name">{{truckDetail.realName}}</b>
-		    	<span class="attention attentioned" v-if="truckDetail.certifyStatus == 'Y'"><img src="../assets/img/attention.svg"/>已认证</span>
-		    	<span class="attention" v-else><img src="../assets/img/unverified.svg"/>未认证</span>
-		    </p>
-		    <!-- <p class="history">平台承运<span class="c1">{{truckDetail.loads}}</span>笔</p> -->
-		    <p>好评率 <span class="c2">{{truckDetail.feedbackRate}}%</span></p>
-			<router-link tag="div" :to="{name: 'AppDownload'}" class="tel">
-				<img src="../assets/img/ic_call_phone_image.png"/>
-			</router-link>
+		    <p><b class="name">{{truckDetail.realName}} {{truckDetail.plateNo}}</b></p>
+		    <p>{{truckDetail.truckTypeName}}/{{truckDetail.truckLengthName}}/{{truckDetail.loads}}吨</p>
+			<router-link tag="div" :to="{name: 'AppDownload'}" class="tel icon-bddh"></router-link>
 		</div>
-		<div class="truckInfo bdtb">
-			<p><b class="truckNum">{{truckDetail.plateNo}}</b></p>
-			<p>{{truckDetail.truckLengthName}}/{{truckDetail.truckTypeName}}</p>
-			<p>{{truckDetail.posAreaName ? truckDetail.posAreaName.split(',').join('') : ''}}</p>
-			<router-link tag="div" :to="{name: 'truckLocation', query: {lng: truckDetail.lng, lat: truckDetail.lat}}" class="viewMap"><img src="../../static/img/viewMap.png"/></router-link>
-		</div>
-		<div class="cells bdtb">
-			<div class="cell" v-if="truckDetail.recentlineList ? truckDetail.recentlineList.length : false">
-				<div class="cell__hd"><img class="icon" src="../assets/img/position_icon.svg"></div>
-				<div class="cell__bd"><label class="labels">常跑路线</label><span class="fr f12 c9">{{truckDetail.updateTime}}发布 {{truckDetail.drivingLicenseFirstTime}} 可装货</span></div>
-			</div>
-			<div v-for="truckLine in truckDetail.recentlineList" :key="truckLine.areaToName">
-				<div class="cell bdt">
-					<div class="cell__hd"><img class="icon" src="../assets/img/start_icon.svg" width="22"></div>
-					<div class="cell__bd">{{truckLine.areaFromName}}</div>
+		<div class="otherInfo bdb">
+		    	<div class="item">
+		    		<p class="tit"><i class="icon-ljlc"></i>累计里程</p>
+		    		<p class="c1">{{truckDetail.mileage ? truckDetail.mileage : '0'}}km</p>
+		    	</div>
+		    	<div class="item bdl">
+		    		<p class="tit"><i class="icon-ptcy"></i>平台承运</p>
+		    		<p class="c1">{{truckDetail.waybillNum}}笔</p>
+		    	</div>
+		    	<div class="item bdl">
+		    		<p class="tit"><i class="icon-hpl"></i>好评率</p>
+		    		<p class="c2">{{truckDetail.feedbackRate}}%</p>
+		    	</div>
+		    </div>
+		<router-link tag="div" :to="{name: 'truckLocation', query: {lng: truckDetail.lng, lat: truckDetail.lat}}" class="truckPosition bdtb"><p>{{truckDetail.posAreaName ? truckDetail.posAreaName.split(',').join('') : ''}}</p>
+		</router-link>
+		<div class="tab bdtb">
+			<ul class="hd bdb">
+				<li :class="{'cur':tab==1}" @click="tab = 1"><i class="icon-zjcp"></i>最近常跑</li>
+				<li class="bdl" :class="{'cur':tab==2}" @click="tab = 2"><i class="icon-grrz"></i>个人认证</li>
+			</ul>
+			<div class="bd">
+				<div class="con" v-show="tab==1">
+					<div v-if="truckDetail.recentlineList.length==0" class="empty">
+						<img src="../../static/img/empty.jpg" />
+						<p>暂无数据</p>
+					</div>
+					<ul v-else>
+						<li v-for="item in truckDetail.recentlineList">
+							
+						</li>
+					</ul>
 				</div>
-				<div class="cell bdt">
-					<div class="cell__hd"><img class="icon" src="../assets/img/end_icon.svg" width="22"></div>
-					<div class="cell__bd">{{truckLine.areaToName}}</div>
+				<div class="con" v-show="tab==2">
+					<ul>
+						<li>
+							<label class="labels">身份证</label>
+							<span class="attention icon-wrz" v-if="truckDetail.certifyStatus=='N' || truckDetail.certifyStatus==''">未认证</span>
+							<span class="attentioned icon-yrz" v-else>已认证</span>
+						</li>
+						<li>
+							<label class="labels">驾驶证</label>
+							<span class="attention icon-wrz" v-if="truckDetail.certifyStatus=='N' ||truckDetail.certifyStatus== ''">未认证</span>
+							<span class="attentioned icon-yrz" v-else>已认证</span>
+						</li>
+						<li>
+							<label class="labels">行驶证</label>
+							<span class="attention icon-wrz" v-if="truckDetail.certifyStatus=='N' || truckDetail.certifyStatus== ''">未认证</span>
+							<span class="attentioned icon-yrz" v-else>已认证</span>
+						</li>
+						<li>
+							<label class="labels">从业资格证</label>
+							<span class="attention icon-wrz" v-if="truckDetail.certifyStatus=='N' || truckDetail.certifyStatus==''">未认证</span>
+							<span class="attentioned icon-yrz" v-else>已认证</span>
+						</li>
+						<li>
+							<label class="labels">道路运输许可证</label>
+							<span class="attention icon-wrz" v-if="truckDetail.certifyStatus=='N' || truckDetail.certifyStatus==''">未认证</span>
+							<span class="attentioned icon-yrz" v-else>已认证</span>
+						</li>
+					</ul>
 				</div>
 			</div>
 		</div>
 		<div class="padd">
-			<router-link tag="div" :to="{name: 'AppDownload'}" class="btn"><img src="../assets/img/push.svg"/>推送货源</router-link>
+			<router-link tag="div" :to="{name: 'AppDownload'}" class="btn"><i class="icon-tshy"></i>推送货源</router-link>
 		</div>
 	</div>
 </template>
@@ -46,7 +81,9 @@
 	export default {
 		data () {
 			return {
-				truckDetail: {}
+				truckDetail: {},
+				AuthenticationInfo:'',
+				tab:1
 			}
 		},
 		created () {
@@ -94,7 +131,7 @@
 		color #fff
 	.baseInfo
 		background #fff
-		padding 10px 15px 10px 85px
+		padding 10px 60px 10px 85px
 		position relative
 		height 80px
 		color #999
@@ -136,41 +173,43 @@
 			position absolute
 			right 15px
 			top 50%
-			width 40px
-			height 40px
+			font-size 48px
+			color #6cc
 			-webkit-transform translateY(-50%)
 			transform translateY(-50%)
-			img
-				width 100%
-	.truckInfo
+	.otherInfo
+		display flex
+		height 60px
+		padding 10px 0
 		background #fff
+		.item
+			flex 1
+			text-align center
+			p
+				font-size 14px
+				color #868686
+				height 20px
+				line-height 20px
+				i
+					font-size 20px
+					vertical-align middle
+	.truckPosition
+		background url('../../static/img/map.jpg') no-repeat center
+		background-size 100% 100%
 		margin-top 10px
-		padding 10px 15px
 		position relative
-		height 80px
-		color #999
+		min-height 40px
+		color #666
+		font-weight bold
 		font-size 14px
-		.truckNum
-			font-size 16px
-			color #666
-			font-weight bold
-		.pic
+		position relative
+		p
+			height 20px
+			line-height 20px
 			position absolute
-			left 15px
-			top 10px
-			border-radius 4px
-			width 60px
-			height 60px
-		.viewMap
-			position absolute
-			right 15px
 			top 50%
-			width 40px
-			height 40px
-			-webkit-transform translateY(-50%)
-			transform translateY(-50%)
-			img
-				width 100%
+			margin-top -10px
+			left 10px
 	.cell__hd
 		.icon
 			vertical-align middle
@@ -201,10 +240,67 @@
 		border-radius 4px
 		background #ffc426
 		text-align center
-		img
+		i
 			height 20px
+			font-size 24px
 			vertical-align middle
-			margin -2px 5px 0 0
+			margin-right 5px
 			
-				
+	.tab
+		background #fff
+		margin-top 10px
+		.hd
+			height 40px
+			li
+				width 50%
+				height 40px
+				line-height 36px
+				border-bottom 4px solid #fff
+				float left
+				text-align center
+				color #999
+				&.cur
+					border-bottom-color #6cc
+					color #6cc
+				i
+					vertical-align text-top
+					font-size 18px
+					margin-right 5px
+		.bd
+			.empty
+				text-align center
+				padding 20px 0 40px
+				color #999
+				img
+					width 50%
+			li
+				padding 0 10px
+				height 40px
+				line-height 40px
+				position relative
+				font-size 14px
+				&:after
+					content ''
+					position absolute
+					height 1px
+					background #ddd
+					transform scaleY(0.5)
+					left -10px
+					right -10px
+					bottom 0
+				.labels
+					float left
+					color #999
+				span
+					float right
+					height 40px
+					line-height 40px
+					display block
+					&:before
+						font-size 16px
+						vertical-align top
+					&.attention
+						color #d4d4d4
+					&.attentioned
+						color #6cc
 </style>
