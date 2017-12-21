@@ -14,7 +14,7 @@
 		    	</div>
 		    	<div class="item bdl">
 		    		<p class="tit"><i class="icon-ptcy"></i>平台承运</p>
-		    		<p class="c1">{{truckDetail.waybillNum}}笔</p>
+		    		<p class="c1">{{truckDetail.waybillNum|| 0}}笔</p>
 		    	</div>
 		    	<div class="item bdl">
 		    		<p class="tit"><i class="icon-hpl"></i>好评率</p>
