@@ -30,7 +30,7 @@
 			</ul>
 			<div class="bd">
 				<div class="con" v-show="tab==1">
-					<div v-if="truckDetail.recentlineList.length==0" class="empty">
+					<div v-if="truckDetail.recentlineList?truckDetail.recentlineList.length==0:false" class="empty">
 						<img src="../../static/img/empty.jpg" />
 						<p>暂无数据</p>
 					</div>
