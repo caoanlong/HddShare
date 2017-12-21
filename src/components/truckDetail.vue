@@ -21,7 +21,7 @@
 		    		<p class="c2">{{truckDetail.feedbackRate}}%</p>
 		    	</div>
 		    </div>
-		<router-link tag="div" :to="{name: 'truckLocation', query: {lng: truckDetail.lng, lat: truckDetail.lat}}" class="truckPosition bdtb"><p>{{truckDetail.posAreaName ? truckDetail.posAreaName.split(',').join('') : ''}}</p>
+		<router-link tag="div" :to="{name: 'truckLocation', query: {lng: truckDetail.lng, lat: truckDetail.lat}}" class="truckPosition bdtb"><img src="../../static/img/map.jpg" width="100%" /><p>{{truckDetail.posAreaName ? truckDetail.posAreaName.split(',').join('') : ''}}</p>
 		</router-link>
 		<div class="tab bdtb">
 			<ul class="hd bdb">
@@ -194,15 +194,15 @@
 					font-size 20px
 					vertical-align middle
 	.truckPosition
-		background url('../../static/img/map.jpg') no-repeat center
-		background-size 100% 100%
+		background #fff
 		margin-top 10px
 		position relative
-		min-height 40px
 		color #666
 		font-weight bold
 		font-size 14px
 		position relative
+		img
+			vertical-align top
 		p
 			height 20px
 			line-height 20px
