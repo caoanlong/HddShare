@@ -6,12 +6,12 @@
         	</div>
         	<div class="text">
         		<p class="driver">{{truck.realName}} {{truck.plateNo}}</p>
-        		<p class="truckInfo">{{truck.truckLengthName}}/{{truck.truckTypeName}}</p>
+        		<p class="truckInfo">{{truck.truckLengthName}}/{{truck.truckTypeName}}/{{truck.loads}}吨</p>
 				<p class="local">{{truck.posUpdateTime}} {{truck.posAreaName}}</p>
             </div>
 		</router-link>
 	    <!-- <a class=" icon-phone" :href="'tel:'+10086"></a> -->
-	    <router-link tag="div" :to="{name: 'AppDownload'}" class="icon-phone"></router-link>
+	    <router-link tag="div" :to="{name: 'AppDownload'}" class="tel icon-bddh"></router-link>
     </div>
 </template>
 <script>
@@ -84,16 +84,12 @@
 					&:before
 						background url('../../assets/img/local_icon.svg') no-repeat center
 						background-size contain
-					
-				
-		.icon-phone
-			right 15px
-			width 30px
-			height 30px
-			background-image url('../../assets/img/ic_call_phone_image.png')
-			background-size cover
-			display block
+		.tel
 			position absolute
+			right 15px
 			top 50%
-			margin-top -15px
+			font-size 48px
+			color #6cc
+			-webkit-transform translateY(-50%)
+			transform translateY(-50%)
 </style>
