@@ -27,9 +27,10 @@
 					</div>
 				</div>
 			</div>
-			<div class="viewMap bdb">最短里程<b>{{goodsDetail.estimateMileage}}公里</b>
-				<router-link tag="div" :to="{name: 'goodsLine', query: {areaFromLat: goodsDetail.areaFromLat, areaFromLng: goodsDetail.areaFromLng, areaToLat: goodsDetail.areaToLat, areaToLng: goodsDetail.areaToLng}}" class="viewBtn"><img src="../../static/img/viewBtn.png" /></router-link>
-			</div>
+			<router-link tag="div" class="viewMap bdtb" :to="{name: 'goodsLine', query: {areaFromLat: goodsDetail.areaFromLat, areaFromLng: goodsDetail.areaFromLng, areaToLat: goodsDetail.areaToLat, areaToLng: goodsDetail.areaToLng}}">
+				<img src="../../static/img/line.jpg" width="100%" />
+				<p>最短里程<b>{{goodsDetail.estimateMileage}}公里</b></p>
+			</router-link>
 			<div class="cells bdtb">
 				<div class="cell">
 					<div class="cell__hd"><img class="icon" src="../assets/img/detail_icon1.svg"></div>
@@ -170,21 +171,22 @@
 			img
 				width 100%
 	.viewMap
-		background url('../../static/img/map.jpg') no-repeat  center
-		height 60px
-		background-size cover
-		padding 15px
-		line-height 30px
-		color #708cb0
+		background #fff
+		margin-top 10px
 		position relative
-		overflow hidden
-		b
-			color #666
-			margin-left 10px
-		.viewBtn
-			float right
-			img
-				height 30px
+		color #666
+		font-weight bold
+		font-size 14px
+		position relative
+		img
+			vertical-align top
+		p
+			height 20px
+			line-height 20px
+			position absolute
+			top 50%
+			margin-top -10px
+			left 10px
 	.cell__hd
 		.icon
 			vertical-align top
