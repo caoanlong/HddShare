@@ -16,7 +16,9 @@
 					<span class="quote_sort quote_sort1" v-show="goods.cargoFreightType == 'Agent'">收信息费</span>
 					<span class="quote_status" v-show="goods.cargoFreightType == 'Fix'">{{goods.cargoFreightPrice||'--'}}{{goods.cargoFreightUnitName}}</span>
 				</p>
-				<p class="cargoDesc">{{goods.cargoName||'无'}}/{{goods.cargoWeight}}吨/{{goods.cargoVolume}}方/{{goods.cargoNum}}件</p>
+				<p class="cargoDesc">
+					{{goods.cargoName}}{{(goods.cargoWeight !='' && goods.cargoWeight !='0')?'/'+goods.cargoWeight+'吨':''}}{{(goods.cargoVolume !='' && goods.cargoVolume !='0')?'/'+goods.cargoVolume+'方':''}}{{(goods.cargoNum !='' && goods.cargoNum != '0')?'/'+goods.cargoNum+'件':''}}
+				</p>
 				<p class="truckDesc">{{goods.truckLengthName}}/{{goods.truckTypeName}}/<span class="c3">剩{{goods.surplusTruckNum}}车</span>/{{goods.loadingDateStr}}装车</p>
 			</div>
 		</router-link>
