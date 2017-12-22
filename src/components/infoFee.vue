@@ -24,7 +24,7 @@
 			</div>
 			<div class="pannel_item bdt">
 				<div class="panel_box">
-					<label>付款时间</label>{{infoData.paymentTime}}
+					<label>付款时间</label>{{infoData.orderTime}}
 				</div>
 			</div>
 			<div class="pannel_item bdt">
