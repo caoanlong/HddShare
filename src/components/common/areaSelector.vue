@@ -21,6 +21,13 @@
 			</div>
 			<div class="filter-body">
 				<ul class="clearfix">
+					<!-- 全国 -->
+					<li :class="{'selected': !selectedProvince}" v-show="selectType == 'simple' && oneLevel" @click="reset('simple')">
+						<span>全国</span>
+					</li>
+					<li :class="{'selected': selectedProvinceList.length == 0}" v-show="selectType == 'mutiple' && oneLevel" @click="reset('mutiple')">
+						<span>全国</span>
+					</li>
 					<!-- 当前市全部 -->
 					<li v-show="firstArea && selectType == 'simple'" :class="{'selected': selectedDist == firstArea?firstArea.key:''}" @click="selectFirstArea(firstArea?firstArea.key:'', firstArea?firstArea.value:'')"><span>{{firstArea?firstArea.value:''}}</span></li>
 					<li v-show="firstArea && selectType == 'mutiple'" :class="{'selected': selectedDistList.includes(firstArea?firstArea.key:'')}" @click="selectFirstArea(firstArea?firstArea.key:'', firstArea?firstArea.value:'')"><span>{{firstArea?firstArea.value:''}}</span></li>
@@ -50,6 +57,7 @@ export default {
 		return {
 			selectType: 'simple',
 			firstArea: null,  // 列表最前面的一个地区
+			oneLevel: true,
 			areaList: null,
 			startArea: {
 				key: '',
@@ -67,14 +75,16 @@ export default {
 			selectedAreaList: [] // 已选择选择的地区列表
 		}
 	},
-	// watch: {
-	// 	type (newVal) {
-	// 		this.selectType = newVal
-	// 	}
-	// },
 	watch: {
 		showSelector (newVal) {
 			this.selectType = this.type
+		},
+		areaList (newVal) {
+			if (newVal[110000]) {
+				this.oneLevel = true
+			} else {
+				this.oneLevel = false
+			}
 		}
 	},
 	created () {
@@ -198,6 +208,24 @@ export default {
 					value: ChineseDistricts[0][this.firstArea.key.substring(0,2)+'0000'],
 				} 
 			// 如果选择的是区县
+			}
+		},
+		// 选择全国置空
+		reset (type) {
+			if (type == 'simple') {
+				this.selectedProvince = ''
+				this.selectedCity = ''
+				this.selectedDist = ''
+				this.startArea = {
+					key: '',
+					value: '全国'
+				}
+			} else {
+				this.selectedProvinceList = []
+				this.selectedCityList = []
+				this.selectedDistList = []
+				this.selectedAreaList = []
+				this.endArea = '全国'
 			}
 		},
 		close (type) {
