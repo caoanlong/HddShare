@@ -34,13 +34,13 @@
 			<div class="cells bdtb">
 				<div class="cell">
 					<div class="cell__hd"><img class="icon" src="../assets/img/detail_icon1.svg"></div>
-					<div class="cell__bd"><label class="labels">装车时间</label><span>{{goodsDetail.loadingDate||'随时装车'}}</span></div>
+					<div class="cell__bd"><label class="labels">装车时间</label><span>{{goodsDetail.loadingDateStr?goodsDetail.loadingDateStr+'装车':''}}</span></div>
 				</div>
 				<div class="cell bdt">
 					<div class="cell__hd"><img class="icon" src="../assets/img/package.svg"></div>
 					<div class="cell__bd">
 						<label class="labels">货物信息</label>
-						<span class="c1">{{goodsDetail.cargoName}}/{{goodsDetail.cargoWeight||0}}吨/{{goodsDetail.cargoVolume||0}}方/{{goodsDetail.cargoNum||0}}件</span>
+						<span class="c1">{{goodsDetail.cargoName}}{{(goodsDetail.cargoWeight !='' && goodsDetail.cargoWeight !='0')?'/'+goodsDetail.cargoWeight+'吨':''}}{{(goodsDetail.cargoVolume !='' && goodsDetail.cargoVolume !='0')?'/'+goodsDetail.cargoVolume+'方':''}}{{(goodsDetail.cargoNum !='' && goodsDetail.cargoNum != '0')?'/'+goodsDetail.cargoNum+'件':''}}</span>
 					</div>
 				</div>
 				<div class="cell bdt">
@@ -98,7 +98,7 @@
 					"id": this.$route.query.id
 				}
 				this.$http.get(URL, {params: params}).then(res => {
-					// console.log(JSON.stringify(res.body.data))
+					console.log(JSON.stringify(res.body.data))
 					this.goodsDetail = res.body.data
 				})
 			},
