@@ -29,7 +29,7 @@
 			</div>
 			<router-link tag="div" class="viewMap bdtb" :to="{name: 'goodsLine', query: {areaFromLat: goodsDetail.areaFromLat, areaFromLng: goodsDetail.areaFromLng, areaToLat: goodsDetail.areaToLat, areaToLng: goodsDetail.areaToLng}}">
 				<img src="../../static/img/line.jpg" width="100%" />
-				<p>最短里程<b>{{goodsDetail.estimateMileage}}公里</b></p>
+				<p>最短里程<b>{{goodsDetail.estimateMileage < 1000 ? (goodsDetail.estimateMileage + '米') : ((goodsDetail.estimateMileage/1000).toFixed(1) + '公里')}}</b></p>
 			</router-link>
 			<div class="cells bdtb">
 				<div class="cell">
@@ -57,9 +57,9 @@
 			</div>
 			<div class="padd">
 				<router-link tag="div" :to="{name: 'AppDownload'}" class="btn">
-					<span v-if="goodsDetail.cargoFreightType == 'Agent'"><img src="../assets/img/rmb.svg"/>支付信息费</span>
 					<span v-if="goodsDetail.cargoFreightType == 'Fix'"><img src="../assets/img/truck.svg"/>我要承运</span>
-					<span v-if="goodsDetail.cargoFreightType == 'Talk'"><img src="../assets/img/rmb.svg"/>我要报价</span>
+					<span v-else-if="goodsDetail.cargoFreightType == 'Talk'"><img src="../assets/img/rmb.svg"/>我要报价</span>
+					<span v-else><img src="../assets/img/rmb.svg"/>支付信息费</span>
 				</router-link>
 			</div>
 		</div>

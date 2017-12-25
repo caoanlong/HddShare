@@ -154,7 +154,7 @@
 			</div>
 			<div class="pannel_item bdt">
 				<div class="panel_box">
-					<label>预付方式</label>{{infoData.prepayOnlineFlag}}
+					<label>预付方式</label>{{infoData.prepayOnlineFlag == 'N' ? '线下支付' : '平台支付'}}
 				</div>
 			</div>
 			<div class="pannel_item bdt">
@@ -164,7 +164,7 @@
 			</div>
 			<div class="pannel_item bdt">
 				<div class="panel_box">
-					<label>到付方式</label>{{infoData.codOnlineFlag}}
+					<label>到付方式</label>{{infoData.codOnlineFlag == 'N' ? '线下支付' : '平台支付'}}
 				</div>
 			</div>
 			<div class="section section2"></div>
@@ -173,7 +173,7 @@
 			<div class="pannel_title c3">回单条款</div>
 			<div class="pannel_item">
 				<div class="panel_box">
-					<label>回单要求</label>{{infoData.returnWaybillFlag}}
+					<label>回单要求</label>{{infoData.returnWaybillFlag == 'N' ? '否' : '是'}}
 				</div>
 			</div>
 			<div class="pannel_item bdt">
@@ -272,12 +272,13 @@
 			position absolute
 			top 50%
 			right 15px
-			transform:translateY(-50%)
+			transform translateY(-50%)
 	.pannel
-		position: relative;
-		overflow: hidden;
-		margin-top: 10px;
-		background: #fff;
+		position relative
+		overflow hidden
+		margin-top 10px
+		margin-bottom 50px
+		background #fff
 		color #666
 		.agreement
 			padding 10px 15px
