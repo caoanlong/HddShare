@@ -11,7 +11,7 @@
             </div>
 		</router-link>
 	    <!-- <a class=" icon-phone" :href="'tel:'+10086"></a> -->
-	    <router-link tag="div" :to="{name: 'AppDownload'}" class="tel icon-bddh"></router-link>
+	    <router-link tag="div" :to="{name: 'AppDownload'}" class="tel"><img src="../../assets/img/ic_call_phone_image.png" /></router-link>
     </div>
 </template>
 <script>
@@ -88,8 +88,12 @@
 			position absolute
 			right 15px
 			top 50%
-			font-size 48px
-			color #6cc
+			width 40px
+			height 40px
 			-webkit-transform translateY(-50%)
 			transform translateY(-50%)
+			img
+				width 40px
+				height 40px
+				vertical-algin top
 </style>

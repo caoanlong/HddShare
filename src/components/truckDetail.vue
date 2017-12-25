@@ -5,28 +5,28 @@
 			<img  :src='__IMGWEBSERVER__ + "/" + truckDetail.headPicture' class="pic" @error="errorImg"/>
 		    <p><b class="name">{{truckDetail.realName}} {{truckDetail.plateNo}}</b></p>
 		    <p>{{truckDetail.truckTypeName}}/{{truckDetail.truckLengthName}}/{{truckDetail.loads}}吨</p>
-			<router-link tag="div" :to="{name: 'AppDownload'}" class="tel icon-bddh"></router-link>
+			<router-link tag="div" :to="{name: 'AppDownload'}" class="tel"><img src="../assets/img/ic_call_phone_image.png" /></router-link>
 		</div>
 		<div class="otherInfo bdb">
 		    	<div class="item">
-		    		<p class="tit"><i class="icon-ljlc"></i>累计里程</p>
+		    		<p class="tit"><img src="../assets/img/ljlc.svg" />累计里程</p>
 		    		<p class="c1">{{truckDetail.mileage ? truckDetail.mileage : '0'}}km</p>
 		    	</div>
 		    	<div class="item bdl">
-		    		<p class="tit"><i class="icon-ptcy"></i>平台承运</p>
+		    		<p class="tit"><img src="../assets/img/ptcy.svg" />平台承运</p>
 		    		<p class="c1">{{truckDetail.waybillNum|| 0}}笔</p>
 		    	</div>
 		    	<div class="item bdl">
-		    		<p class="tit"><i class="icon-hpl"></i>好评率</p>
-		    		<p class="c2">{{truckDetail.feedbackRate}}%</p>
+		    		<p class="tit"><img src="../assets/img/hpl.svg" />好评率</p>
+		    		<p class="c2">{{truckDetail.feedbackRate?(truckDetail.feedbackRate+'%'):''}}</p>
 		    	</div>
 		    </div>
 		<router-link tag="div" :to="{name: 'truckLocation', query: {lng: truckDetail.lng, lat: truckDetail.lat}}" class="truckPosition bdtb"><img src="../../static/img/map.jpg" width="100%" /><p>{{truckDetail.posAreaName ? truckDetail.posAreaName.split(',').join('') : ''}}</p>
 		</router-link>
 		<div class="tab bdtb">
 			<ul class="hd bdb">
-				<li :class="{'cur':tab==1}" @click="tab = 1"><i class="icon-zjcp"></i>最近常跑</li>
-				<li class="bdl" :class="{'cur':tab==2}" @click="tab = 2"><i class="icon-grrz"></i>个人认证</li>
+				<li :class="{'cur':tab==1}" @click="tab = 1"><i class="zjcp"></i>最近常跑</li>
+				<li class="bdl" :class="{'cur':tab==2}" @click="tab = 2"><i class="grrz"></i>个人认证</li>
 			</ul>
 			<div class="bd">
 				<div class="con" v-show="tab==1">
@@ -44,35 +44,35 @@
 					<ul>
 						<li>
 							<label class="labels">身份证</label>
-							<span class="attention icon-wrz" v-if="truckDetail.certifyStatus=='N' || truckDetail.certifyStatus==''">未认证</span>
-							<span class="attentioned icon-yrz" v-else>已认证</span>
+							<span class="attention" v-if="truckDetail.certifyStatus=='N' || truckDetail.certifyStatus==''">未认证</span>
+							<span class="attentioned" v-else>已认证</span>
 						</li>
 						<li>
 							<label class="labels">驾驶证</label>
-							<span class="attention icon-wrz" v-if="truckDetail.certifyStatus=='N' ||truckDetail.certifyStatus== ''">未认证</span>
-							<span class="attentioned icon-yrz" v-else>已认证</span>
+							<span class="attention" v-if="truckDetail.certifyStatus=='N' ||truckDetail.certifyStatus== ''">未认证</span>
+							<span class="attentioned" v-else>已认证</span>
 						</li>
 						<li>
 							<label class="labels">行驶证</label>
-							<span class="attention icon-wrz" v-if="truckDetail.certifyStatus=='N' || truckDetail.certifyStatus== ''">未认证</span>
-							<span class="attentioned icon-yrz" v-else>已认证</span>
+							<span class="attention" v-if="truckDetail.certifyStatus=='N' || truckDetail.certifyStatus== ''">未认证</span>
+							<span class="attentioned" v-else>已认证</span>
 						</li>
 						<li>
 							<label class="labels">从业资格证</label>
-							<span class="attention icon-wrz" v-if="truckDetail.certifyStatus=='N' || truckDetail.certifyStatus==''">未认证</span>
-							<span class="attentioned icon-yrz" v-else>已认证</span>
+							<span class="attention" v-if="truckDetail.certifyStatus=='N' || truckDetail.certifyStatus==''">未认证</span>
+							<span class="attentioned" v-else>已认证</span>
 						</li>
 						<li>
 							<label class="labels">道路运输许可证</label>
-							<span class="attention icon-wrz" v-if="truckDetail.certifyStatus=='N' || truckDetail.certifyStatus==''">未认证</span>
-							<span class="attentioned icon-yrz" v-else>已认证</span>
+							<span class="attention" v-if="truckDetail.certifyStatus=='N' || truckDetail.certifyStatus==''">未认证</span>
+							<span class="attentioned" v-else>已认证</span>
 						</li>
 					</ul>
 				</div>
 			</div>
 		</div>
 		<div class="padd">
-			<router-link tag="div" :to="{name: 'AppDownload'}" class="btn"><i class="icon-tshy"></i>推送货源</router-link>
+			<router-link tag="div" :to="{name: 'AppDownload'}" class="btn"><i></i>推送货源</router-link>
 		</div>
 	</div>
 </template>
@@ -173,10 +173,14 @@
 			position absolute
 			right 15px
 			top 50%
-			font-size 48px
-			color #6cc
+			width 40px
+			height 40px
 			-webkit-transform translateY(-50%)
 			transform translateY(-50%)
+			img
+				width 40px
+				height 40px
+				vertical-algin top
 	.otherInfo
 		display flex
 		height 60px
@@ -190,9 +194,10 @@
 				color #868686
 				height 20px
 				line-height 20px
-				i
-					font-size 20px
-					vertical-align middle
+				img
+					height 20px
+					width 20px
+					vertical-align top
 	.truckPosition
 		background #fff
 		margin-top 10px
@@ -242,9 +247,11 @@
 		text-align center
 		i
 			height 20px
-			font-size 24px
+			width 20px
+			display inline-block
 			vertical-align middle
-			margin-right 5px
+			margin -2px 5px 0 0
+			background url('../assets/img/tshy.svg' ) no-repeat
 			
 	.tab
 		background #fff
@@ -262,10 +269,21 @@
 				&.cur
 					border-bottom-color #6cc
 					color #6cc
+					.grrz
+						background url('../assets/img/grrz_c.svg') no-repeat
+					.zjcp
+						background url('../assets/img/zjcp_c.svg') no-repeat
 				i
 					vertical-align text-top
-					font-size 18px
+					width 18px
+					height 18px
+					display inline-block
 					margin-right 5px
+					&.grrz
+						background url('../assets/img/grrz.svg') no-repeat
+					&.zjcp
+						background url('../assets/img/zjcp.svg') no-repeat
+				
 		.bd
 			.empty
 				text-align center
@@ -296,11 +314,22 @@
 					height 40px
 					line-height 40px
 					display block
+					position relative
+					padding-left 20px
 					&:before
-						font-size 16px
-						vertical-align top
+						width 20px
+						height 20px
+						content ''
+						display block
+						position absolute
+						left 0
+						top 10px
 					&.attention
-						color #d4d4d4
+						color #868686
+						&:before
+							background url('../assets/img/wrz.svg') no-repeat
 					&.attentioned
 						color #6cc
+						&:before
+							background url('../assets/img/yrz.svg') no-repeat
 </style>

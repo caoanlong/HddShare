@@ -11,15 +11,15 @@
 			</div>
 			<div class="cell bdt">
 				<div class="cell__bd">官方网站</div>
-				<div class="cell__ft">www.we-service.net</div>
+				<div class="cell__ft"><a href="http://www.we-service.net" target="_blank">www.we-service.net</a></div>
 			</div>
 			<div class="cell bdt">
 				<div class="cell__bd">客服电话</div>
-				<div class="cell__ft">0755-26607376</div>
+				<div class="cell__ft" ><a href="tel:075526607376">0755-26607376</a></div>
 			</div>
 			<div class="cell bdt">
 				<div class="cell__bd">公司邮箱</div>
-				<div class="cell__ft">zjj@vfu56.com</div>
+				<div class="cell__ft"><a href="mailto:zjj@vfu56.co">zjj@vfu56.com</a></div>
 			</div>
 		</div>
 		<div class="appCode">
@@ -67,4 +67,8 @@
 		text-align center
 		font-size 12px
 		line-height 20px
+	.cell__ft
+		a
+			color #999
+			text-decoration none
 </style>
