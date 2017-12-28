@@ -58,6 +58,22 @@
 				<div class="grid_icon"><img src="../assets/img/about.svg"></div>
 				<div class="grid_label">关于货多多</div>
 			</router-link>
+			<router-link tag="div" class="grid" :to="{name: 'bankList'}">
+				<div class="grid_icon"><img src="../assets/img/bank.svg"></div>
+				<div class="grid_label">银行列表</div>
+			</router-link>
+			<router-link tag="div" class="grid" :to="{name: 'charge'}">
+				<div class="grid_icon"><img src="../assets/img/charge.svg"></div>
+				<div class="grid_label">提现手续费</div>
+			</router-link>
+			<router-link tag="div" class="grid" :to="{name: 'chargeRules'}">
+				<div class="grid_icon"><img src="../assets/img/rules.svg"></div>
+				<div class="grid_label">提现规则</div>
+			</router-link>
+			<router-link tag="div" class="grid" :to="{name: 'Faq'}">
+				<div class="grid_icon"><img src="../assets/img/help.svg"></div>
+				<div class="grid_label">常见问题</div>
+			</router-link>
 			<router-link tag="div" class="grid" to="">
 				<div class="grid_icon"><img src="../assets/img/more.svg"></div>
 				<div class="grid_label">敬请期待</div>
