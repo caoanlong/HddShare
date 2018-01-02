@@ -74,10 +74,10 @@
 				<div class="grid_icon"><img src="../assets/img/help.svg"></div>
 				<div class="grid_label">常见问题</div>
 			</router-link>
-			<router-link tag="div" class="grid" to="">
+			<!-- <router-link tag="div" class="grid" to="">
 				<div class="grid_icon"><img src="../assets/img/more.svg"></div>
 				<div class="grid_label">敬请期待</div>
-			</router-link>
+			</router-link> -->
 		</div>
 	</div>
 </template>

@@ -115,6 +115,11 @@ export default new Router({
 	      	path: '/Faq',
 	      	name: 'Faq',
 	      	component: resolve => require(['@/components/Faq'], resolve)
+	    },
+	    {
+	      	path: '/FaqDetail',
+	      	name: 'FaqDetail',
+	      	component: resolve => require(['@/components/FaqDetail'], resolve)
 	    }
   	]
 })

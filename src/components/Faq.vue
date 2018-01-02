@@ -1,23 +1,23 @@
 <template>
 	<div class="Faq">
-		<div class="item bdb">
+		<router-link tag="div" class="item bdb" :to="{name:'FaqDetail',query:{id:1}}">
 			<p>什么是余额</p>
-		</div>
-		<div class="item bdb">
+		</router-link>
+		<router-link tag="div" class="item bdb" :to="{name:'FaqDetail',query:{id:2}}">
 			<p>充值限额</p>
-		</div>
-		<div class="item bdb">
+		</router-link>
+		<router-link tag="div" class="item bdb" :to="{name:'FaqDetail',query:{id:3}}">
 			<p>添加银行卡</p>
-		</div>
-		<div class="item bdb">
+		</router-link>
+		<router-link tag="div" class="item bdb" :to="{name: 'chargeRules'}">
 			<p>提现规则</p>
-		</div>
-		<div class="item bdb">
+		</router-link>
+		<router-link tag="div" class="item bdb" :to="{name: 'charge'}">
 			<p>提现手续费</p>
-		</div>
-		<div class="item bdb">
+		</router-link>
+		<router-link tag="div" class="item bdb" :to="{name:'FaqDetail',query:{id:4}}">
 			<p>提现到账时间</p>
-		</div>
+		</router-link>
 	</div>
 </template>
 <script type="text/javascript">
