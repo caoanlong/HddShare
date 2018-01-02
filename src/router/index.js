@@ -120,6 +120,11 @@ export default new Router({
 	      	path: '/FaqDetail',
 	      	name: 'FaqDetail',
 	      	component: resolve => require(['@/components/FaqDetail'], resolve)
+	    },
+	    {
+	      	path: '/PaymentProtocal',
+	      	name: 'PaymentProtocal',
+	      	component: resolve => require(['@/components/PaymentProtocal'], resolve)
 	    }
   	]
 })
