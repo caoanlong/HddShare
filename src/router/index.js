@@ -95,6 +95,26 @@ export default new Router({
 	      	path: '/aboutHdd',
 	      	name: 'aboutHdd',
 	      	component: resolve => require(['@/components/aboutHdd'], resolve)
+	    },
+	    {
+	      	path: '/bankList',
+	      	name: 'bankList',
+	      	component: resolve => require(['@/components/bankList'], resolve)
+	    },
+	    {
+	      	path: '/FaqList',
+	      	name: 'FaqList',
+	      	component: resolve => require(['@/components/FaqList'], resolve)
+	    },
+	    {
+	      	path: '/FaqDetail',
+	      	name: 'FaqDetail',
+	      	component: resolve => require(['@/components/FaqDetail'], resolve)
+	    },
+	    {
+	      	path: '/PaymentAgreement',
+	      	name: 'PaymentAgreement',
+	      	component: resolve => require(['@/components/PaymentAgreement'], resolve)
 	    }
   	]
 })
