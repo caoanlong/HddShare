@@ -26,8 +26,8 @@
 		watch: {
 			isShow(newVal) {
 				if (newVal) {
-					this.$emit('on-show');
-					clearTimeout(this.timeout);
+					this.$emit('on-show')
+					clearTimeout(this.timeout)
 					this.timeout = setTimeout(() => {
 						this.isShow = false
 						// document.body.removeChild(this.$refs.msg)

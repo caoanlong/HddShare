@@ -77,7 +77,8 @@ export default {
 	},
 	watch: {
 		showSelector (newVal) {
-			this.selectType = this.type
+			// this.selectType = this.type
+			this.changeSelectType(this.type)
 		},
 		areaList (newVal) {
 			if (newVal[110000]) {
@@ -123,7 +124,7 @@ export default {
 				// 进入到区县选择层
 				this.firstArea = {
 					key: key,
-					value: value,
+					value: value
 				}
 				this.areaList = ChineseDistricts[key]
 				this.selectedCity = key
@@ -212,6 +213,7 @@ export default {
 		},
 		// 选择全国置空
 		reset (type) {
+			console.log(type)
 			if (type == 'simple') {
 				this.selectedProvince = ''
 				this.selectedCity = ''
@@ -227,11 +229,12 @@ export default {
 				this.selectedAreaList = []
 				this.endArea = '全国'
 			}
+			console.log(JSON.stringify(this.startArea))
 		},
 		close (type) {
 			// 确定
 			if (type == 'y') {
-				this.$emit('close', this.startArea.key == '' ? '' : this.startArea, this.selectedAreaList)
+				this.$emit('close', this.startArea, this.selectedAreaList)
 			// 取消
 			} else {
 				this.$emit('close')
