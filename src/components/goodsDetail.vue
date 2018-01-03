@@ -34,7 +34,7 @@
 			<div class="cells bdtb">
 				<div class="cell">
 					<div class="cell__hd"><img class="icon" src="../assets/img/detail_icon1.svg"></div>
-					<div class="cell__bd"><label class="labels">装车时间</label><span>{{goodsDetail.loadingDateStr?goodsDetail.loadingDateStr+'装车':''}}</span></div>
+					<div class="cell__bd"><label class="labels">装车时间</label><span>{{goodsDetail.loadingDateStr?goodsDetail.loadingDateStr:''}}</span></div>
 				</div>
 				<div class="cell bdt">
 					<div class="cell__hd"><img class="icon" src="../assets/img/package.svg"></div>
