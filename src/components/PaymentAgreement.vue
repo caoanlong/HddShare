@@ -22,7 +22,7 @@
 			getAgreement() {
 				let URL = this.__WEBSERVER__ + 'content/findContentListByTopicCode'
 				let params = {
-					code: this.$route.query.code || 'PaymentAgreement',
+					code: 'PaymentAgreement',
 					// Authorization:this.$route.query.Authorization
 					Authorization:'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIzNzg0OTI3Njg3OTQwNjY5NDQiLCJzdWIiOiIzNzg0OTI3Njg3OTQwNjY5NDQiLCJuYmYiOjE1MTQ5NDYyNzYsImlzcyI6IndlLXNlcnZpY2UuY24iLCJleHAiOjE1MTU1NTEwNzYsImRldmljZSI6IkFQUCIsImlhdCI6MTUxNDk0NjI3Niwic2VxIjozOTgwNTkwNjQwNDA3Njc0ODh9.dgN8Rt_fT5QGg7N7d8nBcfbtpd_yElNnk_fmD3QGhLg'
 				};

@@ -102,19 +102,9 @@ export default new Router({
 	      	component: resolve => require(['@/components/bankList'], resolve)
 	    },
 	    {
-	      	path: '/charge',
-	      	name: 'charge',
-	      	component: resolve => require(['@/components/charge'], resolve)
-	    },
-	    {
-	      	path: '/chargeRules',
-	      	name: 'chargeRules',
-	      	component: resolve => require(['@/components/chargeRules'], resolve)
-	    },
-	    {
-	      	path: '/Faq',
-	      	name: 'Faq',
-	      	component: resolve => require(['@/components/Faq'], resolve)
+	      	path: '/FaqList',
+	      	name: 'FaqList',
+	      	component: resolve => require(['@/components/FaqList'], resolve)
 	    },
 	    {
 	      	path: '/FaqDetail',
@@ -122,9 +112,9 @@ export default new Router({
 	      	component: resolve => require(['@/components/FaqDetail'], resolve)
 	    },
 	    {
-	      	path: '/PaymentProtocal',
-	      	name: 'PaymentProtocal',
-	      	component: resolve => require(['@/components/PaymentProtocal'], resolve)
+	      	path: '/PaymentAgreement',
+	      	name: 'PaymentAgreement',
+	      	component: resolve => require(['@/components/PaymentAgreement'], resolve)
 	    }
   	]
 })

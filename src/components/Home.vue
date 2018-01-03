@@ -30,8 +30,8 @@
 				<div class="grid_icon"><img src="../assets/img/agreement.svg"></div>
 				<div class="grid_label">运输费协议</div>
 			</router-link>
-			<router-link tag="div" class="grid" :to="{name:'PaymentProtocal'}">
-				<div class="grid_icon"><img src="../assets/img/protocal.svg"></div>
+			<router-link tag="div" class="grid" :to="{name:'PaymentAgreement'}">
+				<div class="grid_icon"><img src="../assets/img/PaymentAgreement.svg"></div>
 				<div class="grid_label">支付协议</div>
 			</router-link>
 			<router-link tag="div" class="grid" :to="{name: 'goodsDetail'}">
@@ -54,15 +54,15 @@
 				<div class="grid_icon"><img src="../assets/img/bank.svg"></div>
 				<div class="grid_label">银行列表</div>
 			</router-link>
-			<router-link tag="div" class="grid" :to="{name: 'charge'}">
+			<router-link tag="div" class="grid" :to="{name: 'FaqDetail',query: {code:'ServiceCharge'}}">
 				<div class="grid_icon"><img src="../assets/img/charge.svg"></div>
 				<div class="grid_label">提现手续费</div>
 			</router-link>
-			<router-link tag="div" class="grid" :to="{name: 'chargeRules'}">
+			<router-link tag="div" class="grid" :to="{name: 'FaqDetail',query: {code:'Withdrawals'}}">
 				<div class="grid_icon"><img src="../assets/img/rules.svg"></div>
 				<div class="grid_label">提现规则</div>
 			</router-link>
-			<router-link tag="div" class="grid" :to="{name: 'Faq'}">
+			<router-link tag="div" class="grid" :to="{name: 'FaqList'}">
 				<div class="grid_icon"><img src="../assets/img/help.svg"></div>
 				<div class="grid_label">常见问题</div>
 			</router-link>
