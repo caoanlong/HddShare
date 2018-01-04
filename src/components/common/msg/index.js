@@ -41,7 +41,7 @@ export default function install(Vue, options = {}) {
 			}
 		}
 
-		vue.msg = msg
+		Vue.msg = msg
 		// $msg.isShow = true
 	// }
 }
