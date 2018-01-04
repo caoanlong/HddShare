@@ -22,7 +22,7 @@ export default function install(Vue, options = {}) {
 		if (!$msg) {
 			$msg = new Msg({
 				el: document.createElement('div'),
-				propsData: data
+				// propsData: data
 			})
 			document.body.appendChild($msg.$el)
 		}
