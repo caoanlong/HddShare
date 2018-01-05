@@ -38,7 +38,7 @@
 				<div class="grid_icon"><img src="../assets/img/detail.svg"></div>
 				<div class="grid_label">货源详情</div>
 			</router-link>
-			<router-link tag="div" class="grid" :to="{name: 'truckDetail'}">
+			<router-link tag="div" class="grid" :to="{name: 'truckDetail', params: {id: '123'},}">
 				<div class="grid_icon"><img src="../assets/img/detail.svg"></div>
 				<div class="grid_label">车辆详情</div>
 			</router-link>
