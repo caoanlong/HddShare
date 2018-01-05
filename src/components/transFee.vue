@@ -41,7 +41,7 @@
 		</div>
 		<div class="pannel bdtb">
 			<div class="pannel_title c2">发货方</div>
-			<div class="pannel_item">
+			<div class="pannel_item bdt">
 				<div class="panel_box">
 					<label>发货单位</label>{{infoData.companyName}}
 				</div>
@@ -70,7 +70,7 @@
 		</div>
 		<div class="pannel bdtb">
 			<div class="pannel_title c1">承运方</div>
-			<div class="pannel_item">
+			<div class="pannel_item bdt">
 				<div class="panel_box">
 					<label>车牌号码</label>{{infoData.plateNo}}
 				</div>
@@ -94,7 +94,7 @@
 		</div>
 		<div class="pannel bdtb">
 			<div class="pannel_title c3">装车条款</div>
-			<div class="pannel_item">
+			<div class="pannel_item bdt">
 				<div class="panel_box">
 					<label>装车地址</label>{{infoData.shipperAddress}}
 				</div>
@@ -118,7 +118,7 @@
 		</div>
 		<div class="pannel bdtb">
 			<div class="pannel_title c2">送达条款</div>
-			<div class="pannel_item">
+			<div class="pannel_item bdt">
 				<div class="panel_box">
 					<label>送达地址</label>{{infoData.consigneeAddress}}
 				</div>
@@ -142,43 +142,48 @@
 		</div>
 		<div class="pannel bdtb">
 			<div class="pannel_title c1">运费条款</div>
-			<div class="pannel_item">
-				<div class="panel_box">
-					<label>现付油卡</label>{{infoData.prepayOilCardFee}}
-				</div>
-			</div>
-			<div class="pannel_item bdt">
-				<div class="panel_box">
-					<label>预付金额</label>{{infoData.prepayFee}}元
-				</div>
-			</div>
-			<div class="pannel_item bdt">
-				<div class="panel_box">
-					<label>预付方式</label>{{infoData.prepayOnlineFlag == 'N' ? '线下支付' : '平台支付'}}
-				</div>
-			</div>
-			<div class="pannel_item bdt">
-				<div class="panel_box">
-					<label>到付金额</label>{{infoData.codFee}}
-				</div>
-			</div>
-			<div class="pannel_item bdt">
-				<div class="panel_box">
-					<label>到付方式</label>{{infoData.codOnlineFlag == 'N' ? '线下支付' : '平台支付'}}
-				</div>
-			</div>
+            <div class="pannel_item" v-if="infoData.isPayOnline=='N'" >
+                <div class="panel_box">
+                    <label>支付方式</label>线下支付
+                </div>
+            </div>
+            <div class="pannel_item bdt">
+                <div class="panel_box">
+                    <label>承运运价</label>{{infoData.prepayOilCardFee}}
+                </div>
+            </div>
+            <div class="pannel_item bdt">
+                <div class="panel_box">
+                    <label>确认装车</label>{{infoData.cargoVolume?infoData.cargoVolume+'方/':''}}{{infoData.cargoNum?infoData.cargoNum+'件/':''}}{{infoData.cargoWeight?infoData.cargoWeight+'吨':''}}
+                </div>
+            </div>
+            <div class="pannel_item bdt" v-if="infoData.isPayOnline=='Y'">
+                <div class="panel_box">
+                    <label>现付油卡</label>{{infoData.prepayOilCardFee}}
+                </div>
+            </div>
+            <div class="pannel_item bdt" v-if="infoData.isPayOnline=='Y'">
+                <div class="panel_box">
+                    <label>预付金额</label>{{infoData.prepayFee}}元
+                </div>
+            </div>
+            <div class="pannel_item bdt" v-if="infoData.isPayOnline=='Y'">
+                <div class="panel_box">
+                    <label>到付金额</label>{{infoData.codFee}}
+                </div>
+            </div>
+            <div class="pannel_item bdt">
+                <div class="panel_box">
+                    <label>协议运费</label>{{infoData.feeSum}}元
+                </div>
+            </div>
 			<div class="section section2"></div>
 		</div>
-		<div class="pannel bdtb">
+		<div class="pannel bdtb" v-if="infoData.returnInvoiceFlag == 'Y' || infoData.returnWaybillFlag == 'Y'">
 			<div class="pannel_title c3">回单条款</div>
 			<div class="pannel_item">
 				<div class="panel_box">
-					<label>回单要求</label>{{infoData.returnWaybillFlag == 'N' ? '否' : '是'}}
-				</div>
-			</div>
-			<div class="pannel_item bdt">
-				<div class="panel_box">
-					<label>回单金额</label>{{infoData.porFee}}元
+					<label>回单要求</label>{{infoData.returnInvoiceFlag == 'N' ? '' : '发货单'}} {{infoData.returnWaybillFlag == 'N' ? '' : '托运单'}}
 				</div>
 			</div>
 			<div class="section section3"></div>
@@ -207,8 +212,10 @@
 			getTransFee() {
 				let URL = this.__WEBSERVER__ + 'transOrder/agreement/detail'
 				let params = {
-					transWaybillID: this.$route.query.transWaybillID,
-					Authorization: this.$route.query.Authorization
+                    // transWaybillID: this.$route.query.transWaybillID,
+					transWaybillID: '380119854763474944',
+					// Authorization: this.$route.query.Authorization
+                    Authorization:'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIzNzg0OTI3Njg3OTQwNjY5NDQiLCJzdWIiOiIzNzg0OTI3Njg3OTQwNjY5NDQiLCJuYmYiOjE1MTQ5NDYyNzYsImlzcyI6IndlLXNlcnZpY2UuY24iLCJleHAiOjE1MTU1NTEwNzYsImRldmljZSI6IkFQUCIsImlhdCI6MTUxNDk0NjI3Niwic2VxIjozOTgwNTkwNjQwNDA3Njc0ODh9.dgN8Rt_fT5QGg7N7d8nBcfbtpd_yElNnk_fmD3QGhLg'
 				}
 				this.$http.get(URL, {params: params}).then((res) => {
 					if (res.body.code == 200) {
@@ -221,7 +228,8 @@
 				let URL = this.__WEBSERVER__ + 'content/findContentListByTopicCode'
 				let params = {
 					code: 'InformationFees',
-					Authorization: this.$route.query.Authorization
+					// Authorization: this.$route.query.Authorization
+                    Authorization:'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIzNzg0OTI3Njg3OTQwNjY5NDQiLCJzdWIiOiIzNzg0OTI3Njg3OTQwNjY5NDQiLCJuYmYiOjE1MTQ5NDYyNzYsImlzcyI6IndlLXNlcnZpY2UuY24iLCJleHAiOjE1MTU1NTEwNzYsImRldmljZSI6IkFQUCIsImlhdCI6MTUxNDk0NjI3Niwic2VxIjozOTgwNTkwNjQwNDA3Njc0ODh9.dgN8Rt_fT5QGg7N7d8nBcfbtpd_yElNnk_fmD3QGhLg'
 				}
 				this.$http.get(URL, {params: params}).then((res) => {
 					if (res.body.code == 200) {
@@ -277,7 +285,6 @@
 		position relative
 		overflow hidden
 		margin-top 10px
-		margin-bottom 50px
 		background #fff
 		color #666
 		.agreement
