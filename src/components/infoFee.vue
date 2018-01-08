@@ -139,7 +139,7 @@
 				}
 				this.$http.get(URL, {params: params}).then((res) => {
 					if (res.body.code == 200) {
-						console.log(JSON.stringify(res.body.data))
+						// console.log(JSON.stringify(res.body.data))
 						this.infoData = res.body.data
 					}
 				})

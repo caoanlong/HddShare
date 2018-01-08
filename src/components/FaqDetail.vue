@@ -1,6 +1,6 @@
 <template>
-	<div class="FaqDetail">
-		<div class="charge" v-if="$route.query.code=='ServiceCharge'">
+	<div class="FaqDetail" v-html="content">
+		<!-- <div class="charge" v-if="$route.query.code=='ServiceCharge'">
 			<table>
 				<thead>
 					<tr>
@@ -81,7 +81,7 @@
 				</div>
 			</div>
 		</div>
-		
+		 -->
 	</div>
 </template>
 <script type="text/javascript">
@@ -100,16 +100,18 @@
 				let URL = this.__WEBSERVER__ + 'content/findContentListByTopicCode'
 				let params = {
 					code: this.$route.query.code,
-					Authorization:this.$route.query.Authorization
-					// Authorization:'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIzNzg0OTI3Njg3OTQwNjY5NDQiLCJzdWIiOiIzNzg0OTI3Njg3OTQwNjY5NDQiLCJuYmYiOjE1MTQ5NDYyNzYsImlzcyI6IndlLXNlcnZpY2UuY24iLCJleHAiOjE1MTU1NTEwNzYsImRldmljZSI6IkFQUCIsImlhdCI6MTUxNDk0NjI3Niwic2VxIjozOTgwNTkwNjQwNDA3Njc0ODh9.dgN8Rt_fT5QGg7N7d8nBcfbtpd_yElNnk_fmD3QGhLg'
+					// Authorization:this.$route.query.Authorization
+					Authorization:'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIzNzg0OTI3Njg3OTQwNjY5NDQiLCJzdWIiOiIzNzg0OTI3Njg3OTQwNjY5NDQiLCJuYmYiOjE1MTQ5NDYyNzYsImlzcyI6IndlLXNlcnZpY2UuY24iLCJleHAiOjE1MTU1NTEwNzYsImRldmljZSI6IkFQUCIsImlhdCI6MTUxNDk0NjI3Niwic2VxIjozOTgwNTkwNjQwNDA3Njc0ODh9.dgN8Rt_fT5QGg7N7d8nBcfbtpd_yElNnk_fmD3QGhLg'
 				};
 				this.$http.get(URL,{params:params}).then((res) => {
-					if(params.code=='PaymentAgreement'){
-						this.content = res.body.data[0].content
-					}else{
-						this.content = JSON.parse(res.body.data[0].content)
-					}
-					// console.log(this.content)
+					// if(params.code=='PaymentAgreement'){
+					// 	this.content = res.body.data[0].content
+					// }else{
+					// 	this.content = JSON.parse(res.body.data[0].content)
+					// }
+					
+					this.content = res.body.data[0].content
+					console.log(this.content)
 				})
 			}
 		}
@@ -117,77 +119,78 @@
 </script>
 <style lang="stylus" scoped>
 	.FaqDetail
-		.title
-			background #fff
-			text-align center
-			padding 20px 0
-			color #585657	
-		.cells
-			color #878787
-			.cell__hd
-				position relative
-				width 16px
-				margin 0
-				&:before
-					content ''
-					width 8px
-					height 8px
-					border-radius 4px
-					background #6cc
-					display block
-					position absolute
-					left 0
-					top 8px
-			.cell__bd
-				font-size 14px
-			.cell
-				&.bdb:not(:last-child)
-					&:after
-						left 15px
-		.charge
-			padding 10px
-			table
-				background #6cc
-				width 100%
-				border-spacing 1px
-				color #999
-				border-radius 4px
-				th
-					color #fff
-					font-size 14px
-					padding 10px 0
-					font-weight normal
-					text-align center
-				td
-					background #fff
-					font-size 12px
-					padding 15px 10px
-					&.txt-c
-						text-align center
-				tr
-					&:last-child
-						td
-							&:first-child
-								border-radius 0 0 0 3px
-							&:last-child
-								border-radius 0 0 3px 0		
-		.Withdrawals
-			.cell__bd
-				color #878787
-			.cell__ft
-				color #585858
-				font-size 14px
-			.tips
-				color #7990a5
-				position relative
-				padding 10px 10px 10px 40px
-				img
-					width 24px
-					height 24px
-					position absolute
-					left 10px
-					top 14px
-				p
-					line-height 30px
-					font-size 14px
+		padding 10px
+		// .title
+		// 	background #fff
+		// 	text-align center
+		// 	padding 20px 0
+		// 	color #585657	
+		// .cells
+		// 	color #878787
+		// 	.cell__hd
+		// 		position relative
+		// 		width 16px
+		// 		margin 0
+		// 		&:before
+		// 			content ''
+		// 			width 8px
+		// 			height 8px
+		// 			border-radius 4px
+		// 			background #6cc
+		// 			display block
+		// 			position absolute
+		// 			left 0
+		// 			top 8px
+		// 	.cell__bd
+		// 		font-size 14px
+		// 	.cell
+		// 		&.bdb:not(:last-child)
+		// 			&:after
+		// 				left 15px
+		// .charge
+		// 	padding 10px
+		// 	table
+		// 		background #6cc
+		// 		width 100%
+		// 		border-spacing 1px
+		// 		color #999
+		// 		border-radius 4px
+		// 		th
+		// 			color #fff
+		// 			font-size 14px
+		// 			padding 10px 0
+		// 			font-weight normal
+		// 			text-align center
+		// 		td
+		// 			background #fff
+		// 			font-size 12px
+		// 			padding 15px 10px
+		// 			&.txt-c
+		// 				text-align center
+		// 		tr
+		// 			&:last-child
+		// 				td
+		// 					&:first-child
+		// 						border-radius 0 0 0 3px
+		// 					&:last-child
+		// 						border-radius 0 0 3px 0		
+		// .Withdrawals
+		// 	.cell__bd
+		// 		color #878787
+		// 	.cell__ft
+		// 		color #585858
+		// 		font-size 14px
+		// 	.tips
+		// 		color #7990a5
+		// 		position relative
+		// 		padding 10px 10px 10px 40px
+		// 		img
+		// 			width 24px
+		// 			height 24px
+		// 			position absolute
+		// 			left 10px
+		// 			top 14px
+		// 		p
+		// 			line-height 30px
+		// 			font-size 14px
 </style>
