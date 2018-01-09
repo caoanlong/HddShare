@@ -5,7 +5,8 @@
 			<img  :src='__IMGWEBSERVER__ + "/" + truckDetail.headPicture' class="pic" @error="errorImg"/>
 		    <p><b class="name">{{truckDetail.realName}} {{truckDetail.plateNo}}</b></p>
 		    <p>{{truckDetail.truckTypeName}}/{{truckDetail.truckLengthName}}/{{truckDetail.loads}}吨</p>
-			<router-link tag="div" :to="{name: 'AppDownload'}" class="tel"><img src="../assets/img/ic_call_phone_image.png" /></router-link>
+		    <router-link tag="div" :to="{name: 'AppDownload'}" class="attention"><img src="../assets/img/gz.svg" /></router-link>
+			<router-link tag="div" :to="{name: 'AppDownload'}" class="tel"><img src="../assets/img/tel.svg" /></router-link>
 		</div>
 		<div class="otherInfo bdb">
 		    	<div class="item">
@@ -150,37 +151,27 @@
 		.history
 			span
 				padding 0 5px
-		.attention
 		.name
 			display inline-block
 			vertical-align top
 			margin-right 5px
-		.attention
-			border 1px solid #ddd
-			padding 1px 8px
-			border-radius 10px
-			font-size 12px
-			color #ddd
-			img
-				width 12px
-				height 12px
-				vertical-align top
-				margin-top 2px
-				&.attentioned
-					color #6cc
-					border-color #6cc
 		.tel
+		.attention
 			position absolute
-			right 15px
+			right 50px
 			top 50%
-			width 40px
-			height 40px
+			width 30px
+			height 30px
 			-webkit-transform translateY(-50%)
 			transform translateY(-50%)
 			img
-				width 40px
-				height 40px
-				vertical-algin top
+				width 30px
+				height 30px
+				vertical-align top
+		.tel
+			right 10px
+		.attention
+			right 50px
 	.otherInfo
 		display flex
 		height 60px
