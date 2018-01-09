@@ -94,7 +94,6 @@
 		},
 		created () {
 			let d = new Date()
-			console.log(d.getFullYear() + '-' + ((d.getMonth()+1) < 10 ? '0' + (d.getMonth()+1) : (d.getMonth()+1)) + '-' + (d.getDate() < 10 ? '0' + d.getDate() : d.getDate()))
 			this.isWx = (window.navigator.userAgent.indexOf('MicroMessenger') > -1) ? true : false
 		}
 	}
