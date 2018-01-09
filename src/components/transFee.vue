@@ -262,6 +262,12 @@
 			.lineInfo
 				font-weight bold
 				color #333
+				.start
+				.end
+					width 110px
+					overflow hidden
+					text-overflow ellipsis
+					white-space nowrap
 				span
 					display inline-block
 					vertical-align middle
