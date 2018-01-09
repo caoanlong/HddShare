@@ -1,4 +1,4 @@
-# hdd-wx-share
+# hdd-app-share
 
 > A Vue.js project
 
