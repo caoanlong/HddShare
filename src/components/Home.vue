@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<div class="titleBar" v-show="!isWx">单页</div>
+		<div class="titleBar">单页</div>
 		<div class="grids">
 			<router-link tag="div" class="grid" :to="{name: 'AppDownload'}">
 				<div class="grid_icon"><img src="../assets/img/download.svg"></div>
@@ -89,12 +89,9 @@
 	export default {
 		data () {
 			return {
-				isWx: false
 			}
 		},
 		created () {
-			let d = new Date()
-			this.isWx = (window.navigator.userAgent.indexOf('MicroMessenger') > -1) ? true : false
 		}
 	}
 </script>

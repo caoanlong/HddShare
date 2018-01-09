@@ -7,16 +7,6 @@
 export default {
 	name: 'app',
 	created () {
-		if ((window.navigator.userAgent.indexOf('MicroMessenger') > -1) && document.body.getAttribute('wx-router')) {
-			this.$router.push({name: document.body.getAttribute('wx-router')})
-		}
-		this.wx(location.href.split('#')[0], [
-			'onMenuShareTimeline',
-			'onMenuShareAppMessage',
-			'onMenuShareQQ',
-			'onMenuShareWeibo',
-			'onMenuShareQZone'
-		])
 		this.getImgUrl()
 	},
 	methods: {
