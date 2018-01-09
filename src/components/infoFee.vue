@@ -12,7 +12,7 @@
 			</div>
 			<div class="item">
 				<img class="icon" src="../assets/img/detail_icon2.svg">
-				<div class="goodInfo">{{infoData.cargoName?infoData.cargoName+'/':''}}{{infoData.cargoWeight?infoData.cargoWeight+'吨/':''}}{{infoData.cargoVolume?infoData.cargoVolume+'方/':''}}{{infoData.truckType}}</div>
+				<div class="goodInfo">{{infoData.cargoName?infoData.cargoName+'/':''}}{{infoData.cargoWeight?infoData.cargoWeight+'吨':''}}{{infoData.cargoVolume?'/'+infoData.cargoVolume+'方':''}}{{infoData.cargoNum?'/'+infoData.cargoNum+'件':''}}</div>
 			</div>
 			<img class="success_icon" src="../assets/img/success_icon.png"/>
 		</div>

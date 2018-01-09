@@ -12,7 +12,7 @@
 			</div>
 			<div class="item">
 				<img class="icon" src="../assets/img/detail_icon2.svg">
-				<div class="goodInfo">{{infoData.cargoName?infoData.cargoName+'/':''}}{{infoData.cargoWeight?infoData.cargoWeight+'吨/':''}}{{infoData.cargoVolume?infoData.cargoVolume+'方/':''}}{{infoData.truckType}}</div>
+				<div class="goodInfo">{{infoData.cargoName?infoData.cargoName+'/':''}}{{infoData.cargoWeight?infoData.cargoWeight+'吨':''}}{{infoData.cargoVolume?'/'+infoData.cargoVolume+'方':''}}{{infoData.cargoNum?'/'+infoData.cargoNum+'件':''}}</div>
 			</div>
 			<img class="success_icon" src="../assets/img/cancel_icon.png" v-show="infoData.statusAll==1">
 			<img class="success_icon" src="../assets/img/success_icon.png" v-show="infoData.statusAll==2">
@@ -213,7 +213,6 @@
 				let URL = this.__WEBSERVER__ + 'transOrder/agreement/detail'
 				let params = {
                     transWaybillID: this.$route.query.transWaybillID,
-					// transWaybillID: '380119854763474944',
 					Authorization: this.$route.query.Authorization
 				}
 				this.$http.get(URL, {params: params}).then((res) => {
