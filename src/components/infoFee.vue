@@ -12,7 +12,7 @@
 			</div>
 			<div class="item">
 				<img class="icon" src="../assets/img/detail_icon2.svg">
-				<div class="goodInfo">{{infoData.cargoName}}/{{infoData.cargoWeight}}吨/{{infoData.cargoVolume}}方/{{infoData.cargoPackageName}}</div>
+				<div class="goodInfo">{{infoData.cargoName?infoData.cargoName+'/':''}}{{infoData.cargoWeight?infoData.cargoWeight+'吨/':''}}{{infoData.cargoVolume?infoData.cargoVolume+'方/':''}}{{infoData.truckType}}</div>
 			</div>
 			<img class="success_icon" src="../assets/img/success_icon.png"/>
 		</div>
@@ -29,7 +29,7 @@
 			</div>
 			<div class="pannel_item bdt">
 				<div class="panel_box">
-					<label>协商信息费</label><b class="c2">{{infoData.infoFee}}元</b>
+					<label>协商信息费</label><b class="c2">{{infoData.infoFee?infoData.infoFee+'元':''}}</b>
 				</div>
 			</div>
 		</div>

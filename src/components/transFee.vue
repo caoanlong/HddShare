@@ -12,7 +12,7 @@
 			</div>
 			<div class="item">
 				<img class="icon" src="../assets/img/detail_icon2.svg">
-				<div class="goodInfo">{{infoData.cargoName}}/{{infoData.cargoWeight}}吨/{{infoData.cargoVolume}}方/{{infoData.truckType}}</div>
+				<div class="goodInfo">{{infoData.cargoName?infoData.cargoName+'/':''}}{{infoData.cargoWeight?infoData.cargoWeight+'吨/':''}}{{infoData.cargoVolume?infoData.cargoVolume+'方/':''}}{{infoData.truckType}}</div>
 			</div>
 			<img class="success_icon" src="../assets/img/cancel_icon.png" v-show="infoData.statusAll==1">
 			<img class="success_icon" src="../assets/img/success_icon.png" v-show="infoData.statusAll==2">
@@ -215,12 +215,11 @@
                     transWaybillID: this.$route.query.transWaybillID,
 					// transWaybillID: '380119854763474944',
 					Authorization: this.$route.query.Authorization
-                    // Authorization:'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIzNzg0OTI3Njg3OTQwNjY5NDQiLCJzdWIiOiIzNzg0OTI3Njg3OTQwNjY5NDQiLCJuYmYiOjE1MTQ5NDYyNzYsImlzcyI6IndlLXNlcnZpY2UuY24iLCJleHAiOjE1MTU1NTEwNzYsImRldmljZSI6IkFQUCIsImlhdCI6MTUxNDk0NjI3Niwic2VxIjozOTgwNTkwNjQwNDA3Njc0ODh9.dgN8Rt_fT5QGg7N7d8nBcfbtpd_yElNnk_fmD3QGhLg'
 				}
 				this.$http.get(URL, {params: params}).then((res) => {
 					if (res.body.code == 200) {
-						// console.log(res.body.data)
 						this.infoData = res.body.data
+						console.log(res.body.data)
 					} 
 				})
 			},
@@ -229,7 +228,6 @@
 				let params = {
 					code: 'InformationFees',
 					Authorization: this.$route.query.Authorization
-                    // Authorization:'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIzNzg0OTI3Njg3OTQwNjY5NDQiLCJzdWIiOiIzNzg0OTI3Njg3OTQwNjY5NDQiLCJuYmYiOjE1MTQ5NDYyNzYsImlzcyI6IndlLXNlcnZpY2UuY24iLCJleHAiOjE1MTU1NTEwNzYsImRldmljZSI6IkFQUCIsImlhdCI6MTUxNDk0NjI3Niwic2VxIjozOTgwNTkwNjQwNDA3Njc0ODh9.dgN8Rt_fT5QGg7N7d8nBcfbtpd_yElNnk_fmD3QGhLg'
 				}
 				this.$http.get(URL, {params: params}).then((res) => {
 					if (res.body.code == 200) {

@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<div class="titleBar">单页</div>
+		<div class="titleBar">APP内嵌套单页</div>
 		<div class="grids">
 			<router-link tag="div" class="grid" :to="{name: 'AppDownload'}">
 				<div class="grid_icon"><img src="../assets/img/download.svg"></div>
