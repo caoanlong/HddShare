@@ -6,7 +6,7 @@
 				<img class="icon" src="../assets/img/position_icon.svg">
 				<div class="lineInfo">
 					<span class="start" :style="{'max-width': autoWidth+'px'}">{{infoData.areaFromName}}</span>
-					<span class="arrow"></span>
+					<img class="arrow" src="../assets/img/arrow.svg"></span>
 					<span class="end" :style="{'max-width': autoWidth+'px'}">{{infoData.areaToName}}</span>
 				</div>
 			</div>
@@ -225,17 +225,13 @@
 			return {
 				infoData: {},
 				content: '',
-				isContent: false
+				isContent: false,
+				autoWidth:''
 			}
 		},
-		computed: {
-	        autoWidth () {
-	        	let W = (window.outerWidth-82)/2
-	            return W
-	        }
-	    },
 		created() {
 			document.title = '运输费协议'
+			this.autoWidth=(window.outerWidth-92)/2
 			this.getTransFee()
 			this.getAgreement()
 		},
@@ -282,40 +278,31 @@
 	.padd
 		position relative
 		.item
-			padding 10px 0
+			padding 5px 0
 			color #666
 			padding-left 20px
 			position relative
-			img
+			.icon
 				position absolute
 				left 0
-				top 12px
-			.goodInfo
-			.lineInfo
-				display inline-block
-				vertical-align middle
+				top 8px
 			.lineInfo
 				font-weight bold
 				color #333
-				.start
-				.end
+				span
+					display inline-block
+					vertical-align top
+					height 24px
+					line-height 24px
 					overflow hidden
 					text-overflow ellipsis
 					white-space nowrap
-				span
-					display block
-					float left
-					vertical-align middle
+				.arrow
+					width 30px
 					height 24px
-					line-height 24px
-					b
-						color #f60
-						padding 0 5px
-					&.arrow
-						background url('../assets/img/arrow.svg') no-repeat center
-						width 30px
-						height 24px
-						background-size cover
+					display inline-block
+					vertical-align top
+
 		.success_icon
 			height 80%
 			position absolute
