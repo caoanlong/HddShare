@@ -4,50 +4,36 @@
         <div class="newVersion clearfix">
             <div class="version_box">
                 <img src="../../static/img/newVer_bg.png"/>
-                <p>V2.0.1</p>
-                <router-link class="updataBtn" to="">立即更新</router-link>
+                <p style="font-weight:bold">v{{$route.query.appVersionID.split('').join('.')}}</p>
+                <div class="updataBtn" v-if="appVersionInfo.isLatest=='Y'">已经是最新版本</div>
+                <a class="updataBtn" :href="appVersionInfo.downloadURL" v-else>立即更新</a>
             </div>
             <div class="version_info">
                 <p class="tit">发现新版本</p>
-                <p>2017-11-08</p>
-                <p>13.5MB</p>
+                <p>{{appVersionInfo.releaseTime}}</p>
+                <p>{{appVersionInfo.versionSize}}MB</p>
                 <div class="des">
-                    <p>-新增银行卡提现功能</p>
-                    <p>-新增企业员工角色功能</p>
-                    <p>-修复了V2.0.4版本BUG</p>
+                    <p v-for="item in updataDes">{{item}}</p>
                 </div>
             </div>
         </div>
-        <div class="version_info_Detail">
-            <div class="item clearfix">
-                <div class="tit">1.新增银行卡提现功能</div>
-                <ul class="clearfix">
-                    <li><img src="../../static/img/pic1.jpg"/>点击“我的”-“我的钱包</li>
-                    <li><img src="../../static/img/pic2.jpg"/>点击“提现”</li>
-                    <li><img src="../../static/img/pic3.jpg"/>选择银行卡,输入提现金额</li>
-                </ul>
-            </div>
-            <div class="item bdt clearfix">
-                <div class="tit">2.新增企业员工角色功能</div>
-                <ul class="clearfix">
-                    <li><img src="../../static/img/pic1.jpg"/></li>
-                    <li><img src="../../static/img/pic2.jpg"/></li>
-                    <li><img src="../../static/img/pic3.jpg"/></li>
-                </ul>
-            </div>
-        </div>
+        <div class="version_info_Detail" id="version_info_Detail" v-html="VersionDes"></div>
     </div>
 </template>
 <script type="text/javascript">
     export default {
         data() {
             return {
-                content: ''
+                appVersionInfo: '',
+                updataDes:'',
+                version:'',
+                VersionDes:''
             }
         },
         created() {
             document.title = '版本更新'
             this.getVersionDetail()
+            
         },
         methods: {
             getVersionDetail() {
@@ -57,8 +43,28 @@
                     Authorization: this.$route.query.Authorization
                 }
                 this.$http.get(URL, {params: params}).then(res => {
-                    console.log(res.body)
-                    this.content = res.body.data
+                    this.appVersionInfo = res.body.data
+                    this.version = res.body.data.version
+                    this.updataDes = JSON.parse(res.body.data.content)
+                    // console.log(res.body.data)
+                    this.$nextTick(() => {
+                        this.getVersionDes()
+                    })
+                })
+            },
+            getVersionDes() {
+                let URL = this.__WEBSERVER__ + 'content/findFreeContentListByTopicCode'
+                let params = {
+                    code: this.version
+                }
+                this.$http.get(URL, {params: params}).then(res => {
+                    this.VersionDes = res.body.data[0].content
+                    this.$nextTick(() => {
+                        let imgs = document.getElementById('version_info_Detail').getElementsByTagName('img')
+                        for (var i = 0; i < imgs.length; i++) {
+                            imgs[i].setAttribute('width','100%')
+                        }
+                    })
                 })
             }
         }
