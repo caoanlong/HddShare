@@ -5,9 +5,13 @@
 			<div class="item transLine" >
 				<img class="icon" src="../assets/img/position_icon.svg">
 				<div class="lineInfo">
-					<span class="start" :style="{'max-width': autoWidth+'px'}">{{infoData.areaFromName}}</span>
-					<img class="arrow" src="../assets/img/arrow.svg"></span>
-					<span class="end" :style="{'max-width': autoWidth+'px'}">{{infoData.areaToName}}</span>
+					<span class="start">
+						{{infoData.areaFromName && (infoData.areaFromName.split('').length > 6 ? infoData.areaFromName.substr(0,6) + '...' : infoData.areaFromName)}}
+					</span>
+					<img class="arrow" src="../assets/img/arrow.svg">
+					<span class="end">
+						{{infoData.areaToName && (infoData.areaToName.split('').length > 6 ? infoData.areaToName.substr(0,6) + '...' : infoData.areaToName)}}
+					</span>
 				</div>
 			</div>
 			<div class="item">
@@ -231,7 +235,7 @@
 		},
 		created() {
 			document.title = '运输费协议'
-			this.autoWidth=(window.outerWidth-92)/2
+			// this.autoWidth=(window.outerWidth-92)/2
 			this.getTransFee()
 			this.getAgreement()
 		},
@@ -289,14 +293,6 @@
 			.lineInfo
 				font-weight bold
 				color #333
-				span
-					display inline-block
-					vertical-align top
-					height 24px
-					line-height 24px
-					overflow hidden
-					text-overflow ellipsis
-					white-space nowrap
 				.arrow
 					width 30px
 					height 24px
