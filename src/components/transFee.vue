@@ -149,7 +149,7 @@
             </div>
             <div class="pannel_item bdt">
                 <div class="panel_box">
-                    <label>承运运价</label>{{infoData.prepayOilCardFee?infoData.prepayOilCardFee+'元':''}}
+                    <label>承运运价</label>{{infoData.prepayOilCardFee || infoData.prepayOilCardFee == 0 ?infoData.prepayOilCardFee+'元':''}}
                 </div>
             </div>
             <div class="pannel_item bdt">
