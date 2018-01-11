@@ -7,9 +7,9 @@
 			</div>
 			<div class="text">
 				<p class="line bold">
-					<span class="from">{{goods.areaFromName.split(',').length == 4 ? goods.areaFromName.split(',')[1] + goods.areaFromName.split(',')[2] : goods.areaFromName.split(',')[0] + goods.areaFromName.split(',')[1]}}</span>
-					<span class="arrow"></span>
-					<span class="to">{{goods.areaToName.split(',').length == 4 ? goods.areaToName.split(',')[1]+goods.areaToName.split(',')[2] :goods.areaToName.split(',')[0] + goods.areaToName.split(',')[1]}}</span>
+					<span class="from" :style="{'max-width': autoWidth+'px'}">{{goods.areaFromName.split(',').length == 4 ? goods.areaFromName.split(',')[1] + goods.areaFromName.split(',')[2] : goods.areaFromName.split(',')[0] + goods.areaFromName.split(',')[1]}}</span>
+					<img class="arrow" src="../../assets/img/arrow.svg" />
+					<span class="to" :style="{'max-width': autoWidth+'px'}">{{goods.areaToName.split(',').length == 4 ? goods.areaToName.split(',')[1]+goods.areaToName.split(',')[2] :goods.areaToName.split(',')[0] + goods.areaToName.split(',')[1]}}</span>
 				</p>
 				<p class="quote">
 					<span class="quote_sort" v-show="goods.cargoFreightType == 'Talk'">按{{goods.cargoFreightUnitName.split('/')[1]}}报价</span>
@@ -34,6 +34,12 @@
 				type: Object
 			}
 		},
+		computed: {
+	        autoWidth () {
+	        	let W = (window.outerWidth-153)/2
+	            return W
+	        }
+	    },
 		data() {
 			return {
 				headPicture: '',
@@ -135,18 +141,14 @@
 					height 20px
 					margin-top 0
 					span
-						display block
+						display inline-block
 						float left
 						height 20px
-						&.from
-						&.to
-							overflow hidden
-							text-overflow ellipsis
-							white-space nowrap
+						overflow hidden
+						white-space nowrap
+						text-overflow ellipsis
 					.arrow
-						flex 0 0 20px
-						background url('../../assets/img/area_arrow.png') no-repeat center
-						background-size contain
+						float left
 						width 20px
 						vertical-align middle
 		.icon-phone

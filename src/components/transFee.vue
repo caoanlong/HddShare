@@ -2,12 +2,12 @@
 	<div class="container">
 		<!-- <div class="titleBar">运输协议</div> -->
 		<div class="padd">
-			<div class="item">
+			<div class="item transLine" >
 				<img class="icon" src="../assets/img/position_icon.svg">
 				<div class="lineInfo">
-					<span class="start">{{infoData.areaFromName}}</span>
+					<span class="start" :style="{'max-width': autoWidth+'px'}">{{infoData.areaFromName}}</span>
 					<span class="arrow"></span>
-					<span class="end">{{infoData.areaToName}}</span>
+					<span class="end" :style="{'max-width': autoWidth+'px'}">{{infoData.areaToName}}</span>
 				</div>
 			</div>
 			<div class="item">
@@ -228,6 +228,12 @@
 				isContent: false
 			}
 		},
+		computed: {
+	        autoWidth () {
+	        	let W = (window.outerWidth-82)/2
+	            return W
+	        }
+	    },
 		created() {
 			document.title = '运输费协议'
 			this.getTransFee()
@@ -245,7 +251,7 @@
 				this.$http.get(URL, {params: params}).then((res) => {
 					if (res.body.code == 200) {
 						this.infoData = res.body.data
-						console.log(res.body.data)
+						// console.log(res.body.data)
 					} 
 				})
 			},
@@ -278,7 +284,12 @@
 		.item
 			padding 10px 0
 			color #666
+			padding-left 20px
+			position relative
 			img
+				position absolute
+				left 0
+				top 12px
 			.goodInfo
 			.lineInfo
 				display inline-block
@@ -288,12 +299,12 @@
 				color #333
 				.start
 				.end
-					width 110px
 					overflow hidden
 					text-overflow ellipsis
 					white-space nowrap
 				span
-					display inline-block
+					display block
+					float left
 					vertical-align middle
 					height 24px
 					line-height 24px
