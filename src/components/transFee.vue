@@ -1,7 +1,7 @@
 <template>
-	<div class="container">
+	<div id="container" class="container" >
 		<!-- <div class="titleBar">运输协议</div> -->
-		<div class="padd">
+		<div id="top" class="padd">
 			<div class="item transLine" >
 				<img class="icon" src="../assets/img/position_icon.svg">
 				<div class="lineInfo">
@@ -218,9 +218,10 @@
 			<div class="section section3"></div>
 		</div>
 		<div class="pannel bdtb">
-			<div class="pannel_title text-center" @click="isContent=!isContent">货多多信息费服务协议<img class="" src="../assets/img/arrow_down.svg"></div>
+			<div class="pannel_title text-center" @click="isContent=!isContent">货多多运输服务协议<img :class="{'active': isContent}" src="../assets/img/arrow_down.svg"></div>
 			<div class="agreement" v-show="isContent" v-html="content"></div>
 		</div>
+		<div class="upBtn" @click="scrollTop"></div>
 	</div>
 </template>
 <script type="text/javascript">
@@ -243,7 +244,7 @@
 			getTransFee() {
 				let URL = this.__WEBSERVER__ + 'transOrder/agreement/detail'
 				let params = {
-                    transWaybillID: this.$route.query.transWaybillID,
+					transWaybillID: this.$route.query.transWaybillID,
                     // transWaybillID: '400665393762402304',
 					Authorization: this.$route.query.Authorization
 					// Authorization: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiI0MDAyMzUzMzY0OTgwMzY3MzYiLCJzdWIiOiI0MDAyMzUzMzY0OTgwMzY3MzYiLCJuYmYiOjE1MTU1NTcxNjAsImlzcyI6IndlLXNlcnZpY2UuY24iLCJleHAiOjE1MTYxNjE5NjAsImRldmljZSI6IkFQUCIsImlhdCI6MTUxNTU1NzE2MCwic2VxIjo0MDA2MjEyOTg5ODYxMzk2NDh9.rnU0sCUgqz4Q6ggZZjLN32O_C5p2V1C-cmFNta1Xul0'
@@ -266,11 +267,27 @@
 						this.content = res.body.data[0].content
 					}
 				})
+			},
+			scrollTop () {
+				document.body.scrollTop = 0
 			}
 		}
 	}
 </script>
 <style lang="stylus" scoped>
+	.upBtn
+		display block
+		position fixed
+		right 20px
+		bottom 30px
+		width 44px
+		height 44px
+		border-radius 22px
+		box-shadow 0 2px 12px rgba(0,0,0,.3)
+		background-color #fff
+		background-image url('../assets/img/arr_up.svg')
+		background-repeat no-repeat
+		background-position center
 	.titleBar
 		background #6cc
 		height 44px
@@ -317,6 +334,8 @@
 		.pannel_title
 			padding 10px 15px
 			font-size 16px
+			.active
+				transform rotate(180deg)
 		.pannel_item
 			position relative
 			padding 10px 15px
