@@ -52,12 +52,12 @@
 			</div>
 			<div class="pannel_item bdt">
 				<div class="panel_box">
-					<label>单位地址</label>{{infoData.shipperAddress}}
+					<label>单位地址</label>{{infoData.companyAddress}}
 				</div>
 			</div>
 			<div class="pannel_item bdt">
 				<div class="panel_box">
-					<label>发货人</label>{{infoData.shipper}}
+					<label>发货人</label>{{infoData.companyRealName}}
 				</div>
 			</div>
 			<div class="pannel_item bdt">
@@ -67,7 +67,7 @@
 			</div>
 			<div class="pannel_item bdt">
 				<div class="panel_box">
-					<label>电话号码</label>{{infoData.shipperMobile}}
+					<label>电话号码</label>{{infoData.companyMobile}}
 				</div>
 			</div>
 			<div class="section section1"></div>
@@ -100,7 +100,7 @@
 			<div class="pannel_title c3">装车条款</div>
 			<div class="pannel_item bdt">
 				<div class="panel_box">
-					<label>装车地址</label>{{infoData.shipperAddress}}
+					<label>装车地址</label>{{infoData.shipperAddressPos}}{{infoData.shipperAddress && (','+infoData.shipperAddress)}}
 				</div>
 			</div>
 			<div class="pannel_item bdt">
@@ -113,18 +113,13 @@
 					<label>联系电话</label>{{infoData.shipperMobile}}
 				</div>
 			</div>
-			<div class="pannel_item bdt">
-				<div class="panel_box">
-					<label>最晚装车时间</label>{{infoData.shipperDate}}
-				</div>
-			</div>
 			<div class="section section3"></div>
 		</div>
 		<div class="pannel bdtb">
 			<div class="pannel_title c2">送达条款</div>
 			<div class="pannel_item bdt">
 				<div class="panel_box">
-					<label>送达地址</label>{{infoData.consigneeAddress}}
+					<label>送达地址</label>{{infoData.consigneeAddressPos}}{{infoData.consigneeAddress && (','+infoData.consigneeAddress)}}
 				</div>
 			</div>
 			<div class="pannel_item bdt">
@@ -137,33 +132,37 @@
 					<label>联系电话</label>{{infoData.consigneeMobile}}
 				</div>
 			</div>
-			<div class="pannel_item bdt">
-				<div class="panel_box">
-					<label>最晚到达时间</label>{{infoData.consigneeDate}}
-				</div>
-			</div>
 			<div class="section section1"></div>
 		</div>
 		<div class="pannel bdtb">
 			<div class="pannel_title c1">运费条款</div>
-            <div class="pannel_item" v-if="infoData.isPayOnline=='N'" >
+            <div class="pannel_item bdt" v-if="infoData.isPayOnline=='N'" >
                 <div class="panel_box">
                     <label>支付方式</label>线下支付
                 </div>
             </div>
             <div class="pannel_item bdt">
                 <div class="panel_box">
-                    <label>承运运价</label>{{infoData.prepayOilCardFee || infoData.prepayOilCardFee == 0 ?infoData.prepayOilCardFee+'元':''}}
+                    <label>承运运价</label>
+                    <!-- 定价 -->
+					<span v-if="infoData.cargoFreightType=='fix'">{{infoData.cargoFreightPrice}}{{infoData.cargoFreightUnit}}</span>
+					<!-- 司机报价，议价 -->
+					<span v-else="infoData.cargoFreightType=='Talk'">{{infoData.offerPrice}}{{infoData.cargoFreightUnit}}</span>
+                    
                 </div>
             </div>
             <div class="pannel_item bdt">
                 <div class="panel_box">
-                    <label>确认装车</label>{{infoData.cargoVolume?infoData.cargoVolume+'方/':''}}{{infoData.cargoNum?infoData.cargoNum+'件/':''}}{{infoData.cargoWeight?infoData.cargoWeight+'吨':''}}
+                    <label>确认装车</label>
+					<span v-if="unit=='方'">{{infoData.cargoVolume && (infoData.cargoVolume+'方')}}</span>
+					<span v-else-if="unit=='件'">{{infoData.cargoNum && (infoData.cargoNum+'件')}}</span>
+					<span v-else-if="unit=='吨'">{{infoData.cargoWeight && (infoData.cargoWeight+'吨')}}</span>
+                    <span v-else>1车</span>
                 </div>
             </div>
             <div class="pannel_item bdt" v-if="infoData.isPayOnline=='Y'">
                 <div class="panel_box">
-                    <label>现付油卡</label>{{infoData.prepayOilCardFee?infoData.prepayOilCardFee+'元':''}}
+                    <label>预付油卡</label>{{infoData.prepayOilCardFee?infoData.prepayOilCardFee+'元':''}}
                 </div>
             </div>
             <div class="pannel_item bdt" v-if="infoData.isPayOnline=='Y'">
@@ -230,7 +229,8 @@
 				infoData: {},
 				content: '',
 				isContent: false,
-				autoWidth:''
+				autoWidth:'',
+				unit:''
 			}
 		},
 		created() {
@@ -251,7 +251,9 @@
 				this.$http.get(URL, {params: params}).then((res) => {
 					if (res.body.code == 200) {
 						this.infoData = res.body.data
-						// console.log(res.body.data)
+						let len = res.body.data.cargoFreightUnit.length
+						this.unit =  res.body.data.cargoFreightUnit.substr(len-1)
+						console.log(res.body.data)
 					} 
 				})
 			},
@@ -286,6 +288,7 @@
 			color #666
 			padding-left 20px
 			position relative
+			height 34px
 			.icon
 				position absolute
 				left 0
