@@ -52,7 +52,7 @@
 			</div>
 			<div class="pannel_item bdt">
 				<div class="panel_box">
-					<label>单位地址</label>{{infoData.companyAddress}}
+					<label>单位地址</label>{{infoData.companyGpsAddress && (','+infoData.companyGpsAddress)}}{{infoData.companyAddress}}
 				</div>
 			</div>
 			<div class="pannel_item bdt">
@@ -272,7 +272,6 @@
 			},
 			scrollTop () {
 				document.documentElement.scrollTop = 0
-				console.log(111)
 			}
 		}
 	}
