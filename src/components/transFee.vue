@@ -52,7 +52,7 @@
 			</div>
 			<div class="pannel_item bdt">
 				<div class="panel_box">
-					<label>单位地址</label>{{infoData.companyGpsAddress && (','+infoData.companyGpsAddress)}}{{infoData.companyAddress}}
+					<label>单位地址</label>{{infoData.companyGpsAddress && (infoData.companyGpsAddress+'')}}{{infoData.companyAddress}}
 				</div>
 			</div>
 			<div class="pannel_item bdt">

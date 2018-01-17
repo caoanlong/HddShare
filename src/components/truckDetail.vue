@@ -35,9 +35,14 @@
 						<img src="../../static/img/empty.jpg" />
 						<p>暂无数据</p>
 					</div>
-					<ul v-else>
+					<ul v-else class="recentlineList">
 						<li v-for="item in truckDetail.recentlineList">
-							
+							<p class="line">
+								<span>{{item.areaFromName&& (item.areaFromName.split(',').join('').length>6 ?item.areaFromName.split(',').join('').substr(0,6) + '...':item.areaFromName.split(',').join(''))}}</span>
+								<img class="arrow" src="../assets/img/arrow.svg" />
+								<span>{{item.areaFromName&& (item.areaFromName.split(',').join('').length>6 ?item.areaFromName.split(',').join('').substr(0,6) + '...':item.areaFromName.split(',').join(''))}}</span>
+							</p>
+							<p>{{item.cargoName?item.cargoName+'/':''}}{{item.cargoWeight?item.cargoWeight+'吨/':''}}{{item.cargoVolume?item.cargoVolume+'方/':''}}{{item.cargoNum?item.cargoNum+'件':''}}</p>
 						</li>
 					</ul>
 				</div>
@@ -95,8 +100,8 @@
 			getTruckDetail () {
 				let URL = this.__WEBSERVER__ + 'adv/truck/detail'
 				let params = {
-					// "memID": this.$route.query.id
-					"memID": '391177880044191744'
+					"memID": this.$route.query.id
+					// "memID": '391177880044191744'
 				}
 				this.$http.get(URL, {params: params}).then(res => {
 					console.log(JSON.stringify(res.body.data))
@@ -270,8 +275,8 @@
 				img
 					width 50%
 			li
-				padding 0 10px
-				height 40px
+				padding 5px 10px
+				height 50px
 				line-height 40px
 				position relative
 				font-size 14px
@@ -310,4 +315,26 @@
 						color #6cc
 						&:before
 							background url('../assets/img/yrz.svg') no-repeat
+							
+		.recentlineList
+			li
+				height 50px
+				padding 5px 10px
+				p
+					height 20px
+					line-height 20px
+					color #999
+					span
+						display inline-block
+						padding-left 0
+						float none
+						vertical-align top
+						height 20px
+						line-height 20px
+					img
+						height 20px
+						width 20px
+						margin 0 10px
+					&.line
+						color #333
 </style>

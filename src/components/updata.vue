@@ -4,7 +4,7 @@
         <div class="newVersion clearfix">
             <div class="version_box">
                 <img src="../../static/img/newVer_bg.png"/>
-                <p style="font-weight:bold">v{{$route.query.appVersionID.split('').join('.')}}</p>
+                <p style="font-weight:bold">v{{$route.query.appVersionID&&$route.query.appVersionID.split('').join('.')}}</p>
                 <div class="updataBtn" v-if="appVersionInfo.isLatest=='Y'">已经是最新版本</div>
                 <a class="updataBtn" :href="appVersionInfo.downloadURL" v-else>立即更新</a>
             </div>
