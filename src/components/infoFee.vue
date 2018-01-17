@@ -136,11 +136,13 @@
 				let URL = this.__WEBSERVER__ + 'agentOrder/agreement/detail'
 				let params = {
 					agentAgreementID: this.$route.query.agentAgreementID,
+					// agentAgreementID: '401438223244460032',
+					// Authorization: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiI0MDAyMzUzMzY0OTgwMzY3MzYiLCJzdWIiOiI0MDAyMzUzMzY0OTgwMzY3MzYiLCJuYmYiOjE1MTYxNTk5OTMsImlzcyI6IndlLXNlcnZpY2UuY24iLCJleHAiOjE1MTY3NjQ3OTMsImRldmljZSI6IkFQUCIsImlhdCI6MTUxNjE1OTk5Mywic2VxIjo0MDMxNDk3NjMwMTg4OTk0NTZ9.m7U6Ielsez_9hMi2ojZKjgzXHgq83AzQ5o4PcpvrjK0'
 					Authorization: this.$route.query.Authorization
 				}
 				this.$http.get(URL, {params: params}).then((res) => {
 					if (res.body.code == 200) {
-						// console.log(JSON.stringify(res.body.data))
+						console.log(JSON.stringify(res.body.data))
 						this.infoData = res.body.data
 					}
 				})
@@ -150,6 +152,7 @@
 				let params = {
 					code: 'InformationFees',
 					Authorization: this.$route.query.Authorization
+					// Authorization: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiI0MDAyMzUzMzY0OTgwMzY3MzYiLCJzdWIiOiI0MDAyMzUzMzY0OTgwMzY3MzYiLCJuYmYiOjE1MTYxNTk5OTMsImlzcyI6IndlLXNlcnZpY2UuY24iLCJleHAiOjE1MTY3NjQ3OTMsImRldmljZSI6IkFQUCIsImlhdCI6MTUxNjE1OTk5Mywic2VxIjo0MDMxNDk3NjMwMTg4OTk0NTZ9.m7U6Ielsez_9hMi2ojZKjgzXHgq83AzQ5o4PcpvrjK0'
 				}
 				this.$http.get(URL, {params: params}).then((res) => {
 					if (res.body.code == 200) {
