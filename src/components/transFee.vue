@@ -217,7 +217,7 @@
 			<div class="section section3"></div>
 		</div>
 		<div class="pannel bdtb">
-			<div class="pannel_title text-center" @click="isContent=!isContent">货多多运输服务协议<img :class="{'active': isContent}" src="../assets/img/arrow_down.svg"></div>
+			<div class="pannel_title text-center" @click="isContent=!isContent">货多多运输协议<img :class="{'active': isContent}" src="../assets/img/arrow_down.svg"></div>
 			<div class="agreement" v-show="isContent" v-html="content"></div>
 		</div>
 		<div class="upBtn" @click="scrollTop"></div>
