@@ -111,9 +111,10 @@
 			<div class="section section3"></div>
 		</div>
 		<div class="pannel bdtb">
-			<div class="pannel_title text-center" @click="isContent=!isContent">货多多信息费服务协议<img class="" src="../assets/img/arrow_down.svg"></div>
+			<div class="pannel_title text-center" @click="isContent =! isContent">货多多信息服务协议<img :class="{'active': isContent}" src="../assets/img/arrow_down.svg"></div>
 			<div class="agreement" v-show="isContent" v-html="content"></div>
 		</div>
+		<div class="upBtn" @click="scrollTop"></div>
 	</div>
 </template>
 <script type="text/javascript">
@@ -155,11 +156,27 @@
 						this.content = res.body.data[0].content
 					}
 				})
+			},
+			scrollTop () {
+				document.body.scrollTop = 0
 			}
 		}
 	}
 </script>
 <style lang="stylus" scoped>
+	.upBtn
+		display block
+		position fixed
+		right 20px
+		bottom 30px
+		width 44px
+		height 44px
+		border-radius 22px
+		box-shadow 0 2px 12px rgba(0,0,0,.3)
+		background-color #fff
+		background-image url('../assets/img/arr_up.svg')
+		background-repeat no-repeat
+		background-position center
 	.titleBar
 		background #6cc
 		height 44px
@@ -212,6 +229,8 @@
 		.pannel_title
 			padding 10px 15px
 			font-size 16px
+			.active
+				transform rotate(180deg)
 		.pannel_item
 			position relative
 			padding 10px 15px
