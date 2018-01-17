@@ -15,14 +15,14 @@
 		    	</div>
 		    	<div class="item bdl">
 		    		<p class="tit"><img src="../assets/img/ptcy.svg" />平台承运</p>
-		    		<p class="c1">{{truckDetail.waybillNum|| 0}}笔</p>
+		    		<p class="c1">{{truckDetail.waybillNum ?truckDetail.waybillNum: '0'}}笔</p>
 		    	</div>
 		    	<div class="item bdl">
 		    		<p class="tit"><img src="../assets/img/hpl.svg" />好评率</p>
 		    		<p class="c2">{{truckDetail.feedbackRate?(truckDetail.feedbackRate+'%'):''}}</p>
 		    	</div>
 		    </div>
-		<router-link tag="div" :to="{name: 'truckLocation', query: {lng: truckDetail.lng, lat: truckDetail.lat}}" class="truckPosition bdtb"><img src="../../static/img/map.jpg" width="100%" /><p>{{truckDetail.posAreaName ? truckDetail.posAreaName.split(',').join('') : ''}}</p>
+		<router-link tag="div" :to="{name: 'truckLocation', query: {lng: truckDetail.lng, lat: truckDetail.lat}}" class="truckPosition bdtb"><img src="../../static/img/map.jpg" width="100%" /><p>{{truckDetail.posUpdateTimeStr?truckDetail.posUpdateTimeStr+' ':''}} {{truckDetail.posAreaName ? truckDetail.posAreaName.split(',').join('') : ''}}</p>
 		</router-link>
 		<div class="tab bdtb">
 			<ul class="hd bdb">
@@ -88,14 +88,15 @@
 			}
 		},
 		created () {
-			document.title = '车源详情'
+			document.title = '车辆详情'
 			this.getTruckDetail()
 		},
 		methods: {
 			getTruckDetail () {
 				let URL = this.__WEBSERVER__ + 'adv/truck/detail'
 				let params = {
-					"memID": this.$route.query.id
+					// "memID": this.$route.query.id
+					"memID": '391177880044191744'
 				}
 				this.$http.get(URL, {params: params}).then(res => {
 					console.log(JSON.stringify(res.body.data))

@@ -245,9 +245,9 @@
 				let URL = this.__WEBSERVER__ + 'transOrder/agreement/detail'
 				let params = {
 					transWaybillID: this.$route.query.transWaybillID,
-                    // transWaybillID: '400665393762402304',
+                    // transWaybillID: '394178339285237760',
 					Authorization: this.$route.query.Authorization
-					// Authorization: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiI0MDAyMzUzMzY0OTgwMzY3MzYiLCJzdWIiOiI0MDAyMzUzMzY0OTgwMzY3MzYiLCJuYmYiOjE1MTU1NTcxNjAsImlzcyI6IndlLXNlcnZpY2UuY24iLCJleHAiOjE1MTYxNjE5NjAsImRldmljZSI6IkFQUCIsImlhdCI6MTUxNTU1NzE2MCwic2VxIjo0MDA2MjEyOTg5ODYxMzk2NDh9.rnU0sCUgqz4Q6ggZZjLN32O_C5p2V1C-cmFNta1Xul0'
+					// Authorization: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIzOTExNzc0MTAyNjUzNjY1MjgiLCJzdWIiOiIzOTExNzc0MTAyNjUzNjY1MjgiLCJuYmYiOjE1MTYxNjI1MDMsImlzcyI6IndlLXNlcnZpY2UuY24iLCJleHAiOjE1MTY3NjczMDMsImRldmljZSI6IkFQUCIsImlhdCI6MTUxNjE2MjUwMywic2VxIjo0MDMxNjAyOTAxNzI0ODU2MzJ9.kVIACbcRNYaEPJXUCYmW-pJFbXUV0U1avbbGBqEFmzQ'
 				}
 				this.$http.get(URL, {params: params}).then((res) => {
 					if (res.body.code == 200) {
@@ -261,8 +261,9 @@
 			getAgreement() {
 				let URL = this.__WEBSERVER__ + 'content/findContentListByTopicCode'
 				let params = {
-					code: 'InformationFees',
+					code: 'Statement',
 					Authorization: this.$route.query.Authorization
+					// Authorization: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIzOTExNzc0MTAyNjUzNjY1MjgiLCJzdWIiOiIzOTExNzc0MTAyNjUzNjY1MjgiLCJuYmYiOjE1MTYxNjI1MDMsImlzcyI6IndlLXNlcnZpY2UuY24iLCJleHAiOjE1MTY3NjczMDMsImRldmljZSI6IkFQUCIsImlhdCI6MTUxNjE2MjUwMywic2VxIjo0MDMxNjAyOTAxNzI0ODU2MzJ9.kVIACbcRNYaEPJXUCYmW-pJFbXUV0U1avbbGBqEFmzQ'
 				}
 				this.$http.get(URL, {params: params}).then((res) => {
 					if (res.body.code == 200) {

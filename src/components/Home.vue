@@ -48,7 +48,7 @@
 			</router-link>
 			<router-link tag="div" class="grid" :to="{name: 'findTruck'}">
 				<div class="grid_icon"><img src="../assets/img/truck_icon.svg"></div>
-				<div class="grid_label">寻找车源</div>
+				<div class="grid_label">寻找车辆</div>
 			</router-link>
 			<router-link tag="div" class="grid" :to="{name: 'bankList'}">
 				<div class="grid_icon"><img src="../assets/img/bank.svg"></div>
