@@ -3,10 +3,12 @@ export default function install (Vue, options) {
 	// Vue.prototype.__WEBSERVER__ = 'http://test.hdd.we-service.cn:8888/'
 	// 测试服务器
 	const protocol = window.location.protocol
-	Vue.prototype.__WEBSERVER__ = protocol + '//develop.we-service.cn/test-hdd/v2/'
+	// Vue.prototype.__WEBSERVER__ = protocol + '//develop.we-service.cn/test-hdd/v2/'
+	Vue.prototype.__WEBSERVER__ = protocol + '//192.168.1.110/hdd/api/'
 	// 正式服务器
 	// Vue.prototype.__WEBSERVER__ = 'http://192.168.1.48:8888/'
-	Vue.prototype.__IMGWEBSERVER__ = protocol + '//develop.we-service.cn/hdd/image/'
+	// Vue.prototype.__IMGWEBSERVER__ = protocol + '//develop.we-service.cn/hdd/image/'
+	Vue.prototype.__IMGWEBSERVER__ = protocol + '//192.168.1.110/hdd/image/'
 	// 邹文臣电脑
 	// Vue.prototype.__WEBSERVER__ = 'http://192.168.1.60:4441/'
 	// 张颜电脑
@@ -18,7 +20,7 @@ export default function install (Vue, options) {
 	Vue.prototype.PAGESIZE = 10
 
 	/* 将跨域图片路径生成Base64 */
-	// 传入图片路径，返回base64
+	// 传入图片路径，返回base64 
 	Vue.prototype.getBase64 = function (img, width, height){
 		// width、height调用时传入具体像素值,控制大小,不传则默认图像大小
 		var canvas = document.createElement("canvas")
