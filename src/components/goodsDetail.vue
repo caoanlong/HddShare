@@ -76,6 +76,8 @@
 		created () {
 			document.title = '货源详情'
 			this.getGoodsDetail()
+			console.log(this.__WEBSERVER__)
+			console.log(this.__IMGWEBSERVER__)
 		},
 		methods: {
 			getGoodsDetail() {
