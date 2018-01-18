@@ -66,13 +66,13 @@
 						</li>
 						<li>
 							<label class="labels">从业资格证</label>
-							<span class="attention" v-if="truckDetail.certifyStatus=='N' || truckDetail.certifyStatus==''">未认证</span>
-							<span class="attentioned" v-else>已认证</span>
+							<span class="commited" v-if="truckDetail.qualificationCode !=''">已提交</span>
+							<span class="uncommited" v-else>未提交</span>
 						</li>
 						<li>
 							<label class="labels">道路运输许可证</label>
-							<span class="attention" v-if="truckDetail.certifyStatus=='N' || truckDetail.certifyStatus==''">未认证</span>
-							<span class="attentioned" v-else>已认证</span>
+							<span class="commited" v-if="truckDetail.transportLicenceCode  !=''">已提交</span>
+							<span  class="uncommited" v-else>未提交</span>
 						</li>
 					</ul>
 				</div>
@@ -316,7 +316,10 @@
 						color #6cc
 						&:before
 							background url('../assets/img/yrz.svg') no-repeat
-							
+					&.commited
+						color #6cc
+					&.uncommited
+						color #868686	
 		.recentlineList
 			li
 				height 50px
