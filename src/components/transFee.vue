@@ -204,6 +204,11 @@
 	                </div>
 	             </div>
             </div>
+            <div class="pannel_item bdt" v-if="infoData.isPayOnline=='N'">
+            	<div class="panel_box">
+                    <label>协议运费</label>{{infoData.feeSum?infoData.feeSum+'元':''}}
+                </div>
+            </div>
             
 			<div class="section section2"></div>
 		</div>
