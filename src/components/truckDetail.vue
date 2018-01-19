@@ -15,7 +15,7 @@
 		    	</div>
 		    	<div class="item bdl">
 		    		<p class="tit"><img src="../assets/img/ptcy.svg" />平台承运</p>
-		    		<p class="c1">{{truckDetail.waybillNum ?truckDetail.waybillNum: '0'}}笔</p>
+		    		<p class="c1">{{truckDetail.loads ?truckDetail.loads: '0'}}笔</p>
 		    	</div>
 		    	<div class="item bdl">
 		    		<p class="tit"><img src="../assets/img/hpl.svg" />好评率</p>
