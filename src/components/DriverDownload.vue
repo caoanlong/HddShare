@@ -6,9 +6,9 @@
 		</div>
 		<div class="appDes"  @click="showImg = !showImg"><img src="../../static/img/appDesPic2.png" /></div>
 		<!-- ios -->
-		<a class="downLoadBtn" href="http://www.pgyer.com/5MrZ" v-show="!isAndroid"><img src="../../static/img/downLoad_btn.png" /></a>
+		<a class="downLoadBtn" href="http://www.pgyer.com/RjkA" v-show="!isAndroid"><img src="../../static/img/downLoad_btn.png" /></a>
 		<!-- android -->
-		<a class="downLoadBtn" href="https://www.pgyer.com/t5RV" v-show="isAndroid"><img src="../../static/img/downLoad_btn.png" /></a>
+		<a class="downLoadBtn" href="https://www.pgyer.com/npqs" v-show="isAndroid"><img src="../../static/img/downLoad_btn.png" /></a>
 		<div class="mask" v-show="showImg"  @click="showImg = !showImg"></div>
 		<img class="qrImg" :src="qrImg" v-show="showImg"/>
 	</div>
@@ -25,9 +25,9 @@
 		computed: {
 			qrImg () {
 				if (this.isAndroid) {
-					return 'https://www.pgyer.com/app/qrcode/t5RV'
+					return '../../static/img/androidDriver.png'
 				} else {
-					return 'http://www.pgyer.com/app/qrcode/5MrZ'
+					return './../static/img/RjkA.png'
 				}
 				
 			}

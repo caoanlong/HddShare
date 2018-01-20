@@ -7,13 +7,13 @@
 		<!-- ios -->
 		<div class="downItem" v-show="isiOS">
 			<!-- 货主 -->
-			<img class="qrcode" src="../../static/img/qrcode1.png" />
-			<a class="downLoadBtn" href="http://www.pgyer.com/Frt7"><img src="../../static/img/downLoad_btn1.png" /></a>
+			<img class="qrcode" src="../../static/img/Xf1r.png" />
+			<a class="downLoadBtn" href="http://www.pgyer.com/Xf1r"><img src="../../static/img/downLoad_btn1.png" /></a>
 		</div>
 		<div class="downItem" v-show="isiOS">
 			<!-- 司机 -->
-			<img class="qrcode" src="../../static/img/qrcode2.png" />
-			<a class="downLoadBtn" href="http://www.pgyer.com/5MrZ"><img src="../../static/img/downLoad_btn2.png" /></a>
+			<img class="qrcode" src="../../static/img/RjkA.png" />
+			<a class="downLoadBtn" href="http://www.pgyer.com/RjkA"><img src="../../static/img/downLoad_btn2.png" /></a>
 		</div>
 		<!-- android -->
 		<div class="downItem" v-show="isAndroid">

@@ -3,20 +3,27 @@ export default function install (Vue, options) {
 	// Vue.prototype.__WEBSERVER__ = 'http://test.hdd.we-service.cn:8888/'
 	// 测试服务器
 	const protocol = window.location.protocol
-	// Vue.prototype.__WEBSERVER__ = protocol + '//develop.we-service.cn/test-hdd/v2/'
 	
-	Vue.prototype.__WEBSERVER__ = protocol + '//192.168.1.110/hdd/api/'
+	
+
 	// 正式服务器
 	// Vue.prototype.__WEBSERVER__ = 'http://192.168.1.48:8888/'
-	// Vue.prototype.__IMGWEBSERVER__ = protocol + '//develop.we-service.cn/hdd/image/'
 	
-	Vue.prototype.__IMGWEBSERVER__ = protocol + '//192.168.1.110/hdd/image/'
+	
+	
 	// 邹文臣电脑
 	// Vue.prototype.__WEBSERVER__ = 'http://192.168.1.60:4441/'
 	// 张颜电脑
 	// Vue.prototype.__WEBSERVER__ = 'http://192.168.1.29:4441/'
 	// 农信靠电脑
 	// Vue.prototype.__WEBSERVER__ = 'http://192.168.1.49:4441/'
+
+	Vue.prototype.__WEBSERVER__ = protocol + '//develop.we-service.cn/test-hdd/v2/'
+	Vue.prototype.__IMGWEBSERVER__ = protocol + '//develop.we-service.cn/hdd/image/'
+
+	// Vue.prototype.__WEBSERVER__ = protocol + '//192.168.1.110/hdd/api/'
+	// Vue.prototype.__IMGWEBSERVER__ = protocol + '//192.168.1.110/hdd/image/'
+	
 	// 线上环境
 	// Vue.prototype.__WEBSERVER__ = protocol + '//api.hdd56.com/hdd/api/'
 	// Vue.prototype.__IMGWEBSERVER__ = protocol + '//www.hdd56.com/hdd/image/'
