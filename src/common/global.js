@@ -18,15 +18,15 @@ export default function install (Vue, options) {
 	// 农信靠电脑
 	// Vue.prototype.__WEBSERVER__ = 'http://192.168.1.49:4441/'
 
-	Vue.prototype.__WEBSERVER__ = protocol + '//develop.we-service.cn/test-hdd/v2/'
-	Vue.prototype.__IMGWEBSERVER__ = protocol + '//develop.we-service.cn/hdd/image/'
+	// Vue.prototype.__WEBSERVER__ = protocol + '//develop.we-service.cn/test-hdd/v2/'
+	// Vue.prototype.__IMGWEBSERVER__ = protocol + '//develop.we-service.cn/hdd/image/'
 
 	// Vue.prototype.__WEBSERVER__ = protocol + '//192.168.1.110/hdd/api/'
 	// Vue.prototype.__IMGWEBSERVER__ = protocol + '//192.168.1.110/hdd/image/'
 	
 	// 线上环境
-	// Vue.prototype.__WEBSERVER__ = protocol + '//api.hdd56.com/hdd/api/'
-	// Vue.prototype.__IMGWEBSERVER__ = protocol + '//www.hdd56.com/hdd/image/'
+	Vue.prototype.__WEBSERVER__ = protocol + '//api.hdd56.com/hdd/api/'
+	Vue.prototype.__IMGWEBSERVER__ = protocol + '//www.hdd56.com/hdd/image/'
 	/* 每页条数 */
 	Vue.prototype.PAGESIZE = 10
 
