@@ -18,13 +18,13 @@
 		<!-- android -->
 		<div class="downItem" v-show="isAndroid">
 			<!-- 货主 -->
-			<img class="qrcode" src="../../static/img/qrcode1.png" />
-			<a class="downLoadBtn" href="https://www.pgyer.com/m0iP"><img src="../../static/img/downLoad_btn1.png" /></a>
+			<img class="qrcode" src="../../static/img/androidShipper.png" />
+			<a class="downLoadBtn" href="https://www.pgyer.com/ywH8"><img src="../../static/img/downLoad_btn1.png" /></a>
 		</div>
 		<div class="downItem" v-show="isAndroid">
 			<!-- 司机 -->
-			<img class="qrcode" src="../../static/img/qrcode2.png" />
-			<a class="downLoadBtn" href="https://www.pgyer.com/t5RV"><img src="../../static/img/downLoad_btn2.png" /></a>
+			<img class="qrcode" src="../../static/img/androidDriver.png" />
+			<a class="downLoadBtn" href="https://www.pgyer.com/npqs"><img src="../../static/img/downLoad_btn2.png" /></a>
 		</div>
 		</div>
 		<div class="footer">
@@ -83,12 +83,15 @@
 			text-align center
 			
 			.qrcode
-				width 100px
-				height 100px
+				width 120px
+				height 120px
+				padding 10px
+				background #fff
+				border-radius 8px
 			.downLoadBtn
 				display block
 				width 140px
-				margin 10px auto 0
+				margin 10px auto 0			
 		.footer
 			color #fff
 			height 30px
