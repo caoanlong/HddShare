@@ -7,7 +7,7 @@
 export default {
 	name: 'app',
 	created () {
-		this.getImgUrl()
+		// this.getImgUrl()
 	},
 	methods: {
 	}

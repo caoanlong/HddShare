@@ -2,7 +2,7 @@
 	<div class="container">
 		<!-- <div class="titleBar">车源详情</div> -->
 		<div class="baseInfo bdb">
-			<img  :src='__IMGWEBSERVER__ + "/" + truckDetail.headPicture' class="pic" @error="errorImg"/>
+			<img v-if="truckDetail.headPicture" :src='__IMGWEBSERVER__ + truckDetail.headPicture' class="pic" @error="errorImg"/>
 		    <p><b class="name">{{truckDetail.realName}} {{truckDetail.plateNo}}</b></p>
 		    <p>{{truckDetail.truckTypeName}}/{{truckDetail.truckLengthName}}/{{truckDetail.loads}}吨</p>
 		    <router-link tag="div" :to="{name: 'AppDownload'}" class="attention"><img src="../assets/img/gz.svg" /></router-link>

@@ -3,7 +3,7 @@
 		<div class="container">
 			<!-- <div class="titleBar">货源详情</div> -->
 			<div class="baseInfo bdb">
-				<img  :src='__IMGWEBSERVER__ + "/" + goodsDetail.headPicture' class="pic" @error="errorImg"/>
+				<img v-if="goodsDetail.headPicture" :src='__IMGWEBSERVER__ + goodsDetail.headPicture' class="pic" @error="errorImg"/>
 			    <p>
 			    	<b class="name">{{goodsDetail.realName}}</b>
 			    	<span class="attention">
@@ -76,8 +76,6 @@
 		created () {
 			document.title = '货源详情'
 			this.getGoodsDetail()
-			console.log(this.__WEBSERVER__)
-			console.log(this.__IMGWEBSERVER__)
 		},
 		methods: {
 			getGoodsDetail() {

@@ -7,7 +7,7 @@
         	<div class="text">
         		<p class="driver">{{truck.realName}} {{truck.plateNo}}</p>
         		<p class="truckInfo">{{truck.truckLengthName}}/{{truck.truckTypeName}}/{{truck.loads}}吨</p>
-				<p class="local">{{truck.posUpdateTime}} {{truck.posAreaName}}</p>
+				<p class="local">{{truck.posUpdateTimeStr}} {{truck.posAreaName}}</p>
             </div>
 		</router-link>
 	    <!-- <a class=" icon-phone" :href="'tel:'+10086"></a> -->
