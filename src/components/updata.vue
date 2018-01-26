@@ -43,7 +43,6 @@
 				let URL = this.__WEBSERVER__ + 'system/version/detail'
 				let params = {
 					appVersionID: this.$route.query.appVersionID,
-					isLastVersion: this.$route.query.isLastVersion,
 					// appVersionID: '404212195594334208',
 					Authorization: this.$route.query.Authorization
 					// Authorization: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIzOTExNzc0MTAyNjUzNjY1MjgiLCJzdWIiOiIzOTExNzc0MTAyNjUzNjY1MjgiLCJuYmYiOjE1MTYxNjI1MDMsImlzcyI6IndlLXNlcnZpY2UuY24iLCJleHAiOjE1MTY3NjczMDMsImRldmljZSI6IkFQUCIsImlhdCI6MTUxNjE2MjUwMywic2VxIjo0MDMxNjAyOTAxNzI0ODU2MzJ9.kVIACbcRNYaEPJXUCYmW-pJFbXUV0U1avbbGBqEFmzQ'
@@ -52,8 +51,6 @@
 					this.appVersionInfo = res.body.data
 					this.version = res.body.data.type+res.body.data.version
 					this.getVersionDes()
-					this.isLastVersion = this.$route.query.isLastVersion
-					console.log(res.body.data.content)
 					if (res.body.data.content) {
 						if (res.body.data.content.split('[')[0]) {
 							this.updataDes = JSON.parse(res.body.data.content)
