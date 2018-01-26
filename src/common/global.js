@@ -1,3 +1,35 @@
+export let callMessage = function (paramMap) {
+    var returnVal;
+    var u = navigator.userAgent;
+    try {
+        paramMap = paramMap || {};
+        // 打印日志
+        console.debug("H5调用原生入参：" + (typeof(paramMap) === "string" ? paramMap : JSON.stringify(paramMap)));
+        // Android
+        if (u.indexOf('Android') > -1) {
+            returnVal = window.external.callMessage(JSON.stringify(paramMap));
+            if (typeof(returnVal) == "string") {
+                returnVal = JSON.parse(returnVal);
+            }
+        }
+        // IOS
+        else if (u.indexOf('iPhone') > -1 || u.indexOf('iPad') > -1) {
+            try {
+                returnVal = iosCallMessage(paramMap);
+                if (typeof(returnVal) == "string") {
+                    returnVal = JSON.parse(returnVal);
+                }
+            }
+            catch (e) {
+            }
+        }
+    }
+    catch (e) {
+        alert("H5调用原生external.callMessage方法出错：" + e.message);
+    }
+    return returnVal ? returnVal : {};
+}
+
 export default function install (Vue, options) {
 	// 开发服务器
 	// Vue.prototype.__WEBSERVER__ = 'http://test.hdd.we-service.cn:8888/'
