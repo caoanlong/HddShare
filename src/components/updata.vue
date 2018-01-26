@@ -48,11 +48,8 @@
                 this.$http.get(URL, {params: params}).then(res => {
                     this.appVersionInfo = res.body.data
                     this.version = res.body.data.type+res.body.data.version
+                    this.getVersionDes()
                     this.updataDes = JSON.parse(res.body.data.content)
-                    // console.log(res.body.data)
-                    this.$nextTick(() => {
-                        this.getVersionDes()
-                    })
                 })
             },
             getVersionDes() {
