@@ -76,6 +76,8 @@
 				})
 			},
 			updata() {
+				// alert(window.external)
+				// alert(window.external.callMessage)
 				callMessage({code: 1001,msg: '更新版本'})
 			}
 		}
