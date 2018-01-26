@@ -4,7 +4,7 @@ export let callMessage = function (paramMap) {
     try {
         paramMap = paramMap || {};
         // 打印日志
-        console.debug("H5调用原生入参：" + (typeof(paramMap) === "string" ? paramMap : JSON.stringify(paramMap)));
+        console.log("H5调用原生入参：" + (typeof(paramMap) === "string" ? paramMap : JSON.stringify(paramMap)));
         // Android
         if (u.indexOf('Android') > -1) {
             returnVal = window.external.callMessage(JSON.stringify(paramMap));
