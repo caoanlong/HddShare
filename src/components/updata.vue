@@ -5,8 +5,8 @@
             <div class="version_box">
                 <img src="../../static/img/newVer_bg.png"/>
                 <p style="font-weight:bold">{{appVersionInfo.version}}</p>
-                <div class="updataBtn" v-if="appVersionInfo.isLatest=='Y'">已经是最新版本</div>
-                <a class="updataBtn" :href="appVersionInfo.downloadURL" v-else>立即更新</a>
+                <div class="updataBtn" v-if="this.isLastVersion=='Y'">已经是最新版本</div>
+                <div class="updataBtn" v-else @click="updata">立即更新</div>
             </div>
             <div class="version_info">
                 <p class="tit">发现新版本</p>
@@ -21,6 +21,7 @@
     </div>
 </template>
 <script type="text/javascript">
+    import {callMessage} from '../common/global'
     export default {
         data() {
             return {
@@ -28,7 +29,8 @@
                 updataDes:'',
                 version:'',
                 VersionDes:'',
-                type: ''
+                type: '',
+                isLastVersion:''
             }
         },
         created() {
@@ -41,6 +43,7 @@
                 let URL = this.__WEBSERVER__ + 'system/version/detail'
                 let params = {
                     appVersionID: this.$route.query.appVersionID,
+                    isLastVersion: this.$route.query.isLastVersion,
                     // appVersionID: '404212195594334208',
                     Authorization: this.$route.query.Authorization
                     // Authorization: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIzOTExNzc0MTAyNjUzNjY1MjgiLCJzdWIiOiIzOTExNzc0MTAyNjUzNjY1MjgiLCJuYmYiOjE1MTYxNjI1MDMsImlzcyI6IndlLXNlcnZpY2UuY24iLCJleHAiOjE1MTY3NjczMDMsImRldmljZSI6IkFQUCIsImlhdCI6MTUxNjE2MjUwMywic2VxIjo0MDMxNjAyOTAxNzI0ODU2MzJ9.kVIACbcRNYaEPJXUCYmW-pJFbXUV0U1avbbGBqEFmzQ'
@@ -49,10 +52,8 @@
                     this.appVersionInfo = res.body.data
                     this.version = res.body.data.type+res.body.data.version
                     this.getVersionDes()
-                    if (res.body.data.content.split('[')[0]) {
-                        this.updataDes = JSON.parse(res.body.data.content)
-                    }
-                })
+					this.isLastVersion = this.$route.query.isLastVersion
+                    this.updataDes = JSON.parse(res.body.data.content)                })
             },
             getVersionDes() {
                 let URL = this.__WEBSERVER__ + 'content/findFreeContentListByTopicCode'
@@ -68,6 +69,9 @@
                         }
                     })
                 })
+            },
+            updata() {
+                callMessage()
             }
         }
     }
