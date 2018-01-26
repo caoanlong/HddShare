@@ -53,7 +53,10 @@
                     this.version = res.body.data.type+res.body.data.version
                     this.getVersionDes()
 					this.isLastVersion = this.$route.query.isLastVersion
-                    this.updataDes = JSON.parse(res.body.data.content)                })
+                    if (res.body.data.content.split('[')[0]) {
+                        this.updataDes = JSON.parse(res.body.data.content)
+                    }
+                })
             },
             getVersionDes() {
                 let URL = this.__WEBSERVER__ + 'content/findFreeContentListByTopicCode'
