@@ -76,6 +76,7 @@
 				})
 			},
 			updata() {
+
 				callMessage({
 					code: 1001,
 					msg: '更新版本'
