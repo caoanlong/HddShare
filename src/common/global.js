@@ -21,6 +21,7 @@ export let callMessage = function (paramMap) {
                 }
             }
             catch (e) {
+            	alert("H5调用原生iosCallMessage方法出错：" + e.message)
             }
         }
     }
