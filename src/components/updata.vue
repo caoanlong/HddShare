@@ -50,6 +50,7 @@
 				this.$http.get(URL, {params: params}).then(res => {
 					this.appVersionInfo = res.body.data
 					this.version = res.body.data.type+res.body.data.version
+					this.isLastVersion = this.$route.query.isLastVersion
 					this.getVersionDes()
 					if (res.body.data.content) {
 						if (res.body.data.content.split('[')[0]) {
