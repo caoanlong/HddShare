@@ -250,9 +250,7 @@
 				let URL = this.__WEBSERVER__ + 'transOrder/agreement/detail'
 				let params = {
 					transWaybillID: this.$route.query.transWaybillID,
-                    // transWaybillID: '394178339285237760',
 					Authorization: this.$route.query.Authorization
-					// Authorization: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIzOTExNzc0MTAyNjUzNjY1MjgiLCJzdWIiOiIzOTExNzc0MTAyNjUzNjY1MjgiLCJuYmYiOjE1MTYxNjI1MDMsImlzcyI6IndlLXNlcnZpY2UuY24iLCJleHAiOjE1MTY3NjczMDMsImRldmljZSI6IkFQUCIsImlhdCI6MTUxNjE2MjUwMywic2VxIjo0MDMxNjAyOTAxNzI0ODU2MzJ9.kVIACbcRNYaEPJXUCYmW-pJFbXUV0U1avbbGBqEFmzQ'
 				}
 				this.$http.get(URL, {params: params}).then((res) => {
 					if (res.body.code == 200) {
@@ -268,7 +266,6 @@
 				let params = {
 					code: 'Statement',
 					Authorization: this.$route.query.Authorization
-					// Authorization: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIzOTExNzc0MTAyNjUzNjY1MjgiLCJzdWIiOiIzOTExNzc0MTAyNjUzNjY1MjgiLCJuYmYiOjE1MTYxNjI1MDMsImlzcyI6IndlLXNlcnZpY2UuY24iLCJleHAiOjE1MTY3NjczMDMsImRldmljZSI6IkFQUCIsImlhdCI6MTUxNjE2MjUwMywic2VxIjo0MDMxNjAyOTAxNzI0ODU2MzJ9.kVIACbcRNYaEPJXUCYmW-pJFbXUV0U1avbbGBqEFmzQ'
 				}
 				this.$http.get(URL, {params: params}).then((res) => {
 					if (res.body.code == 200) {

@@ -1,7 +1,6 @@
 <template>
 	<div>
 		<div class="container">
-			<!-- <div class="titleBar">用户协议</div> -->
 			<div class="agreenment_con" v-html="content" ref="content" id="content">
 			</div>
 		</div>
