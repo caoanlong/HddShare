@@ -1,6 +1,6 @@
 <template>
 	<div class="Faq">
-		<router-link tag="div" class="item bdb" :to="{name:'FaqDetail',query: {code:item.code}}" v-for="(item,index) in list" :key="index">
+		<router-link tag="div" class="item bdb" :to="{name:'FaqDetail',query: {code:item.code,Authorization:$route.query.Authorization}}" v-for="(item,index) in list" :key="index">
 			<p>{{item.name}}</p>
 		</router-link>
 	</div>
