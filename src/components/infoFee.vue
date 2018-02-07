@@ -141,7 +141,7 @@
 				})
 			},
 			getAgreement() {
-				let URL = this.__WEBSERVER__ + 'content/findContentListByTopicCode'
+				let URL = this.__WEBSERVER__ + 'content/findFreeContentListByTopicCode'
 				let params = {
 					code: 'InformationFees',
 					Authorization: this.$route.query.Authorization

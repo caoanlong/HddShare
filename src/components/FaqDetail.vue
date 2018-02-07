@@ -15,7 +15,7 @@
 		},
 		methods: {
 			getContent() {
-				let URL = this.__WEBSERVER__ + 'content/findContentListByTopicCode'
+				let URL = this.__WEBSERVER__ + 'content/findFreeContentListByTopicCode'
 				let params = {
 					code: this.$route.query.code,
 					Authorization:this.$route.query.Authorization

@@ -20,7 +20,7 @@
 		},
 		methods: {
 			getAgreement() {
-				let URL = this.__WEBSERVER__ + 'content/findContentListByTopicCode'
+				let URL = this.__WEBSERVER__ + 'content/findFreeContentListByTopicCode'
 				let params = {
 					code: 'PaymentAgreement',
 					Authorization:this.$route.query.Authorization

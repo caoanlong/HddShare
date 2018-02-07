@@ -19,7 +19,7 @@
 		},
 		methods: {
 			getStatement() {
-				let URL = this.__WEBSERVER__ + 'content/findContentListByTopicCode'
+				let URL = this.__WEBSERVER__ + 'content/findFreeContentListByTopicCode'
 				let params = {
 					code: this.$route.query.code || 'Statement',
 					Authorization:this.$route.query.Authorization
