@@ -22,11 +22,6 @@
 				<div class="cell__ft"><a href="mailto:qhwf@vfu56.com">qhwf@vfu56.com</a></div>
 			</div>
 		</div>
-<!-- 		<div class="appCode">
-			<img src="../assets/img/appCode.png" alt=""/>
-			<p class="title">货多多APP</p>
-			<p>版本V2.0.3</p>
-		</div> -->
 		<div class="copyright">
 			<p>深圳前海微服大数据科技有限公司 版权所有</p>
 			<p>Copyright 2017-2027 VFU. All Rights Reserved</p>
@@ -41,22 +36,6 @@
 	}
 </script>
 <style lang="stylus" scoped>
-	.appCode
-		text-align center
-		font-size 12px
-		line-height 20px
-		margin-top 40px
-		color #999
-		img
-			background #fff
-			border-radius 4px
-			padding 4px
-			width 114px
-			height 114px
-		.title
-			color #6cc
-			font-weight bold
-			font-size 14px
 	.copyright
 		position fixed
 		background #f8f8f8

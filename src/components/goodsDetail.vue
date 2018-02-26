@@ -29,7 +29,7 @@
 			</div>
 			<router-link tag="div" class="viewMap bdtb" :to="{name: 'goodsLine', query: {areaFromLat: goodsDetail.areaFromLat, areaFromLng: goodsDetail.areaFromLng, areaToLat: goodsDetail.areaToLat, areaToLng: goodsDetail.areaToLng}}">
 				<img src="../../static/img/line.jpg" width="100%" />
-				<p>最短里程<b>{{goodsDetail.estimateMileage < 1000 ? (goodsDetail.estimateMileage + '米') : ((goodsDetail.estimateMileage/1000).toFixed(1) + '公里')}}</b></p>
+				<p>最短里程<b>{{goodsDetail.estimateMileage + '公里'}}</b></p>
 			</router-link>
 			<div class="cells bdtb">
 				<div class="cell">

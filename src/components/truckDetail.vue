@@ -102,7 +102,6 @@
 				let URL = this.__WEBSERVER__ + 'adv/truck/detail'
 				let params = {
 					"memID": this.$route.query.id
-					// "memID": '391177880044191744'
 				}
 				this.$http.get(URL, {params: params}).then(res => {
 					console.log(JSON.stringify(res.body.data))

@@ -88,11 +88,6 @@
 		</div>
 		<div class="pannel bdtb">
 			<div class="pannel_title c3">装车信息</div>
-			<!-- <div class="pannel_item">
-				<div class="panel_box">
-					<label>车牌号码</label>{{infoData.plateNo}}
-				</div>
-			</div> -->
 			<div class="pannel_item bdt">
 				<div class="panel_box">
 					<label>装车地址</label>{{infoData.LoadingAddress}}
@@ -136,8 +131,6 @@
 				let URL = this.__WEBSERVER__ + 'agentOrder/agreement/detail'
 				let params = {
 					agentAgreementID: this.$route.query.agentAgreementID,
-					// agentAgreementID: '401438223244460032',
-					// Authorization: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiI0MDAyMzUzMzY0OTgwMzY3MzYiLCJzdWIiOiI0MDAyMzUzMzY0OTgwMzY3MzYiLCJuYmYiOjE1MTYxNTk5OTMsImlzcyI6IndlLXNlcnZpY2UuY24iLCJleHAiOjE1MTY3NjQ3OTMsImRldmljZSI6IkFQUCIsImlhdCI6MTUxNjE1OTk5Mywic2VxIjo0MDMxNDk3NjMwMTg4OTk0NTZ9.m7U6Ielsez_9hMi2ojZKjgzXHgq83AzQ5o4PcpvrjK0'
 					Authorization: this.$route.query.Authorization
 				}
 				this.$http.get(URL, {params: params}).then((res) => {
@@ -148,11 +141,10 @@
 				})
 			},
 			getAgreement() {
-				let URL = this.__WEBSERVER__ + 'content/findContentListByTopicCode'
+				let URL = this.__WEBSERVER__ + 'content/findFreeContentListByTopicCode'
 				let params = {
 					code: 'InformationFees',
 					Authorization: this.$route.query.Authorization
-					// Authorization: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiI0MDAyMzUzMzY0OTgwMzY3MzYiLCJzdWIiOiI0MDAyMzUzMzY0OTgwMzY3MzYiLCJuYmYiOjE1MTYxNTk5OTMsImlzcyI6IndlLXNlcnZpY2UuY24iLCJleHAiOjE1MTY3NjQ3OTMsImRldmljZSI6IkFQUCIsImlhdCI6MTUxNjE1OTk5Mywic2VxIjo0MDMxNDk3NjMwMTg4OTk0NTZ9.m7U6Ielsez_9hMi2ojZKjgzXHgq83AzQ5o4PcpvrjK0'
 				}
 				this.$http.get(URL, {params: params}).then((res) => {
 					if (res.body.code == 200) {

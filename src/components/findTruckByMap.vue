@@ -18,14 +18,8 @@
 					<div class="ls">
 						<img width="70" :src='__IMGWEBSERVER__ +"/"+ (selectedTruck?selectedTruck.headPicture:"")' @error="errorImg"/>
 						<p class="text-center status"><span class="status1"><i></i>运输中</span></p>
-						<!-- <p class="text-center status"><span class="status2"><i></i>空车</span></p> -->
 		        	</div>
 		        	<div class="text">
-						<!-- <p class="line bold">
-							<span class="from">{{selectedTruck?selectedTruck.areaFromName:''}}</span>
-							<span class="arrow"></span>
-							<span>{{selectedTruck?selectedTruck.areaToName:''}}</span>
-						</p> -->
 			           	<p class="truckInfo line bold">{{selectedTruck?selectedTruck.realName:''}}/{{selectedTruck?selectedTruck.plateNo:''}}</p>
 			            <p class="truckType">{{selectedTruck?selectedTruck.truckLengthName:''}}/{{selectedTruck?selectedTruck.truckTypeName:''}}/{{selectedTruck?selectedTruck.loadingDateStr:''}}</p>
 			            <p class="Location">{{selectedTruck?selectedTruck.posUpdateTime:''}} {{selectedTruck?selectedTruck.posAreaName:''}} {{selectedTruck?selectedTruck.distance:''}}</p>
