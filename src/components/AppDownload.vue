@@ -16,12 +16,12 @@
 			<a class="downLoadBtn" href="http://www.pgyer.com/RjkA"><img src="../../static/img/downLoad_btn2.png" /></a>
 		</div>
 		<!-- android -->
-		<div class="downItem" v-show="isAndroid">
+		<div class="downItem" v-show="!isiOS">
 			<!-- 货主 -->
 			<img class="qrcode" src="../../static/img/androidShipper.png" />
 			<a class="downLoadBtn" href="https://www.pgyer.com/ywH8"><img src="../../static/img/downLoad_btn1.png" /></a>
 		</div>
-		<div class="downItem" v-show="isAndroid">
+		<div class="downItem" v-show="!isiOS">
 			<!-- 司机 -->
 			<img class="qrcode" src="../../static/img/androidDriver.png" />
 			<a class="downLoadBtn" href="https://www.pgyer.com/npqs"><img src="../../static/img/downLoad_btn2.png" /></a>
