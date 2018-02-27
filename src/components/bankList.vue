@@ -1,7 +1,8 @@
 <template>
 	<div class="bankList">
-		<div class="item bdb" v-for="item in bankList" :key="item.bankName">
-			<img :src="__IMGWEBSERVER__ + item.logoUrl" @error="errorImg"/>
+		<div class="item bdtb" v-for="item in bankList" :key="item.bankName" 
+		:style="{backgroundImage:'url(' + item.bgUrl + ')'}">
+			<img :src="item.logoUrl" @error="errorImg"/>
 			<p>{{item.bankName}}</p>
 		</div>
 	</div>
@@ -22,7 +23,8 @@
 			getBankList() {
 				let URL = this.__WEBSERVER__ + 'pay/bankCard/getSupportBankList'
 				let params = {
-					Authorization: this.$route.query.Authorization
+					// Authorization: this.$route.query.Authorization
+					Authorization: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiI0MTY4OTM3Njc4NzkzNzY4OTYiLCJzdWIiOiI0MTY4OTM3Njc4NzkzNzY4OTYiLCJuYmYiOjE1MTk2OTcwNTMsImlzcyI6IndlLXNlcnZpY2UuY24iLCJleHAiOjE1MjAzMDE4NTMsImRldmljZSI6IkFQUCIsImlhdCI6MTUxOTY5NzA1Mywic2VxIjo0MTc5ODUyNjg1NzEwNjIyNzJ9.mIHsXhvjDQ4hQWLSxD9lPFdqrIfqmyLtt7ItU1PiiY0'
 				}
 				this.$http.get(URL , {params: params}).then((res) => {
 					if (res.body.code == 200) {
@@ -43,6 +45,10 @@
 		.item
 			position relative
 			padding 10px 10px 10px 60px
+			margin-bottom 10px
+			background-size cover
+			background-repeat no-repeat
+			background-color #fff
 			img
 				width 40px
 				height 40px
