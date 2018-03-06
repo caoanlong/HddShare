@@ -23,8 +23,7 @@
 			getBankList() {
 				let URL = this.__WEBSERVER__ + 'pay/bankCard/getSupportBankList'
 				let params = {
-					// Authorization: this.$route.query.Authorization
-					Authorization: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiI0MTY4OTM3Njc4NzkzNzY4OTYiLCJzdWIiOiI0MTY4OTM3Njc4NzkzNzY4OTYiLCJuYmYiOjE1MTk2OTcwNTMsImlzcyI6IndlLXNlcnZpY2UuY24iLCJleHAiOjE1MjAzMDE4NTMsImRldmljZSI6IkFQUCIsImlhdCI6MTUxOTY5NzA1Mywic2VxIjo0MTc5ODUyNjg1NzEwNjIyNzJ9.mIHsXhvjDQ4hQWLSxD9lPFdqrIfqmyLtt7ItU1PiiY0'
+					Authorization: this.$route.query.Authorization
 				}
 				this.$http.get(URL , {params: params}).then((res) => {
 					if (res.body.code == 200) {
