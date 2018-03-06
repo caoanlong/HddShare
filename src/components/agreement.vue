@@ -14,16 +14,16 @@
 			}
 		},
 		created() {
-			document.title = '注册协议'
+			document.title = '协议'
 			this.getAgreement()
 		},
 		methods: {
 			getAgreement() {
 				let URL = this.__WEBSERVER__ + 'content/findFreeContentListByTopicCode'
 				let params = {
-					code: 'Agreement',
-				};
-				this.$http.get(URL,{params:params}).then((res) => {
+					code: this.$route.query.code || 'Agreement',
+				}
+				this.$http.get(URL,{params: params}).then((res) => {
 					this.content = res.body.data[0].content
 				})
 			}
