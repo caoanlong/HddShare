@@ -1,7 +1,8 @@
 <template>
 	<div class="bankList">
-		<div class="item bdb" v-for="item in bankList" :key="item.bankName">
-			<img :src="__IMGWEBSERVER__ + item.logoUrl" @error="errorImg"/>
+		<div class="item bdtb" v-for="item in bankList" :key="item.bankName" 
+		:style="{backgroundImage:'url(' + item.bgUrl + ')'}">
+			<img :src="item.logoUrl" @error="errorImg"/>
 			<p>{{item.bankName}}</p>
 		</div>
 	</div>
@@ -23,6 +24,7 @@
 				let URL = this.__WEBSERVER__ + 'pay/bankCard/getSupportBankList'
 				let params = {
 					Authorization: this.$route.query.Authorization
+					// Authorization: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiI0MTYxNzE0MDkzMjU1NzIwOTYiLCJzdWIiOiI0MTYxNzE0MDkzMjU1NzIwOTYiLCJuYmYiOjE1MjAzMDQ1NTIsImlzcyI6IndlLXNlcnZpY2UuY24iLCJleHAiOjE1MjA5MDkzNTIsImRldmljZSI6IkFQUCIsImlhdCI6MTUyMDMwNDU1Miwic2VxIjo0MjA1MzMzMDA3NDc0NTI0MTZ9.-OZIZBBaK1zpFYh2tdSHo1nr25WLR7MtRdAE2z2XFgI'
 				}
 				this.$http.get(URL , {params: params}).then((res) => {
 					if (res.body.code == 200) {
@@ -43,6 +45,10 @@
 		.item
 			position relative
 			padding 10px 10px 10px 60px
+			margin-bottom 10px
+			background-size cover
+			background-repeat no-repeat
+			background-color #fff
 			img
 				width 40px
 				height 40px
