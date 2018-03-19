@@ -219,6 +219,11 @@
 					<label>回单要求</label>{{infoData.returnInvoiceFlag == 'N' ? '' : '发货单'}} {{infoData.returnWaybillFlag == 'N' ? '' : '托运单'}}
 				</div>
 			</div>
+			<div class="pannel_item">
+				<div class="panel_box">
+					<label>回单金额</label>{{infoData.porFee}}
+				</div>
+			</div>
 			<div class="section section3"></div>
 		</div>
 		<div class="pannel bdtb">

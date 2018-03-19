@@ -1,8 +1,7 @@
 <template>
 	<div>
 		<div class="container">
-			<div class="agreenment_con" v-html="content" ref="content" id="content">
-			</div>
+			<div class="agreenment_con" v-html="content" ref="content" id="content"></div>
 		</div>
 	</div>
 </template>
