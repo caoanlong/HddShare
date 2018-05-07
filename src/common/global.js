@@ -1,67 +1,9 @@
-export let callMessage = function (paramMap) {
-    var returnVal;
-    var u = navigator.userAgent;
-    try {
-        paramMap = paramMap || {};
-        // 打印日志
-        console.log("H5调用原生入参：" + (typeof(paramMap) === "string" ? paramMap : JSON.stringify(paramMap)));
-        // Android
-        if (u.indexOf('Android') > -1) {
-            returnVal = window.external.callMessage(JSON.stringify(paramMap));
-            if (typeof(returnVal) == "string") {
-                returnVal = JSON.parse(returnVal);
-            }
-        }
-        // IOS
-        else if (u.indexOf('iPhone') > -1 || u.indexOf('iPad') > -1) {
-            try {
-                returnVal = iosCallMessage(paramMap);
-                if (typeof(returnVal) == "string") {
-                    returnVal = JSON.parse(returnVal);
-                }
-            }
-            catch (e) {
-            	alert("H5调用原生iosCallMessage方法出错：" + e.message)
-            }
-        }
-    }
-    catch (e) {
-        alert("H5调用原生external.callMessage方法出错：" + e.message);
-    }
-    return returnVal ? returnVal : {};
-}
-
 export default function install (Vue, options) {
-	// 开发服务器
-	// Vue.prototype.__WEBSERVER__ = 'http://test.hdd.we-service.cn:8888/'
-	// 测试服务器
 	const protocol = window.location.protocol
-	
-	
 
-	// 开发环境服务器
-	// Vue.prototype.__WEBSERVER__ = 'http://192.168.1.48:9999/'
-	
-	
-	
-	// 邹文臣电脑
-	// Vue.prototype.__WEBSERVER__ = 'http://192.168.1.60:4441/'
-	// 张颜电脑
-	// Vue.prototype.__WEBSERVER__ = 'http://192.168.1.29:4441/'
-	// 农信靠电脑
-	// Vue.prototype.__WEBSERVER__ = 'http://192.168.1.49:4441/'
+	Vue.prototype.__WEBSERVER__ = protocol + process.env.BASE_API
+	Vue.prototype.__IMGWEBSERVER__ = protocol + process.env.IMG_API
 
-	// 测试服务器
-	// Vue.prototype.__WEBSERVER__ = protocol + '//develop.we-service.cn/test-hdd/v2/'
-	// Vue.prototype.__IMGWEBSERVER__ = protocol + '//develop.we-service.cn/hdd/image/'
-
-	// 演练服务器
-	Vue.prototype.__WEBSERVER__ = protocol + '//192.168.1.110/hdd/api/'
-	Vue.prototype.__IMGWEBSERVER__ = protocol + '//192.168.1.110/hdd/image/'
-	
-	// 线上环境
-	// Vue.prototype.__WEBSERVER__ = protocol + '//api.hdd56.com/hdd/api/'
-	// Vue.prototype.__IMGWEBSERVER__ = protocol + '//www.hdd56.com/hdd/image/'
 	/* 每页条数 */
 	Vue.prototype.PAGESIZE = 10
 
@@ -94,4 +36,37 @@ export default function install (Vue, options) {
 			})
 		}
 	}
+}
+
+export let callMessage = function (paramMap) {
+    var returnVal;
+    var u = navigator.userAgent;
+    try {
+        paramMap = paramMap || {};
+        // 打印日志
+        console.log("H5调用原生入参：" + (typeof(paramMap) === "string" ? paramMap : JSON.stringify(paramMap)));
+        // Android
+        if (u.indexOf('Android') > -1) {
+            returnVal = window.external.callMessage(JSON.stringify(paramMap));
+            if (typeof(returnVal) == "string") {
+                returnVal = JSON.parse(returnVal);
+            }
+        }
+        // IOS
+        else if (u.indexOf('iPhone') > -1 || u.indexOf('iPad') > -1) {
+            try {
+                returnVal = iosCallMessage(paramMap);
+                if (typeof(returnVal) == "string") {
+                    returnVal = JSON.parse(returnVal);
+                }
+            }
+            catch (e) {
+            	alert("H5调用原生iosCallMessage方法出错：" + e.message)
+            }
+        }
+    }
+    catch (e) {
+        alert("H5调用原生external.callMessage方法出错：" + e.message);
+    }
+    return returnVal ? returnVal : {};
 }
