@@ -1,6 +1,6 @@
 <template>
 	<div class="Faq">
-		<router-link tag="div" class="item bdb" :to="{name:'FaqDetail',query: {code:item.code,Authorization:$route.query.Authorization}}" v-for="(item,index) in list" :key="index">
+		<router-link tag="div" class="item bdb" :to="{name:'FaqDetail',query: {code:item.code,Authorization: $route.query.Authorization}}" v-for="(item,index) in list" :key="index">
 			<p>{{item.name}}</p>
 		</router-link>
 	</div>
@@ -21,10 +21,14 @@
 				let URL = this.__WEBSERVER__ + 'content/findFreeContentListByTopicCode'
 				let params = {
 					code: 'CommonProblemList',
-					Authorization:this.$route.query.Authorization
+					Authorization: this.$route.query.Authorization
 				};
 				this.$http.get(URL,{params:params}).then((res) => {
-					this.list = JSON.parse(res.body.data[0].content)
+					let content = res.body.data[0].content
+					let start = content.indexOf('[')
+					let end = content.indexOf(']') + 1
+					content = content.substring(start, end).replace(/&quot;/g, '"')
+					this.list = JSON.parse(content)
 				})
 			}
 		}

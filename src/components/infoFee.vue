@@ -107,7 +107,7 @@
 		</div>
 		<div class="pannel bdtb">
 			<div class="pannel_title text-center" @click="isContent =! isContent">货多多信息费协议<img :class="{'active': isContent}" src="../assets/img/arrow_down.svg"></div>
-			<div class="agreement" v-show="isContent" v-html="content"></div>
+			<div class="agreement ql-editor" v-show="isContent" v-html="content"></div>
 		</div>
 		<div class="upBtn" @click="scrollTop"></div>
 	</div>

@@ -2,7 +2,7 @@
 	<div>
 		<div class="container">
 			<!-- <div class="titleBar">用户协议</div> -->
-			<div class="agreenment_con" v-html="content">
+			<div class="agreenment_con ql-editor" v-html="content">
 			</div>
 		</div>
 	</div>

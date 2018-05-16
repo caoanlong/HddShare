@@ -13,11 +13,11 @@
 				<p>{{appVersionInfo.releaseTime}}</p>
 				<p>{{appVersionInfo.versionSize}}MB</p>
 				<div class="des">
-					<p v-for="item in updataDes">{{item}}</p>
+					<p v-for="item in updataDes" :key="item">{{item}}</p>
 				</div>
 			</div>
 		</div>
-		<div class="version_info_Detail" id="version_info_Detail" v-html="VersionDes"></div>
+		<div class="version_info_Detail ql-editor" id="version_info_Detail" v-html="VersionDes"></div>
 	</div>
 </template>
 <script type="text/javascript">

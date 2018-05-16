@@ -147,7 +147,7 @@
                     <!-- 定价 -->
 					<span v-if="infoData.cargoFreightType=='fix'">{{infoData.cargoFreightPrice}}{{infoData.cargoFreightUnit}}</span>
 					<!-- 司机报价，议价 -->
-					<span v-else="infoData.cargoFreightType=='Talk'">{{infoData.offerPrice}}{{infoData.cargoFreightUnit}}</span>
+					<span v-else-if="infoData.cargoFreightType=='Talk'">{{infoData.offerPrice}}{{infoData.cargoFreightUnit}}</span>
                     
                 </div>
             </div>
@@ -228,7 +228,7 @@
 		</div>
 		<div class="pannel bdtb">
 			<div class="pannel_title text-center" @click="isContent=!isContent">货多多运输协议<img :class="{'active': isContent}" src="../assets/img/arrow_down.svg"></div>
-			<div class="agreement" v-show="isContent" v-html="content"></div>
+			<div class="agreement ql-editor" v-show="isContent" v-html="content"></div>
 		</div>
 		<div class="upBtn" @click="scrollTop"></div>
 	</div>

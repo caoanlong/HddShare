@@ -1,5 +1,5 @@
 <template>
-	<div class="FaqDetail" v-html="content">
+	<div class="FaqDetail ql-editor" v-html="content">
 	</div>
 </template>
 <script type="text/javascript">

@@ -36,14 +36,13 @@
 						<p>暂无数据</p>
 					</div>
 					<ul v-else class="recentlineList">
-						<li v-for="item in truckDetail.recentlineList">
+						<li v-for="item in truckDetail.recentlineList" :key="item.areaFromName">
 							<p class="line">
 								<span>{{item.areaFromName&& (item.areaFromName.split(',').length>3 ?(item.areaFromName.split(',')[1]+item.areaFromName.split(',')[2]):item.areaFromName.split(',').join(''))}}</span>
 								<img class="arrow" src="../assets/img/arrow.svg" />
 								<span>{{item.areaToName&& (item.areaToName.split(',').length>3 ?(item.areaToName.split(',')[1]+item.areaToName.split(',')[2]):item.areaToName.split(',').join(''))}}</span>
 							</p>
 							<p>{{item.cargoName}}{{(item.cargoWeight !='' && item.cargoWeight !='0')?'/'+item.cargoWeight+'吨':''}}{{(item.cargoVolume !='' && item.cargoVolume !='0')?'/'+item.cargoVolume+'方':''}}{{(item.cargoNum !='' && item.cargoNum != '0')?'/'+item.cargoNum+'件':''}}</p>
-							
 						</li>
 					</ul>
 				</div>

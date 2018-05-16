@@ -2,7 +2,7 @@
 	<div class="container">
 		<!-- <div class="titleBar">信息费交易声明</div> -->
 		<div class="pannel">
-			<div class="agreement" v-html="content"></div>
+			<div class="agreement ql-editor" v-html="content"></div>
 		</div>
 	</div>
 </template>
