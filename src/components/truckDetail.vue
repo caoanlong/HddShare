@@ -6,7 +6,8 @@
 		    <p><b class="name">{{truckDetail.realName}} {{truckDetail.plateNo}}</b></p>
 		    <p>{{truckDetail.truckTypeName}}/{{truckDetail.truckLengthName}}/{{truckDetail.loads}}吨</p>
 		    <router-link tag="div" :to="{name: 'AppDownload'}" class="attention"><img src="../assets/img/gz.svg" /></router-link>
-			<router-link tag="div" :to="{name: 'AppDownload'}" class="tel"><img src="../assets/img/tel.svg" /></router-link>
+			<!-- <router-link tag="div" :to="{name: 'AppDownload'}" class="tel"><img src="../assets/img/tel.svg" /></router-link> -->
+			<a class="tel" :href="'tel:' + truckDetail.mobile"><img src="../assets/img/tel.svg" /></a>
 		</div>
 		<div class="otherInfo bdb">
 		    	<div class="item">

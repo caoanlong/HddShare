@@ -12,7 +12,8 @@
 			    </p>
 			    <!-- <p class="company">云南微服物流</p> -->
 			    <p class="history">历史发货<span class="c1">{{goodsDetail.cargoSourceNum}}</span>条</p>
-			    <router-link tag="div" :to="{name: 'AppDownload'}" class="tel"><img src="../assets/img/ic_call_phone_image.png"/></router-link>
+			    <!-- <router-link tag="div" :to="{name: 'AppDownload'}" class="tel"><img src="../assets/img/ic_call_phone_image.png"/></router-link> -->
+			    <a class="tel" :href="'tel:' + goodsDetail.mobile"><img src="../assets/img/ic_call_phone_image.png"/></a>
 			</div>
 			</div>
 			<div class="cells bdtb">
