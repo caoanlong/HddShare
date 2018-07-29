@@ -145,7 +145,7 @@
                 <div class="panel_box">
                     <label>承运运价</label>
                     <!-- 定价 -->
-					<span v-if="infoData.cargoFreightType=='fix'">{{infoData.cargoFreightPrice}}{{infoData.cargoFreightUnit}}</span>
+					<span v-if="infoData.cargoFreightType=='Fix'">{{infoData.cargoFreightPrice}}{{infoData.cargoFreightUnit}}</span>
 					<!-- 司机报价，议价 -->
 					<span v-else-if="infoData.cargoFreightType=='Talk'">{{infoData.offerPrice}}{{infoData.cargoFreightUnit}}</span>
                     

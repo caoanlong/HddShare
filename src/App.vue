@@ -5,12 +5,7 @@
 </template>
 <script>
 export default {
-	name: 'app',
-	created () {
-		// this.getImgUrl()
-	},
-	methods: {
-	}
+	name: 'app'
 }
 </script>
 
