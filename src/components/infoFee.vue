@@ -128,8 +128,8 @@
 		},
 		methods: {
 			getInfoFee() {
-				let URL = this.__WEBSERVER__ + 'agentOrder/agreement/detail'
-				let params = {
+				const URL = this.__WEBSERVER__ + 'agentOrder/agreement/detail'
+				const params = {
 					agentAgreementID: this.$route.query.agentAgreementID,
 					Authorization: this.$route.query.Authorization
 				}
@@ -141,9 +141,10 @@
 				})
 			},
 			getAgreement() {
-				let URL = this.__WEBSERVER__ + 'content/findFreeContentListByTopicCode'
-				let params = {
+				const URL = this.__WEBSERVER__ + 'content/findFreeContentListByTopicCode'
+				const params = {
 					code: 'InformationFees',
+					AppId: this.$route.query.AppId,
 					Authorization: this.$route.query.Authorization
 				}
 				this.$http.get(URL, {params: params}).then((res) => {

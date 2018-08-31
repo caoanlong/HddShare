@@ -75,7 +75,7 @@ const router = new Router({
 	      	path: '/updata',
 			name: 'updata',
 			meta: { title: '版本更新' },
-	      	component: resolve => require(['@/components/updata'], resolve)
+	      	component: resolve => require(['@/components/update'], resolve)
 	    },
 	    {
 	      	path: '/findGoods',
