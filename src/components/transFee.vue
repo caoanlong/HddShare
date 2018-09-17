@@ -252,8 +252,8 @@
 		},
 		methods: {
 			getTransFee() {
-				let URL = this.__WEBSERVER__ + 'transOrder/agreement/detail'
-				let params = {
+				const URL = this.__WEBSERVER__ + 'transOrder/agreement/detail'
+				const params = {
 					transWaybillID: this.$route.query.transWaybillID,
 					Authorization: this.$route.query.Authorization
 				}
@@ -262,15 +262,15 @@
 						this.infoData = res.body.data
 						let len = res.body.data.cargoFreightUnit.length
 						this.unit =  res.body.data.cargoFreightUnit.substr(len-1)
-						console.log(res.body.data)
 					} 
 				})
 			},
 			getAgreement() {
-				let URL = this.__WEBSERVER__ + 'content/findFreeContentListByTopicCode'
-				let params = {
+				const URL = this.__WEBSERVER__ + 'content/findFreeContentListByTopicCode'
+				const params = {
 					code: 'Statement',
-					Authorization: this.$route.query.Authorization
+					AppId: this.$route.query.AppId,
+					Authorization:this.$route.query.Authorization
 				}
 				this.$http.get(URL, {params: params}).then((res) => {
 					if (res.body.code == 200) {

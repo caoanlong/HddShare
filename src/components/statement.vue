@@ -2,7 +2,7 @@
 	<div class="container">
 		<!-- <div class="titleBar">信息费交易声明</div> -->
 		<div class="pannel">
-			<div class="agreement ql-editor" v-html="content"></div>
+			<div class="agreement" v-html="content"></div>
 		</div>
 	</div>
 </template>
@@ -19,9 +19,10 @@
 		},
 		methods: {
 			getStatement() {
-				let URL = this.__WEBSERVER__ + 'content/findFreeContentListByTopicCode'
-				let params = {
+				const URL = this.__WEBSERVER__ + 'content/findFreeContentListByTopicCode'
+				const params = {
 					code: this.$route.query.code || 'Statement',
+					AppId: this.$route.query.AppId,
 					Authorization:this.$route.query.Authorization
 				}
 				this.$http.get(URL, {params: params}).then((res) => {
