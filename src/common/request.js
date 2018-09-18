@@ -1,7 +1,6 @@
 import axios from 'axios'
 import qs from 'qs'
 import ReactDOM from 'react-dom'
-import { Toast, ToastInner } from '../components/Toast'
 
 export const baseURL = process.env.BASE_API
 
@@ -37,7 +36,6 @@ export default function request (data) {
 				|| response.data.code == 5201 // Token验证失败, 请求重新登录!
 				|| response.data.code == 5202) { // 帐号已在其它地方登录!
 				localStorage.clear()
-				ReactDOM.render(<Toast><ToastInner title="你好"/></Toast>, document.getElementById('root'))
 				// Message.error(response.data.msg)
 				window.location.href = href()
 				return Promise.reject('error')
@@ -51,7 +49,6 @@ export default function request (data) {
 			if (response.data.code == 2001) {
 				return response
 			}
-			ReactDOM.render(<Toast><ToastInner title="你好"/></Toast>, document.getElementById('root'))
 			// Message.error(response.data.msg)
 			return Promise.reject('error')
 		} else {
@@ -59,7 +56,6 @@ export default function request (data) {
 		}
 	},
 	error => {
-		ReactDOM.render(<Toast><ToastInner title="你好"/></Toast>, document.getElementById('root'))
 		// Message.error(error.toString())
 		return Promise.reject('error')
 	})
