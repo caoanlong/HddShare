@@ -131,11 +131,11 @@
 				const URL = this.__WEBSERVER__ + 'agentOrder/agreement/detail'
 				const params = {
 					agentAgreementID: this.$route.query.agentAgreementID,
+					AppId: this.$route.query.AppId || '',
 					Authorization: this.$route.query.Authorization
 				}
 				this.$http.get(URL, {params: params}).then((res) => {
 					if (res.body.code == 200) {
-						console.log(JSON.stringify(res.body.data))
 						this.infoData = res.body.data
 					}
 				})
@@ -144,7 +144,7 @@
 				const URL = this.__WEBSERVER__ + 'content/findFreeContentListByTopicCode'
 				const params = {
 					code: 'InformationFees',
-					AppId: this.$route.query.AppId,
+					AppId: this.$route.query.AppId || '',
 					Authorization: this.$route.query.Authorization
 				}
 				this.$http.get(URL, {params: params}).then((res) => {

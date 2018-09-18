@@ -58,14 +58,14 @@
 		},
 		methods: {
 			getTruckList () {
-				let URL = this.__WEBSERVER__ + 'adv/truck/nearby'
-				let params = {
+				const URL = this.__WEBSERVER__ + 'adv/truck/nearby'
+				const params = {
 					"lat": this.position.lat,
 					"lng": this.position.lng,
-					"range": this.range
+					"range": this.range,
+					AppId: this.$route.query.AppId || ''
 				}
 				this.$http.get(URL, {params: params}).then(res => {
-					// console.log(JSON.stringify(res.body.data))
 					this.truckList = res.body.data
 				})
 			},

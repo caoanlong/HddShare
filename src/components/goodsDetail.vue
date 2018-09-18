@@ -80,12 +80,12 @@
 		},
 		methods: {
 			getGoodsDetail() {
-				let URL = this.__WEBSERVER__ + 'adv/cargoSource/detail'
-				let params = {
-					"id": this.$route.query.id
+				const URL = this.__WEBSERVER__ + 'adv/cargoSource/detail'
+				const params = {
+					"id": this.$route.query.id,
+					AppId: this.$route.query.AppId || '',
 				}
 				this.$http.get(URL, {params: params}).then(res => {
-					console.log(JSON.stringify(res.body.data))
 					this.goodsDetail = res.body.data
 				})
 			},

@@ -71,14 +71,15 @@
 		},
 		methods: {
 			getGoodsList () {
-				let URL = this.__WEBSERVER__ + 'adv/cargoSource/list'
-				let params = {
+				const URL = this.__WEBSERVER__ + 'adv/cargoSource/list'
+				const params = {
 					"pageNum": this.pageNum,
 					"pageSize": this.PAGESIZE,
 					"areaFrom": this.areaFrom,
 					"areaTo": this.areaTo,
 					"truckType": this.truckType,
-					"truckLength": this.truckLength
+					"truckLength": this.truckLength,
+					AppId: this.$route.query.AppId || '',
 				}
 				this.$http.get(URL,{params:params}).then(res => {
 					if (res.body.code == 200) {

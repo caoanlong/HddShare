@@ -38,6 +38,7 @@ export default {
 			const URL = this.__WEBSERVER__ + 'system/version/detail'
 			const params = {
 				appVersionID: this.$route.query.appVersionID,
+				AppId: this.$route.query.AppId || '',
 				Authorization: this.$route.query.Authorization
 			}
 			this.$http.get(URL, { params: params }).then(res => {

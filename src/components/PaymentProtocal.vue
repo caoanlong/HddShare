@@ -23,7 +23,7 @@
 				const URL = this.__WEBSERVER__ + 'content/findFreeContentListByTopicCode'
 				const params = {
 					code: this.$route.query.code || 'PaymentAgreement',
-					AppId: this.$route.query.AppId,
+					AppId: this.$route.query.AppId || '',
 					Authorization:this.$route.query.Authorization
 				}
 				this.$http.get(URL,{params:params}).then((res) => {

@@ -68,12 +68,13 @@
 		},
 		methods: {
 			getTruckList () {
-				let URL = this.__WEBSERVER__ + 'adv/truck/list'
-				let params = {
+				const URL = this.__WEBSERVER__ + 'adv/truck/list'
+				const params = {
 					"pageNum": this.pageNum,
 					"pageSize": this.PAGESIZE,
 					"type": this.truckType,
-					"length": this.truckLength
+					"length": this.truckLength,
+					AppId: this.$route.query.AppId || '',
 				}
 				this.$http.get(URL, {params: params}).then(res => {
 					// console.log(JSON.stringify(res.body.data.list))
