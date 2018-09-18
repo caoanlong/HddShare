@@ -10,12 +10,14 @@
 		"react-scripts": "1.1.5"
 	},
 	"scripts": {
-		"start": "react-scripts start",
-		"build": "react-scripts build",
+		"start": "cross-env REACT_APP_ENV=dev react-scripts start",
+		"build:test": "cross-env NODE_ENV=production REACT_APP_ENV=test react-scripts build",
+		"build:prod": "cross-env NODE_ENV=production REACT_APP_ENV=prod react-scripts build",
 		"test": "react-scripts test --env=jsdom",
 		"eject": "react-scripts eject"
 	},
 	"devDependencies": {
+		"cross-env": "^5.2.0",
 		"node-sass": "^4.9.3",
 		"qs": "^6.5.2",
 		"react-toast-mobile": "^1.0.10",

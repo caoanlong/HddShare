@@ -1,8 +1,7 @@
 import axios from 'axios'
 import qs from 'qs'
-import ReactDOM from 'react-dom'
-
-export const baseURL = process.env.BASE_API
+import env from '../config'
+export const baseURL = env.BASE_API
 
 export default function request (data) {
 	// create an axios instance

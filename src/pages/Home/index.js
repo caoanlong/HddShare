@@ -5,6 +5,9 @@ import LinkInner from './components/LinkInner'
 import { T } from 'react-toast-mobile'
 
 class Home extends Component {
+    constructor() {
+        super()
+    }
     showToast() {
         T.notify('成功！')
     }
