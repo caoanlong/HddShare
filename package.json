@@ -17,6 +17,7 @@
 	},
 	"devDependencies": {
 		"node-sass": "^4.9.3",
+		"qs": "^6.5.2",
 		"sass-loader": "^7.1.0"
 	}
 }
