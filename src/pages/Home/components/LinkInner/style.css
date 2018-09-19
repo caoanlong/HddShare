@@ -1,4 +1,4 @@
-:local(.grid) {
+.link-grid {
   float: left;
   display: block;
   width: 25%;
@@ -6,14 +6,14 @@
   padding: 20px 10px;
   text-align: center;
   text-decoration: none; }
-  :local(.grid) :local(.grid_icon) {
+  .link-grid-icon {
     width: 24px;
     height: 24px;
     margin: 0 auto; }
-    :local(.grid) :local(.grid_icon) :local(img) {
+    .link-grid-icon img {
       display: block;
       width: 100%;
       height: 100%; }
-  :local(.grid) :local(.grid_label) {
+  .link-grid-label {
     font-size: 12px;
     color: #999; }

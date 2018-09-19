@@ -1,10 +1,10 @@
-:local(.container) :local(.titleBar) {
+.home-title {
   background: #6cc;
   height: 44px;
   line-height: 44px;
   text-align: center;
   color: #fff; }
 
-:local(.container) :local(.grids) {
+.home-grids {
   position: relative;
   overflow: hidden; }
