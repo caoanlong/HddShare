@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import style from './style.scss'
 import linkList from './linkList'
-import LinkInner from './components/LinkInner'
+import LinkInner from './components/LinkInner/index'
 
 class Home extends Component {
     render() {
@@ -9,7 +9,7 @@ class Home extends Component {
             <div className={style.container}>
                 <div className={style.titleBar}>导航</div>
                 <div className={style.grids}>
-                    {linkList.map((item, i) => <LinkInner key={i} pathname={item.pathname} title={item.title} icon={item.icon} search={item.search}/>)}
+                    {linkList.map((item, i) => <LinkInner key={i} pathname={item.pathname} title={item.title} icon={item.icon} search={item.search}/>) }
                 </div>
             </div>
         )

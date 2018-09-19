@@ -2,103 +2,103 @@ export default [
     {
         title: 'App下载',
         pathname: '/AppDownload',
-        icon: require('../../assets/img/download.svg')
+        icon: require('../../assets/icons/download.svg')
     },
     {
         title: '货主下载',
         pathname: '/ConsignorDownload',
-        icon: require('../../assets/img/download.svg')
+        icon: require('../../assets/icons/download.svg')
     },
     {
         title: '司机下载',
         pathname: '/DriverDownload',
-        icon: require('../../assets/img/download.svg')
+        icon: require('../../assets/icons/download.svg')
     },
     {
         title: '关于货多多',
-        pathname: '/aboutHdd',
-        icon: require('../../assets/img/about.svg')
+        pathname: '/about',
+        icon: require('../../assets/icons/about.svg')
     },
     {
         title: '注册协议',
         pathname: '/agreement',
-        icon: require('../../assets/img/agreement.svg')
+        icon: require('../../assets/icons/agreement.svg')
     },
     {
         title: '信息费协议',
         pathname: '/infoFee',
-        icon: require('../../assets/img/agreement.svg')
+        icon: require('../../assets/icons/agreement.svg')
     },
     {
         title: '运输费协议',
         pathname: '/transFee',
-        icon: require('../../assets/img/download.svg')
+        icon: require('../../assets/icons/download.svg')
     },
     {
         title: '支付协议',
         pathname: '/PaymentAgreement',
-        icon: require('../../assets/img/PaymentAgreement.svg')
+        icon: require('../../assets/icons/PaymentAgreement.svg')
     },
     {
         title: '货源详情',
         pathname: '/goodsDetail',
-        icon: require('../../assets/img/detail.svg')
+        icon: require('../../assets/icons/detail.svg')
     },
     {
         title: '车辆详情',
         pathname: '/truckDetail',
-        icon: require('../../assets/img/detail.svg')
+        icon: require('../../assets/icons/detail.svg')
     },
     {
         title: '寻找货源',
         pathname: '/findGoods',
-        icon: require('../../assets/img/goods_icon.svg')
+        icon: require('../../assets/icons/goods_icon.svg')
     },
     {
         title: '寻找车辆',
         pathname: '/findTruck',
-        icon: require('../../assets/img/truck_icon.svg')
+        icon: require('../../assets/icons/truck_icon.svg')
     },
     {
         title: '银行列表',
         pathname: '/bankList',
-        icon: require('../../assets/img/bank.svg')
+        icon: require('../../assets/icons/bank.svg')
     },
     {
         title: '提现手续费',
         pathname: '/FaqDetail',
         search: '?code=ServiceCharge',
-        icon: require('../../assets/img/charge.svg')
+        icon: require('../../assets/icons/charge.svg')
     },
     {
         title: '提现规则',
         pathname: '/FaqDetail',
         search: '?code=Withdrawals',
-        icon: require('../../assets/img/rules.svg')
+        icon: require('../../assets/icons/rules.svg')
     },
     {
         title: '常见问题',
         pathname: '/FaqList',
-        icon: require('../../assets/img/help.svg')
+        icon: require('../../assets/icons/help.svg')
     },
     {
         title: '交易申明',
         pathname: '/statement',
-        icon: require('../../assets/img/statement.svg')
+        icon: require('../../assets/icons/statement.svg')
     },
     {
         title: '版本更新',
         pathname: '/updata',
-        icon: require('../../assets/img/updata_icon.svg')
+        icon: require('../../assets/icons/updata_icon.svg')
     },
     {
         title: '404页面',
         pathname: '/error',
-        icon: require('../../assets/img/404.svg')
+        icon: require('../../assets/icons/404.svg')
     },
     {
         title: '敬请期待',
         pathname: '',
-        icon: require('../../assets/img/more.svg')
+        icon: require('../../assets/icons/more.svg')
     },
 ]

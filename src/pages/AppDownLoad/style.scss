@@ -1,0 +1,45 @@
+ :local(.container){
+    background:url('../../assets/img/downLoad_bg.jpg') no-repeat center;
+    background-size:cover;
+    width:100%;
+    min-height:100%;
+    left:0;
+    bottom:0;
+    top:0;
+	position:absolute;
+	:local(img) {
+		width: 100%;
+		
+	}
+	:local(.logo) {
+		width: 140px;
+		padding: 20px;
+		display: block;
+	}
+	:local(.publish){
+		width:60%;
+		margin:0 auto 20px;
+	}
+	
+	:local(.specialty){
+		width:90%;
+		margin:0 5%;
+	}
+	:local(.downSection){
+		&:after{
+			clear:both;
+			display:block;
+			content:'';
+		}
+	}
+	
+}
+
+:local(.footer) {
+	color:#fff;
+	height:30px;
+	line-height:30px;
+	width:100%;
+	text-align:center;
+	font-size:14px;
+}
