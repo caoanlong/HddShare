@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import style from './LinkInner.scss'
+import style from './LinkInner.css'
 
 export default props => (
     <Link className={style.grid} to={{pathname: props.pathname, search: props.search}}>

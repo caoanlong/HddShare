@@ -10,15 +10,21 @@
 		"react-scripts": "1.1.5"
 	},
 	"scripts": {
-		"start": "cross-env REACT_APP_ENV=dev react-scripts start",
-		"build:test": "cross-env NODE_ENV=production REACT_APP_ENV=test react-scripts build",
-		"build:prod": "cross-env NODE_ENV=production REACT_APP_ENV=prod react-scripts build",
+		"build-css": "node-sass-chokidar src/ -o src/",
+		"watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
+		"start-js": "react-scripts start",
+		"build-js": "react-scripts build",
+		"start": "cross-env REACT_APP_ENV=dev npm-run-all -p watch-css start-js",
+		"build:test": "cross-env NODE_ENV=production REACT_APP_ENV=test npm-run-all build-css build-js",
+		"build:prod": "cross-env NODE_ENV=production REACT_APP_ENV=prod npm-run-all build-css build-js",
 		"test": "react-scripts test --env=jsdom",
 		"eject": "react-scripts eject"
 	},
 	"devDependencies": {
 		"cross-env": "^5.2.0",
 		"node-sass": "^4.9.3",
+		"node-sass-chokidar": "^1.3.3",
+		"npm-run-all": "^4.1.3",
 		"qs": "^6.5.2",
 		"react-toast-mobile": "^1.0.10",
 		"sass-loader": "^7.1.0"

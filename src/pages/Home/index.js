@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import style from './style.scss'
+import style from './style.css'
 import linkList from './linkList'
 import LinkInner from './components/LinkInner'
 import { T } from 'react-toast-mobile'
