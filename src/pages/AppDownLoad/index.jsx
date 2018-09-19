@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import style from './style.scss'
-import DownItem from './components/DownItem/index'
+import DownItem from './components/DownItem'
 const deviceList = [
     {
         type:'ios',

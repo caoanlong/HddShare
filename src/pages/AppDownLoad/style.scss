@@ -1,4 +1,4 @@
- :local(.container){
+.container {
     background:url('../../assets/img/downLoad_bg.jpg') no-repeat center;
     background-size:cover;
     width:100%;
@@ -7,35 +7,31 @@
     bottom:0;
     top:0;
 	position:absolute;
-	:local(img) {
+	img {
 		width: 100%;
-		
 	}
-	:local(.logo) {
+	.logo {
 		width: 140px;
 		padding: 20px;
 		display: block;
 	}
-	:local(.publish){
+	.publish {
 		width:60%;
 		margin:0 auto 20px;
 	}
-	
-	:local(.specialty){
+	.specialty {
 		width:90%;
 		margin:0 5%;
 	}
-	:local(.downSection){
+	.downSection {
 		&:after{
 			clear:both;
 			display:block;
 			content:'';
 		}
 	}
-	
 }
-
-:local(.footer) {
+.footer {
 	color:#fff;
 	height:30px;
 	line-height:30px;

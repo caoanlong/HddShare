@@ -1,18 +1,16 @@
-:local(.downItem) {
+.downItem {
     width: 50%;
     padding: 20px 0;
     float: left;
     text-align: center;
-
-    :local(.qrcode) {
+    .qrcode {
         width: 120px;
         height: 120px;
         padding: 10px;
         background: #fff;
         border-radius: 8px;
     }
-
-    :local(.downLoadBtn) {
+    .downLoadBtn {
         display: block;
         width: 140px;
         margin: 10px auto 0;
