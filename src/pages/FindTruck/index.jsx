@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import './style.css'
+import style from './style.scss'
 import TruckLengthSelector from './components/TruckLengthSelector'
 
 class FindTruck extends Component {
@@ -27,18 +27,18 @@ class FindTruck extends Component {
     }
     render() {
         return (
-            <div className="find-truck">
-                <div className="find-truck-filter-box">
-                    <div className="find-truck-filter-box-sort" onClick={this.selectTruckLength.bind(this)}>
+            <div className={style.findTruck}>
+                <div className={style.filterBox}>
+                    <div className={style.sort} onClick={this.selectTruckLength.bind(this)}>
                         {this.state.selectedTruckLengthList.map(item => item.name).join(',')}
                     </div>
-                    <div className="find-truck-filter-box-length" onClick={this.selectTruckType.bind(this)}>
+                    <div className={style.length} onClick={this.selectTruckType.bind(this)}>
                         {this.state.selectedTruckType.name}
                     </div>
-                    <Link className="find-truck-filter-box-map" to={{pathname: this.props.pathname, search: this.props.search}}><i></i>地图找车</Link>
+                    <Link className={style.map} to={{pathname: this.props.pathname, search: this.props.search}}><i></i>地图找车</Link>
                 </div>
-                <div className="find-truck-block"></div>
-                <div className="find-truck-wrapper"></div>
+                <div className={style.block}></div>
+                <div className={style.wrapper}></div>
                 {this.state.showTruckLengthSelector ? <TruckLengthSelector/> : ''}
             </div>
         )

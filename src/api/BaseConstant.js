@@ -2,9 +2,6 @@ import Base from './Base'
 import request from '../common/request'
 
 class BaseConstant extends Base {
-    constructor(url, req) {
-        super(url, req)
-    }
     findByType(params) {
         return new Promise((resolve, reject) => {
             this.request({

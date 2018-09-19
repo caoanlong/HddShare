@@ -1,12 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import './style.css'
+import style from './style.scss'
 
 export default props => (
-    <Link className="link-grid" to={{pathname: props.pathname, search: props.search}}>
-        <div className="link-grid-icon">
+    <Link className={style.linkGrid} to={{pathname: props.pathname, search: props.search}}>
+        <div className={style.icon}>
             <img alt={props.title} src={props.icon} />
         </div>
-        <div className="link-grid-label">{props.title}</div>
+        <div className={style.label}>{props.title}</div>
     </Link>
 )

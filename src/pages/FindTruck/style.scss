@@ -1,7 +1,7 @@
-.find-truck {
+.findTruck {
     padding-top: 40px;
     overflow: hidden;
-    &-block {
+    .block {
         position: fixed;
         top: 0;
         left: 0;
@@ -9,14 +9,14 @@
         bottom: 0;
         background-color: #f8f8f8;
     }
-    &-wrapper{
+    .wrapper{
         width: 100%;
         position: absolute;
         left: 0;
         top: 40px;
         right: 0;
     }
-    &-filter-box {
+    .filterBox {
         background-color: #fff;
         box-shadow: 0 0 5px rgba(0,0,0,.5);
         position: fixed;
@@ -28,7 +28,7 @@
         padding: 5px;
         display: flex;
         font-size: 12px;
-        &-sort, &-length {
+        .sort, .length {
             flex: 1;
             border: 1px solid #ddd;
             padding: 0 30px 0 5px;
@@ -40,10 +40,10 @@
             text-overflow: ellipsis;
             background: url('../../assets/img/arrow-b.png') no-repeat right center;
         }
-        &-length {
+        .length {
             margin-right: 20px;
         }
-        &-map {
+        .map {
             display: block;
             flex: 0 90px;
             text-align: center;

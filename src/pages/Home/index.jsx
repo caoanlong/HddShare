@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './style.css'
+import style from './style.scss'
 import linkList from './linkList'
 import LinkInner from './components/LinkInner'
 import { T } from 'react-toast-mobile'
@@ -10,9 +10,9 @@ class Home extends Component {
     }
     render() {
         return (
-            <div className="home">
-                <div className="home-title" onClick={this.showToast}>导航</div>
-                <div className="home-grids">
+            <div className={style.home}>
+                <div className={style.title} onClick={this.showToast}>导航</div>
+                <div className={style.grids}>
                     {linkList.map((item, i) => <LinkInner key={i} pathname={item.pathname} title={item.title} icon={item.icon} search={item.search}/>)}
                 </div>
             </div>

@@ -1,12 +1,12 @@
 .home {
-    &-title {
+    .title {
         background: #6cc;
 		height: 44px;
 		line-height: 44px;
 		text-align: center;
 		color: #fff;
     }
-    &-grids {
+    .grids {
         position: relative;
         overflow: hidden;
     }

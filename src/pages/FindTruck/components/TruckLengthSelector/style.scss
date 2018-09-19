@@ -1,4 +1,4 @@
-.tls {
+.truckLengthSelector {
     position: fixed;
     top: 0;
     left: 0;
@@ -9,9 +9,9 @@
 	-moz-transition: top .2s;
 	-webkit-transition: top .2s;
 	-o-transition: top .2s;
-    &-body {
+    .body {
         min-height: 200px;
-        &-tit {
+        .tit {
             padding: 5px;
             background: #f8f8f8;
             font-size: 14px;
@@ -45,7 +45,7 @@
             }
         }
     }
-    &-footer {
+    .footer {
         height: 64px;
         padding: 10px 5px;
         background: #eee;
@@ -54,7 +54,7 @@
         bottom: 0;
         position: fixed;
         display: flex;
-        &-cancel, &-confirm {
+        .cancel, .confirm {
             height: 44px;
             line-height: 44px;
             margin: 0 10px;
@@ -72,7 +72,7 @@
                 margin-right: 5px;
             }
         }
-        &-cancel {
+        .cancel {
             color: #666;
             background: #ccc;
             i {
@@ -80,7 +80,7 @@
                 background-size: cover;
             }
         }
-        &-confirm {
+        .confirm {
             background: #6cc;
             color: #fff;
             i {
