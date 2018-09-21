@@ -20,3 +20,59 @@ li {
 	clear: both;
 	visibility: hidden
 }
+
+.bdt,.bdtb,.bdl,.bdb {
+	position: relative;
+}
+
+.bdt:before,.bdb:after,.bdtb:before,.bdtb:after {
+	position: absolute;
+	right: 0;
+	left: 0;
+	height: 1px;
+	content: '';
+	transform: scaleY(.5);
+	background-color: #ddd;
+}
+
+.bdt:before,.bdtb:before {
+    top: 0;
+    transform-origin: 0 0;
+}
+.bdb:after,.bdtb:after {
+    bottom: 0;
+    transform-origin: 0 100%;
+}
+.bdl:before {
+	position: absolute;
+	width: 1px;
+	content: '';
+	background: #ddd;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	transform: scaleX(.5);
+}
+
+.bdtb .bdt:before {
+	left: 15px;
+}
+
+.state-pulling .tloader-msg:after {
+	content: '下拉刷新';
+}
+.state-pulling.enough .tloader-msg:after {
+	content: '松开刷新';
+}
+.state-refreshed .tloader-msg:after {
+	content: '刷新成功';
+}
+.tloader-loading:after {
+	content: '正在加载...';
+}
+.tloader-symbol .tloader-loading:after {
+	content: '正在刷新...';
+}
+.tloader-btn:after {
+	content: '加载更多';
+}

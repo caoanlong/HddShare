@@ -1,5 +1,4 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 import style from './style.scss'
 export default props => (
     <div>
@@ -11,7 +10,7 @@ export default props => (
             <div className={style.cell}>
                 <div className={style.cell__bd}>官方网站</div>
                 <div className={style.cell__ft}> 
-                    <a href= "http://www.hdd56.com" target = "_blank" className={style.link}> http: //www.hdd56.com</a>
+                    <a href= "http://www.hdd56.com" target= "_blank" rel="noopener noreferrer" className={style.link}> http: //www.hdd56.com</a>
                 </div>
             </div>
             <div className={style.cell}>

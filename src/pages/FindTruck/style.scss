@@ -9,12 +9,18 @@
         bottom: 0;
         background-color: #f8f8f8;
     }
-    .wrapper{
+    .wrapper {
         width: 100%;
         position: absolute;
         left: 0;
         top: 40px;
         right: 0;
+        .Tloader {
+            flex: 1;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            -webkit-overflow-scrolling: touch; // enhance ios scrolling
+        }
     }
     .filterBox {
         background-color: #fff;

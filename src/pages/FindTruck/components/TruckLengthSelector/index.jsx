@@ -4,8 +4,8 @@ import { T } from 'react-toast-mobile'
 import BaseConstant from '../../../../api/BaseConstant'
 
 class TruckLengthSelector extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             truckLengthList: [],
             selected: [{
@@ -27,8 +27,11 @@ class TruckLengthSelector extends Component {
     selectOption(obj) {
         const constStdIDs = this.state.selected.map(item => item.constStdID)
         // 如果选择的选项已经勾选
-        if (constStdIDs.includes(obj.constStdID)) {
-            this.state.selected.splice(constStdIDs.indexOf(obj.constStdID), 1)
+        const index = constStdIDs.indexOf(obj.constStdID)
+        if (index > -1) {
+            const arr = [...this.state.selected]
+            arr.splice(index, 1)
+            this.setState({ selected: arr })
             return
         // 如果选择的选项没有勾选
         } else {
@@ -45,14 +48,13 @@ class TruckLengthSelector extends Component {
                         T.notify('最多选择3个车长！')
                         return
                     }
-                    this.setState({ selected: Array.from(this.state.selected).push(obj)})
+                    this.setState({ selected: [...this.state.selected, obj]})
                 }
             }
         }
-        console.log(this.state.selected)
     }
-    close() {
-
+    close(bool) {
+        this.props.callback(bool ? this.state.selected : null)
     }
     render() {
         return (
@@ -70,8 +72,8 @@ class TruckLengthSelector extends Component {
                     </ul>
                 </div>
                 <div className={style.footer}>
-                    <button className={style.cancel} onClick={this.close.bind(this, 'n')}><i></i>取消</button>
-                    <button className={style.confirm} onClick={this.close.bind(this, 'y')}><i></i>确定</button>
+                    <button className={style.cancel} onClick={this.close.bind(this, false)}><i></i>取消</button>
+                    <button className={style.confirm} onClick={this.close.bind(this, true)}><i></i>确定</button>
                 </div>
             </div>
         )

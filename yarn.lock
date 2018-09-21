@@ -5683,6 +5683,10 @@ react-error-overlay@^4.0.1:
   version "4.0.1"
   resolved "http://registry.npm.taobao.org/react-error-overlay/download/react-error-overlay-4.0.1.tgz#417addb0814a90f3a7082eacba7cee588d00da89"
 
+react-lazyload@^2.3.0:
+  version "2.3.0"
+  resolved "http://registry.npm.taobao.org/react-lazyload/download/react-lazyload-2.3.0.tgz#ccb134223012447074a96543954f44b055dc6185"
+
 react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "http://registry.npm.taobao.org/react-lifecycles-compat/download/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
@@ -5716,6 +5720,10 @@ react-toast-mobile@^1.0.10:
   dependencies:
     prop-types ">=15"
     react-transition-group "^2.2.0"
+
+react-touch-loader@^1.1.4:
+  version "1.1.4"
+  resolved "http://registry.npm.taobao.org/react-touch-loader/download/react-touch-loader-1.1.4.tgz#ccd49012b645d2492113178684f9f4ecae742ab6"
 
 react-transition-group@^2.2.0:
   version "2.4.0"
