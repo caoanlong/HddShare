@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import qs from 'qs'
 import { Link } from 'react-router-dom'
-import Tloader from 'react-touch-loader'
+import ReactPullLoad, { STATS } from 'react-pullload'
+import 'node_modules/react-pullload/dist/ReactPullLoad.css'
 import style from './style.scss'
 import TruckLengthSelector from './components/TruckLengthSelector'
 import TruckTypeSelector from './components/TruckTypeSelector'
@@ -22,17 +23,10 @@ class FindTruck extends Component {
                 "code": "0",
                 "name": "车型"
             },
-            list: [
-                {name: 'a'},
-                {name: 'b'},
-                {name: 'c'},
-                {name: 'd'}
-            ],
-            canRefreshResolve: 1,
-            listLen: 0,
-            hasMore: 0,
-            initializing: 1,
-            refreshedAt: Date.now()
+            list: [],
+            hasMore: true,
+            action: STATS.init,
+            index: loadMoreLimitNum //loading more test time limit
         }
         this.pageNum = 1
         this.pageSize = 10
@@ -66,34 +60,6 @@ class FindTruck extends Component {
             this.setState({ list: res.list })
         })
     }
-    refresh = (resolve, reject) => {
-        setTimeout(() => {
-            const { canRefreshResolve } = this.state
-            if (!canRefreshResolve) {
-                reject()
-            } else {
-                this.setState({
-                    listLen: 9,
-                    hasMore: 1,
-                    refreshedAt: Date.now()
-                })
-                resolve()
-            }
-        }, 2e3)
-    }
-    
-    loadMore = (resolve) => {
-        setTimeout(() => {
-            const { listLen } = this.state
-            const l = listLen + 9
-
-            this.setState({
-                listLen: l,
-                hasMore: l > 0 && l < 50
-            })
-            resolve()
-        }, 2e3)
-    }
     render() {
         return (
             <div className={style.findTruck}>
@@ -108,14 +74,20 @@ class FindTruck extends Component {
                 </div>
                 <div className={style.block}></div>
                 <div className={style.wrapper}>
-                    <Tloader
-                        className={style.Tloader}
-                        onRefresh={this.refresh}
-                        onLoadMore={this.loadMore}
-                        hasMore={this.state.hasMore}
-                        initializing={this.state.initializing}>
-                        {this.state.list.map((item, i) => <TruckItem key={i} truck={item}></TruckItem>)}
-                    </Tloader>
+                    <ReactPullLoad
+                        downEnough={150}
+                        action={this.state.action}
+                        handleAction={this.handleAction}
+                        hasMore={hasMore}
+                        style={{ paddingTop: 50 }}
+                        distanceBottom={1000}
+                        >
+                        <ul className="test-ul">
+                            <button onClick={this.handRefreshing}>refreshing</button>
+                            <button onClick={this.handLoadMore}>loading more</button>
+                            {this.state.list.map((item, i) => <TruckItem key={i} truck={item}></TruckItem>)}
+                        </ul>
+                    </ReactPullLoad>
                 </div>
                 {
                     this.state.showTruckLengthSelector 

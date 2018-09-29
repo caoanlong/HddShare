@@ -5519,7 +5519,7 @@ promise@8.0.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@>=15, prop-types@^15.5.10, prop-types@^15.6.1, prop-types@^15.6.2:
+prop-types@>=15, prop-types@^15.5.10, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2:
   version "15.6.2"
   resolved "http://registry.npm.taobao.org/prop-types/download/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
   dependencies:
@@ -5690,6 +5690,12 @@ react-lazyload@^2.3.0:
 react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "http://registry.npm.taobao.org/react-lifecycles-compat/download/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
+
+react-pullload@^1.2.0:
+  version "1.2.0"
+  resolved "http://registry.npm.taobao.org/react-pullload/download/react-pullload-1.2.0.tgz#9631879d9135e3919dc2130b934751a2690e7a3b"
+  dependencies:
+    prop-types "^15.6.0"
 
 react-router-dom@^4.3.1:
   version "4.3.1"
