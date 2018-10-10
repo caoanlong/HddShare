@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import LazyLoad from 'react-lazyload'
 import style from './style.scss'
+import { resizeImg } from '../../../../common/utils'
 
 class TruckItem extends Component {
     render() {
@@ -17,8 +18,8 @@ class TruckItem extends Component {
                         search: `?id=${this.props.truck.memIDStr}`
                     }}>
                     <div className={style.ls}>
-                        <LazyLoad>
-                            <img width="70" src={window.IMG_API + this.props.truck.headPicture} alt=""/>
+                        <LazyLoad height={70}>
+                            <img width="70" src={resizeImg(this.props.truck.headPicture, '_150x150.')} alt=""/>
                         </LazyLoad>
                     </div>
                     <div className={style.text}>

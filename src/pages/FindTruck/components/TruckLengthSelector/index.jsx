@@ -17,6 +17,11 @@ class TruckLengthSelector extends Component {
         }
     }
     componentWillMount() {
+        if (this.props.selected) {
+            this.setState({
+                selected: this.props.selected
+            })
+        }
         this.getList('TruckLength')
     }
     getList(type) {

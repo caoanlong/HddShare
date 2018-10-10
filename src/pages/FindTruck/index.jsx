@@ -15,25 +15,32 @@ class FindTruck extends Component {
             showTruckLengthSelector: false,
             showTruckTypeSelector: false,
             selectedTruckLengthList: [{
-                "code": "0",
-                "name": "车长"
+                "code": "51",
+				"constStdID": 100000044,
+				"name": "车长",
+				"value": "51"
             }],
             selectedTruckType: {
-                "code": "0",
-                "name": "车型"
+                "code": "51",
+				"constStdID": 100000044,
+				"name": "车型",
+				"value": "51"
             },
             data: [],
             hasMore: true,
-            action: STATS.init,
-            index: 1
+            action: STATS.init
         }
         this.pageNum = 1
         this.pageSize = 10
         this.query = qs.parse(this.props.location.search, { ignoreQueryPrefix: true })
     }
     componentWillMount() {
-        console.log(STATS)
-        this.getList()
+        this.getList().then(res => {
+            this.setState({
+                data: res.list,
+                hasMore: res.list.length === this.pageSize
+            })
+        })
     }
     selectTruckLength() {
         this.setState({ showTruckLengthSelector: true })
@@ -43,42 +50,24 @@ class FindTruck extends Component {
     }
     callBackTruckLengthSelector(selectedTruckLengthList) {
         this.setState({ showTruckLengthSelector: false })
-        if (selectedTruckLengthList) this.setState({ selectedTruckLengthList })
+        if (selectedTruckLengthList) this.setState({ selectedTruckLengthList }, () => {
+            this.handRefreshing()
+        })
     }
     callBackTruckTypeSelector(selectedTruckType) {
         this.setState({ showTruckTypeSelector: false })
-        if (selectedTruckType) this.setState({ selectedTruckType })
+        if (selectedTruckType) this.setState({ selectedTruckType }, () => {
+            this.handRefreshing()
+        })
     }
-    getList(status) {
-        Truck.find({
+    getList() {
+        const length = this.state.selectedTruckLengthList.map(item => item.constStdID)
+        return Truck.find({
             pageNum: this.pageNum,
             pageSize: this.pageSize,
             type: this.state.selectedTruckType.constStdID === 100000044 ? '' : this.state.selectedTruckType.constStdID,
-            length: this.state.selectedTruckLengthList.map(item => item.constStdID).join(','),
+            length: length.includes(100000044) ? '' : length.join(','),
             AppId: this.query.AppId || ''
-        }).then(res => {
-            if (status === 'refreshed') {
-                this.setState({
-                    data: res.list,
-                    hasMore: true,
-                    action: STATS[status],
-                    index: 1
-                })
-            } else {
-                if(this.state.index === 0){
-                    this.setState({
-                        action: STATS[status],
-                        hasMore: false
-                    })
-                } else{
-                    this.setState({
-                        data: [...this.state.data, ...res.list],
-                        action: STATS[status],
-                        index: 0,
-                        hasMore: res.list.length === this.pageSize
-                    })
-                }
-            }
         })
     }
     handleAction = (action) => {
@@ -94,14 +83,28 @@ class FindTruck extends Component {
     }
     handRefreshing = () =>{
         if (STATS.refreshing === this.state.action) return false
-        this.getList('refreshed')
+        this.pageNum = 1
+        this.getList().then(res => {
+            this.setState({
+                data: res.list,
+                hasMore: res.list.length === this.pageSize,
+                action: STATS.refreshed,
+            })
+        })
         this.setState({ action: STATS.refreshing })
     }
     handLoadMore = () => {
         if (STATS.loading === this.state.action) return false
         //无更多内容则不执行后面逻辑
         if (!this.state.hasMore) return
-        this.getList('reset')
+        this.pageNum++
+        this.getList().then(res => {
+            this.setState({
+                data: [...this.state.data, ...res.list],
+                action: STATS.reset,
+                hasMore: res.list.length === this.pageSize
+            })
+        })
         this.setState({ action: STATS.loading })
     }
     render() {
@@ -114,16 +117,18 @@ class FindTruck extends Component {
                     <div className={style.length} onClick={this.selectTruckType.bind(this)}>
                         {this.state.selectedTruckType.name}
                     </div>
-                    <Link className={style.map} to={{pathname: this.props.pathname, search: this.props.search}}><i></i>地图找车</Link>
+                    <Link className={style.map} to={{pathname: '/findTruckByMap'}}>
+                        <i></i>地图找车
+                    </Link>
                 </div>
                 <div className={style.block}></div>
                 <div className={style.wrapper}>
                     <ReactPullLoad
-                        downEnough={150}
+                        downEnough={100}
                         action={this.state.action}
                         handleAction={this.handleAction}
                         hasMore={this.state.hasMore}
-                        distanceBottom={100}>
+                        distanceBottom={-600}>
                         <div>
                             {this.state.data.map((item, i) => <TruckItem key={i} truck={item}></TruckItem>)}
                         </div>
@@ -131,12 +136,12 @@ class FindTruck extends Component {
                 </div>
                 {
                     this.state.showTruckLengthSelector 
-                    ? <TruckLengthSelector callback={this.callBackTruckLengthSelector.bind(this)}/> 
+                    ? <TruckLengthSelector selected={this.state.selectedTruckLengthList} callback={this.callBackTruckLengthSelector.bind(this)}/> 
                     : ''
                 }
                 {
                     this.state.showTruckTypeSelector 
-                    ? <TruckTypeSelector callback={this.callBackTruckTypeSelector.bind(this)}/> 
+                    ? <TruckTypeSelector selected={this.state.selectedTruckType} callback={this.callBackTruckTypeSelector.bind(this)}/> 
                     : ''
                 }
             </div>
