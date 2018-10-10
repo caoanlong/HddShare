@@ -57,22 +57,3 @@ li {
 .bdtb .bdt:before {
 	left: 15px;
 }
-
-.state-pulling .tloader-msg:after {
-	content: '下拉刷新';
-}
-.state-pulling.enough .tloader-msg:after {
-	content: '松开刷新';
-}
-.state-refreshed .tloader-msg:after {
-	content: '刷新成功';
-}
-.tloader-loading:after {
-	content: '正在加载...';
-}
-.tloader-symbol .tloader-loading:after {
-	content: '正在刷新...';
-}
-.tloader-btn:after {
-	content: '加载更多';
-}

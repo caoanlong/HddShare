@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import qs from 'qs'
 import { Link } from 'react-router-dom'
 import ReactPullLoad, { STATS } from 'react-pullload'
-import 'node_modules/react-pullload/dist/ReactPullLoad.css'
 import style from './style.scss'
 import TruckLengthSelector from './components/TruckLengthSelector'
 import TruckTypeSelector from './components/TruckTypeSelector'
@@ -23,16 +22,17 @@ class FindTruck extends Component {
                 "code": "0",
                 "name": "车型"
             },
-            list: [],
+            data: [],
             hasMore: true,
             action: STATS.init,
-            index: loadMoreLimitNum //loading more test time limit
+            index: 1
         }
         this.pageNum = 1
         this.pageSize = 10
         this.query = qs.parse(this.props.location.search, { ignoreQueryPrefix: true })
     }
     componentWillMount() {
+        console.log(STATS)
         this.getList()
     }
     selectTruckLength() {
@@ -49,16 +49,60 @@ class FindTruck extends Component {
         this.setState({ showTruckTypeSelector: false })
         if (selectedTruckType) this.setState({ selectedTruckType })
     }
-    getList() {
+    getList(status) {
         Truck.find({
             pageNum: this.pageNum,
             pageSize: this.pageSize,
             type: this.state.selectedTruckType.constStdID === 100000044 ? '' : this.state.selectedTruckType.constStdID,
             length: this.state.selectedTruckLengthList.map(item => item.constStdID).join(','),
-            AppId: this.query.AppId || '',
+            AppId: this.query.AppId || ''
         }).then(res => {
-            this.setState({ list: res.list })
+            if (status === 'refreshed') {
+                this.setState({
+                    data: res.list,
+                    hasMore: true,
+                    action: STATS[status],
+                    index: 1
+                })
+            } else {
+                if(this.state.index === 0){
+                    this.setState({
+                        action: STATS[status],
+                        hasMore: false
+                    })
+                } else{
+                    this.setState({
+                        data: [...this.state.data, ...res.list],
+                        action: STATS[status],
+                        index: 0,
+                        hasMore: res.list.length === this.pageSize
+                    })
+                }
+            }
         })
+    }
+    handleAction = (action) => {
+        console.info(action, this.state.action, action === this.state.action)
+        if (action === this.state.action) return false
+        if (action === STATS.refreshing) {
+            this.handRefreshing()
+        } else if (action === STATS.loading) {
+            this.handLoadMore()
+        } else {
+            this.setState({ action })
+        }
+    }
+    handRefreshing = () =>{
+        if (STATS.refreshing === this.state.action) return false
+        this.getList('refreshed')
+        this.setState({ action: STATS.refreshing })
+    }
+    handLoadMore = () => {
+        if (STATS.loading === this.state.action) return false
+        //无更多内容则不执行后面逻辑
+        if (!this.state.hasMore) return
+        this.getList('reset')
+        this.setState({ action: STATS.loading })
     }
     render() {
         return (
@@ -78,15 +122,11 @@ class FindTruck extends Component {
                         downEnough={150}
                         action={this.state.action}
                         handleAction={this.handleAction}
-                        hasMore={hasMore}
-                        style={{ paddingTop: 50 }}
-                        distanceBottom={1000}
-                        >
-                        <ul className="test-ul">
-                            <button onClick={this.handRefreshing}>refreshing</button>
-                            <button onClick={this.handLoadMore}>loading more</button>
-                            {this.state.list.map((item, i) => <TruckItem key={i} truck={item}></TruckItem>)}
-                        </ul>
+                        hasMore={this.state.hasMore}
+                        distanceBottom={100}>
+                        <div>
+                            {this.state.data.map((item, i) => <TruckItem key={i} truck={item}></TruckItem>)}
+                        </div>
                     </ReactPullLoad>
                 </div>
                 {
