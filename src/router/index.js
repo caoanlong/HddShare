@@ -5,6 +5,7 @@ import FindTruck from '../pages/FindTruck'
 import FindTruckByMap from '../pages/FindTruckByMap'
 import About from '../pages/About'
 import AppDownLoad from '../pages/AppDownLoad'
+import FindGoods from '../pages/FindGoods'
 export default () => (
     <Router>
         <div>
@@ -13,6 +14,7 @@ export default () => (
 			<Route exact path="/about" component={About}/>
             <Route exact path="/findTruck" component={FindTruck}/>
             <Route exact path="/findTruckByMap" component={FindTruckByMap}/>
+            <Route exact path="/findGoods" component={FindGoods}/>
         </div>
     </Router>
 )
