@@ -13,6 +13,17 @@ li {
 	list-style-type: none;
 }
 
+p {
+	margin: 0;
+}
+.fl{float:left!important;}
+.fr{float:right!important;}
+.c1{color:#6cc!important;}
+.c2{color:#ffc426!important;}
+.c3{color:#f60!important;}
+.c9{color:#999!important;}
+.f12{font-size:12px!important;}
+
 .clearfix:after {
 	content: ".";
 	display: block;

@@ -5647,6 +5647,10 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-amap@^1.2.7:
+  version "1.2.7"
+  resolved "http://registry.npm.taobao.org/react-amap/download/react-amap-1.2.7.tgz#693b11bab80307fd2ce63b94c4867bfc775263d7"
+
 react-dev-utils@^5.0.2:
   version "5.0.2"
   resolved "http://registry.npm.taobao.org/react-dev-utils/download/react-dev-utils-5.0.2.tgz#7bb68d2c4f6ffe7ed1184c5b0124fcad692774d2"
