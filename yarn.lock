@@ -5727,10 +5727,6 @@ react-toast-mobile@^1.0.10:
     prop-types ">=15"
     react-transition-group "^2.2.0"
 
-react-touch-loader@^1.1.4:
-  version "1.1.4"
-  resolved "http://registry.npm.taobao.org/react-touch-loader/download/react-touch-loader-1.1.4.tgz#ccd49012b645d2492113178684f9f4ecae742ab6"
-
 react-transition-group@^2.2.0:
   version "2.4.0"
   resolved "http://registry.npm.taobao.org/react-transition-group/download/react-transition-group-2.4.0.tgz#1d9391fabfd82e016f26fabd1eec329dbd922b5a"
