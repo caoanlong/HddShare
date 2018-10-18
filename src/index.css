@@ -23,6 +23,13 @@ p {
 .c3{color:#f60!important;}
 .c9{color:#999!important;}
 .f12{font-size:12px!important;}
+.cells{position:relative;overflow:hidden;margin-top:10px;background:#fff;line-height:1.5}
+.cell{position:relative;overflow:hidden;padding:10px 15px;}
+
+.cells .cell{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex}
+.cells .cell__hd{float:left;margin-right:5px;}
+.cells .cell__bd{-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;}
+.cells .cell__ft{text-align:right;color:#999;}
 
 .clearfix:after {
 	content: ".";

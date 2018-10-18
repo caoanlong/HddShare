@@ -7,6 +7,7 @@ import About from '../pages/About'
 import AppDownLoad from '../pages/AppDownLoad'
 import ConsignorDownload from '../pages/ConsignorDownload'
 import FindGoods from '../pages/FindGoods'
+import GoodsDetail from '../pages/GoodsDetail'
 import DriverDownload from '../pages/DriverDownload'
 export default () => (
     <Router>
@@ -19,6 +20,7 @@ export default () => (
             <Route exact path = "/findTruck" component = {FindTruck}/>
             <Route exact path="/findTruckByMap" component={FindTruckByMap}/>
             <Route exact path="/findGoods" component={FindGoods}/>
+            <Route exact path="/goodsDetail" component={GoodsDetail}/>
         </div>
     </Router>
 )

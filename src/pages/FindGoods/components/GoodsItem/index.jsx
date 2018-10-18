@@ -57,15 +57,15 @@ class GoodsItem extends Component {
                                     this.props.goods.cargoWeight ? this.props.goods.cargoWeight + '吨' : '',
                                     this.props.goods.cargoVolume ? this.props.goods.cargoVolume + '方' : '',
                                     this.props.goods.cargoNum ? this.props.goods.cargoNum + '件' : ''
-                                ].join('/')
+                                ].filter(item => item).join('/')
                             }
                         </p>
                         <p className={style.truckDesc}>
                             {
                                 [
-                                this.props.goods.truckLengthName, 
-                                this.props.goods.truckTypeName, 
-                                this.props.goods.loadingDateStr + '装车'
+                                    this.props.goods.truckLengthName, 
+                                    this.props.goods.truckTypeName, 
+                                    this.props.goods.loadingDateStr + '装车'
                                 ].join('/')
                             }
                             <span className={style.c3}>
