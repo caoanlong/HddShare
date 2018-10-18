@@ -14,4 +14,4 @@ class BaseConstant extends Base {
     }
 }
 
-export default new BaseConstant('/baseConstant', request)
+export default new BaseConstant('/adv/baseConstant', request)

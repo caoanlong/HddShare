@@ -5,4 +5,4 @@ class CargoSource extends Base {
     
 }
 
-export default new CargoSource('/cargoSource', request)
+export default new CargoSource('/adv/cargoSource', request)

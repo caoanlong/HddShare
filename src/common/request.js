@@ -5,7 +5,7 @@ import env from '../config'
 export const baseURL = env.BASE_API
 // create an axios instance
 const service = axios.create({
-	baseURL: baseURL + '/adv', // api的base_url
+	baseURL: baseURL, // api的base_url
 	timeout: 50000 // request timeout
 })
 
