@@ -50,7 +50,7 @@ class AppDownLoad extends Component {
                 <div className={style.publish}><img alt="" src={require("../../assets/img/publish.png")}/></div>
                 <div className={style.specialty}><img alt="" src={require("../../assets/img/specialty.png")}/></div>
                 <div className={style.downSection}>
-                    {deviceList.filter(item => item.type === this.state.deviceType).map((item, i) => <DownItem key={i} qrcodePic={item.qrcodePic} url={item.url} btn={item.btn}></DownItem>)}
+                    {deviceList.filter(item1 => item1.type === this.state.deviceType).map((item, i) => <DownItem key={i} qrcodePic={item.qrcodePic} url={item.url} btn={item.btn}></DownItem>)}
                 </div>
                 <div className={style.footer}>深圳前海微服大数据科技有限公司</div>
             </div>
