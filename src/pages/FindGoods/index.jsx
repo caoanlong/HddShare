@@ -56,7 +56,7 @@ class FindGoods extends Component {
         this.setState({
             showAreaSelector: false
         })
-        if (!start &&  end.length == 0) return
+        if (!start &&  end.length === 0) return
         this.pageNum = 1
         this.pageSize = 10
         if (start) {
