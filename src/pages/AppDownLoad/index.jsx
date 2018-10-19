@@ -44,17 +44,30 @@ class AppDownLoad extends Component {
         
     }
     render() {
-        return (
-            <div className={style.container}>
-                <img className={style.logo} alt="" src={require("../../assets/img/hdd_logo.png")}/>
-                <div className={style.publish}><img alt="" src={require("../../assets/img/publish.png")}/></div>
-                <div className={style.specialty}><img alt="" src={require("../../assets/img/specialty.png")}/></div>
-                <div className={style.downSection}>
-                    {deviceList.filter(item1 => item1.type === this.state.deviceType).map((item, i) => <DownItem key={i} qrcodePic={item.qrcodePic} url={item.url} btn={item.btn}></DownItem>)}
-                </div>
-                <div className={style.footer}>深圳前海微服大数据科技有限公司</div>
+        return <div className={style.container}>
+            <img className={style.logo} alt="" src={require("../../assets/img/hdd_logo.png")} />
+            <div className={style.publish}>
+              <img className={style.pic} alt="" src={require("../../assets/img/publish.png")} />
             </div>
-        )
+            <div className={style.specialty}>
+              <img className={style.pic} alt="" src={require("../../assets/img/specialty.png")} />
+            </div>
+            <div className={style.downSection}>
+              {deviceList
+                .filter(item1 => item1.type === this.state.deviceType)
+                .map((item, i) => (
+                  <DownItem
+                    key={i}
+                    qrcodePic={item.qrcodePic}
+                    url={item.url}
+                    btn={item.btn}
+                  />
+                ))}
+            </div>
+            <div className={style.footer}>
+              深圳前海微服大数据科技有限公司
+            </div>
+          </div>;
     }
 }
 export default AppDownLoad

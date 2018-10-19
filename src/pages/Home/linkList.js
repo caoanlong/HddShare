@@ -15,7 +15,7 @@ export default [
         icon: require('../../assets/icons/download.svg')
     },
     {
-        title: 'App下载(富文本)',
+        title: 'App(富文本)',
         pathname: '/AppDownloadRichTxt',
         icon: require('../../assets/icons/download.svg')
     },
