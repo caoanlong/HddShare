@@ -8,7 +8,7 @@ class FaqDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      content: {}
+      content: ''
     };
     this.query = qs.parse(this.props.location.search, {
       ignoreQueryPrefix: true
