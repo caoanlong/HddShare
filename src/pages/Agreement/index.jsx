@@ -8,7 +8,7 @@ class Agreenment extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      content: {}
+      content: ''
     };
     this.query = qs.parse(this.props.location.search, {
       ignoreQueryPrefix: true
@@ -30,7 +30,9 @@ class Agreenment extends Component {
  
   render() {
     return <div className={style.container}>
-        <div className={style.agreenment_con} dangerouslySetInnerHTML={{ __html: this.state.content }} />
+        <div className={style.agreenment_con} dangerouslySetInnerHTML={
+          { __html: this.state.content }
+        }></div>
       </div>;
   }
 }
