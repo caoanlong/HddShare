@@ -12,6 +12,11 @@ import GoodsDetail from '../pages/GoodsDetail'
 import GoodsLine from '../pages/GoodsLine'
 import DriverDownload from '../pages/DriverDownload'
 import Agreement from '../pages/Agreement'
+import Statement from '../pages/Statement'
+import ErrorPage from '../pages/ErrorPage'
+import FaqList from '../pages/FaqList'
+import FaqDetail from '../pages/FaqDetail'
+
 export default () => (
     <Router>
         <div>
@@ -26,7 +31,11 @@ export default () => (
             <Route exact path = "/truckDetail" component = {TruckDetail}/>
             <Route exact path = "/findGoods" component = {FindGoods}/>
             <Route exact path = "/goodsDetail" component = {GoodsDetail}/>
-            <Route exact path = "/goodsLine" component = {GoodsLine}/>
+			<Route exact path = "/goodsLine" component = {GoodsLine}/>
+            <Route exact path = "/statement" component = {Statement}/>
+            <Route exact path = "/error" component = {ErrorPage}/>
+            <Route exact path = "/FaqList" component = {FaqList}/>
+            <Route exact path = "/FaqDetail" component = {FaqDetail}/>
         </div>
     </Router>
 )
