@@ -79,10 +79,7 @@ class GoodsDetail extends Component {
                 </div>
                 <Link className={`${style.viewMap} bdtb`} to={{
                     pathname: 'goodsLine', 
-                    search: `?areaFromLat=${this.state.goodsDetail.areaFromLat}
-                            &areaFromLng=${this.state.goodsDetail.areaFromLng}
-                            &areaToLat=${this.state.goodsDetail.areaToLat}
-                            &areaToLng=${this.state.goodsDetail.areaToLng}`
+                    search: `?areaFromLat=${this.state.goodsDetail.areaFromLat}&areaFromLng=${this.state.goodsDetail.areaFromLng}&areaToLat=${this.state.goodsDetail.areaToLat}&areaToLng=${this.state.goodsDetail.areaToLng}`
                 }}>
                     <img src={require('../../assets/img/line.jpg')} width="100%" alt="" />
                     <p>最短里程<b>{(this.state.goodsDetail.estimateMileage || 0) + '公里'}</b></p>

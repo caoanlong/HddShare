@@ -8,6 +8,7 @@ import AppDownLoad from '../pages/AppDownLoad'
 import ConsignorDownload from '../pages/ConsignorDownload'
 import FindGoods from '../pages/FindGoods'
 import GoodsDetail from '../pages/GoodsDetail'
+import GoodsLine from '../pages/GoodsLine'
 import DriverDownload from '../pages/DriverDownload'
 import Agreement from '../pages/Agreement'
 import Statement from '../pages/Statement'
@@ -28,6 +29,7 @@ export default () => (
             <Route exact path = "/findTruckByMap" component = {FindTruckByMap}/>
             <Route exact path = "/findGoods" component = {FindGoods}/>
             <Route exact path = "/goodsDetail" component = {GoodsDetail}/>
+			<Route exact path = "/goodsLine" component = {GoodsLine}/>
             <Route exact path = "/statement" component = {Statement}/>
             <Route exact path = "/error" component = {ErrorPage}/>
             <Route exact path = "/FaqList" component = {FaqList}/>

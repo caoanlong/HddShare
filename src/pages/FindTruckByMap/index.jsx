@@ -48,8 +48,8 @@ class FindTruckByMap extends Component {
         return (
             <div className={style.mapWrapper}>
                 <Map 
-                    amapkey={'a992d0fafbb20edab35d37e1c2297e90'} 
-                    version={'1.4.9'}
+                    amapkey={window.MAP_KEY} 
+                    version={window.MAP_VERSION}
                     plugins={['ToolBar']} 
                     center={this.position} 
                     zoom={10}>
