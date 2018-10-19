@@ -15,6 +15,11 @@ export default [
         icon: require('../../assets/icons/download.svg')
     },
     {
+        title: 'App下载(富文本)',
+        pathname: '/AppDownloadRichTxt',
+        icon: require('../../assets/icons/download.svg')
+    },
+    {
         title: '关于货多多',
         pathname: '/about',
         icon: require('../../assets/icons/about.svg')
