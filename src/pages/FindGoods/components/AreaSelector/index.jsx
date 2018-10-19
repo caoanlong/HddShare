@@ -57,7 +57,7 @@ class AreaSelector extends Component {
                 return
             }
             // 如果选择的是省
-            if (key.substr(2) == '0000') {
+            if (key.substr(2) === '0000') {
                 // 进入到城市选择层
                 this.setState({
                     firstArea: { key, value },
@@ -70,7 +70,7 @@ class AreaSelector extends Component {
                     })
                 }
             // 如果选择的是市
-            } else if (key.substr(4) == '00') {
+            } else if (key.substr(4) === '00') {
                 // 进入到区县选择层
                 this.setState({
                     firstArea: { key, value },
@@ -86,8 +86,8 @@ class AreaSelector extends Component {
             } else {
                 if (this.state.selectType === 'mutiple') {
                     // 判断是否包含全部
-                    if (this.state.selectedDistList.find(item => item.substr(4) == '00') !== undefined) {
-                        this.deleteAreaList(this.state.selectedDistList.find(item => item.substr(4) == '00'))
+                    if (this.state.selectedDistList.find(item => item.substr(4) === '00') !== undefined) {
+                        this.deleteAreaList(this.state.selectedDistList.find(item => item.substr(4) === '00'))
                     }
                     // 判断是否超过5个
                     if (this.state.selectedDistList.length >= 5) {
@@ -146,19 +146,19 @@ class AreaSelector extends Component {
     }
     returnBack() {
         // 如果选择的是省
-        if (this.state.firstArea.key.substr(2) == '0000') {
+        if (this.state.firstArea.key.substr(2) === '0000') {
             this.setState({
                 isShowReturn: false,
                 areaList: ChineseDistricts[0],
                 firstArea: null
             })
         // 如果选择的是市
-        } else if (this.state.firstArea.key.substr(4) == '00') {
+        } else if (this.state.firstArea.key.substr(4) === '00') {
             this.setState({
-                areaList: ChineseDistricts[this.state.firstArea.key.substring(0,2)+'0000'],
+                areaList: ChineseDistricts[this.state.firstArea.key.substring(0,2) + '0000'],
                 firstArea: {
                     key: this.state.firstArea.key.substring(0,2)+'0000',
-                    value: ChineseDistricts[0][this.state.firstArea.key.substring(0,2)+'0000'],
+                    value: ChineseDistricts[0][this.state.firstArea.key.substring(0,2) + '0000'],
                 } 
             })
         // 如果选择的是区县
