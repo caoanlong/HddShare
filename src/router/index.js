@@ -4,6 +4,7 @@ import Home from '../pages/Home'
 import FindTruck from '../pages/FindTruck'
 import FindTruckByMap from '../pages/FindTruckByMap'
 import TruckDetail from '../pages/TruckDetail'
+import TruckLocation from '../pages/TruckLocation'
 import About from '../pages/About'
 import AppDownLoad from '../pages/AppDownLoad'
 import ConsignorDownload from '../pages/ConsignorDownload'
@@ -29,6 +30,7 @@ export default () => (
             <Route exact path = "/findTruck" component = {FindTruck}/>
             <Route exact path = "/findTruckByMap" component = {FindTruckByMap}/>
             <Route exact path = "/truckDetail" component = {TruckDetail}/>
+            <Route exact path = "/truckLocation" component = {TruckLocation}/>
             <Route exact path = "/findGoods" component = {FindGoods}/>
             <Route exact path = "/goodsDetail" component = {GoodsDetail}/>
 			<Route exact path = "/goodsLine" component = {GoodsLine}/>
