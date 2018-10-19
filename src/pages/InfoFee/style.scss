@@ -1,4 +1,45 @@
-.agreenment_con
-{
-    padding:0 1em 1em
+.padd{
+    position:relative;
+    margin-top: 10px;
+    padding: 0 15px;
+    .item{
+        padding:10px 0;
+        color:#666;
+        .icon,.goodInfo,.lineInfo{
+            display:inline-block;
+            vertical-align:middle;
+        }
+        .lineInfo{
+            font-weight:bold;
+            color:#333;
+            span{
+                display:inline-block;vertical-align:middle;height:24px;line-height:24px;
+                b {
+                    color: #f60;
+                    padding: 0 5px;
+                }
+                &.arrow {
+                    background: url('../../assets/img/arrow.svg') no-repeat center width 30px height 24px background-size cover
+                }
+            }  
+        }
+    }
+    .success_icon{
+        height:80% ;
+        position:absolute;
+        top:50%;
+        right:15px;
+        transform:translateY(-50%);
+    }
+}
+.pannel{
+    background: #fff;
+    &:before{
+        
+    }
+    .pannel_item{
+        position:relative;
+        padding:10px 15px;
+        font-size:14px;
+    }
 }
