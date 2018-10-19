@@ -7,17 +7,8 @@ import AgentOrder from "../../api/AgentOrder";
 class InfoFee extends Component {
 
 	render() {
-				</div>
-<<<<<<< .mine
-						<div className="item">
-							<img className="icon" src="../assets/img/detail_icon2.svg">
-								<div className="goodInfo">{{ infoData.cargoName ? infoData.cargoName + '/' : '' }}{{ infoData.cargoWeight ? infoData.cargoWeight + '吨' : '' }}{{ infoData.cargoVolume ? '/' + infoData.cargoVolume + '方' : '' }}{{ infoData.cargoNum ? '/' + infoData.cargoNum + '件' : '' }}</div>
-
-
-
-
-
-=======
+		<div>
+			<div>
 				<div className={style.item}>
 					<img className={style.icon} src={require("../../assets/img/detail_icon2.svg")} alt="" />
 					<div className={style.goodInfo}>
@@ -26,118 +17,7 @@ class InfoFee extends Component {
 						{this.state.infoData.cargoVolume ? "/" + this.state.infoData.cargoVolume + "方" : ""}
 						{this.state.infoData.cargoNum ? "/" + this.state.infoData.cargoNum + "件" : ""}
 					</div>
->>>>>>> .theirs
 				</div>
-<<<<<<< .mine
-							<img className="success_icon" src="../assets/img/success_icon.png" />
-						</div>
-						);
-					  }
-					}
-					
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
 				<img className={style.success_icon} src={require("../../assets/img/success_icon.png")} alt="" />
 			</div>
 			<div className={style.pannel}>
@@ -242,9 +122,8 @@ class InfoFee extends Component {
 				</div>
 				<div className={`${style.section} ${style.section3}`} />
 			</div>
-		</div>;
+		</div>
 	}
 }
 
->>>>>>> .theirs
-export default InfoFee;
+export default InfoFee
