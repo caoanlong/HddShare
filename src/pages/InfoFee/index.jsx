@@ -5,10 +5,55 @@ import Content from "../../api/Content";
 import AgentOrder from "../../api/AgentOrder";
 
 class InfoFee extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			content: "",
+			infoData: {}
+		};
+		this.query = qs.parse(this.props.location.search, {
+			ignoreQueryPrefix: true
+		});
+	}
+	componentWillMount() {
+		this.getDetail();
+		this.getContent();
+	}
+	getDetail() {
+		AgentOrder.findById({
+			agentAgreementID: this.query.agentAgreementID,
+			AppId: this.query.AppId || "",
+			Authorization: this.query.Authorization
+		}).then(res => {
+			this.setState({ infoData: res[0].content });
+		});
+	}
+	getContent() {
+		Content.getContent({
+			code: this.query.code || "InformationFees",
+			AppId: this.query.AppId || "",
+			//   AppId: this.query.AppId || "10000003",
+			Authorization: this.query.Authorization
+		}).then(res => {
+			this.setState({ content: res[0].content });
+		});
+	}
 
 	render() {
-		<div>
-			<div>
+		return <div className={style.container}>
+			<div className={style.padd}>
+				<div className={style.item}>
+					<img className={style.icon} src={require("../../assets/img/position_icon.svg")} alt="" />
+					<div className={style.lineInfo}>
+						<span className={style.start}>
+							{this.state.infoData.areaFromName}{" "}
+						</span>
+						<span className={style.arrow} />
+						<span className={style.end}>
+							{this.state.infoData.areaToName}{" "}
+						</span>
+					</div>
+				</div>
 				<div className={style.item}>
 					<img className={style.icon} src={require("../../assets/img/detail_icon2.svg")} alt="" />
 					<div className={style.goodInfo}>
@@ -122,8 +167,8 @@ class InfoFee extends Component {
 				</div>
 				<div className={`${style.section} ${style.section3}`} />
 			</div>
-		</div>
+		</div>;
 	}
 }
 
-export default InfoFee
+export default InfoFee;
