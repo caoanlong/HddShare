@@ -12,6 +12,7 @@ import FindGoods from '../pages/FindGoods'
 import GoodsDetail from '../pages/GoodsDetail'
 import GoodsLine from '../pages/GoodsLine'
 import DriverDownload from '../pages/DriverDownload'
+import AppDownloadRichTxt from '../pages/AppDownloadRichTxt'
 import Agreement from '../pages/Agreement'
 import Statement from '../pages/Statement'
 import ErrorPage from '../pages/ErrorPage'
@@ -23,10 +24,11 @@ export default () => (
     <Router>
         <div>
             <Route exact path = "/" component = {Home}/>
-			<Route exact path = "/appdownload" component = {AppDownLoad}/>
-			<Route exact path = "/consignorDownload" component = {ConsignorDownload}/>
-			<Route exact path = "/driverDownload" component = {DriverDownload}/>
-			<Route exact path = "/about" component = {About}/>
+			<Route exact path = "/AppDownload" component = {AppDownLoad}/>
+			<Route exact path = "/ConsignorDownload" component = {ConsignorDownload}/>
+			<Route exact path = "/DriverDownload" component = {DriverDownload}/>
+			<Route exact path = "/AppDownloadRichTxt" component = {AppDownloadRichTxt}/>
+			<Route exact path = "/aboutHdd" component = {About}/>
 			<Route exact path = "/agreement" component = {Agreement}/>
             <Route exact path = "/findTruck" component = {FindTruck}/>
             <Route exact path = "/findTruckByMap" component = {FindTruckByMap}/>

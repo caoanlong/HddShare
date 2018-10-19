@@ -12,7 +12,7 @@ const service = axios.create({
 // request interceptor
 service.interceptors.request.use(config => {
 	config.headers['Content-Type'] = 'application/x-www-form-urlencoded'
-	config.headers['Authorization'] = localStorage.getItem('token')
+	// config.headers['Authorization'] = localStorage.getItem('token')
 	if (config.data && config.headers['Content-Type'].includes('application/x-www-form-urlencoded')) {
 		config.data = qs.stringify(config.data)
 	}
