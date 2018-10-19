@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Map, Marker, Driving } from 'react-amap'
+import { Map } from 'react-amap'
 import qs from 'qs'
 import style from './style.scss'
 import MapRouter from './components/MapRouter'
