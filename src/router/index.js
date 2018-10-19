@@ -17,6 +17,7 @@ import Statement from '../pages/Statement'
 import ErrorPage from '../pages/ErrorPage'
 import FaqList from '../pages/FaqList'
 import FaqDetail from '../pages/FaqDetail'
+import BankList from '../pages/BankList'
 
 export default () => (
     <Router>
@@ -38,6 +39,7 @@ export default () => (
             <Route exact path = "/error" component = {ErrorPage}/>
             <Route exact path = "/FaqList" component = {FaqList}/>
             <Route exact path = "/FaqDetail" component = {FaqDetail}/>
+            <Route exact path = "/bankList" component = {BankList}/>
         </div>
     </Router>
 )
